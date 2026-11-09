@@ -290,3 +290,25 @@ def test_unknown_budget_approval_does_not_confirm_or_book(payload, requirements)
             assert row["payload"]["plan_confirmation"] == "UNCONFIRMED"
             assert row["payload"]["booked"] is False and row["payload"]["readiness"] == "NOT_ASSESSED"
     run_async(scenario())
+
+
+@pytest.mark.parametrize("choice", ["approve", "reject"])
+def test_first_decision_requires_real_approval_interrupt(payload, requirements, choice):
+    async def scenario():
+        thread = thread_id()
+        async with open_service(MockAdapter(ModelReply(json.dumps(payload)))) as service:
+            # Real PostgreSQL checkpoint after freeze, before entering dynamic wait.
+            service.graph.interrupt_before_nodes = ["wait"]
+            pending = await service.start(thread, requirements)
+            assert pending["status"] == "recoverable" and not pending["approval_pending"]
+            with pytest.raises(WorkflowError, match="approval_requires_waiting_state"):
+                await service.decide(thread, **decision_args(pending, choice=choice))
+            assert await counts(thread) == dict(results=0, receipts=0, decisions=0)
+            service.graph.interrupt_before_nodes = []
+            waiting = await service.continue_run(thread)
+            assert waiting["status"] == "waiting" and waiting["approval_pending"]
+            request = decision_args(waiting, choice=choice)
+            result = await service.decide(thread, **request)
+            assert result["status"] == ("approved" if choice == "approve" else "rejected")
+            assert await service.decide(thread, **request) == result
+    run_async(scenario())

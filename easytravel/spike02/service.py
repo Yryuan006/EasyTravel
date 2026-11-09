@@ -42,6 +42,14 @@ class WorkflowService:
         decision = await self.repository.decision(proposal["proposal_id"])
         receipt = await self.repository.receipt(proposal)
         pending_interrupt = any(task.interrupts for task in snapshot.tasks)
+        approval_pending = snapshot.next == ("wait",) and any(
+            task.name == "wait" and any(
+                isinstance(item.value, dict)
+                and item.value.get("proposal_id") == proposal["proposal_id"]
+                and item.value.get("candidate_hash") == proposal["request_hash"]
+                and item.value.get("working_revision") == state["working_revision"]
+                for item in task.interrupts)
+            for task in snapshot.tasks)
         error_count = sum(bool(task.error) for task in snapshot.tasks)
         status = "waiting" if pending_interrupt else "recoverable"
         if pending_interrupt and error_count:
@@ -65,7 +73,7 @@ class WorkflowService:
                     choice=decision["choice"] if decision else None,
                     result_id=receipt["result_id"] if receipt else None,
                     business_committed=receipt is not None, next=list(snapshot.next),
-                    task_error_count=error_count)
+                    task_error_count=error_count, approval_pending=approval_pending and not error_count)
 
     async def inspect(self, thread_id, *, actor=OWNER):
         self.check_actor(actor)
@@ -114,6 +122,8 @@ class WorkflowService:
             current = await self._inspect(thread_id)
             if current["status"] == "inconsistent":
                 raise WorkflowError("checkpoint_requires_review")
+            if not current["decision_id"] and not current["approval_pending"]:
+                raise WorkflowError("approval_requires_waiting_state")
             proposal = self.repository.validate(await self.repository.proposal(thread_id))
             await self.repository.save_decision(proposal, actor=actor, proposal_id=proposal_id,
                 candidate_hash=candidate_hash, request_id=request_id, choice=choice)
