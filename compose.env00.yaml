@@ -1,0 +1,37 @@
+name: easytravel-env00
+
+services:
+  postgres:
+    image: postgres:16@sha256:f9a7b9ebf6f56201f949db745e47bc423c0f0f8294bafe991cc10bf74b029657
+    container_name: easytravel-env00-postgres
+    restart: "no"
+    labels:
+      com.easytravel.scope: env00
+    ports:
+      - "127.0.0.1:55432:5432"
+    environment:
+      POSTGRES_USER: easytravel_env00_admin
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_admin_password
+      TZ: Asia/Shanghai
+      PGTZ: Asia/Shanghai
+    secrets:
+      - postgres_admin_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./.local/postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U easytravel_env00_admin -d postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+secrets:
+  postgres_admin_password:
+    file: ./.local/postgres-admin-password
+
+volumes:
+  postgres_data:
+    name: easytravel_env00_pgdata
+    labels:
+      com.easytravel.scope: env00

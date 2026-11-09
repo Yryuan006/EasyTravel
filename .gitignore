@@ -1,0 +1,35 @@
+# Local runtimes, environments and caches
+.tools/
+.venv/
+.venv-repro/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets: commit examples only
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.pgpass
+pgpass.conf
+
+# Local database files and operational output
+.local/
+pgdata/
+*.log
+*.pid
+
+# Build and editor output
+build/
+dist/
+*.egg-info/
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
