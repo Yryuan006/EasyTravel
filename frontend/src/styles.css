@@ -1,0 +1,46 @@
+:root { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; color: #213b35; background: #f5f4ee; font-synthesis: none; text-rendering: optimizeLegibility; --green: #173f38; --muted: #606e65; --line: #dce0d6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; }
+.app-header, .app-footer { margin: 0 auto; max-width: 1240px; padding: 25px 48px; display: flex; justify-content: space-between; align-items: center; }
+.app-header { border-bottom: 1px solid var(--line); }
+.brand { display: flex; gap: 12px; align-items: center; text-decoration: none; font: 600 23px Georgia, serif; }
+.brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 35px; height: 35px; background: var(--green); color: #faf8ec; border-radius: 8px; font-size: 24px; }
+.brand-mark span { font: 14px sans-serif; }
+nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-decoration: none; border-bottom: 2px solid var(--green); }
+.workspace { max-width: 900px; margin: 0 auto; padding: 64px 32px 56px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .15em; color: var(--muted); margin: 0 0 15px; }
+h1 { font-family: "Songti SC", "SimSun", serif; font-size: clamp(36px, 5vw, 50px); font-weight: 500; letter-spacing: -.04em; margin: 0; }
+.intro-copy { color: var(--muted); font-size: 15px; line-height: 1.8; margin: 18px 0 32px; }
+.health-panel { background: #fffefa; border: 1px solid #d9ded3; border-radius: 14px; padding: 32px; box-shadow: 0 8px 30px #173f3805; }
+.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.panel-heading .eyebrow { margin-bottom: 8px; font-size: 10px; }
+h2 { font-size: 21px; font-weight: 600; margin: 0; }
+button { min-height: 44px; border: 1px solid #bfcdbb; background: transparent; color: var(--green); border-radius: 6px; padding: 0 16px; font: inherit; font-size: 13px; cursor: pointer; transition: background .15s, transform .15s; }
+button:hover:enabled { background: #eaf0e5; transform: translateY(-1px); }
+button:active:enabled { transform: translateY(0); }
+button:disabled { color: #72796f; cursor: wait; }
+:focus-visible { outline: 3px solid #aa6b24; outline-offset: 5px; }
+.connection { display: flex; gap: 14px; padding: 24px; margin: 28px 0 8px; border-radius: 8px; background: #edf3e8; }
+.status-dot { flex: 0 0 9px; height: 9px; border-radius: 50%; margin-top: 7px; background: #3c7754; }
+.connection h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; }
+.connection p { margin: 0; color: #52664e; font-size: 13px; line-height: 1.8; overflow-wrap: anywhere; }
+.connection.error { background: #fcf0e9; color: #8a3729; }
+.error .status-dot { background: #b94a32; }
+.error p { color: #874d3b; }
+.connection.loading { background: #f0f1ec; }
+.loading .status-dot { background: #798273; }
+.dependency-list { margin: 8px 0 0; }
+.dependency-list > div { display: flex; justify-content: space-between; border-bottom: 1px solid #e7e9df; padding: 16px 0; font-size: 14px; }
+dd { margin: 0; color: var(--muted); font-size: 12px; background: #f1f2eb; padding: 3px 9px; border-radius: 4px; }
+.scope-note { color: var(--muted); font-size: 12px; line-height: 1.9; margin: 20px 0 0; }
+.checked-at { font-size: 11px; color: var(--muted); margin: 10px 0 0; }
+.stage-note { display: flex; gap: 20px; padding-top: 28px; }
+.note-index { font: 15px Georgia, serif; color: #7f8a79; padding-top: 3px; white-space: nowrap; }
+.stage-note h2 { font-size: 14px; font-weight: 500; }
+.stage-note p { margin: 8px 0 0; font-size: 12px; line-height: 1.9; color: var(--muted); }
+.app-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+.skip-link { position: fixed; left: 16px; top: -100px; padding: 12px; background: white; z-index: 2; }
+.skip-link:focus { top: 12px; }
+@media (max-width: 600px) { .app-header, .app-footer { padding: 20px; } .workspace { padding: 40px 20px; } .brand { font-size: 20px; } .health-panel { padding: 22px 18px; } .connection { padding: 18px 14px; } h2 { font-size: 19px; } .panel-heading { gap: 8px; } button { padding: 0 12px; } .stage-note { gap: 14px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }

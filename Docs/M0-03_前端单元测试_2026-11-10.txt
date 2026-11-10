@@ -1,0 +1,38 @@
+
+> easytravel-frontend@0.1.0 test
+> vitest run --reporter=verbose
+
+
+ RUN  v5.1.0 D:/Project/EasyTravel/frontend
+
+ ✓ tests/health.test.ts > health API boundary > matches the archived OpenAPI literals and optional defaults 3ms
+ ✓ tests/health.test.ts > health API boundary > requests the existing same-origin endpoint and returns typed liveness 3ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 404 even with a healthy-looking body 1ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 409 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 422 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 500 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 502 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 503 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > reports unreachable backend without exposing raw diagnostic secrets 1ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload null 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload [] 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload "alive" 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"status":"ready"} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"scope":"readiness"} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":null} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":{"database":"ready"}} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":{"model":"ready"}} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":{"travel_data":"ready"}} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects non-JSON success responses 0ms
+ ✓ tests/health.test.ts > health API boundary > times out a stalled request 2ms
+ ✓ tests/health.test.ts > health API boundary > propagates caller cancellation to fetch and releases the timer 0ms
+ ✓ tests/app.test.ts > shows accessible loading and disables repeated clicks 19ms
+ ✓ tests/app.test.ts > limits success to HTTP liveness and emits retry 13ms
+ ✓ tests/app.test.ts > shows failure without retaining success 1ms
+ ✓ tests/app.test.ts > renders the app, recovers from failure, and clears old success on the next check 11ms
+ ✓ tests/app.test.ts > aborts an in-flight request on unmount 2ms
+
+ Test Files  2 passed (2)
+      Tests  26 passed (26)
+   Start at  22:29:53
+   Duration  643ms (environment 83%, import 6%, tests 6%, transform 4%, worker 1%)

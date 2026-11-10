@@ -1,0 +1,15 @@
+
+> easytravel-frontend@0.1.0 test:browser
+> playwright test
+
+
+Running 3 tests using 1 worker
+
+(node:35532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+LIVE /api/v1/health via Vite: {"status":"alive","scope":"http_application_liveness","dependencies":{"database":"not_checked","model":"not_checked","travel_data":"not_checked"}}
+  ok 1 e2e\health.spec.ts:3:1 › real browser reaches live backend through Vite proxy (506ms)
+  ok 2 e2e\health.spec.ts:25:1 › loading, network failure and retry remain honest (299ms)
+  ok 3 e2e\health.spec.ts:41:1 › HTTP server failure is never displayed as success (108ms)
+
+  3 passed (1.4s)

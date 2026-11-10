@@ -1,0 +1,26 @@
+Initial HEAD: 191e7074e60921114865c0dd9e0753c01c0c6e6a
+Initial working tree: clean
+Global Node unchanged: 24.14.0 (D:/NodeJs/node.exe)
+Project Node:
+v24.22.2
+LTS:
+Krypton
+npm:
+11.9.0
+Direct dependencies:
+easytravel-frontend@0.1.0 D:\Project\EasyTravel\frontend
+├── @playwright/test@1.65.0
+├── @types/node@24.10.1
+├── @vitejs/plugin-vue@6.0.10
+├── @vue/test-utils@2.5.1
+├── jsdom@31.0.0
+├── typescript@5.9.3
+├── vite@8.3.7
+├── vitest@5.1.0
+├── vue-tsc@3.3.14
+└── vue@3.5.45
+
+Direct backend GET:
+{"status":"alive","scope":"http_application_liveness","dependencies":{"database":"not_checked","model":"not_checked","travel_data":"not_checked"}}
+Proxy GET:
+{"status":"alive","scope":"http_application_liveness","dependencies":{"database":"not_checked","model":"not_checked","travel_data":"not_checked"}}
