@@ -1,0 +1,6 @@
+{"database": "easytravel_m002_test_3ff13c7155c2", "role": "easytravel_m002_3ff13c7155c2", "postgres_version": "16.15 (Debian 16.15-1.pgdg13+2)"}
+[{"version": "001_initial.sql", "checksum": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43"}]
+[{"tablename": "change_proposals"}, {"tablename": "confirmed_snapshots"}, {"tablename": "draft_versions"}, {"tablename": "operation_receipts"}, {"tablename": "schema_migrations"}, {"tablename": "specific_authorizations"}, {"tablename": "trips"}, {"tablename": "working_drafts"}]
+[{"tgname": "authorization_consumption"}, {"tgname": "immutable_authorization"}, {"tgname": "immutable_proposal"}, {"tgname": "immutable_receipt"}, {"tgname": "immutable_snapshot"}, {"tgname": "immutable_version"}, {"tgname": "no_truncate_authorization"}, {"tgname": "no_truncate_proposal"}, {"tgname": "no_truncate_receipt"}, {"tgname": "no_truncate_snapshot"}, {"tgname": "no_truncate_version"}]
+Repeat upgrade: []
+No cleanup performed; all test databases retained.

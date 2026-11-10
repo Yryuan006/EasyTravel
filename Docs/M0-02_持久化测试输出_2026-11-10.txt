@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 26 items
+
+tests/backend/test_persistence.py::test_fresh_schema_and_repeat_upgrade_preserves_data Fresh empty database initialized with 001_initial.sql; 8 formal tables
+PASSED
+tests/backend/test_persistence.py::test_checksum_drift_and_unknown_migration_fail PASSED
+tests/backend/test_persistence.py::test_failed_migration_rolls_back_ddl_and_ledger PASSED
+tests/backend/test_persistence.py::test_working_revision_conflict_and_cas PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[UPDATE easytravel.confirmed_snapshots SET disclosure_hash=disclosure_hash WHERE snapshot_id=%s] PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[DELETE FROM easytravel.confirmed_snapshots WHERE snapshot_id=%s] PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[UPDATE easytravel.draft_versions SET payload=payload WHERE trip_id=%s] PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[DELETE FROM easytravel.draft_versions WHERE trip_id=%s] PASSED
+tests/backend/test_persistence.py::test_snapshot_remains_old_after_working_change PASSED
+tests/backend/test_persistence.py::test_repeated_and_concurrent_operation_one_result PASSED
+tests/backend/test_persistence.py::test_concurrent_different_operations_conflict PASSED
+tests/backend/test_persistence.py::test_confirmation_receipt_and_unique_snapshot PASSED
+tests/backend/test_persistence.py::test_authorization_exact_scope_and_single_consumption PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[save_receipt-apply] PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[save_receipt-confirm] PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[commit-apply] PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[commit-confirm] PASSED
+tests/backend/test_persistence.py::test_owner_boundary_all_reads_and_writes PASSED
+tests/backend/test_persistence.py::test_unavailable_database_and_cli_explicit_failure PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[postgresql://a:secret@127.0.0.1:55432/easytravel_env00_test] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[dbname=x] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[postgresql://a:secret@localhost:5432/postgres] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[postgresql://a:secret@localhost:5432/formal?options=-csearch_path=public] PASSED
+tests/backend/test_persistence.py::test_database_config_explicit_and_secret_safe PASSED
+tests/backend/test_persistence.py::test_domain_and_application_do_not_import_drivers_or_experiments PASSEDIsolation verified: 24 experiment/Checkpoint tables unchanged (counts + full-row hashes)
+
+
+============================= 26 passed in 18.11s =============================

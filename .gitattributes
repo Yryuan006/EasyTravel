@@ -1,0 +1,2 @@
+# Migration checksums must survive Windows/Linux checkouts unchanged.
+easytravel/backend/infrastructure/migrations/*.sql text eol=lf
