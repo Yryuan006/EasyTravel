@@ -1,0 +1,155 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "EasyTravel API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "HTTP application liveness only",
+        "description": "Does not check database, model or travel-data readiness.",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorDetail"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorDetail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "alive",
+            "title": "Status",
+            "default": "alive"
+          },
+          "scope": {
+            "type": "string",
+            "const": "http_application_liveness",
+            "title": "Scope",
+            "default": "http_application_liveness"
+          },
+          "dependencies": {
+            "$ref": "#/components/schemas/UncheckedDependencies",
+            "default": {
+              "database": "not_checked",
+              "model": "not_checked",
+              "travel_data": "not_checked"
+            }
+          }
+        },
+        "type": "object",
+        "title": "HealthResponse"
+      },
+      "UncheckedDependencies": {
+        "properties": {
+          "database": {
+            "type": "string",
+            "const": "not_checked",
+            "title": "Database",
+            "default": "not_checked"
+          },
+          "model": {
+            "type": "string",
+            "const": "not_checked",
+            "title": "Model",
+            "default": "not_checked"
+          },
+          "travel_data": {
+            "type": "string",
+            "const": "not_checked",
+            "title": "Travel Data",
+            "default": "not_checked"
+          }
+        },
+        "type": "object",
+        "title": "UncheckedDependencies"
+      }
+    }
+  }
+}
