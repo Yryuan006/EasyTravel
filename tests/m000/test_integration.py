@@ -47,7 +47,7 @@ def decision(status, choice="approve", **overrides):
     return dict(thread_id=status["thread_id"], request_id=uid(), choice=choice,
         proposal_id=proposal["proposal_id"], candidate_hash=proposal["candidate_hash"],
         base_working_revision=proposal["base_working_revision"], item_ids=proposal["item_ids"],
-        explicit_authorization=True) | overrides
+        explicit_authorization=choice == "approve") | overrides
 
 
 async def counts(service, thread):
@@ -87,21 +87,31 @@ def test_agent_rules_and_safe_apply(payload, requirements, level):
     run_async(scenario())
 
 
-def test_rejection_preserves_draft_and_snapshot(payload, requirements):
+@pytest.mark.parametrize("explicit_authorization", [False, True])
+def test_rejection_preserves_draft_and_snapshot(payload, requirements, explicit_authorization):
     async def scenario():
         async with open_service(mock(change(payload))) as service:
             trip, before, snapshot = await seed(service, payload, requirements)
             status = await service.start(uid(), trip)
-            request = decision(status, "reject")
+            request = decision(status, "reject", explicit_authorization=explicit_authorization)
+            before_receipts = await (await service.plan.conn.execute(
+                "SELECT * FROM operation_receipts WHERE trip_id=%s ORDER BY operation_id", (trip,))).fetchall()
             result = await service.decide(**request)
             assert result["status"] == "rejected"
+            saved = await counts(service, status["thread_id"])
             assert await service.decide(**request) == result
+            assert await counts(service, status["thread_id"]) == saved
             assert await service.plan.get_working(trip) == before
             assert await service.plan.get_snapshot(snapshot.snapshot_id) == snapshot
             _, grants, receipts = await counts(service, status["thread_id"])
             assert not grants and not receipts
+            assert await (await service.plan.conn.execute(
+                "SELECT * FROM operation_receipts WHERE trip_id=%s ORDER BY operation_id", (trip,))).fetchall() == before_receipts
             with pytest.raises(ChangeError, match="decision_conflict"):
-                await service.decide(**(request | dict(choice="approve")))
+                await service.decide(**(request | dict(choice="approve", explicit_authorization=True)))
+            with pytest.raises(ChangeError, match="decision_conflict"):
+                await service.decide(**(request | dict(request_id=uid())))
+            assert await counts(service, status["thread_id"]) == saved
             print(json.dumps(dict(event="rejected", draft_unchanged=True, snapshot_unchanged=True, grants=0, receipts=0)))
     run_async(scenario())
 
@@ -126,8 +136,13 @@ def test_first_decision_needs_dynamic_interrupt(payload, requirements, choice):
     run_async(scenario())
 
 
-@pytest.mark.parametrize("invalid", ["actor", "hash", "proposal", "revision", "items", "consent"])
-def test_specific_user_scope_required(payload, requirements, invalid):
+@pytest.mark.parametrize(("choice", "invalid"), [
+    (choice, invalid)
+    for choice in ("approve", "reject")
+    for invalid in ("actor", "hash", "proposal", "revision", "items", "consent")
+    if choice == "approve" or invalid != "consent"
+])
+def test_specific_user_scope_required(payload, requirements, choice, invalid):
     async def scenario():
         async with open_service(mock(change(payload))) as service:
             trip, before, snapshot = await seed(service, payload, requirements)
@@ -135,8 +150,8 @@ def test_specific_user_scope_required(payload, requirements, invalid):
             overrides = {"actor": dict(actor="other"), "hash": dict(candidate_hash="wrong"),
                 "proposal": dict(proposal_id=uid()), "revision": dict(base_working_revision=2),
                 "items": dict(item_ids=["activity-0"]), "consent": dict(explicit_authorization=False)}
-            with pytest.raises(ChangeError):
-                await service.decide(**decision(status, **overrides[invalid]))
+            with pytest.raises(ChangeError, match="explicit_authorization_required" if invalid == "consent" else None):
+                await service.decide(**decision(status, choice, **overrides[invalid]))
             row, grants, receipts = await counts(service, status["thread_id"])
             assert row["decision_id"] is None and not grants and not receipts
             assert await service.plan.get_working(trip) == before
@@ -292,6 +307,7 @@ def test_rejected_decision_survives_process_exit(payload, requirements, integrat
     thread = uid()
     status = integration_worker("start", dict(thread_id=thread, trip_id=trip, mock_output=change(payload)))["result"]
     request = decision(status, "reject")
+    assert request["explicit_authorization"] is False
     integration_worker("decide", request, crash_at="decision_committed", expect=75)
     result = integration_worker("continue_run", dict(thread_id=thread))["result"]
     assert result["status"] == "rejected"

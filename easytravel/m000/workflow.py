@@ -170,7 +170,7 @@ class IntegrationService:
         self.plan.identifier(request_id)
         if choice not in {"approve", "reject"} or type(base_working_revision) is not int:
             raise ChangeError("invalid_decision")
-        if explicit_authorization is not True:
+        if choice == "approve" and explicit_authorization is not True:
             raise ChangeError("explicit_authorization_required")
         async with self.lock:
             _, row, proposal, pending = await self._snapshot(thread_id)
