@@ -1,0 +1,22 @@
+
+Running 14 tests using 1 worker
+
+(node:24992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+LIVE /api/v1/health via Vite: {"status":"alive","scope":"http_application_liveness","dependencies":{"database":"not_checked","model":"not_checked","travel_data":"not_checked"}}
+  ok  1 e2e\health.spec.ts:3:1 › real browser reaches live backend through Vite proxy (308ms)
+  ok  2 e2e\health.spec.ts:25:1 › loading, network failure and retry remain honest (297ms)
+  ok  3 e2e\health.spec.ts:41:1 › HTTP server failure is never displayed as success (104ms)
+  ok  4 e2e\trips.spec.ts:11:1 › real FastAPI + PostgreSQL: 201, GET, refresh credential, isolation and memory-only token (904ms)
+  ok  5 e2e\trips.spec.ts:73:1 › progressive mobile form validates and preserves input, clears on identity change (365ms)
+  ok  6 e2e\trips.spec.ts:92:13 › HTTP 401 authentication_required displays safe error (231ms)
+  ok  7 e2e\trips.spec.ts:92:13 › HTTP 403 local_only_api displays safe error (233ms)
+  ok  8 e2e\trips.spec.ts:92:13 › HTTP 404 resource_not_found displays safe error (239ms)
+  ok  9 e2e\trips.spec.ts:92:13 › HTTP 409 command_in_progress displays safe error (229ms)
+  ok 10 e2e\trips.spec.ts:92:13 › HTTP 409 idempotency_key_reused displays safe error (230ms)
+  ok 11 e2e\trips.spec.ts:92:13 › HTTP 422 invalid_request displays safe error (227ms)
+  ok 12 e2e\trips.spec.ts:92:13 › HTTP 503 business_dependency_unavailable displays safe error (229ms)
+  ok 13 e2e\trips.spec.ts:102:1 › browser timeout, unchanged retry and edited request use correct idempotency keys (13.0s)
+  ok 14 e2e\trips.spec.ts:120:1 › malformed response and HTTP 200 never claim creation success (288ms)
+
+  14 passed (17.4s)

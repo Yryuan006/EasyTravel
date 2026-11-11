@@ -1,0 +1,12 @@
+
+> easytravel-frontend@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 D:/Project/EasyTravel/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  57 passed (57)
+   Start at  21:34:22
+   Duration  588ms (environment 82%, import 8%, tests 7%, transform 2%, worker 1%)

@@ -40,7 +40,32 @@ dd { margin: 0; color: var(--muted); font-size: 12px; background: #f1f2eb; paddi
 .stage-note h2 { font-size: 14px; font-weight: 500; }
 .stage-note p { margin: 8px 0 0; font-size: 12px; line-height: 1.9; color: var(--muted); }
 .app-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
-.skip-link { position: fixed; left: 16px; top: -100px; padding: 12px; background: white; z-index: 2; }
-.skip-link:focus { top: 12px; }
+.skip-link { position: fixed; left: 16px; top: 12px; padding: 12px; background: white; z-index: 2; opacity: 0; pointer-events: none; }
+.skip-link:focus { opacity: 1; pointer-events: auto; }
 @media (max-width: 600px) { .app-header, .app-footer { padding: 20px; } .workspace { padding: 40px 20px; } .brand { font-size: 20px; } .health-panel { padding: 22px 18px; } .connection { padding: 18px 14px; } h2 { font-size: 19px; } .panel-heading { gap: 8px; } button { padding: 0 12px; } .stage-note { gap: 14px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+
+/* M1-02 extends the existing shell. */
+nav { display: flex; gap: 20px; }
+.trip-panel, .credential-panel { background: #fffefa; border: 1px solid var(--line); border-radius: 14px; padding: 28px; margin-bottom: 24px; }
+.credential-panel { background: #edf1e8; }
+.credential-panel form { display: grid; gap: 12px; }
+label { display: block; font-size: 14px; margin: 18px 0 8px; }
+input, select, textarea { display: block; width: 100%; min-height: 44px; border: 1px solid #9cae9c; border-radius: 6px; background: #fffefa; padding: 10px 12px; color: inherit; font: inherit; font-size: 16px; }
+textarea { resize: vertical; }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+legend { font-size: 24px; font-weight: 600; padding: 0; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+details { margin: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+summary { cursor: pointer; padding: 16px 0; min-height: 48px; font-size: 15px; }
+details[open] { padding-bottom: 20px; }
+.primary { background: var(--green); color: #fffefa; width: 100%; }
+.primary:hover:enabled { background: #285b4c; }
+.form-error { color: #8a3729; line-height: 1.8; }
+.notice { padding: 18px; background: #f6ede0; border-left: 3px solid #aa6b24; margin: 20px 0; line-height: 1.8; }
+.notice p { margin: 6px 0; }
+.trip-id, .preserve { overflow-wrap: anywhere; white-space: pre-wrap; line-height: 1.8; }
+.requirements-list > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); padding: 14px 0; border-bottom: 1px solid var(--line); gap: 16px; }
+.requirements-list dd { font-size: 14px; background: none; padding: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+h3 { font-size: 17px; margin-top: 28px; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; gap: 0; } .trip-panel, .credential-panel { padding: 22px 18px; } nav { gap: 12px; } .requirements-list > div { grid-template-columns: 92px minmax(0, 1fr); gap: 10px; } .app-header { flex-wrap: wrap; gap: 8px; } }
