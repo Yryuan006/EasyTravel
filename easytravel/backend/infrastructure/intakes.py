@@ -5,8 +5,8 @@ import json
 import psycopg
 from psycopg.types.json import Jsonb
 
-from ..domain.errors import CommandInProgress, IdempotencyKeyReused, ResourceNotFound
-from ..domain.intake import RequirementsInput, TripView, trip_view
+from ..domain.errors import CommandInProgress, IdempotencyKeyReused, ResourceNotFound, BusinessConflict
+from ..domain.intake import RequirementsInput, TripView, trip_view, ClarificationQuestion, next_field
 from .database import DatabaseUnavailable, connection
 
 
@@ -20,10 +20,10 @@ class PostgresIntakeRepository:
         except psycopg.errors.LockNotAvailable:
             raise CommandInProgress() from None
 
-    async def command(self, key, request_hash):
+    async def command(self, key, request_hash, method="POST", path="/api/v1/trips"):
         row = await (await self.conn.execute("""SELECT request_hash,result FROM easytravel.api_commands
-            WHERE owner_id=%s AND method='POST' AND path='/api/v1/trips' AND idempotency_key=%s""",
-            (self.actor, key))).fetchone()
+            WHERE owner_id=%s AND method=%s AND path=%s AND idempotency_key=%s""",
+            (self.actor, method, path, key))).fetchone()
         if row is None:
             return None
         if row["request_hash"] != request_hash:
@@ -39,26 +39,70 @@ class PostgresIntakeRepository:
                                 (trip_id, self.actor))
         return trip_view(trip_id, row["created_at"], 1, request.requirements)
 
-    async def save_command(self, key, request_hash, result, command_id, operation_id):
+    async def save_command(self, key, request_hash, result, command_id, operation_id,
+                           method="POST", path="/api/v1/trips", status=201):
         await self.conn.execute("""INSERT INTO easytravel.api_commands
             (command_id,operation_id,owner_id,method,path,idempotency_key,request_hash,trip_id,response_status,result)
-            VALUES (%s,%s,%s,'POST','/api/v1/trips',%s,%s,%s,201,%s)""",
-            (command_id, operation_id, self.actor, key, request_hash, result.trip_id, Jsonb(result.model_dump(mode="json"))))
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+            (command_id, operation_id, self.actor, method, path, key, request_hash, result.trip_id, status, Jsonb(result.model_dump(mode="json"))))
 
     async def read_trip(self, trip_id):
-        row = await (await self.conn.execute("""SELECT t.trip_id,t.created_at,v.revision,v.input
+        row = await (await self.conn.execute("""SELECT t.trip_id,t.created_at,v.revision,v.input, w.revision AS working_revision,w.latest_confirmed_version_id,
+                   d.requirements,d.payload,d.item_confirmations
             FROM easytravel.trips t JOIN easytravel.trip_intakes i
               ON (t.trip_id,t.owner_id)=(i.trip_id,i.owner_id)
             JOIN easytravel.trip_intake_versions v
               ON (i.trip_id,i.owner_id,i.revision)=(v.trip_id,v.owner_id,v.revision)
-            WHERE t.trip_id=%s AND t.owner_id=%s
-              AND NOT EXISTS (SELECT 1 FROM easytravel.working_drafts w WHERE w.trip_id=t.trip_id)""",
+            LEFT JOIN easytravel.working_drafts w ON (w.trip_id,w.owner_id)=(t.trip_id,t.owner_id)
+            LEFT JOIN easytravel.draft_versions d ON (d.trip_id,d.owner_id,d.revision)=(w.trip_id,w.owner_id,w.revision)
+            WHERE t.trip_id=%s AND t.owner_id=%s""",
             (trip_id, self.actor))).fetchone()
         if row is None:
             # Legacy Trips without explicit user intake have no supported HTTP read model.
             raise ResourceNotFound()
+        working = None
+        if row["working_revision"] is not None:
+            from ..domain.models import WorkingDraft
+            working = WorkingDraft.model_validate(dict(trip_id=trip_id,owner_id=self.actor,
+                revision=row["working_revision"],requirements=row["requirements"],payload=row["payload"],
+                item_confirmations=row["item_confirmations"],latest_confirmed_version_id=row["latest_confirmed_version_id"]))
         return trip_view(row["trip_id"], row["created_at"], row["revision"],
-                         RequirementsInput.model_validate(row["input"]))
+                         RequirementsInput.model_validate(row["input"]), working)
+
+
+    async def lock_trip(self, trip_id):
+        row = await (await self.conn.execute("SELECT trip_id FROM easytravel.trips WHERE trip_id=%s AND owner_id=%s FOR UPDATE",
+                                            (trip_id,self.actor))).fetchone()
+        if row is None:
+            raise ResourceNotFound()
+
+    async def next_question(self, trip):
+        field = next_field(trip.intake.input)
+        if field is None:
+            return None
+        row = await (await self.conn.execute("""SELECT question_id::text,intake_revision,field_key,prompt,allow_no_preference
+            FROM easytravel.clarification_questions WHERE trip_id=%s AND owner_id=%s AND intake_revision=%s AND field_key=%s""",
+            (trip.trip_id,self.actor,trip.intake.intake_revision,field))).fetchone()
+        if row is None:
+            raise DatabaseUnavailable("Clarification migration required")
+        return ClarificationQuestion.model_validate(row)
+
+    async def advance_intake(self, trip, requirements):
+        revision = trip.intake.intake_revision
+        await self.conn.execute("""INSERT INTO easytravel.trip_intake_versions(trip_id,owner_id,revision,input)
+            VALUES (%s,%s,%s,%s)""",(trip.trip_id,self.actor,revision+1,Jsonb(requirements.model_dump(mode="json"))))
+        cursor = await self.conn.execute("""UPDATE easytravel.trip_intakes SET revision=%s
+            WHERE trip_id=%s AND owner_id=%s AND revision=%s""",(revision+1,trip.trip_id,self.actor,revision))
+        if cursor.rowcount != 1:
+            raise BusinessConflict()
+        return await self.read_trip(trip.trip_id)
+
+    async def save_answer(self, question, trip_id, answer, command_id):
+        await self.conn.execute("""INSERT INTO easytravel.clarification_answers
+            (question_id,trip_id,owner_id,intake_revision,field_key,resulting_revision,answer,command_id)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",(question.question_id,trip_id,self.actor,
+                question.intake_revision,question.field_key,question.intake_revision+1,
+                Jsonb(answer.model_dump(mode="json")),command_id))
 
 
 def unit_of_work(settings):

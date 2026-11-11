@@ -6,6 +6,7 @@ import re
 from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, model_validator
 
 from ...contracts import ID, Money
+from .models import WorkingDraft
 
 
 class InputContract(BaseModel):
@@ -126,13 +127,13 @@ class IntakeView(InputContract):
 
 
 class TripView(InputContract):
-    """M1-01 specialization: only persisted trips without a working draft."""
+    """Persisted collection projection; legacy draft contexts cannot prove synchronization."""
     trip_id: ID
     created_at: datetime
     intake: IntakeView
-    working: None
-    latest_confirmed_version_id: None
-    synchronization: Literal["NO_DRAFT"]
+    working: WorkingDraft | None
+    latest_confirmed_version_id: ID | None
+    synchronization: Literal["NO_DRAFT", "STALE"]
     plan_confirmation: Literal["UNCONFIRMED"]
     active_run_id: None
     readiness: Literal["NOT_ASSESSED"]
@@ -164,7 +165,7 @@ def collection(input: RequirementsInput):
     return ordered
 
 
-def trip_view(trip_id, created_at, revision, input):
+def trip_view(trip_id, created_at, revision, input, working=None):
     blocked = collection(input)
     return TripView(trip_id=trip_id, created_at=created_at,
         intake=IntakeView(intake_revision=revision, input=input,
@@ -172,5 +173,56 @@ def trip_view(trip_id, created_at, revision, input):
             blocking_fields=blocked, provenance=[Provenance(field=name, source="user")
                 for name in RequirementsInput.model_fields if name != "raw_text"
                 and getattr(input, name).state != "unanswered"], suggested_values=[]),
-        working=None, latest_confirmed_version_id=None, synchronization="NO_DRAFT",
+        working=working, latest_confirmed_version_id=working.latest_confirmed_version_id if working else None,
+        synchronization="STALE" if working else "NO_DRAFT",
         plan_confirmation="UNCONFIRMED", active_run_id=None, readiness="NOT_ASSESSED", booked=False)
+
+
+Revision = Annotated[int, Field(strict=True, ge=1)]
+
+
+class UpdateRequirementsRequest(InputContract):
+    expected_intake_revision: Revision
+    expected_working_revision: Revision | None
+    requirements: RequirementsInput
+
+
+class AnswerRequest(InputContract):
+    expected_intake_revision: Revision
+    expected_working_revision: Revision | None
+    field_key: FieldKey
+    answer: Answer[Text | Money | TravelDates]
+
+    @model_validator(mode="after")
+    def field_type(self):
+        # Reuse the exact full-input validators, including strict numeric bounds.
+        data = {name: {"state": "unanswered", "value": None}
+                for name in RequirementsInput.model_fields if name != "raw_text"}
+        data["raw_text"] = None
+        data[self.field_key] = self.answer.model_dump(mode="json")
+        RequirementsInput.model_validate(data)
+        return self
+
+
+class ClarificationQuestion(InputContract):
+    question_id: ID
+    intake_revision: Revision
+    field_key: FieldKey
+    prompt: Text
+    allow_no_preference: bool
+
+
+class NextQuestionResponse(InputContract):
+    intake_revision: Revision
+    question: ClarificationQuestion | None
+    blocking_fields: list[FieldKey]
+
+
+# Versioned rule priority: destination/date ambiguity, party, budget, transport.
+# Origin is required for transport; optional hotel/restrictions are never inferred.
+QUESTION_PRIORITY = ("destination", "dates", "days", "origin", "travelers",
+                     "target_budget_cents", "hard_limit_cents", "transport")
+
+def next_field(input):
+    blocked = collection(input)
+    return next((field for field in QUESTION_PRIORITY if field in blocked), None)

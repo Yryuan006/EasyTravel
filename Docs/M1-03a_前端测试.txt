@@ -1,0 +1,75 @@
+
+> easytravel-frontend@0.1.0 test
+> vitest run --reporter=verbose
+
+
+ RUN  v5.1.0 D:/Project/EasyTravel/frontend
+
+ ✓ tests/health.test.ts > health API boundary > matches the archived OpenAPI literals and optional defaults 1ms
+ ✓ tests/health.test.ts > health API boundary > requests the existing same-origin endpoint and returns typed liveness 2ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 404 even with a healthy-looking body 1ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 409 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 422 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 500 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 502 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects HTTP 503 even with a healthy-looking body 0ms
+ ✓ tests/health.test.ts > health API boundary > reports unreachable backend without exposing raw diagnostic secrets 1ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload null 6ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload [] 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload "alive" 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"status":"ready"} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"scope":"readiness"} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":null} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":{"database":"ready"}} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":{"model":"ready"}} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects malformed or readiness payload {"dependencies":{"travel_data":"ready"}} 0ms
+ ✓ tests/health.test.ts > health API boundary > rejects non-JSON success responses 0ms
+ ✓ tests/health.test.ts > health API boundary > times out a stalled request 2ms
+ ✓ tests/health.test.ts > health API boundary > propagates caller cancellation to fetch and releases the timer 0ms
+stderr | tests/trips.test.ts > keeps exact command after timeout; changed body uses a new key
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+stderr | tests/trips.test.ts > suppresses stale responses on identity reset and blocks repeated submission
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+ ✓ tests/trips.test.ts > serializes exactly the complete OpenAPI fields without extracting natural language 2ms
+ ✓ tests/trips.test.ts > rejects invalid travelers=3 0ms
+ ✓ tests/trips.test.ts > rejects invalid travelers=1.5 0ms
+ ✓ tests/trips.test.ts > rejects invalid days=0 0ms
+ ✓ tests/trips.test.ts > rejects invalid days=6 0ms
+ ✓ tests/trips.test.ts > rejects invalid target_budget_cents=-1 0ms
+ ✓ tests/trips.test.ts > rejects invalid hard_limit_cents=1.234 0ms
+ ✓ tests/trips.test.ts > rejects invalid hard_limit_cents=10000000001 0ms
+ ✓ tests/trips.test.ts > rejects invalid origin=    0ms
+ ✓ tests/trips.test.ts > rejects invalid dates 2026-02-30 2026-03-01 0ms
+ ✓ tests/trips.test.ts > rejects invalid dates 2026-12-03 2026-12-01 0ms
+ ✓ tests/trips.test.ts > rejects invalid dates  2026-12-01 0ms
+ ✓ tests/trips.test.ts > rejects empty requirements but accepts destination alone 0ms
+ ✓ tests/trips.test.ts > renders progressive form and emits validated input 26ms
+ ✓ tests/trips.test.ts > only accepts real HTTP 201 for POST and 200 for GET 4ms
+ ✓ tests/trips.test.ts > sanitizes HTTP 401 1ms
+ ✓ tests/trips.test.ts > sanitizes HTTP 403 0ms
+ ✓ tests/trips.test.ts > sanitizes HTTP 404 3ms
+ ✓ tests/trips.test.ts > sanitizes HTTP 409 0ms
+ ✓ tests/trips.test.ts > sanitizes HTTP 422 1ms
+ ✓ tests/trips.test.ts > sanitizes HTTP 503 0ms
+ ✓ tests/trips.test.ts > distinguishes 409 command_in_progress 0ms
+ ✓ tests/trips.test.ts > distinguishes 409 idempotency_key_reused 0ms
+ ✓ tests/trips.test.ts > rejects invalid/unsupported TripView {"booked":true} 0ms
+ ✓ tests/trips.test.ts > rejects invalid/unsupported TripView {"working":{}} 0ms
+ ✓ tests/trips.test.ts > rejects invalid/unsupported TripView {"plan_confirmation":"CONFIRMED"} 0ms
+ ✓ tests/trips.test.ts > rejects invalid/unsupported TripView {"intake":{}} 0ms
+ ✓ tests/trips.test.ts > rejects invalid/unsupported TripView {"trip_id":"bad"} 0ms
+ ✓ tests/trips.test.ts > rejects malformed JSON and incomplete HTTP 201 responses 0ms
+ ✓ tests/trips.test.ts > keeps exact command after timeout; changed body uses a new key 3ms
+ ✓ tests/trips.test.ts > suppresses stale responses on identity reset and blocks repeated submission 1ms
+ ✓ tests/app.test.ts > shows accessible loading and disables repeated clicks 16ms
+ ✓ tests/app.test.ts > limits success to HTTP liveness and emits retry 15ms
+ ✓ tests/app.test.ts > shows failure without retaining success 2ms
+ ✓ tests/app.test.ts > renders the app, recovers from failure, and clears old success on the next check 16ms
+ ✓ tests/app.test.ts > aborts an in-flight request on unmount 2ms
+
+ Test Files  3 passed (3)
+      Tests  57 passed (57)
+   Start at  21:59:57
+   Duration  641ms (environment 82%, import 8%, tests 7%, transform 2%, worker 1%)

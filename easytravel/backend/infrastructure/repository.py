@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 
 from psycopg.types.json import Jsonb
 
-from ..domain.errors import ResourceNotFound
+from ..domain.errors import ResourceNotFound, BusinessConflict
 from ..domain.models import ChangeProposal, ConfirmedSnapshot, SpecificAuthorization, Trip, WorkingDraft
 from ..domain.rules import ChangeError, validate_confirmations
 from .database import connection
@@ -48,6 +48,16 @@ class PostgresPlanRepository:
         validate_confirmations(draft)
         return draft
 
+    async def require_current_intake(self, trip_id):
+        # Formal 001-only legacy applications remain usable before explicit intake migration.
+        schema = await (await self.conn.execute("SELECT to_regclass('easytravel.trip_intakes') AS t")).fetchone()
+        if schema["t"] is None:
+            return
+        row = await (await self.conn.execute("SELECT 1 FROM easytravel.trip_intakes WHERE trip_id=%s AND owner_id=%s",
+                                             (trip_id,self.actor))).fetchone()
+        if row:
+            raise BusinessConflict("stale_intake_without_draft_context")
+
     async def insert_version(self, draft):
         await self.conn.execute("""INSERT INTO easytravel.draft_versions
             (trip_id,owner_id,revision,requirements_revision,requirements,payload,item_confirmations)
@@ -57,6 +67,7 @@ class PostgresPlanRepository:
                 Jsonb([c.model_dump(mode="json") for c in draft.item_confirmations])))
 
     async def advance(self, current, updated):
+        await self.require_current_intake(current.trip_id)
         if (current.owner_id != self.actor or updated.owner_id != self.actor
                 or current.trip_id != updated.trip_id or updated.revision != current.revision + 1
                 or updated.latest_confirmed_version_id != current.latest_confirmed_version_id):
@@ -79,6 +90,7 @@ class PostgresPlanRepository:
         return ConfirmedSnapshot.model_validate(row)
 
     async def save_snapshot(self, snapshot):
+        await self.require_current_intake(snapshot.trip_id)
         if snapshot.confirmed_by != self.actor:
             raise ChangeError("wrong_actor")
         row = await (await self.conn.execute("""SELECT snapshot_id FROM easytravel.confirmed_snapshots

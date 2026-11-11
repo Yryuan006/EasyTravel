@@ -1,0 +1,1285 @@
+{
+  "http": [
+    {
+      "method": "POST",
+      "path": "/api/v1/trips",
+      "key": "8a34106c-54d4-4bc9-8532-a55987b43b7b",
+      "request": {
+        "requirements": {
+          "origin": {
+            "state": "provided",
+            "value": "上海"
+          },
+          "destination": {
+            "state": "provided",
+            "value": "杭州"
+          },
+          "dates": {
+            "state": "provided",
+            "value": {
+              "mode": "fixed",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-06"
+            }
+          },
+          "days": {
+            "state": "provided",
+            "value": 3
+          },
+          "travelers": {
+            "state": "provided",
+            "value": 2
+          },
+          "target_budget_cents": {
+            "state": "provided",
+            "value": 200000
+          },
+          "hard_limit_cents": {
+            "state": "unanswered",
+            "value": null
+          },
+          "transport": {
+            "state": "no_preference",
+            "value": null
+          },
+          "hotel": {
+            "state": "unanswered",
+            "value": null
+          },
+          "restrictions": {
+            "state": "unanswered",
+            "value": null
+          },
+          "raw_text": "用户原文只保存，不提取为事实"
+        }
+      },
+      "status": 201,
+      "response": {
+        "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+        "created_at": "2026-11-11T22:03:28.140724+08:00",
+        "intake": {
+          "intake_revision": 1,
+          "input": {
+            "origin": {
+              "state": "provided",
+              "value": "上海"
+            },
+            "destination": {
+              "state": "provided",
+              "value": "杭州"
+            },
+            "dates": {
+              "state": "provided",
+              "value": {
+                "mode": "fixed",
+                "start_date": "2026-12-04",
+                "end_date": "2026-12-06"
+              }
+            },
+            "days": {
+              "state": "provided",
+              "value": 3
+            },
+            "travelers": {
+              "state": "provided",
+              "value": 2
+            },
+            "target_budget_cents": {
+              "state": "provided",
+              "value": 200000
+            },
+            "hard_limit_cents": {
+              "state": "unanswered",
+              "value": null
+            },
+            "transport": {
+              "state": "no_preference",
+              "value": null
+            },
+            "hotel": {
+              "state": "unanswered",
+              "value": null
+            },
+            "restrictions": {
+              "state": "unanswered",
+              "value": null
+            },
+            "raw_text": "用户原文只保存，不提取为事实"
+          },
+          "collection_status": "COLLECTING",
+          "blocking_fields": [
+            "hard_limit_cents"
+          ],
+          "provenance": [
+            {
+              "field": "origin",
+              "source": "user"
+            },
+            {
+              "field": "destination",
+              "source": "user"
+            },
+            {
+              "field": "dates",
+              "source": "user"
+            },
+            {
+              "field": "days",
+              "source": "user"
+            },
+            {
+              "field": "travelers",
+              "source": "user"
+            },
+            {
+              "field": "target_budget_cents",
+              "source": "user"
+            },
+            {
+              "field": "transport",
+              "source": "user"
+            }
+          ],
+          "suggested_values": []
+        },
+        "working": null,
+        "latest_confirmed_version_id": null,
+        "synchronization": "NO_DRAFT",
+        "plan_confirmation": "UNCONFIRMED",
+        "active_run_id": null,
+        "readiness": "NOT_ASSESSED",
+        "booked": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/next",
+      "key": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "intake_revision": 1,
+        "question": {
+          "question_id": "fcd2cd02-c32f-c762-48a5-e80d8a67cf34",
+          "intake_revision": 1,
+          "field_key": "hard_limit_cents",
+          "prompt": "整趟旅行的硬预算上限是多少（全部旅客合计，整数分）？",
+          "allow_no_preference": true
+        },
+        "blocking_fields": [
+          "hard_limit_cents"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/fcd2cd02-c32f-c762-48a5-e80d8a67cf34/answers",
+      "key": "a28c9845-f293-4417-9ac0-0379eff1d4ee",
+      "request": {
+        "expected_intake_revision": 1,
+        "expected_working_revision": null,
+        "field_key": "hard_limit_cents",
+        "answer": {
+          "state": "provided",
+          "value": 230000
+        }
+      },
+      "status": 200,
+      "response": {
+        "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+        "created_at": "2026-11-11T22:03:28.140724+08:00",
+        "intake": {
+          "intake_revision": 2,
+          "input": {
+            "origin": {
+              "state": "provided",
+              "value": "上海"
+            },
+            "destination": {
+              "state": "provided",
+              "value": "杭州"
+            },
+            "dates": {
+              "state": "provided",
+              "value": {
+                "mode": "fixed",
+                "start_date": "2026-12-04",
+                "end_date": "2026-12-06"
+              }
+            },
+            "days": {
+              "state": "provided",
+              "value": 3
+            },
+            "travelers": {
+              "state": "provided",
+              "value": 2
+            },
+            "target_budget_cents": {
+              "state": "provided",
+              "value": 200000
+            },
+            "hard_limit_cents": {
+              "state": "provided",
+              "value": 230000
+            },
+            "transport": {
+              "state": "no_preference",
+              "value": null
+            },
+            "hotel": {
+              "state": "unanswered",
+              "value": null
+            },
+            "restrictions": {
+              "state": "unanswered",
+              "value": null
+            },
+            "raw_text": "用户原文只保存，不提取为事实"
+          },
+          "collection_status": "READY_TO_GENERATE",
+          "blocking_fields": [],
+          "provenance": [
+            {
+              "field": "origin",
+              "source": "user"
+            },
+            {
+              "field": "destination",
+              "source": "user"
+            },
+            {
+              "field": "dates",
+              "source": "user"
+            },
+            {
+              "field": "days",
+              "source": "user"
+            },
+            {
+              "field": "travelers",
+              "source": "user"
+            },
+            {
+              "field": "target_budget_cents",
+              "source": "user"
+            },
+            {
+              "field": "hard_limit_cents",
+              "source": "user"
+            },
+            {
+              "field": "transport",
+              "source": "user"
+            }
+          ],
+          "suggested_values": []
+        },
+        "working": null,
+        "latest_confirmed_version_id": null,
+        "synchronization": "NO_DRAFT",
+        "plan_confirmation": "UNCONFIRMED",
+        "active_run_id": null,
+        "readiness": "NOT_ASSESSED",
+        "booked": false
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/fcd2cd02-c32f-c762-48a5-e80d8a67cf34/answers",
+      "key": "a28c9845-f293-4417-9ac0-0379eff1d4ee",
+      "request": {
+        "expected_intake_revision": 1,
+        "expected_working_revision": null,
+        "field_key": "hard_limit_cents",
+        "answer": {
+          "state": "provided",
+          "value": 230000
+        }
+      },
+      "status": 200,
+      "response": {
+        "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+        "created_at": "2026-11-11T22:03:28.140724+08:00",
+        "intake": {
+          "intake_revision": 2,
+          "input": {
+            "origin": {
+              "state": "provided",
+              "value": "上海"
+            },
+            "destination": {
+              "state": "provided",
+              "value": "杭州"
+            },
+            "dates": {
+              "state": "provided",
+              "value": {
+                "mode": "fixed",
+                "start_date": "2026-12-04",
+                "end_date": "2026-12-06"
+              }
+            },
+            "days": {
+              "state": "provided",
+              "value": 3
+            },
+            "travelers": {
+              "state": "provided",
+              "value": 2
+            },
+            "target_budget_cents": {
+              "state": "provided",
+              "value": 200000
+            },
+            "hard_limit_cents": {
+              "state": "provided",
+              "value": 230000
+            },
+            "transport": {
+              "state": "no_preference",
+              "value": null
+            },
+            "hotel": {
+              "state": "unanswered",
+              "value": null
+            },
+            "restrictions": {
+              "state": "unanswered",
+              "value": null
+            },
+            "raw_text": "用户原文只保存，不提取为事实"
+          },
+          "collection_status": "READY_TO_GENERATE",
+          "blocking_fields": [],
+          "provenance": [
+            {
+              "field": "origin",
+              "source": "user"
+            },
+            {
+              "field": "destination",
+              "source": "user"
+            },
+            {
+              "field": "dates",
+              "source": "user"
+            },
+            {
+              "field": "days",
+              "source": "user"
+            },
+            {
+              "field": "travelers",
+              "source": "user"
+            },
+            {
+              "field": "target_budget_cents",
+              "source": "user"
+            },
+            {
+              "field": "hard_limit_cents",
+              "source": "user"
+            },
+            {
+              "field": "transport",
+              "source": "user"
+            }
+          ],
+          "suggested_values": []
+        },
+        "working": null,
+        "latest_confirmed_version_id": null,
+        "synchronization": "NO_DRAFT",
+        "plan_confirmation": "UNCONFIRMED",
+        "active_run_id": null,
+        "readiness": "NOT_ASSESSED",
+        "booked": false
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/fcd2cd02-c32f-c762-48a5-e80d8a67cf34/answers",
+      "key": "a28c9845-f293-4417-9ac0-0379eff1d4ee",
+      "request": {
+        "expected_intake_revision": 1,
+        "expected_working_revision": null,
+        "field_key": "hard_limit_cents",
+        "answer": {
+          "state": "provided",
+          "value": 240000
+        }
+      },
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "idempotency_key_reused",
+          "message": "Idempotency key was used for a different request."
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/requirements",
+      "key": "702baeed-6323-418a-9b38-5cfaefc523ed",
+      "request": {
+        "expected_intake_revision": 2,
+        "expected_working_revision": null,
+        "requirements": {
+          "origin": {
+            "state": "provided",
+            "value": "上海"
+          },
+          "destination": {
+            "state": "provided",
+            "value": "杭州"
+          },
+          "dates": {
+            "state": "provided",
+            "value": {
+              "mode": "fixed",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-06"
+            }
+          },
+          "days": {
+            "state": "provided",
+            "value": 2
+          },
+          "travelers": {
+            "state": "provided",
+            "value": 2
+          },
+          "target_budget_cents": {
+            "state": "provided",
+            "value": 200000
+          },
+          "hard_limit_cents": {
+            "state": "provided",
+            "value": 230000
+          },
+          "transport": {
+            "state": "no_preference",
+            "value": null
+          },
+          "hotel": {
+            "state": "unanswered",
+            "value": null
+          },
+          "restrictions": {
+            "state": "unanswered",
+            "value": null
+          },
+          "raw_text": "用户原文只保存，不提取为事实"
+        }
+      },
+      "status": 200,
+      "response": {
+        "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+        "created_at": "2026-11-11T22:03:28.140724+08:00",
+        "intake": {
+          "intake_revision": 3,
+          "input": {
+            "origin": {
+              "state": "provided",
+              "value": "上海"
+            },
+            "destination": {
+              "state": "provided",
+              "value": "杭州"
+            },
+            "dates": {
+              "state": "provided",
+              "value": {
+                "mode": "fixed",
+                "start_date": "2026-12-04",
+                "end_date": "2026-12-06"
+              }
+            },
+            "days": {
+              "state": "provided",
+              "value": 2
+            },
+            "travelers": {
+              "state": "provided",
+              "value": 2
+            },
+            "target_budget_cents": {
+              "state": "provided",
+              "value": 200000
+            },
+            "hard_limit_cents": {
+              "state": "provided",
+              "value": 230000
+            },
+            "transport": {
+              "state": "no_preference",
+              "value": null
+            },
+            "hotel": {
+              "state": "unanswered",
+              "value": null
+            },
+            "restrictions": {
+              "state": "unanswered",
+              "value": null
+            },
+            "raw_text": "用户原文只保存，不提取为事实"
+          },
+          "collection_status": "COLLECTING",
+          "blocking_fields": [
+            "dates",
+            "days"
+          ],
+          "provenance": [
+            {
+              "field": "origin",
+              "source": "user"
+            },
+            {
+              "field": "destination",
+              "source": "user"
+            },
+            {
+              "field": "dates",
+              "source": "user"
+            },
+            {
+              "field": "days",
+              "source": "user"
+            },
+            {
+              "field": "travelers",
+              "source": "user"
+            },
+            {
+              "field": "target_budget_cents",
+              "source": "user"
+            },
+            {
+              "field": "hard_limit_cents",
+              "source": "user"
+            },
+            {
+              "field": "transport",
+              "source": "user"
+            }
+          ],
+          "suggested_values": []
+        },
+        "working": null,
+        "latest_confirmed_version_id": null,
+        "synchronization": "NO_DRAFT",
+        "plan_confirmation": "UNCONFIRMED",
+        "active_run_id": null,
+        "readiness": "NOT_ASSESSED",
+        "booked": false
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/fcd2cd02-c32f-c762-48a5-e80d8a67cf34/answers",
+      "key": "8b42f752-f6d0-4366-b695-d65937686036",
+      "request": {
+        "expected_intake_revision": 1,
+        "expected_working_revision": null,
+        "field_key": "hard_limit_cents",
+        "answer": {
+          "state": "provided",
+          "value": 230000
+        }
+      },
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "business_conflict",
+          "message": "Operation conflicts with current state."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/next",
+      "key": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "intake_revision": 3,
+        "question": {
+          "question_id": "e824d95b-47d4-10cb-8262-f8e1312f50e0",
+          "intake_revision": 3,
+          "field_key": "dates",
+          "prompt": "请选择具体出发和结束日期，并纠正日期与天数的冲突。",
+          "allow_no_preference": true
+        },
+        "blocking_fields": [
+          "dates",
+          "days"
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091",
+      "key": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+        "created_at": "2026-11-11T22:03:28.140724+08:00",
+        "intake": {
+          "intake_revision": 3,
+          "input": {
+            "origin": {
+              "state": "provided",
+              "value": "上海"
+            },
+            "destination": {
+              "state": "provided",
+              "value": "杭州"
+            },
+            "dates": {
+              "state": "provided",
+              "value": {
+                "mode": "fixed",
+                "start_date": "2026-12-04",
+                "end_date": "2026-12-06"
+              }
+            },
+            "days": {
+              "state": "provided",
+              "value": 2
+            },
+            "travelers": {
+              "state": "provided",
+              "value": 2
+            },
+            "target_budget_cents": {
+              "state": "provided",
+              "value": 200000
+            },
+            "hard_limit_cents": {
+              "state": "provided",
+              "value": 230000
+            },
+            "transport": {
+              "state": "no_preference",
+              "value": null
+            },
+            "hotel": {
+              "state": "unanswered",
+              "value": null
+            },
+            "restrictions": {
+              "state": "unanswered",
+              "value": null
+            },
+            "raw_text": "用户原文只保存，不提取为事实"
+          },
+          "collection_status": "COLLECTING",
+          "blocking_fields": [
+            "dates",
+            "days"
+          ],
+          "provenance": [
+            {
+              "field": "origin",
+              "source": "user"
+            },
+            {
+              "field": "destination",
+              "source": "user"
+            },
+            {
+              "field": "dates",
+              "source": "user"
+            },
+            {
+              "field": "days",
+              "source": "user"
+            },
+            {
+              "field": "travelers",
+              "source": "user"
+            },
+            {
+              "field": "target_budget_cents",
+              "source": "user"
+            },
+            {
+              "field": "hard_limit_cents",
+              "source": "user"
+            },
+            {
+              "field": "transport",
+              "source": "user"
+            }
+          ],
+          "suggested_values": []
+        },
+        "working": null,
+        "latest_confirmed_version_id": null,
+        "synchronization": "NO_DRAFT",
+        "plan_confirmation": "UNCONFIRMED",
+        "active_run_id": null,
+        "readiness": "NOT_ASSESSED",
+        "booked": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/next",
+      "key": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "intake_revision": 3,
+        "question": {
+          "question_id": "e824d95b-47d4-10cb-8262-f8e1312f50e0",
+          "intake_revision": 3,
+          "field_key": "dates",
+          "prompt": "请选择具体出发和结束日期，并纠正日期与天数的冲突。",
+          "allow_no_preference": true
+        },
+        "blocking_fields": [
+          "dates",
+          "days"
+        ]
+      }
+    }
+  ],
+  "database": {
+    "versions": [
+      {
+        "revision": 1,
+        "input": {
+          "days": {
+            "state": "provided",
+            "value": 3
+          },
+          "dates": {
+            "state": "provided",
+            "value": {
+              "mode": "fixed",
+              "end_date": "2026-12-06",
+              "start_date": "2026-12-04"
+            }
+          },
+          "hotel": {
+            "state": "unanswered",
+            "value": null
+          },
+          "origin": {
+            "state": "provided",
+            "value": "上海"
+          },
+          "raw_text": "用户原文只保存，不提取为事实",
+          "transport": {
+            "state": "no_preference",
+            "value": null
+          },
+          "travelers": {
+            "state": "provided",
+            "value": 2
+          },
+          "destination": {
+            "state": "provided",
+            "value": "杭州"
+          },
+          "restrictions": {
+            "state": "unanswered",
+            "value": null
+          },
+          "hard_limit_cents": {
+            "state": "unanswered",
+            "value": null
+          },
+          "target_budget_cents": {
+            "state": "provided",
+            "value": 200000
+          }
+        }
+      },
+      {
+        "revision": 2,
+        "input": {
+          "days": {
+            "state": "provided",
+            "value": 3
+          },
+          "dates": {
+            "state": "provided",
+            "value": {
+              "mode": "fixed",
+              "end_date": "2026-12-06",
+              "start_date": "2026-12-04"
+            }
+          },
+          "hotel": {
+            "state": "unanswered",
+            "value": null
+          },
+          "origin": {
+            "state": "provided",
+            "value": "上海"
+          },
+          "raw_text": "用户原文只保存，不提取为事实",
+          "transport": {
+            "state": "no_preference",
+            "value": null
+          },
+          "travelers": {
+            "state": "provided",
+            "value": 2
+          },
+          "destination": {
+            "state": "provided",
+            "value": "杭州"
+          },
+          "restrictions": {
+            "state": "unanswered",
+            "value": null
+          },
+          "hard_limit_cents": {
+            "state": "provided",
+            "value": 230000
+          },
+          "target_budget_cents": {
+            "state": "provided",
+            "value": 200000
+          }
+        }
+      },
+      {
+        "revision": 3,
+        "input": {
+          "days": {
+            "state": "provided",
+            "value": 2
+          },
+          "dates": {
+            "state": "provided",
+            "value": {
+              "mode": "fixed",
+              "end_date": "2026-12-06",
+              "start_date": "2026-12-04"
+            }
+          },
+          "hotel": {
+            "state": "unanswered",
+            "value": null
+          },
+          "origin": {
+            "state": "provided",
+            "value": "上海"
+          },
+          "raw_text": "用户原文只保存，不提取为事实",
+          "transport": {
+            "state": "no_preference",
+            "value": null
+          },
+          "travelers": {
+            "state": "provided",
+            "value": 2
+          },
+          "destination": {
+            "state": "provided",
+            "value": "杭州"
+          },
+          "restrictions": {
+            "state": "unanswered",
+            "value": null
+          },
+          "hard_limit_cents": {
+            "state": "provided",
+            "value": 230000
+          },
+          "target_budget_cents": {
+            "state": "provided",
+            "value": 200000
+          }
+        }
+      }
+    ],
+    "answers": [
+      {
+        "question_id": "fcd2cd02-c32f-c762-48a5-e80d8a67cf34",
+        "intake_revision": 1,
+        "resulting_revision": 2,
+        "field_key": "hard_limit_cents"
+      }
+    ],
+    "receipts": [
+      {
+        "method": "POST",
+        "path": "/api/v1/trips",
+        "response_status": 201,
+        "result": {
+          "booked": false,
+          "intake": {
+            "input": {
+              "days": {
+                "state": "provided",
+                "value": 3
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "end_date": "2026-12-06",
+                  "start_date": "2026-12-04"
+                }
+              },
+              "hotel": {
+                "state": "unanswered",
+                "value": null
+              },
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "raw_text": "用户原文只保存，不提取为事实",
+              "transport": {
+                "state": "no_preference",
+                "value": null
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "restrictions": {
+                "state": "unanswered",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "unanswered",
+                "value": null
+              },
+              "target_budget_cents": {
+                "state": "provided",
+                "value": 200000
+              }
+            },
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              }
+            ],
+            "blocking_fields": [
+              "hard_limit_cents"
+            ],
+            "intake_revision": 1,
+            "suggested_values": [],
+            "collection_status": "COLLECTING"
+          },
+          "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+          "working": null,
+          "readiness": "NOT_ASSESSED",
+          "created_at": "2026-11-11T22:03:28.140724+08:00",
+          "active_run_id": null,
+          "synchronization": "NO_DRAFT",
+          "plan_confirmation": "UNCONFIRMED",
+          "latest_confirmed_version_id": null
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/clarifications/fcd2cd02-c32f-c762-48a5-e80d8a67cf34/answers",
+        "response_status": 200,
+        "result": {
+          "booked": false,
+          "intake": {
+            "input": {
+              "days": {
+                "state": "provided",
+                "value": 3
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "end_date": "2026-12-06",
+                  "start_date": "2026-12-04"
+                }
+              },
+              "hotel": {
+                "state": "unanswered",
+                "value": null
+              },
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "raw_text": "用户原文只保存，不提取为事实",
+              "transport": {
+                "state": "no_preference",
+                "value": null
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "restrictions": {
+                "state": "unanswered",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "target_budget_cents": {
+                "state": "provided",
+                "value": 200000
+              }
+            },
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              }
+            ],
+            "blocking_fields": [],
+            "intake_revision": 2,
+            "suggested_values": [],
+            "collection_status": "READY_TO_GENERATE"
+          },
+          "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+          "working": null,
+          "readiness": "NOT_ASSESSED",
+          "created_at": "2026-11-11T22:03:28.140724+08:00",
+          "active_run_id": null,
+          "synchronization": "NO_DRAFT",
+          "plan_confirmation": "UNCONFIRMED",
+          "latest_confirmed_version_id": null
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v1/trips/0404f233-2bb7-43e6-ba53-3467886fa091/requirements",
+        "response_status": 200,
+        "result": {
+          "booked": false,
+          "intake": {
+            "input": {
+              "days": {
+                "state": "provided",
+                "value": 2
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "end_date": "2026-12-06",
+                  "start_date": "2026-12-04"
+                }
+              },
+              "hotel": {
+                "state": "unanswered",
+                "value": null
+              },
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "raw_text": "用户原文只保存，不提取为事实",
+              "transport": {
+                "state": "no_preference",
+                "value": null
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "restrictions": {
+                "state": "unanswered",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "target_budget_cents": {
+                "state": "provided",
+                "value": 200000
+              }
+            },
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              }
+            ],
+            "blocking_fields": [
+              "dates",
+              "days"
+            ],
+            "intake_revision": 3,
+            "suggested_values": [],
+            "collection_status": "COLLECTING"
+          },
+          "trip_id": "0404f233-2bb7-43e6-ba53-3467886fa091",
+          "working": null,
+          "readiness": "NOT_ASSESSED",
+          "created_at": "2026-11-11T22:03:28.140724+08:00",
+          "active_run_id": null,
+          "synchronization": "NO_DRAFT",
+          "plan_confirmation": "UNCONFIRMED",
+          "latest_confirmed_version_id": null
+        }
+      }
+    ],
+    "get_before": {
+      "trip_intake_versions": {
+        "n": 6,
+        "hash": "5408675d48c7e13e94f0856fbbcd174b"
+      },
+      "trip_intakes": {
+        "n": 2,
+        "hash": "1ed9a6f7797f1cc7bcada01130e571a2"
+      },
+      "clarification_questions": {
+        "n": 60,
+        "hash": "e83f3c8c0f30b255ae6304e195d69b09"
+      },
+      "clarification_answers": {
+        "n": 2,
+        "hash": "53a2a6c23e23ace6451287b834bcad4b"
+      },
+      "api_commands": {
+        "n": 6,
+        "hash": "110deec0851cb299b5933e9e69f52c87"
+      },
+      "draft_versions": {
+        "n": 0,
+        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+      },
+      "confirmed_snapshots": {
+        "n": 0,
+        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+      }
+    },
+    "get_after": {
+      "trip_intake_versions": {
+        "n": 6,
+        "hash": "5408675d48c7e13e94f0856fbbcd174b"
+      },
+      "trip_intakes": {
+        "n": 2,
+        "hash": "1ed9a6f7797f1cc7bcada01130e571a2"
+      },
+      "clarification_questions": {
+        "n": 60,
+        "hash": "e83f3c8c0f30b255ae6304e195d69b09"
+      },
+      "clarification_answers": {
+        "n": 2,
+        "hash": "53a2a6c23e23ace6451287b834bcad4b"
+      },
+      "api_commands": {
+        "n": 6,
+        "hash": "110deec0851cb299b5933e9e69f52c87"
+      },
+      "draft_versions": {
+        "n": 0,
+        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+      },
+      "confirmed_snapshots": {
+        "n": 0,
+        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+      }
+    }
+  }
+}

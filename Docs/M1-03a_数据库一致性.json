@@ -1,0 +1,305 @@
+{
+  "checks": "PASS: contiguous immutable revisions/current pointers, 10 descriptors per version, answer/result/receipt binding, original migrations byte-identical",
+  "counts": {
+    "trips": 29,
+    "trip_intake_versions": 43,
+    "clarification_questions": 430,
+    "clarification_answers": 9,
+    "api_commands": 42,
+    "draft_versions": 1,
+    "confirmed_snapshots": 1
+  },
+  "invalidated_question_descriptors": 140,
+  "trips": [
+    {
+      "trip_id": "005ae145-8dc0-4584-9a42-dc16d7ce1749",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "030d93c1-879d-4fb3-b228-681006b10488",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "1ef3f34f-8553-4983-9790-a01e4b9a6982",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "1f264cdb-3f09-464b-b0af-da02f3fe714d",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "1fa35fe1-4019-4462-b0f8-9d53d5535660",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "30ec4760-5be5-4a03-ab33-d4ce68e5e680",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "458eef34-5643-4629-ac57-2613cb55c925",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "4815e811-8b4d-40ac-8a68-dc1a56cdfc32",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "49f474e0-0732-4f0a-8dee-ea3575d2e162",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "54fa35a9-4ec4-4831-80f0-8331aea1ce43",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "5c414da0-2f97-42a4-addc-6f283d30ddff",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "627e58d8-58c9-49dc-80b7-eb0d4884e155",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "6471f109-25bc-4860-8e62-73e2218adf5c",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "651511cb-4528-4720-a7fc-981db67f4466",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "77ace0ac-1e43-4694-a3c4-57d55e478300",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "929a91ff-80bb-4e46-9cd2-347471513bb0",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "9725713e-341c-460a-8dc7-5462596bc5ee",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "a2ec14a7-06e6-4e91-bb80-2de3f86e3133",
+      "revision": 3,
+      "version_count": 3,
+      "first_revision": 1,
+      "last_revision": 3
+    },
+    {
+      "trip_id": "ad32f16d-1d8a-41ed-9c21-66b715aba9b6",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "b5dce761-07f7-482f-8b67-bae0914cf793",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "b70d74e7-c46f-43ed-868d-13affdd59b86",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "b81cb4cc-6c55-451f-bb4b-525a97e12176",
+      "revision": 2,
+      "version_count": 2,
+      "first_revision": 1,
+      "last_revision": 2
+    },
+    {
+      "trip_id": "bcb95fde-5e65-4604-b661-0d90232c2442",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "bf988af0-23fa-4005-9686-3d079d092b18",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "c036c1c4-42bf-4080-8678-d222bac358c8",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "c0dfc678-0109-4884-bb89-aa1e1e6f66fd",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "d8af07b6-6aec-4119-9035-5500f341c0fd",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "db53c638-fe3e-4530-8ae0-93934578c66a",
+      "revision": 1,
+      "version_count": 1,
+      "first_revision": 1,
+      "last_revision": 1
+    },
+    {
+      "trip_id": "e8565be5-87b4-4bc8-aaf0-516b4f439041",
+      "revision": 3,
+      "version_count": 3,
+      "first_revision": 1,
+      "last_revision": 3
+    }
+  ],
+  "answers": [
+    {
+      "question_id": "06dcb237-66da-cdbd-e148-2dab88d06215",
+      "trip_id": "005ae145-8dc0-4584-9a42-dc16d7ce1749",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "fbdf48a1-ea60-7652-a939-5e59cb642b90",
+      "trip_id": "030d93c1-879d-4fb3-b228-681006b10488",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "4cf6e46c-b54b-54b3-b83f-58a09360a009",
+      "trip_id": "1f264cdb-3f09-464b-b0af-da02f3fe714d",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "2d225416-3a6a-f2be-046e-2f64a9eb4970",
+      "trip_id": "1fa35fe1-4019-4462-b0f8-9d53d5535660",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "c3c36cd9-776d-1c3f-c66c-1c904a9afbb2",
+      "trip_id": "a2ec14a7-06e6-4e91-bb80-2de3f86e3133",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "e6cdc899-2a21-d46f-6461-7341fe83a2c1",
+      "trip_id": "a2ec14a7-06e6-4e91-bb80-2de3f86e3133",
+      "intake_revision": 2,
+      "resulting_revision": 3,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "3"
+    },
+    {
+      "question_id": "4e561cbb-fc64-ed8b-f356-6bf89513e1cc",
+      "trip_id": "b5dce761-07f7-482f-8b67-bae0914cf793",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "8056374b-e3cf-3143-496f-7a40f3fceb89",
+      "trip_id": "e8565be5-87b4-4bc8-aaf0-516b4f439041",
+      "intake_revision": 1,
+      "resulting_revision": 2,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "2"
+    },
+    {
+      "question_id": "89279839-a3d5-6946-5437-17ea0fb71365",
+      "trip_id": "e8565be5-87b4-4bc8-aaf0-516b4f439041",
+      "intake_revision": 2,
+      "resulting_revision": 3,
+      "field_key": "hard_limit_cents",
+      "fact_matches": true,
+      "receipt_revision": "3"
+    }
+  ],
+  "baseline_migration_sha256": {
+    "001_initial.sql": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43",
+    "002_trip_intakes.sql": "a1f7b4bc3069e20e5c2bc28fded8fe3264050a81f576055c429690976c5b930d"
+  }
+}

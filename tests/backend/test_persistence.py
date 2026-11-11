@@ -65,8 +65,8 @@ def database():
         assert sorted(upgrades, key=len) == [[], [p.name for p in sorted(MIGRATIONS.glob("*.sql"))]]
         async with connection(settings) as conn:
             tables = await (await conn.execute("SELECT schemaname,tablename FROM pg_tables WHERE schemaname='easytravel'")).fetchall()
-            assert len(tables) == 11
-        print("Fresh empty database initialized with 001+002; 11 formal tables; concurrent installers serialized")
+            assert len(tables) == 13
+        print("Fresh empty database initialized with 001+002+003; 13 formal tables; concurrent installers serialized")
 
     run(initialize_empty())
     yield settings
@@ -164,14 +164,14 @@ def test_checksum_drift_and_unknown_migration_fail(database, tmp_path):
 def test_failed_migration_rolls_back_ddl_and_ledger(database, tmp_path):
     for source in MIGRATIONS.glob("*.sql"):
         (tmp_path / source.name).write_bytes(source.read_bytes())
-    (tmp_path / "003_failure.sql").write_text(
+    (tmp_path / "004_failure.sql").write_text(
         "CREATE TABLE easytravel.must_rollback(id integer); SELECT 1/0;", encoding="utf-8")
     async def scenario():
         with pytest.raises(psycopg.errors.DivisionByZero):
             await upgrade(database, directory=tmp_path)
         async with connection(database) as conn:
             assert (await (await conn.execute("SELECT to_regclass('easytravel.must_rollback') AS t")).fetchone())["t"] is None
-            assert (await (await conn.execute("SELECT count(*) AS n FROM easytravel.schema_migrations")).fetchone())["n"] == 2
+            assert (await (await conn.execute("SELECT count(*) AS n FROM easytravel.schema_migrations")).fetchone())["n"] == 3
     run(scenario())
 
 

@@ -1,11 +1,12 @@
-"""Only M1-01 creation and persisted reads; no generator or implicit migrations."""
+"""Trusted local Trip intake APIs; no generator or implicit migrations."""
 from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, Path, Response
 
 from ...application.intakes import IntakeService
-from ...domain.intake import CreateTripRequest, TripView
+from ...domain.intake import (CreateTripRequest, TripView, UpdateRequirementsRequest,
+                              AnswerRequest, NextQuestionResponse)
 from ..errors import ErrorResponse, LocalApiError
 from ..local_identity import trusted_actor
 from fastapi import Request
@@ -41,5 +42,32 @@ async def create_trip(body: CreateTripRequest, response: Response, actor: Actor,
 async def get_trip(trip_id: Annotated[str, Path(pattern=r"^[A-Za-z0-9_-]{1,80}$")],
                    response: Response, actor: Actor, service: Service):
     result = await service.get(trip_id, actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result
+
+
+TripId = Annotated[str, Path(pattern=r"^[A-Za-z0-9_-]{1,80}$")]
+CommandKey = Annotated[UUID, Header(alias="Idempotency-Key")]
+
+
+@router.put("/{trip_id}/requirements", response_model=TripView, operation_id="updateRequirements")
+async def update_requirements(trip_id: TripId, body: UpdateRequirementsRequest,
+                              response: Response, actor: Actor, service: Service, key: CommandKey):
+    result = await service.update(trip_id,body,key=str(key),actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result
+
+
+@router.get("/{trip_id}/clarifications/next", response_model=NextQuestionResponse, operation_id="getNextQuestion")
+async def next_question(trip_id: TripId, response: Response, actor: Actor, service: Service):
+    result = await service.next(trip_id,actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result
+
+
+@router.post("/{trip_id}/clarifications/{question_id}/answers", response_model=TripView, operation_id="answerQuestion")
+async def answer_question(trip_id: TripId, question_id: TripId, body: AnswerRequest,
+                          response: Response, actor: Actor, service: Service, key: CommandKey):
+    result = await service.update(trip_id,body,key=str(key),actor=actor,question_id=question_id)
     response.headers["Cache-Control"] = "no-store"
     return result

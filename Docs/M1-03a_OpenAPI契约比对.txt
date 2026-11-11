@@ -1,0 +1,7 @@
+PASS: live TCP /openapi.json equals application export; OpenAPI 3.1 model validation; all refs resolve
+PASS: only health plus five authorized Trip operations; operation IDs/statuses/DTO/security/UUID headers match
+PASS: RequirementsInput/CreateTripRequest/IntakeView identical to accepted M1-01; no frontend contract regression for no-draft Trips
+PASS: TripView/UpdateRequirementsRequest/ClarificationQuestion/NextQuestionResponse property and required sets match M1-00
+EXPLICIT REFINEMENT: AnswerRequest requires field_key in addition to the draft schema, to reject field/question mismatches as required by M1-03a authorization
+SCOPE: working permits existing WorkingDraft; synchronization NO_DRAFT or conservatively STALE without draft-input contexts; current confirmation UNCONFIRMED; historical snapshot ID retained
+LIMIT: field-specific bounds/date semantics checked by Pydantic+HTTP tests; schema comparison is not a full JSON-Schema equivalence proof
