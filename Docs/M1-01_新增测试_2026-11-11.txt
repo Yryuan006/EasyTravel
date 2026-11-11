@@ -1,0 +1,67 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 51 items
+
+tests/backend/test_intakes.py::test_default_disabled_and_health_without_database PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change0] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change1] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change2] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change3] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change4] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change5] PASSED
+tests/backend/test_intakes.py::test_invalid_token_configuration[short] PASSED
+tests/backend/test_intakes.py::test_invalid_token_configuration[not a token] PASSED
+tests/backend/test_intakes.py::test_invalid_token_configuration[value2] PASSED
+tests/backend/test_intakes.py::test_local_config_load_and_secret_repr PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[None] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[Bearer wrong] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[Basic anything] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[Bearer] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[auth4] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra0-403-origin_not_allowed] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra1-403-origin_not_allowed] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra2-403-local_only_api] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra3-422-invalid_request] PASSED
+tests/backend/test_intakes.py::test_non_loopback_peer_cannot_spoof_forwarding PASSED
+tests/backend/test_intakes.py::test_missing_database_is_safe_503 PASSED
+tests/backend/test_intakes.py::test_create_read_input_and_no_draft[complete] M1-01 dedicated database initialized: 001 legacy snapshot preserved, 002 applied once; no reset
+HTTP complete: POST 201 / GET 200; input persisted, no draft, GET fingerprint unchanged
+PASSED
+tests/backend/test_intakes.py::test_create_read_input_and_no_draft[destination] HTTP destination: POST 201 / GET 200; input persisted, no draft, GET fingerprint unchanged
+PASSED
+tests/backend/test_intakes.py::test_create_read_input_and_no_draft[raw] HTTP raw: POST 201 / GET 200; input persisted, no draft, GET fingerprint unchanged
+PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[empty] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[missing] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[money] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[money_bool] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[travelers] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[extra_owner] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[extra_actor] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[answer_extra] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[provided_null] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[unanswered_value] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[blank_destination] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[blank_raw] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[bad_date] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[extra_status] PASSED
+tests/backend/test_intakes.py::test_idempotency_header_required[None] PASSED
+tests/backend/test_intakes.py::test_idempotency_header_required[invalid-uuid] PASSED
+tests/backend/test_intakes.py::test_owner_scope_and_forged_query PASSED
+tests/backend/test_intakes.py::test_sequential_replay_conflict_and_actor_key_scope PASSED
+tests/backend/test_intakes.py::test_concurrent_creates_and_committed_timeout_replay PASSED
+tests/backend/test_intakes.py::test_transaction_failure_rolls_back_http_command_and_intake[statement] PASSED
+tests/backend/test_intakes.py::test_transaction_failure_rolls_back_http_command_and_intake[commit] PASSED
+tests/backend/test_intakes.py::test_independent_process_reads_and_replays PASSED
+tests/backend/test_intakes.py::test_legacy_trip_has_no_fabricated_input PASSED
+tests/backend/test_intakes.py::test_intake_and_command_database_guards PASSED
+tests/backend/test_intakes.py::test_command_lock_timeout_is_retryable_409 PASSED
+tests/backend/test_intakes.py::test_unavailable_database_and_health PASSEDIsolation verified: 24 experiment/Checkpoint tables + 8 retained formal tables + seeded legacy snapshot unchanged
+
+
+============================= 51 passed in 10.83s =============================

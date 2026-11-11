@@ -2,6 +2,8 @@
 
 日期：2026-11-11。状态：供架构 Review，**不是当前运行接口**。正式现状仅有 `/api/v1/health`。沿用 FastAPI 路由和统一错误包装，不调用第三方服务。
 
+M1-01 Review 补充：RequirementsInput 全部字段必须存在；未填显式 unanswered/null，不自动补字段；no_preference 不等于 provided。创建必须至少有 provided 的非空目的地或非空 raw_text；两个条件都没有时422。缺字段/额外字段/错误类型同样422。此跨字段验证由应用输入契约执行，不能仅靠 required 列表。运行接口现状以后续 M1-01 报告和实际 OpenAPI 为准，下面其余端点仍是设计。
+
 ## 1. 端点索引与数据契约
 
 下表请求/响应名称对应第 6 节 OpenAPI 的严格 schema；它们同时是后续 Pydantic DTO 和 TypeScript 类型的命名依据。OpenAPI 是本草案的字段权威来源。所有对象禁止额外输入字段；复用的领域输出 schema 直接由当前 Pydantic 模型导出，既有模型中的跨字段 validator 仍须执行，不能只用 JSON Schema 验证代替。

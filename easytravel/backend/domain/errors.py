@@ -11,3 +11,15 @@ class ResourceNotFound(BusinessError):
 
 class BusinessConflict(BusinessError):
     pass
+
+
+class IdempotencyKeyReused(BusinessConflict):
+    pass
+
+
+class CommandInProgress(BusinessConflict):
+    pass
+
+
+class DependencyUnavailable(BusinessError):
+    pass

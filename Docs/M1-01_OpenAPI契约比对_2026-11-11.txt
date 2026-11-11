@@ -1,0 +1,8 @@
+PASS: OpenAPI 3.1 FastAPI model validation; all references resolve
+PASS: only health + POST trips + GET trip; operation IDs, statuses, bearer security and UUID header match
+PASS: all required input fields, no extra fields; TripView and IntakeView fields/required sets match M1-00
+SCOPE: TripView narrows working/latest_confirmed_version_id/active_run_id to null; synchronization=NO_DRAFT, plan_confirmation=UNCONFIRMED
+SCOPE: Answer uses named discriminated schemas; date fields use explicit ISO-date parsing without numeric coercion
+SEMANTICS: destination/raw_text minimum, nonblank text, date order and strict input are validated by Pydantic; see HTTP tests
+LIMIT: not a full JSON-Schema equivalence proof; no 12 deferred business operations are implemented
+Saved Docs/M1-01_openapi.json

@@ -62,11 +62,11 @@ def database():
                 WHERE schemaname NOT IN ('pg_catalog','information_schema')""")).fetchone()
             assert row["n"] == 0, "Use a freshly provisioned database; do not clean existing data"
         upgrades = await asyncio.gather(upgrade(settings), upgrade(settings))
-        assert sorted(upgrades, key=len) == [[], ["001_initial.sql"]]
+        assert sorted(upgrades, key=len) == [[], [p.name for p in sorted(MIGRATIONS.glob("*.sql"))]]
         async with connection(settings) as conn:
             tables = await (await conn.execute("SELECT schemaname,tablename FROM pg_tables WHERE schemaname='easytravel'")).fetchall()
-            assert len(tables) == 8
-        print("Fresh empty database initialized with 001_initial.sql; 8 formal tables; concurrent installers serialized")
+            assert len(tables) == 11
+        print("Fresh empty database initialized with 001+002; 11 formal tables; concurrent installers serialized")
 
     run(initialize_empty())
     yield settings
@@ -145,6 +145,8 @@ def test_schema_has_no_experiment_or_checkpoint_links(database):
 
 
 def test_checksum_drift_and_unknown_migration_fail(database, tmp_path):
+    for source in MIGRATIONS.glob("*.sql"):
+        (tmp_path / source.name).write_bytes(source.read_bytes())
     async def scenario():
         original = (MIGRATIONS / "001_initial.sql").read_text(encoding="utf-8")
         (tmp_path / "001_initial.sql").write_text(original + "\n-- drift", encoding="utf-8")
@@ -162,14 +164,14 @@ def test_checksum_drift_and_unknown_migration_fail(database, tmp_path):
 def test_failed_migration_rolls_back_ddl_and_ledger(database, tmp_path):
     for source in MIGRATIONS.glob("*.sql"):
         (tmp_path / source.name).write_bytes(source.read_bytes())
-    (tmp_path / "002_failure.sql").write_text(
+    (tmp_path / "003_failure.sql").write_text(
         "CREATE TABLE easytravel.must_rollback(id integer); SELECT 1/0;", encoding="utf-8")
     async def scenario():
         with pytest.raises(psycopg.errors.DivisionByZero):
             await upgrade(database, directory=tmp_path)
         async with connection(database) as conn:
             assert (await (await conn.execute("SELECT to_regclass('easytravel.must_rollback') AS t")).fetchone())["t"] is None
-            assert (await (await conn.execute("SELECT count(*) AS n FROM easytravel.schema_migrations")).fetchone())["n"] == 1
+            assert (await (await conn.execute("SELECT count(*) AS n FROM easytravel.schema_migrations")).fetchone())["n"] == 2
     run(scenario())
 
 

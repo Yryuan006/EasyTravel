@@ -8,8 +8,10 @@ from psycopg.conninfo import conninfo_to_dict, make_conninfo
 from psycopg.rows import dict_row
 from pydantic import BaseModel, ConfigDict, SecretStr, field_validator
 
+from ..domain.errors import DependencyUnavailable
 
-class DatabaseUnavailable(RuntimeError):
+
+class DatabaseUnavailable(DependencyUnavailable, RuntimeError):
     """Safe diagnostic; raw driver details must not reach public responses/logs."""
 
 

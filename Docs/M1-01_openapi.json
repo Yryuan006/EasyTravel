@@ -1,0 +1,955 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "EasyTravel API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "HTTP application liveness only",
+        "description": "Does not check database, model or travel-data readiness.",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trips": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Create Trip",
+        "operationId": "createTrip",
+        "security": [
+          {
+            "LocalDevBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTripRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripView"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/v1/trips/{trip_id}": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip",
+        "operationId": "getTrip",
+        "security": [
+          {
+            "LocalDevBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,80}$",
+              "title": "Trip Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripView"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MissingAnswer"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "state",
+          "mapping": {
+            "no_preference": "#/components/schemas/MissingAnswer",
+            "provided": "#/components/schemas/ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____",
+            "unanswered": "#/components/schemas/MissingAnswer"
+          }
+        }
+      },
+      "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MissingAnswer"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "state",
+          "mapping": {
+            "no_preference": "#/components/schemas/MissingAnswer",
+            "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____",
+            "unanswered": "#/components/schemas/MissingAnswer"
+          }
+        }
+      },
+      "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MissingAnswer"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "state",
+          "mapping": {
+            "no_preference": "#/components/schemas/MissingAnswer",
+            "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____",
+            "unanswered": "#/components/schemas/MissingAnswer"
+          }
+        }
+      },
+      "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MissingAnswer"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "state",
+          "mapping": {
+            "no_preference": "#/components/schemas/MissingAnswer",
+            "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____",
+            "unanswered": "#/components/schemas/MissingAnswer"
+          }
+        }
+      },
+      "Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MissingAnswer"
+          },
+          {
+            "$ref": "#/components/schemas/ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "state",
+          "mapping": {
+            "no_preference": "#/components/schemas/MissingAnswer",
+            "provided": "#/components/schemas/ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____",
+            "unanswered": "#/components/schemas/MissingAnswer"
+          }
+        }
+      },
+      "CreateTripRequest": {
+        "properties": {
+          "requirements": {
+            "$ref": "#/components/schemas/RequirementsInput"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requirements"
+        ],
+        "title": "CreateTripRequest"
+      },
+      "DateWindow": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "window",
+            "title": "Mode"
+          },
+          "earliest_start": {
+            "type": "string",
+            "format": "date",
+            "title": "Earliest Start"
+          },
+          "latest_end": {
+            "type": "string",
+            "format": "date",
+            "title": "Latest End"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "earliest_start",
+          "latest_end"
+        ],
+        "title": "DateWindow"
+      },
+      "ErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorDetail"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorDetail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "FixedDates": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "fixed",
+            "title": "Mode"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "title": "End Date"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "start_date",
+          "end_date"
+        ],
+        "title": "FixedDates"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "alive",
+            "title": "Status",
+            "default": "alive"
+          },
+          "scope": {
+            "type": "string",
+            "const": "http_application_liveness",
+            "title": "Scope",
+            "default": "http_application_liveness"
+          },
+          "dependencies": {
+            "$ref": "#/components/schemas/UncheckedDependencies",
+            "default": {
+              "database": "not_checked",
+              "model": "not_checked",
+              "travel_data": "not_checked"
+            }
+          }
+        },
+        "type": "object",
+        "title": "HealthResponse"
+      },
+      "IntakeView": {
+        "properties": {
+          "intake_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Intake Revision"
+          },
+          "input": {
+            "$ref": "#/components/schemas/RequirementsInput"
+          },
+          "collection_status": {
+            "type": "string",
+            "enum": [
+              "COLLECTING",
+              "READY_TO_GENERATE"
+            ],
+            "title": "Collection Status"
+          },
+          "blocking_fields": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "origin",
+                "destination",
+                "dates",
+                "days",
+                "travelers",
+                "target_budget_cents",
+                "hard_limit_cents",
+                "transport",
+                "hotel",
+                "restrictions"
+              ]
+            },
+            "type": "array",
+            "title": "Blocking Fields"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/Provenance"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "suggested_values": {
+            "items": {
+              "$ref": "#/components/schemas/SuggestedValue"
+            },
+            "type": "array",
+            "title": "Suggested Values"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "intake_revision",
+          "input",
+          "collection_status",
+          "blocking_fields",
+          "provenance",
+          "suggested_values"
+        ],
+        "title": "IntakeView"
+      },
+      "MissingAnswer": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "unanswered",
+              "no_preference"
+            ],
+            "title": "State"
+          },
+          "value": {
+            "type": "null",
+            "title": "Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "MissingAnswer"
+      },
+      "Provenance": {
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "origin",
+              "destination",
+              "dates",
+              "days",
+              "travelers",
+              "target_budget_cents",
+              "hard_limit_cents",
+              "transport",
+              "hotel",
+              "restrictions"
+            ],
+            "title": "Field"
+          },
+          "source": {
+            "type": "string",
+            "const": "user",
+            "title": "Source"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "field",
+          "source"
+        ],
+        "title": "Provenance"
+      },
+      "ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "const": "provided",
+            "title": "State"
+          },
+          "value": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FixedDates"
+              },
+              {
+                "$ref": "#/components/schemas/DateWindow"
+              }
+            ],
+            "title": "Value",
+            "discriminator": {
+              "propertyName": "mode",
+              "mapping": {
+                "fixed": "#/components/schemas/FixedDates",
+                "window": "#/components/schemas/DateWindow"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "ProvidedAnswer[Annotated[Union[FixedDates, DateWindow], FieldInfo(annotation=NoneType, required=True, discriminator='mode')]]"
+      },
+      "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "const": "provided",
+            "title": "State"
+          },
+          "value": {
+            "type": "integer",
+            "maximum": 1000000000000.0,
+            "minimum": 0.0,
+            "title": "Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=0), Le(le=1000000000000)])]]"
+      },
+      "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "const": "provided",
+            "title": "State"
+          },
+          "value": {
+            "type": "integer",
+            "maximum": 2.0,
+            "minimum": 1.0,
+            "title": "Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=1), Le(le=2)])]]"
+      },
+      "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "const": "provided",
+            "title": "State"
+          },
+          "value": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=1), Le(le=5)])]]"
+      },
+      "ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "const": "provided",
+            "title": "State"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "ProvidedAnswer[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), MaxLen(max_length=500)])]]"
+      },
+      "RequirementsInput": {
+        "properties": {
+          "origin": {
+            "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+          },
+          "dates": {
+            "$ref": "#/components/schemas/Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____"
+          },
+          "days": {
+            "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____"
+          },
+          "travelers": {
+            "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____"
+          },
+          "target_budget_cents": {
+            "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+          },
+          "hard_limit_cents": {
+            "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+          },
+          "transport": {
+            "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+          },
+          "hotel": {
+            "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+          },
+          "restrictions": {
+            "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+          },
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "origin",
+          "destination",
+          "dates",
+          "days",
+          "travelers",
+          "target_budget_cents",
+          "hard_limit_cents",
+          "transport",
+          "hotel",
+          "restrictions",
+          "raw_text"
+        ],
+        "title": "RequirementsInput"
+      },
+      "SuggestedValue": {
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "origin",
+              "destination",
+              "dates",
+              "days",
+              "travelers",
+              "target_budget_cents",
+              "hard_limit_cents",
+              "transport",
+              "hotel",
+              "restrictions"
+            ],
+            "title": "Field"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "source": {
+            "type": "string",
+            "const": "suggestion",
+            "title": "Source"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "field",
+          "text",
+          "source"
+        ],
+        "title": "SuggestedValue"
+      },
+      "TripView": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Trip Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "intake": {
+            "$ref": "#/components/schemas/IntakeView"
+          },
+          "working": {
+            "type": "null",
+            "title": "Working"
+          },
+          "latest_confirmed_version_id": {
+            "type": "null",
+            "title": "Latest Confirmed Version Id"
+          },
+          "synchronization": {
+            "type": "string",
+            "const": "NO_DRAFT",
+            "title": "Synchronization"
+          },
+          "plan_confirmation": {
+            "type": "string",
+            "const": "UNCONFIRMED",
+            "title": "Plan Confirmation"
+          },
+          "active_run_id": {
+            "type": "null",
+            "title": "Active Run Id"
+          },
+          "readiness": {
+            "type": "string",
+            "const": "NOT_ASSESSED",
+            "title": "Readiness"
+          },
+          "booked": {
+            "type": "boolean",
+            "const": false,
+            "title": "Booked"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "created_at",
+          "intake",
+          "working",
+          "latest_confirmed_version_id",
+          "synchronization",
+          "plan_confirmation",
+          "active_run_id",
+          "readiness",
+          "booked"
+        ],
+        "title": "TripView",
+        "description": "M1-01 specialization: only persisted trips without a working draft."
+      },
+      "UncheckedDependencies": {
+        "properties": {
+          "database": {
+            "type": "string",
+            "const": "not_checked",
+            "title": "Database",
+            "default": "not_checked"
+          },
+          "model": {
+            "type": "string",
+            "const": "not_checked",
+            "title": "Model",
+            "default": "not_checked"
+          },
+          "travel_data": {
+            "type": "string",
+            "const": "not_checked",
+            "title": "Travel Data",
+            "default": "not_checked"
+          }
+        },
+        "type": "object",
+        "title": "UncheckedDependencies"
+      }
+    },
+    "securitySchemes": {
+      "LocalDevBearer": {
+        "type": "http",
+        "description": "Local development only; opaque server-managed token, not production authentication.",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
