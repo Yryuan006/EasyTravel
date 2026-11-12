@@ -10,6 +10,8 @@ import TripWorkspace from '../src/components/TripWorkspace.vue'
 import TripSummary from '../src/components/TripSummary.vue'
 import { updateRequirements, answerQuestion, getNextQuestion } from '../src/api/trips'
 import schema from '../../Docs/M1-03a_openapi.json'
+import currentSchema from '../../Docs/M1-04a_openapi.json'
+import persisted from '../../Docs/M1-04a_独立进程读取.json'
 import workingSchema from '../src/api/working-schema.json'
 function trip(): TripView {
   const f = emptyForm(); f.raw_text = '去杭州'; f.states.hotel = 'no_preference'; f.states.hard_limit_cents = 'provided'; f.values.hard_limit_cents = '1234.56'
@@ -20,7 +22,7 @@ const next = { intake_revision: 1, question: q, blocking_fields: ['origin'] }
 const res = (x: unknown, status = 200) => new Response(JSON.stringify(x), { status })
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers() })
 it('aligns all copied legacy draft schemas and request keys with actual OpenAPI', () => {
-  for (const [k, v] of Object.entries(workingSchema)) expect(v).toEqual(schema.components.schemas[k as keyof typeof schema.components.schemas])
+  for (const [k, v] of Object.entries(workingSchema)) expect(v).toEqual(k === 'WorkingDraft' ? schema.components.schemas.WorkingDraft : (currentSchema.components.schemas as Record<string, unknown>)[k])
   expect(schema.components.schemas.AnswerRequest.required.sort()).toEqual(['expected_intake_revision', 'expected_working_revision', 'field_key', 'answer'].sort())
   expect(schema.components.schemas.UpdateRequirementsRequest.required.sort()).toEqual(['expected_intake_revision', 'expected_working_revision', 'requirements'].sort())
 })
@@ -123,4 +125,16 @@ it('successful retry of no-preference required answer also pauses the next quest
   await w.findAll('button').find(x => x.text() === '明确无偏好')!.trigger('click'); await flushPromises()
   await w.findAll('button').find(x => x.text() === '使用原 key 和原内容重试')!.trigger('click'); await flushPromises()
   expect(w.text()).toContain('旅行已保存，可稍后继续'); expect(w.findComponent(ClarificationCard).exists()).toBe(false); w.unmount()
+})
+
+it('accepts persisted CURRENT draft and shows truthful unconfirmed mock compatibility notice', () => {
+  expect(validTrip(persisted.trip)).toBe(true)
+  const w = mount(TripSummary, { props: { trip: persisted.trip as TripView } })
+  expect(w.text()).toContain('模拟工作稿 r1 · 未确认')
+  expect(w.text()).toContain('完整行程展示将在后续阶段提供')
+  expect(w.text()).not.toContain('无法证明旧工作稿')
+  expect(validTrip({ ...persisted.trip, working: { ...persisted.trip.working, context: null } })).toBe(false)
+  const broken = structuredClone(persisted.trip); (broken.working.context as unknown as Record<string, unknown>).intake_revision = 0
+  expect(validTrip(broken)).toBe(false)
+  w.unmount()
 })

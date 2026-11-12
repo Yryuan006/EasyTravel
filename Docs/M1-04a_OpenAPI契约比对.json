@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "checks": [
+    {
+      "path": "/api/v1/trips/{trip_id}/generations",
+      "method": "post",
+      "status": "202",
+      "operationId": "requestGeneration"
+    },
+    {
+      "path": "/api/v1/trips/{trip_id}/generations/{run_id}",
+      "method": "get",
+      "status": "200",
+      "operationId": "getGeneration"
+    }
+  ],
+  "request_and_response_field_sets": "match M1-00",
+  "all_internal_refs_resolve": true,
+  "frontend_copied_schemas": "exact match to actual WorkingView dependency closure; legacy WorkingDraft retained",
+  "scoped_differences": [
+    "kind restricted to INITIAL_PLAN; base_working_revision restricted to null",
+    "TripView still only UNCONFIRMED; readiness NOT_ASSESSED; booked false",
+    "Risk item_ids are unique in server construction; actual schema does not advertise uniqueItems",
+    "WorkingView is the OpenAPI component name for context-bearing WorkingDraft; legacy domain WorkingDraft unchanged",
+    "CHANGE_INTENT endpoint is absent; REPLAN explicitly rejected with 409 scope_replan_not_supported"
+  ]
+}

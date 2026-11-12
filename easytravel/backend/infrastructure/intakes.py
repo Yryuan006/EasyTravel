@@ -66,8 +66,16 @@ class PostgresIntakeRepository:
             working = WorkingDraft.model_validate(dict(trip_id=trip_id,owner_id=self.actor,
                 revision=row["working_revision"],requirements=row["requirements"],payload=row["payload"],
                 item_confirmations=row["item_confirmations"],latest_confirmed_version_id=row["latest_confirmed_version_id"]))
+        context, active = None, None
+        schema = await (await self.conn.execute("SELECT to_regclass('easytravel.generation_runs') AS t")).fetchone()
+        if schema["t"] is not None:
+            from ..domain.intake import DraftContext
+            ctx = await (await self.conn.execute("SELECT context FROM easytravel.draft_contexts WHERE trip_id=%s AND owner_id=%s AND working_revision=%s", (trip_id,self.actor,row["working_revision"]))).fetchone()
+            context = DraftContext.model_validate(ctx["context"]) if ctx else None
+            run = await (await self.conn.execute("SELECT run_id FROM easytravel.generation_runs WHERE trip_id=%s AND owner_id=%s AND status IN ('ACCEPTED','RUNNING')", (trip_id,self.actor))).fetchone()
+            active = run["run_id"] if run else None
         return trip_view(row["trip_id"], row["created_at"], row["revision"],
-                         RequirementsInput.model_validate(row["input"]), working)
+                         RequirementsInput.model_validate(row["input"]), working, context, active)
 
 
     async def lock_trip(self, trip_id):

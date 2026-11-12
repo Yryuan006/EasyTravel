@@ -1,0 +1,47 @@
+{
+  "mode": "running",
+  "before": {
+    "run_id": "8615e21e-3575-4a41-9e63-f6238bd95033",
+    "trip_id": "f8cb1007-8ce2-42c5-b430-80922ebd0e12",
+    "kind": "INITIAL_PLAN",
+    "intake_revision": 1,
+    "base_working_revision": null,
+    "status": "RUNNING",
+    "attempt": 1,
+    "retry_of": null,
+    "created_at": "2026-11-12T21:58:32.761725+08:00",
+    "updated_at": "2026-11-12T21:58:32.775395+08:00",
+    "result": null,
+    "error": null,
+    "diagnostics_budget": null
+  },
+  "after": {
+    "run_id": "8615e21e-3575-4a41-9e63-f6238bd95033",
+    "trip_id": "f8cb1007-8ce2-42c5-b430-80922ebd0e12",
+    "kind": "INITIAL_PLAN",
+    "intake_revision": 1,
+    "base_working_revision": null,
+    "status": "FAILED",
+    "attempt": 1,
+    "retry_of": null,
+    "created_at": "2026-11-12T21:58:32.761725+08:00",
+    "updated_at": "2026-11-12T21:58:33.038414+08:00",
+    "result": null,
+    "error": {
+      "code": "worker_interrupted",
+      "message": "Executor stopped before completing this run; explicitly retry with a new key.",
+      "retryable": true
+    },
+    "diagnostics_budget": null
+  },
+  "restart_stdout": "Generation executor ready; recovered=1\n",
+  "counts": {
+    "trips": 1,
+    "trip_intake_versions": 1,
+    "draft_versions": 1,
+    "working_drafts": 1,
+    "draft_contexts": 1,
+    "confirmed_snapshots": 0,
+    "generation_runs": 2
+  }
+}

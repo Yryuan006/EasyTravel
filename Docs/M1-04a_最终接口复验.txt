@@ -1,0 +1,60 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 45 items
+
+tests/backend/test_app.py::test_factory_isolated_configuration PASSED
+tests/backend/test_app.py::test_health PASSED
+tests/backend/test_app.py::test_openapi_and_docs PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[ResourceNotFound-404-resource_not_found-Resource not found.] PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[BusinessConflict-409-business_conflict-Operation conflicts with current state.] PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[BusinessError-500-internal_error-Internal server error.] PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[RuntimeError-500-internal_error-Internal server error.] PASSED
+tests/backend/test_app.py::test_safe_http_exception_and_missing_route PASSED
+tests/backend/test_app.py::test_validation_does_not_echo_input PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values0-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values1-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values2-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values3-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values4-debug] PASSED
+tests/backend/test_app.py::test_factory_rejects_bad_environment PASSED
+tests/backend/test_app.py::test_settings_reject_extra_fields_and_mutation PASSED
+tests/backend/test_app.py::test_import_factory_and_http_need_no_external_adapters PASSED
+tests/backend/test_generations.py::test_success_real_read_and_replay E04 E06 E12: 202 ACCEPTED -> SUCCEEDED; r1/context atomic; independent process matches; replay retains original 202
+PASSED
+tests/backend/test_generations.py::test_rejections[incomplete] PASSED
+tests/backend/test_generations.py::test_rejections[stale] PASSED
+tests/backend/test_generations.py::test_rejections[replan] PASSED
+tests/backend/test_generations.py::test_rejections[extra] PASSED
+tests/backend/test_generations.py::test_rejections[missing_key] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[invalid_json] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[duplicate_keys] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[dangling] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[hotel] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[overlap] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[outside] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[not_mock] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[quote] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[over_budget] PASSED
+tests/backend/test_generations.py::test_owner_path_and_idempotency PASSED
+tests/backend/test_generations.py::test_concurrent_idempotency PASSED
+tests/backend/test_generations.py::test_stale_input_during_model_no_transaction_lock PASSED
+tests/backend/test_generations.py::test_atomic_rollback[context] PASSED
+tests/backend/test_generations.py::test_atomic_rollback[commit] PASSED
+tests/backend/test_generations.py::test_context_immutable_and_second_submit PASSED
+tests/backend/test_generations.py::test_real_process_interruption_restart_replay[accepted] E20 actual process kill/exit: accepted -> FAILED ; replay and explicit retry verified
+PASSED
+tests/backend/test_generations.py::test_real_process_interruption_restart_replay[running] E20 actual process kill/exit: running -> FAILED ; replay and explicit retry verified
+PASSED
+tests/backend/test_generations.py::test_real_process_interruption_restart_replay[committed] E20 actual process kill/exit: committed -> SUCCEEDED ; replay and explicit retry verified
+PASSED
+tests/backend/test_generations.py::test_retry_requires_failed_same_input_and_parent PASSED
+tests/backend/test_generations.py::test_supported_duration_boundaries[1] PASSED
+tests/backend/test_generations.py::test_supported_duration_boundaries[5] PASSED
+tests/backend/test_generations.py::test_different_key_concurrency PASSED
+
+============================= 45 passed in 7.60s ==============================

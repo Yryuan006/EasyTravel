@@ -1,0 +1,259 @@
+{
+  "version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+  "database": "easytravel_m002_test_cf93cfd4258f",
+  "owner": "easytravel_m002_cf93cfd4258f",
+  "ledger": [
+    {
+      "version": "001_initial.sql",
+      "checksum": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43",
+      "applied_at": "2026-11-12 21:54:42.434793+08:00"
+    },
+    {
+      "version": "002_trip_intakes.sql",
+      "checksum": "a1f7b4bc3069e20e5c2bc28fded8fe3264050a81f576055c429690976c5b930d",
+      "applied_at": "2026-11-12 21:54:42.450821+08:00"
+    },
+    {
+      "version": "003_clarifications.sql",
+      "checksum": "461161507a5fb656b720cf09b3cb485f790d1e74a69e5e9b6e58e4e930a98786",
+      "applied_at": "2026-11-12 21:54:42.464019+08:00"
+    },
+    {
+      "version": "004_generations.sql",
+      "checksum": "b82e6d77b7960ae79898e9b6cbaa68375195dee412f59a013ee7504f456c4d28",
+      "applied_at": "2026-11-12 21:54:42.477000+08:00"
+    }
+  ],
+  "atomic_transaction_ids": {
+    "draft_versions": "18954",
+    "working_drafts": "18954",
+    "draft_contexts": "18954",
+    "generation_runs": "18954"
+  },
+  "context": {
+    "intake_revision": 1,
+    "working_revision": 1,
+    "run_id": "1944b753-4865-41b2-8c5d-af7ec6d895c5",
+    "context": {
+      "input": {
+        "days": {
+          "state": "provided",
+          "value": 3
+        },
+        "dates": {
+          "state": "provided",
+          "value": {
+            "mode": "fixed",
+            "end_date": "2026-12-06",
+            "start_date": "2026-12-04"
+          }
+        },
+        "hotel": {
+          "state": "provided",
+          "value": "安静，一间双人房"
+        },
+        "origin": {
+          "state": "provided",
+          "value": "上海"
+        },
+        "raw_text": null,
+        "transport": {
+          "state": "provided",
+          "value": "公共交通"
+        },
+        "travelers": {
+          "state": "provided",
+          "value": 2
+        },
+        "destination": {
+          "state": "provided",
+          "value": "杭州"
+        },
+        "restrictions": {
+          "state": "provided",
+          "value": "不爬山"
+        },
+        "hard_limit_cents": {
+          "state": "provided",
+          "value": 230000
+        },
+        "target_budget_cents": {
+          "state": "provided",
+          "value": 200000
+        }
+      },
+      "notes": {
+        "risks": [
+          {
+            "code": "mock_unverified",
+            "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+            "item_ids": [
+              "activity_0",
+              "local_0",
+              "activity_1",
+              "local_1",
+              "activity_2",
+              "local_2",
+              "outbound",
+              "return",
+              "hotel"
+            ],
+            "severity": "warning"
+          },
+          {
+            "code": "unknown_costs",
+            "message": "存在未知费用，总额无法确定，不代表免费。",
+            "item_ids": [
+              "activity_0",
+              "activity_1",
+              "activity_2",
+              "local_0",
+              "local_1",
+              "local_2",
+              "outbound",
+              "return"
+            ],
+            "severity": "warning"
+          }
+        ],
+        "transport_advice": []
+      },
+      "intake_revision": 1,
+      "risk_rules_version": "mock-initial-v1"
+    }
+  },
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/trips",
+      "response_status": 201,
+      "result": {
+        "booked": false,
+        "intake": {
+          "input": {
+            "days": {
+              "state": "provided",
+              "value": 3
+            },
+            "dates": {
+              "state": "provided",
+              "value": {
+                "mode": "fixed",
+                "end_date": "2026-12-06",
+                "start_date": "2026-12-04"
+              }
+            },
+            "hotel": {
+              "state": "provided",
+              "value": "安静，一间双人房"
+            },
+            "origin": {
+              "state": "provided",
+              "value": "上海"
+            },
+            "raw_text": null,
+            "transport": {
+              "state": "provided",
+              "value": "公共交通"
+            },
+            "travelers": {
+              "state": "provided",
+              "value": 2
+            },
+            "destination": {
+              "state": "provided",
+              "value": "杭州"
+            },
+            "restrictions": {
+              "state": "provided",
+              "value": "不爬山"
+            },
+            "hard_limit_cents": {
+              "state": "provided",
+              "value": 230000
+            },
+            "target_budget_cents": {
+              "state": "provided",
+              "value": 200000
+            }
+          },
+          "provenance": [
+            {
+              "field": "origin",
+              "source": "user"
+            },
+            {
+              "field": "destination",
+              "source": "user"
+            },
+            {
+              "field": "dates",
+              "source": "user"
+            },
+            {
+              "field": "days",
+              "source": "user"
+            },
+            {
+              "field": "travelers",
+              "source": "user"
+            },
+            {
+              "field": "target_budget_cents",
+              "source": "user"
+            },
+            {
+              "field": "hard_limit_cents",
+              "source": "user"
+            },
+            {
+              "field": "transport",
+              "source": "user"
+            },
+            {
+              "field": "hotel",
+              "source": "user"
+            },
+            {
+              "field": "restrictions",
+              "source": "user"
+            }
+          ],
+          "blocking_fields": [],
+          "intake_revision": 1,
+          "suggested_values": [],
+          "collection_status": "READY_TO_GENERATE"
+        },
+        "trip_id": "16ec3132-7fe2-422a-b043-595142dbfb36",
+        "working": null,
+        "readiness": "NOT_ASSESSED",
+        "created_at": "2026-11-12T21:59:15.433511+08:00",
+        "active_run_id": null,
+        "synchronization": "NO_DRAFT",
+        "plan_confirmation": "UNCONFIRMED",
+        "latest_confirmed_version_id": null
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/16ec3132-7fe2-422a-b043-595142dbfb36/generations",
+      "response_status": 202,
+      "result": {
+        "kind": "INITIAL_PLAN",
+        "error": null,
+        "result": null,
+        "run_id": "1944b753-4865-41b2-8c5d-af7ec6d895c5",
+        "status": "ACCEPTED",
+        "attempt": 1,
+        "trip_id": "16ec3132-7fe2-422a-b043-595142dbfb36",
+        "retry_of": null,
+        "created_at": "2026-11-12T21:59:15.462434+08:00",
+        "updated_at": "2026-11-12T21:59:15.462434+08:00",
+        "intake_revision": 1,
+        "diagnostics_budget": null,
+        "base_working_revision": null
+      }
+    }
+  ],
+  "restart_stdout": "Generation executor ready; recovered=0\n"
+}

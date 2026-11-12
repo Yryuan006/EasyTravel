@@ -56,6 +56,9 @@ async def business_error_handler(request: Request, exc: BusinessError) -> JSONRe
         return response
     if isinstance(exc, ResourceNotFound):
         return error_response(404, "resource_not_found", "Resource not found.")
+    from ..domain.rules import ChangeError
+    if isinstance(exc, ChangeError) and str(exc) in {"scope_replan_not_supported", "stale_intake", "requirements_incomplete", "generation_in_progress", "invalid_retry", "explicit_retry_required"}:
+        return error_response(409, str(exc), "Generation request conflicts with current state.")
     if isinstance(exc, BusinessConflict):
         return error_response(409, "business_conflict", "Operation conflicts with current state.")
     return error_response(500, "internal_error", "Internal server error.")

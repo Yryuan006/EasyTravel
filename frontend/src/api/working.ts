@@ -2,9 +2,10 @@ import schemas from './working-schema.json'
 import type { WorkingDraft } from './contracts'
 // The read-only legacy draft subset is copied verbatim from the actual OpenAPI.
 // Domain consistency remains the backend's responsibility; no plan is inferred here.
-type Schema = { $ref?: string; anyOf?: Schema[]; type?: string; const?: unknown; enum?: unknown[]; required?: string[]; properties?: Record<string, Schema>; additionalProperties?: boolean; items?: Schema; minItems?: number; maxItems?: number; minLength?: number; maxLength?: number; pattern?: string; format?: string; minimum?: number; maximum?: number }
+type Schema = { $ref?: string; anyOf?: Schema[]; oneOf?: Schema[]; type?: string; const?: unknown; enum?: unknown[]; required?: string[]; properties?: Record<string, Schema>; additionalProperties?: boolean; items?: Schema; minItems?: number; maxItems?: number; minLength?: number; maxLength?: number; pattern?: string; format?: string; minimum?: number; maximum?: number }
 function matches(v: unknown, s: Schema): boolean {
   if (s.$ref) return matches(v, (schemas as Record<string, Schema>)[s.$ref.split('/').at(-1)!]!)
+  if (s.oneOf) return s.oneOf.filter(x => matches(v, x)).length === 1
   if (s.anyOf) return s.anyOf.some(x => matches(v, x))
   if ('const' in s && v !== s.const || s.enum && !s.enum.includes(v)) return false
   if (s.type === 'null') return v === null
@@ -19,4 +20,6 @@ function matches(v: unknown, s: Schema): boolean {
   if (s.type === 'boolean') return typeof v === 'boolean'
   return true
 }
-export function validWorking(v: unknown): v is WorkingDraft { return matches(v, schemas.WorkingDraft as Schema) }
+export function validWorking(v: unknown): v is WorkingDraft {
+  return matches(v, (typeof v === 'object' && v !== null && 'context' in v ? schemas.WorkingView : schemas.WorkingDraft) as Schema)
+}

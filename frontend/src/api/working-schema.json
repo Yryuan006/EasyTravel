@@ -418,5 +418,577 @@
       "item_hash"
     ],
     "title": "ItemConfirmation"
+  },
+  "WorkingView": {
+    "properties": {
+      "trip_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Trip Id"
+      },
+      "owner_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Owner Id"
+      },
+      "revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Revision"
+      },
+      "requirements": {
+        "$ref": "#/components/schemas/TripRequirements"
+      },
+      "payload": {
+        "$ref": "#/components/schemas/PlanDraftOutput"
+      },
+      "item_confirmations": {
+        "items": {
+          "$ref": "#/components/schemas/ItemConfirmation"
+        },
+        "type": "array",
+        "title": "Item Confirmations"
+      },
+      "latest_confirmed_version_id": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Latest Confirmed Version Id"
+      },
+      "context": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/DraftContext"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "trip_id",
+      "owner_id",
+      "revision",
+      "requirements",
+      "payload",
+      "item_confirmations",
+      "latest_confirmed_version_id",
+      "context"
+    ],
+    "title": "WorkingView"
+  },
+  "DraftContext": {
+    "properties": {
+      "intake_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Intake Revision"
+      },
+      "input": {
+        "$ref": "#/components/schemas/RequirementsInput"
+      },
+      "notes": {
+        "$ref": "#/components/schemas/GenerationNotes"
+      },
+      "risk_rules_version": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Risk Rules Version"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "intake_revision",
+      "input",
+      "notes",
+      "risk_rules_version"
+    ],
+    "title": "DraftContext"
+  },
+  "RequirementsInput": {
+    "properties": {
+      "origin": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "destination": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "dates": {
+        "$ref": "#/components/schemas/Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____"
+      },
+      "days": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____"
+      },
+      "travelers": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____"
+      },
+      "target_budget_cents": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+      },
+      "hard_limit_cents": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+      },
+      "transport": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "hotel": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "restrictions": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "raw_text": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Raw Text"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "origin",
+      "destination",
+      "dates",
+      "days",
+      "travelers",
+      "target_budget_cents",
+      "hard_limit_cents",
+      "transport",
+      "hotel",
+      "restrictions",
+      "raw_text"
+    ],
+    "title": "RequirementsInput"
+  },
+  "Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "MissingAnswer": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "enum": [
+          "unanswered",
+          "no_preference"
+        ],
+        "title": "State"
+      },
+      "value": {
+        "type": "null",
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "MissingAnswer"
+  },
+  "ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), MaxLen(max_length=500)])]]"
+  },
+  "Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FixedDates"
+          },
+          {
+            "$ref": "#/components/schemas/DateWindow"
+          }
+        ],
+        "title": "Value",
+        "discriminator": {
+          "propertyName": "mode",
+          "mapping": {
+            "fixed": "#/components/schemas/FixedDates",
+            "window": "#/components/schemas/DateWindow"
+          }
+        }
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[Union[FixedDates, DateWindow], FieldInfo(annotation=NoneType, required=True, discriminator='mode')]]"
+  },
+  "FixedDates": {
+    "properties": {
+      "mode": {
+        "type": "string",
+        "const": "fixed",
+        "title": "Mode"
+      },
+      "start_date": {
+        "type": "string",
+        "format": "date",
+        "title": "Start Date"
+      },
+      "end_date": {
+        "type": "string",
+        "format": "date",
+        "title": "End Date"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "mode",
+      "start_date",
+      "end_date"
+    ],
+    "title": "FixedDates"
+  },
+  "DateWindow": {
+    "properties": {
+      "mode": {
+        "type": "string",
+        "const": "window",
+        "title": "Mode"
+      },
+      "earliest_start": {
+        "type": "string",
+        "format": "date",
+        "title": "Earliest Start"
+      },
+      "latest_end": {
+        "type": "string",
+        "format": "date",
+        "title": "Latest End"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "mode",
+      "earliest_start",
+      "latest_end"
+    ],
+    "title": "DateWindow"
+  },
+  "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "integer",
+        "maximum": 5.0,
+        "minimum": 1.0,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=1), Le(le=5)])]]"
+  },
+  "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "integer",
+        "maximum": 2.0,
+        "minimum": 1.0,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=1), Le(le=2)])]]"
+  },
+  "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "integer",
+        "maximum": 1000000000000.0,
+        "minimum": 0.0,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=0), Le(le=1000000000000)])]]"
+  },
+  "GenerationNotes": {
+    "properties": {
+      "transport_advice": {
+        "items": {
+          "$ref": "#/components/schemas/TransportAdvice"
+        },
+        "type": "array",
+        "maxItems": 200,
+        "title": "Transport Advice"
+      },
+      "risks": {
+        "items": {
+          "$ref": "#/components/schemas/Risk"
+        },
+        "type": "array",
+        "maxItems": 100,
+        "title": "Risks"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "transport_advice",
+      "risks"
+    ],
+    "title": "GenerationNotes"
+  },
+  "TransportAdvice": {
+    "properties": {
+      "from_item_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "From Item Id"
+      },
+      "to_item_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "To Item Id"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "public_transit",
+          "walk"
+        ],
+        "title": "Mode"
+      },
+      "text": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Text"
+      },
+      "verification": {
+        "type": "string",
+        "const": "unverified",
+        "title": "Verification"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "from_item_id",
+      "to_item_id",
+      "mode",
+      "text",
+      "verification"
+    ],
+    "title": "TransportAdvice"
+  },
+  "Risk": {
+    "properties": {
+      "code": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Code"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "blocker",
+          "warning"
+        ],
+        "title": "Severity"
+      },
+      "message": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Message"
+      },
+      "item_ids": {
+        "items": {
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "type": "array",
+        "title": "Item Ids"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "code",
+      "severity",
+      "message",
+      "item_ids"
+    ],
+    "title": "Risk"
   }
 }

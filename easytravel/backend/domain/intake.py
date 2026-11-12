@@ -126,16 +126,47 @@ class IntakeView(InputContract):
     suggested_values: list[SuggestedValue]
 
 
+class Risk(InputContract):
+    code: Annotated[str, Field(min_length=1, max_length=80)]
+    severity: Literal["blocker", "warning"]
+    message: Text
+    item_ids: list[ID]
+
+
+class TransportAdvice(InputContract):
+    from_item_id: ID
+    to_item_id: ID
+    mode: Literal["public_transit", "walk"]
+    text: Text
+    verification: Literal["unverified"]
+
+
+class GenerationNotes(InputContract):
+    transport_advice: list[TransportAdvice] = Field(max_length=200)
+    risks: list[Risk] = Field(max_length=100)
+
+
+class DraftContext(InputContract):
+    intake_revision: Annotated[int, Field(strict=True, ge=1)]
+    input: RequirementsInput
+    notes: GenerationNotes
+    risk_rules_version: Annotated[str, Field(min_length=1, max_length=80)]
+
+
+class WorkingView(WorkingDraft):
+    context: DraftContext | None
+
+
 class TripView(InputContract):
     """Persisted collection projection; legacy draft contexts cannot prove synchronization."""
     trip_id: ID
     created_at: datetime
     intake: IntakeView
-    working: WorkingDraft | None
+    working: WorkingView | None
     latest_confirmed_version_id: ID | None
-    synchronization: Literal["NO_DRAFT", "STALE"]
+    synchronization: Literal["NO_DRAFT", "CURRENT", "STALE"]
     plan_confirmation: Literal["UNCONFIRMED"]
-    active_run_id: None
+    active_run_id: ID | None
     readiness: Literal["NOT_ASSESSED"]
     booked: Literal[False]
 
@@ -165,7 +196,9 @@ def collection(input: RequirementsInput):
     return ordered
 
 
-def trip_view(trip_id, created_at, revision, input, working=None):
+def trip_view(trip_id, created_at, revision, input, working=None, context=None, active_run_id=None):
+    if working is not None:
+        working = WorkingView(**working.model_dump(), context=context)
     blocked = collection(input)
     return TripView(trip_id=trip_id, created_at=created_at,
         intake=IntakeView(intake_revision=revision, input=input,
@@ -174,8 +207,8 @@ def trip_view(trip_id, created_at, revision, input, working=None):
                 for name in RequirementsInput.model_fields if name != "raw_text"
                 and getattr(input, name).state != "unanswered"], suggested_values=[]),
         working=working, latest_confirmed_version_id=working.latest_confirmed_version_id if working else None,
-        synchronization="STALE" if working else "NO_DRAFT",
-        plan_confirmation="UNCONFIRMED", active_run_id=None, readiness="NOT_ASSESSED", booked=False)
+        synchronization=("CURRENT" if context and context.intake_revision == revision else "STALE") if working else "NO_DRAFT",
+        plan_confirmation="UNCONFIRMED", active_run_id=active_run_id, readiness="NOT_ASSESSED", booked=False)
 
 
 Revision = Annotated[int, Field(strict=True, ge=1)]

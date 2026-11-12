@@ -54,7 +54,7 @@ function discard() { formEpoch.value++; reviewed.value = true; notice.value = ''
   <template v-else-if="!conflict && reviewed">
     <ClarificationCard v-if="!paused && next?.question" :key="next.question.question_id" :question="next.question" :busy="busy" @answer="answer" @edit="edit" @pause="paused = true" />
     <p v-if="paused" role="status">旅行已保存，可稍后继续。已保存事实不会丢失。</p>
-    <p v-if="next && !next.question">{{ saved.intake.collection_status === 'READY_TO_GENERATE' ? '需求已足够。此阶段尚未提供行程生成。' : '暂无下一问题，请修改或稍后补充尚缺信息。' }}</p>
+    <p v-if="next && !next.question">{{ saved.intake.collection_status === 'READY_TO_GENERATE' ? '需求已足够。此页面暂未提供生成操作；已有模拟稿仅显示只读摘要。' : '暂无下一问题，请修改或稍后补充尚缺信息。' }}</p>
   </template>
   <p v-if="busy" role="status">正在与服务器同步…</p>
   <div class="actions"><button v-if="!editing" :disabled="busy" @click="edit">修改需求</button><button v-if="editing" :disabled="busy" @click="discard">取消编辑并读取下一问题</button><button v-if="paused && !editing" :disabled="busy" @click="paused = false; session.question()">继续补充</button><button v-if="!editing && !paused && !busy && !conflict && reviewed && !next" @click="session.question()">重新读取下一问题</button></div>

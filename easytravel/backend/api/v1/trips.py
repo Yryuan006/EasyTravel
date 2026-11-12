@@ -71,3 +71,34 @@ async def answer_question(trip_id: TripId, question_id: TripId, body: AnswerRequ
     result = await service.update(trip_id,body,key=str(key),actor=actor,question_id=question_id)
     response.headers["Cache-Control"] = "no-store"
     return result
+
+
+def generation_service(request: Request):
+    from ...infrastructure.database import load_database_settings
+    from ...infrastructure.generations import unit_of_work
+    from ...application.generations import GenerationService
+    try:
+        database = load_database_settings()
+    except ValueError:
+        raise LocalApiError(503, "business_dependency_unavailable") from None
+    return GenerationService(unit_of_work(database))
+
+
+from ...domain.generation import GenerateRequest, GenerationRun
+Generation = Annotated[object, Depends(generation_service)]
+
+
+@router.post("/{trip_id}/generations", response_model=GenerationRun, status_code=202, operation_id="requestGeneration")
+async def generate_plan(trip_id: TripId, body: GenerateRequest, response: Response,
+                        actor: Actor, service: Generation, key: CommandKey):
+    result = await service.accept(trip_id,body,key=str(key),actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Location"] = f"/api/v1/trips/{trip_id}/generations/{result.run_id}"
+    return result
+
+
+@router.get("/{trip_id}/generations/{run_id}", response_model=GenerationRun, operation_id="getGeneration")
+async def get_generation(trip_id: TripId, run_id: TripId, response: Response, actor: Actor, service: Generation):
+    result = await service.get(trip_id,run_id,actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result

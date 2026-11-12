@@ -38,7 +38,7 @@ def db(tmp_path_factory):
         legacy_input["requirements"]["hard_limit_cents"]={"state":"unanswered","value":None}
         old=await service.create(CreateTripRequest.model_validate(legacy_input),key=str(uuid4()),actor=ACTOR_A)
         before=await db_fingerprint(settings)
-        assert await upgrade(settings)==["003_clarifications.sql"]
+        assert await upgrade(settings)==["003_clarifications.sql", "004_generations.sql"]
         assert await upgrade(settings)==[]
         after=await db_fingerprint(settings)
         assert all(after[k]==v for k,v in before.items() if k!="schema_migrations")
