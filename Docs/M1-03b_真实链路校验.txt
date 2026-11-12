@@ -1,0 +1,3 @@
+Database migration succeeded; applied=
+Playwright exit: 0
+Browser HTTP create/answer/update/refresh and independent PostgreSQL versions/receipts verified; resources retained.

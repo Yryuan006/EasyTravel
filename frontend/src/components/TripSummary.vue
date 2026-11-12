@@ -16,12 +16,14 @@ function text(key: FieldKey) {
     <a :href="`/trips/${trip.trip_id}`">重新打开此旅行</a>
     <p>Intake revision：{{ trip.intake.intake_revision }}</p>
     <p>需求收集状态：{{ trip.intake.collection_status === 'COLLECTING' ? '收集中' : '输入已满足生成前提' }}（{{ trip.intake.collection_status }}）</p>
-    <div class="notice"><strong>尚无行程草案</strong><p>尚未生成、确认或预订行程，出行就绪情况尚未评估。输入充分不代表路线、价格或酒店已经核验。</p></div>
+    <div v-if="!trip.working" class="notice"><strong>尚无行程草案</strong><p>尚未生成、确认或预订行程，出行就绪情况尚未评估。输入充分不代表路线、价格或酒店已经核验。</p></div>
+    <div v-else class="notice"><strong>旧工作稿 r{{ trip.working.revision }} · STALE · 只读</strong><p>无法证明旧工作稿与当前需求同步，不能作为当前需求下的有效行程。需后续重规划，本轮不提供行程编辑或确认。</p><p v-if="trip.latest_confirmed_version_id" class="preserve">历史确认快照指针：{{ trip.latest_confirmed_version_id }}。它不代表当前工作稿已确认。</p></div>
     <h3>已保存的需求摘要</h3>
     <p class="preserve">原始需求：{{ trip.intake.input.raw_text ?? '尚未填写' }}</p>
     <dl class="requirements-list"><div v-for="key in fieldKeys" :key="key"><dt>{{ labels[key] }}</dt><dd>{{ text(key) }}</dd></div></dl>
     <h3>尚需补充或核对</h3>
     <p>{{ trip.intake.blocking_fields.length ? trip.intake.blocking_fields.map(k => labels[k]).join('、') : '当前没有阻塞字段。' }}</p>
-    <p class="scope-note">当前版本仅支持创建和读取，暂不提供需求修改或生成。重新打开或刷新后，需重新输入本地凭证读取。</p>
+    <p v-if="trip.intake.input.target_budget_cents.state === 'provided' && trip.intake.input.hard_limit_cents.state === 'provided' && trip.intake.input.target_budget_cents.value > trip.intake.input.hard_limit_cents.value" class="form-error">目标预算超过硬预算上限，请修改其中一项。需求可保存，但尚不满足生成条件。</p>
+    <p class="scope-note">重新打开或刷新后，需重新输入本地凭证读取。需求足够不代表已经生成、核验、确认或预订。</p>
   </section>
 </template>

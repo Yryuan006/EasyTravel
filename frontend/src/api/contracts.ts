@@ -1,4 +1,5 @@
-/** M1-01 OpenAPI: RequirementsInput, CreateTripRequest, IntakeView, TripView. */
+import { validWorking } from './working'
+/** M1-03a OpenAPI: RequirementsInput, CreateTripRequest, IntakeView, TripView. */
 export type Answer<T> = { state: 'unanswered' | 'no_preference'; value: null } | { state: 'provided'; value: T }
 export type TravelDates = { mode: 'fixed'; start_date: string; end_date: string } | { mode: 'window'; earliest_start: string; latest_end: string }
 export const fieldKeys = ['origin', 'destination', 'dates', 'days', 'travelers', 'target_budget_cents', 'hard_limit_cents', 'transport', 'hotel', 'restrictions'] as const
@@ -14,7 +15,7 @@ export interface TripView {
   intake: { intake_revision: number; input: RequirementsInput; collection_status: 'COLLECTING' | 'READY_TO_GENERATE'
     blocking_fields: FieldKey[]; provenance: { field: FieldKey; source: 'user' }[]
     suggested_values: { field: FieldKey; text: string; source: 'suggestion' }[] }
-  working: null; latest_confirmed_version_id: null; synchronization: 'NO_DRAFT'; plan_confirmation: 'UNCONFIRMED'
+  working: WorkingDraft | null; latest_confirmed_version_id: string | null; synchronization: 'NO_DRAFT' | 'STALE'; plan_confirmation: 'UNCONFIRMED'
   active_run_id: null; readiness: 'NOT_ASSESSED'; booked: false
 }
 export const labels: Record<FieldKey, string> = { origin: '出发地', destination: '目的地', dates: '出行日期', days: '旅行天数', travelers: '人数', target_budget_cents: '目标预算', hard_limit_cents: '硬预算上限', transport: '交通偏好', hotel: '酒店偏好', restrictions: '特殊限制' }
@@ -47,11 +48,23 @@ export function validTrip(v: unknown): v is TripView {
   if (!object(v) || !exact(v, ['trip_id', 'created_at', 'intake', 'working', 'latest_confirmed_version_id', 'synchronization', 'plan_confirmation', 'active_run_id', 'readiness', 'booked'])) return false
   const i = v.intake
   const field = (x: unknown) => typeof x === 'string' && (fieldKeys as readonly string[]).includes(x)
-  return typeof v.trip_id === 'string' && uuidPattern.test(v.trip_id) && typeof v.created_at === 'string' && /^\d{4}-.*T.*(?:Z|[+-]\d{2}:\d{2})$/.test(v.created_at) && !Number.isNaN(Date.parse(v.created_at))
+  return validId(v.trip_id) && typeof v.created_at === 'string' && /^\d{4}-.*T.*(?:Z|[+-]\d{2}:\d{2})$/.test(v.created_at) && !Number.isNaN(Date.parse(v.created_at))
     && object(i) && exact(i, ['intake_revision', 'input', 'collection_status', 'blocking_fields', 'provenance', 'suggested_values'])
     && typeof i.intake_revision === 'number' && Number.isInteger(i.intake_revision) && i.intake_revision >= 1 && validRequirements(i.input)
     && ['COLLECTING', 'READY_TO_GENERATE'].includes(String(i.collection_status)) && Array.isArray(i.blocking_fields) && i.blocking_fields.every(field)
     && Array.isArray(i.provenance) && i.provenance.every(x => object(x) && exact(x, ['field', 'source']) && field(x.field) && x.source === 'user')
     && Array.isArray(i.suggested_values) && i.suggested_values.every(x => object(x) && exact(x, ['field', 'text', 'source']) && field(x.field) && typeof x.text === 'string' && x.text.trim().length > 0 && x.text.length <= 500 && x.source === 'suggestion')
-    && v.working === null && v.latest_confirmed_version_id === null && v.active_run_id === null && v.synchronization === 'NO_DRAFT' && v.plan_confirmation === 'UNCONFIRMED' && v.readiness === 'NOT_ASSESSED' && v.booked === false
+    && (v.working === null ? v.synchronization === 'NO_DRAFT' && v.latest_confirmed_version_id === null : validWorking(v.working) && v.working.trip_id === v.trip_id && v.synchronization === 'STALE' && v.working.latest_confirmed_version_id === v.latest_confirmed_version_id) && (v.latest_confirmed_version_id === null || validId(v.latest_confirmed_version_id)) && v.active_run_id === null && v.plan_confirmation === 'UNCONFIRMED' && v.readiness === 'NOT_ASSESSED' && v.booked === false
+}
+
+export interface WorkingDraft { trip_id: string; owner_id: string; revision: number; requirements: Record<string, unknown>; payload: Record<string, unknown>; item_confirmations: unknown[]; latest_confirmed_version_id: string | null }
+export interface UpdateRequirementsRequest { expected_intake_revision: number; expected_working_revision: number | null; requirements: RequirementsInput }
+export interface AnswerRequest { expected_intake_revision: number; expected_working_revision: number | null; field_key: FieldKey; answer: RequirementsInput[FieldKey] }
+export interface ClarificationQuestion { question_id: string; intake_revision: number; field_key: FieldKey; prompt: string; allow_no_preference: boolean }
+export interface NextQuestionResponse { intake_revision: number; question: ClarificationQuestion | null; blocking_fields: FieldKey[] }
+export function validId(v: unknown): v is string { return typeof v === 'string' && /^[A-Za-z0-9_-]{1,80}$/.test(v) }
+export function validNext(v: unknown): v is NextQuestionResponse {
+  if (!object(v) || !exact(v, ['intake_revision', 'question', 'blocking_fields']) || !Number.isInteger(v.intake_revision) || Number(v.intake_revision) < 1 || !Array.isArray(v.blocking_fields) || !v.blocking_fields.every(k => fieldKeys.includes(k))) return false
+  const q = v.question
+  return q === null || (object(q) && exact(q, ['question_id', 'intake_revision', 'field_key', 'prompt', 'allow_no_preference']) && validId(q.question_id) && q.intake_revision === v.intake_revision && fieldKeys.includes(q.field_key as FieldKey) && v.blocking_fields.includes(q.field_key) && typeof q.prompt === 'string' && q.prompt.trim().length > 0 && q.prompt.length <= 500 && typeof q.allow_no_preference === 'boolean')
 }

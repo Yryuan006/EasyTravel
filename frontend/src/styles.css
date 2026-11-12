@@ -62,10 +62,15 @@ details[open] { padding-bottom: 20px; }
 .primary { background: var(--green); color: #fffefa; width: 100%; }
 .primary:hover:enabled { background: #285b4c; }
 .form-error { color: #8a3729; line-height: 1.8; }
-.notice { padding: 18px; background: #f6ede0; border-left: 3px solid #aa6b24; margin: 20px 0; line-height: 1.8; }
+.notice { padding: 18px; background: #f6ede0; border-left: 1px solid #aa6b24; margin: 20px 0; line-height: 1.8; }
 .notice p { margin: 6px 0; }
 .trip-id, .preserve { overflow-wrap: anywhere; white-space: pre-wrap; line-height: 1.8; }
 .requirements-list > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); padding: 14px 0; border-bottom: 1px solid var(--line); gap: 16px; }
 .requirements-list dd { font-size: 14px; background: none; padding: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 h3 { font-size: 17px; margin-top: 28px; }
 @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; gap: 0; } .trip-panel, .credential-panel { padding: 22px 18px; } nav { gap: 12px; } .requirements-list > div { grid-template-columns: 92px minmax(0, 1fr); gap: 10px; } .app-header { flex-wrap: wrap; gap: 8px; } }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.actions .primary { width: auto; }
+.question-prompt { font-size: 18px; line-height: 1.7; }
+input, textarea { caret-color: var(--green); }
+::selection { background: #d9e5d4; color: #173f38; }

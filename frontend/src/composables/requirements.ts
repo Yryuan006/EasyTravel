@@ -5,7 +5,7 @@ export function emptyForm(): FormInput {
   return { raw_text: '', values: Object.fromEntries(fieldKeys.map(k => [k, ''])) as Record<FieldKey, string>, states: Object.fromEntries(fieldKeys.map(k => [k, 'unanswered'])) as FormInput['states'], dateMode: 'fixed', start: '', end: '' }
 }
 /** Explicit UI choices only; raw_text is never parsed into structured facts. */
-export function serializeForm(form: FormInput): RequirementsInput {
+export function serializeForm(form: FormInput, creating = true): RequirementsInput {
   const data: Record<string, unknown> = { raw_text: form.raw_text.trim() ? form.raw_text : null }
   for (const key of fieldKeys) {
     const state = form.states[key]
@@ -24,6 +24,20 @@ export function serializeForm(form: FormInput): RequirementsInput {
     data[key] = { state, value }
   }
   if (!validRequirements(data)) throw new Error('请检查输入：日期必须有效且结束不早于开始；天数 1–5，人数 1–2；金额不超过 100 亿元；已提供内容不能为空。')
-  if (data.destination.state !== 'provided' && data.raw_text === null) throw new Error('请填写目的地或一句话旅行需求。')
+  if (creating && data.destination.state !== 'provided' && data.raw_text === null) throw new Error('请填写目的地或一句话旅行需求。')
   return data
+}
+
+export function formFromRequirements(input: RequirementsInput): FormInput {
+  const f = emptyForm(); f.raw_text = input.raw_text ?? ''
+  for (const k of fieldKeys) {
+    const a = input[k]; f.states[k] = a.state
+    if (a.state !== 'provided') continue
+    if (typeof a.value === 'object') {
+      f.dateMode = a.value.mode
+      f.start = a.value.mode === 'fixed' ? a.value.start_date : a.value.earliest_start
+      f.end = a.value.mode === 'fixed' ? a.value.end_date : a.value.latest_end
+    } else f.values[k] = k.endsWith('_cents') ? (Number(a.value) / 100).toFixed(2) : String(a.value)
+  }
+  return f
 }

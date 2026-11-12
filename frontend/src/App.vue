@@ -3,7 +3,7 @@ import HealthStatus from './components/HealthStatus.vue'
 import { useHealth } from './composables/useHealth'
 import { computed, onUnmounted, ref } from 'vue'
 import RequirementsForm from './components/RequirementsForm.vue'
-import TripSummary from './components/TripSummary.vue'
+import TripWorkspace from './components/TripWorkspace.vue'
 import { useTrip } from './composables/useTrip'
 import type { RequirementsInput } from './api/contracts'
 const { state, refresh } = useHealth()
@@ -63,7 +63,7 @@ function newTrip() { trip.reset(); created.value = false; identityEpoch.value++;
         </div>
         <template v-if="trip.state.value.status === 'success'">
           <p v-if="created" role="status">旅行创建成功（HTTP 201）。</p>
-          <TripSummary :trip="trip.state.value.data" />
+          <TripWorkspace :key="`${identityEpoch}-${trip.state.value.data.trip_id}`" :initial="trip.state.value.data" :token="token" />
         </template>
       </template>
       <p v-else-if="!isNew">请重新输入本地凭证，从服务器读取此旅行。</p>

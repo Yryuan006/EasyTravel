@@ -6,7 +6,7 @@ import { emptyForm, serializeForm } from '../src/composables/requirements'
 import { useTrip } from '../src/composables/useTrip'
 import { createTrip, getTrip } from '../src/api/trips'
 import { fieldKeys, validTrip } from '../src/api/contracts'
-import contract from '../../Docs/M1-01_openapi.json'
+import contract from '../../Docs/M1-03a_openapi.json'
 
 export function fixture() {
   const f = emptyForm(); f.raw_text = '想去杭州'
@@ -63,7 +63,7 @@ it.each([401, 403, 404, 409, 422, 503])('sanitizes HTTP %s', async status => {
 it.each(['command_in_progress', 'idempotency_key_reused'])('distinguishes 409 %s', async code => {
   await expect(createTrip('private', command, { fetcher: response({ error: { code } }, 409) })).rejects.toMatchObject({ code })
 })
-it.each([{ booked: true }, { working: {} }, { plan_confirmation: 'CONFIRMED' }, { intake: {} }, { trip_id: 'bad' }])('rejects invalid/unsupported TripView %j', patch => {
+it.each([{ booked: true }, { working: {} }, { plan_confirmation: 'CONFIRMED' }, { intake: {} }, { trip_id: 'bad/id' }])('rejects invalid/unsupported TripView %j', patch => {
   expect(validTrip({ ...fixture(), ...patch })).toBe(false)
 })
 it('rejects malformed JSON and incomplete HTTP 201 responses', async () => {

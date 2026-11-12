@@ -1,0 +1,33 @@
+
+Running 25 tests using 1 worker
+
+(node:23700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+LIVE /api/v1/health via Vite: {"status":"alive","scope":"http_application_liveness","dependencies":{"database":"not_checked","model":"not_checked","travel_data":"not_checked"}}
+  ok  1 e2e\health.spec.ts:3:1 › real browser reaches live backend through Vite proxy (355ms)
+  ok  2 e2e\health.spec.ts:25:1 › loading, network failure and retry remain honest (312ms)
+  ok  3 e2e\health.spec.ts:41:1 › HTTP server failure is never displayed as success (125ms)
+  ok  4 e2e\requirements.spec.ts:17:1 › real create → hard-budget answer → date update → reload → SQL evidence (1.6s)
+  ok  5 e2e\requirements.spec.ts:67:135 › edit HTTP 401 keeps local input (399ms)
+  ok  6 e2e\requirements.spec.ts:67:135 › edit HTTP 403 keeps local input (381ms)
+  ok  7 e2e\requirements.spec.ts:67:135 › edit HTTP 404 keeps local input (383ms)
+  ok  8 e2e\requirements.spec.ts:67:135 › edit HTTP 409 keeps local input (459ms)
+  ok  9 e2e\requirements.spec.ts:67:135 › edit HTTP 422 keeps local input (379ms)
+  ok 10 e2e\requirements.spec.ts:67:135 › edit HTTP 503 keeps local input (375ms)
+  ok 11 e2e\requirements.spec.ts:78:1 › actual concurrent revision, old answer conflict, retained answer requires fresh question (541ms)
+  ok 12 e2e\requirements.spec.ts:88:1 › budget conflict saved honestly; no-preference hard limit can pause without looping (597ms)
+  ok 13 e2e\requirements.spec.ts:96:1 › update timeout retries exact command; changing body changes key; identity clears editor (13.2s)
+  ok 14 e2e\requirements.spec.ts:106:1 › explicit no preference on required budget saves fact and pauses repeated question (374ms)
+  ok 15 e2e\trips.spec.ts:11:1 › real FastAPI + PostgreSQL: 201, GET, refresh credential, isolation and memory-only token (876ms)
+  ok 16 e2e\trips.spec.ts:73:1 › progressive mobile form validates and preserves input, clears on identity change (428ms)
+  ok 17 e2e\trips.spec.ts:92:13 › HTTP 401 authentication_required displays safe error (257ms)
+  ok 18 e2e\trips.spec.ts:92:13 › HTTP 403 local_only_api displays safe error (253ms)
+  ok 19 e2e\trips.spec.ts:92:13 › HTTP 404 resource_not_found displays safe error (243ms)
+  ok 20 e2e\trips.spec.ts:92:13 › HTTP 409 command_in_progress displays safe error (262ms)
+  ok 21 e2e\trips.spec.ts:92:13 › HTTP 409 idempotency_key_reused displays safe error (247ms)
+  ok 22 e2e\trips.spec.ts:92:13 › HTTP 422 invalid_request displays safe error (245ms)
+  ok 23 e2e\trips.spec.ts:92:13 › HTTP 503 business_dependency_unavailable displays safe error (259ms)
+  ok 24 e2e\trips.spec.ts:102:1 › browser timeout, unchanged retry and edited request use correct idempotency keys (13.0s)
+  ok 25 e2e\trips.spec.ts:120:1 › malformed response and HTTP 200 never claim creation success (304ms)
+
+  25 passed (36.4s)

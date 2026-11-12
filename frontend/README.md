@@ -1,6 +1,22 @@
 # EasyTravel 前端
 
-M1-02：在既有 App Shell 与健康检查上提供旅行创建及只读重新打开。仅访问 health、POST `/api/v1/trips`、GET `/api/v1/trips/{trip_id}`，不提供更新、澄清或生成。
+M1-03b：复用既有 App Shell、创建表单与健康检查，支持旅行需求编辑、逐条必要澄清、暂停与恢复。只使用实际 M1-03a 的五个 Trip 操作，不提供生成、确认、预订或正式登录。无新增运行依赖。
+
+最新验收与证据入口：[M1-03b 实施与验证报告](../Docs/M1-03b_实施与验证报告.md)。测试与截图使用 M1-03b 文件名，不覆盖 M1-02 归档。
+
+```powershell
+# 仓库根目录；创建全新数据库，脚本拒绝覆盖既有凭据文件。
+.venv/Scripts/python.exe scripts/prepare_m002_test_db.py --env-file .local/my-m103b-browser.env
+.venv/Scripts/python.exe scripts/verify_m103b.py --database-env .local/my-m103b-browser.env
+# 后端全量回归需三个全新库，分别命名为同前缀的 -api/-regression/-compat.env。
+.venv/Scripts/python.exe scripts/verify_m103b_backend.py --database-prefix .local/my-m103b
+```
+
+M1-03b 读取 `Docs/M1-03a_openapi.json` 契约，验收时另从真实 HTTP 归档 `Docs/M1-03b_openapi.json` 并断言相等。`working-schema.json` 为 WorkingDraft 及其递归依赖的原样 schema，离线测试逐项比对；不提供工作稿编辑。
+
+更新/回答命令记录路径、序列化 body 和 UUID key，保存在页面内存。超时/断网/不确定结果通过显式原请求重试；编辑内容变化创建新 key。版本冲突保留表单，读取最新摘要后必须人工审阅；旧回答不自动重放。身份切换或离开工作区会销毁请求与本地编辑状态，刷新后只发 GET。
+
+以下保留环境及 M1-02 基线操作说明；当前行为以本节与 M1-03b 报告为准。
 
 ## 环境
 
@@ -115,11 +131,11 @@ frontend/
 
 ## M1-02 真实闭环与凭证
 
-`/`、`/trips/new` 为创建页，`/trips/{UUID}` 为只读旅行页。两个页面状态通过 History API + popstate 管理，无新增依赖。Vite 的 SPA fallback 支持直接打开与刷新；未来生产认证接入时，托管服务也需配置 SPA fallback。
+`/`、`/trips/new` 为创建页，`/trips/{UUID}` 为旅行需求工作区。两个页面状态通过 History API + popstate 管理，无新增依赖。Vite 的 SPA fallback 支持直接打开与刷新；未来生产认证接入时，托管服务也需配置 SPA fallback。
 
 仅 `import.meta.env.DEV` 且 loopback hostname 显示本地凭证和旅行功能。生产 build/preview 不开放此凭证入口；它们不属于当前本地身份验收路径。Token 只在页面内存，提交后清空输入缓冲，不使用存储、URL、日志或 VITE 环境变量。更换身份会清除表单、结果和待重试命令，并丢弃旧请求响应。刷新后在原 URL 输入凭证，发起 GET，不自动 POST。
 
-全部 Answer 字段显式提交；金额输入为元，严格转换为整数分。原始文本只原样保存，不提取结构化事实。客户端做基本格式校验，日期/天数不一致或目标预算大于硬上限由后端以 blocking_fields 表达。没有无法保存的编辑入口。
+全部 Answer 字段显式提交；金额输入为元，严格转换为整数分。原始文本只原样保存，不提取结构化事实。客户端做基本格式校验，日期/天数不一致或目标预算大于硬上限由后端以 blocking_fields 表达。M1-03b 已增加可保存的需求编辑入口。
 
 写请求的 UUID key 与完整序列化 body 只保存在页面内存。超时、断网、非法成功响应均不宣称成功；明确点击原请求重试会保留同 key/body。修改后提交使用新 key，页面提醒原请求可能已经落库。409 key_reused 禁止原样重试；in_progress 支持人工稍后同键重试。没有自动重试或刷新后自动创建。
 
