@@ -96,3 +96,20 @@ h4 { margin: 8px 0; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; 
 .cost-lines .cost-amount { font-size: 21px; font-variant-numeric: tabular-nums; }
 small { color: var(--muted); line-height: 1.8; overflow-wrap: anywhere; }
 @media (max-width: 600px) { .budget-grid { grid-template-columns: 1fr; gap: 4px; } .budget-grid > div { padding-bottom: 14px; border-bottom: 1px solid var(--line); } .actions > button { width: 100%; } }
+/* Confirmation extends the existing read-only workspace. All risks stay expanded. */
+.confirmation-review { scroll-margin-top: 20px; line-height: 1.8; overflow-wrap: anywhere; }
+.confirmation-review > p { max-width: 72ch; }
+.confirmation-budget > .trip-panel { padding: 0; margin: 28px 0; border: 0; border-radius: 0; }
+.confirmation-budget .eyebrow { display: none; }
+.confirmation-status { padding: 16px; background: #edf3e8; }
+.confirmation-consent { display: flex; gap: 14px; align-items: flex-start; padding: 18px 0; margin: 24px 0 12px; border-top: 1px solid var(--line); font-size: 15px; cursor: pointer; }
+.confirmation-consent input { flex: 0 0 24px; width: 24px; height: 24px; min-height: 24px; padding: 0; margin: 3px 0 0; accent-color: var(--green); }
+.confirmation-consent span { min-width: 0; }
+.confirmation-review button { white-space: normal; padding-top: 10px; padding-bottom: 10px; }
+.confirmation-review button:disabled { cursor: not-allowed; }
+.confirmation-review .primary:disabled { background: #e4e8dd; color: #56634f; border-color: #a9b6a3; }
+.confirmation-receipt { margin-top: 28px; border-top: 1px solid var(--line); }
+.unknown-costs { padding-left: 22px; }
+.unknown-costs li { margin: 18px 0; }
+.unknown-costs p { margin: 4px 0; }
+.confirmation-review .notice h3 { margin-top: 0; }

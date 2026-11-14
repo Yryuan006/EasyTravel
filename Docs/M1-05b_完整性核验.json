@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "baseline": "7149f735dc09e4b10165208efb850b66841e4240",
+  "backendAndMigrationsUnchanged": true,
+  "migrationSHA256": {
+    "001_initial.sql": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43",
+    "002_trip_intakes.sql": "a1f7b4bc3069e20e5c2bc28fded8fe3264050a81f576055c429690976c5b930d",
+    "003_clarifications.sql": "461161507a5fb656b720cf09b3cb485f790d1e74a69e5e9b6e58e4e930a98786",
+    "004_generations.sql": "b82e6d77b7960ae79898e9b6cbaa68375195dee412f59a013ee7504f456c4d28",
+    "005_confirmation_disclosures.sql": "d9adb53e173e056af8e2e26150eb985694849df77dc97f096fcb1edcd666a999"
+  },
+  "reviewedEvidenceUnchanged": true,
+  "isolatedContainers": [
+    "easytravel-m105b-isolated-349c0c3aef",
+    "easytravel-m105b-isolated-af3921df55",
+    "easytravel-m105b-isolated-576f39bb6f"
+  ],
+  "oldExperimentFingerprintsUnchanged": true,
+  "transportHookRemoved": true,
+  "databasePasswordsAbsentFromEvidence": true,
+  "backendTests": 384,
+  "targetedBackendTests": 26,
+  "frontendTests": 115,
+  "browserTests": 53,
+  "browserEvidenceCases": 12,
+  "uniqueConfirmedTripsVerified": 4
+}

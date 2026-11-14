@@ -1,0 +1,297 @@
+{
+  "isolatedContainer": "easytravel-m105b-isolated-af3921df55",
+  "newVolume": "easytravel-m105b-isolated-af3921df55-data",
+  "isolatedPort": 55434,
+  "nominalGuardPort": 55432,
+  "testProcessTransportMapping": true,
+  "transportHookRemoved": true,
+  "targets": [
+    {
+      "purpose": "api",
+      "database": "easytravel_m002_test_cecfdf6a5292",
+      "role": "easytravel_m002_d15ae0fc1d2f",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "regression",
+      "database": "easytravel_m002_test_7d4bc5ebef6b",
+      "role": "easytravel_m002_4f3c7ea527db",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "compat",
+      "database": "easytravel_m002_test_140671b6fff8",
+      "role": "easytravel_m002_ac4cf4aa134f",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "gen",
+      "database": "easytravel_m002_test_3a9ec87f8b4e",
+      "role": "easytravel_m002_dcfe7f47612a",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "retained",
+      "database": "easytravel_m002_test_68dc3cda3b1d",
+      "role": "easytravel_m002_acf7571a7f13",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "confirm",
+      "database": "easytravel_m002_test_0fba8854d5f3",
+      "role": "easytravel_m002_bd3c06decb0b",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "browser",
+      "database": "easytravel_m002_test_c1ff35170884",
+      "role": "easytravel_m002_ecf97272882c",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    },
+    {
+      "purpose": "frontend",
+      "database": "easytravel_m002_test_59e6d190283d",
+      "role": "easytravel_m002_890a0fee0fcc",
+      "actualPort": 55434,
+      "container": "easytravel-m105b-isolated-af3921df55",
+      "newDatabase": true,
+      "verifiedEmptyBeforeTests": true,
+      "serverPort": 5432,
+      "clusterSystemIdentifier": "7707845039798997030"
+    }
+  ],
+  "existingENV00Uninterrupted": true,
+  "retained": true,
+  "existingExperimentBefore": {
+    "m000_business_v1.change_proposals": [
+      452,
+      "9d49f7d8044ed8b72323faac463dc0bb"
+    ],
+    "m000_business_v1.confirmed_snapshots": [
+      453,
+      "5c167bf148660ad68488d481c900c92a"
+    ],
+    "m000_business_v1.integration_runs": [
+      436,
+      "065fdba857dbb149688bed9777255410"
+    ],
+    "m000_business_v1.operation_receipts": [
+      620,
+      "08a580f189a17ac70330aca192aeb426"
+    ],
+    "m000_business_v1.specific_authorizations": [
+      133,
+      "d9aa2a678b1d089cbd8752416bf91c8d"
+    ],
+    "m000_business_v1.working_drafts": [
+      453,
+      "ca827710b072a2ff4043f9bbafd06896"
+    ],
+    "m000_checkpoint_v1.checkpoint_blobs": [
+      604,
+      "289ae3459dd0e8f1eb216d6364905d70"
+    ],
+    "m000_checkpoint_v1.checkpoint_migrations": [
+      10,
+      "c17f84b0e81e68e91d4e5b9a2d6f9ffd"
+    ],
+    "m000_checkpoint_v1.checkpoint_writes": [
+      5213,
+      "e0bd0116ca765332f1949b3fa4f41f37"
+    ],
+    "m000_checkpoint_v1.checkpoints": [
+      1754,
+      "c51c19c5ba978b61a0209805e6c19365"
+    ],
+    "spike02_business.decision_requests": [
+      438,
+      "4d6e2ad2fcc0b4723681f4a88bc7f508"
+    ],
+    "spike02_business.decisions": [
+      392,
+      "fa945ba5ef1330f2603011a068400af7"
+    ],
+    "spike02_business.proposals": [
+      553,
+      "2f184955d6263dc4ec1271f3629c50b0"
+    ],
+    "spike02_business.receipts": [
+      267,
+      "8bb3ac7b465e44a369519f88c38963be"
+    ],
+    "spike02_business.results": [
+      267,
+      "dbae9b1f206d47dfb59779136222ef6a"
+    ],
+    "spike02_checkpoint.checkpoint_blobs": [
+      1152,
+      "26b734325932c0484cf09ef09fa232c5"
+    ],
+    "spike02_checkpoint.checkpoint_migrations": [
+      10,
+      "c17f84b0e81e68e91d4e5b9a2d6f9ffd"
+    ],
+    "spike02_checkpoint.checkpoint_writes": [
+      9053,
+      "d477714e75c9900f24ed9f5d6f343c18"
+    ],
+    "spike02_checkpoint.checkpoints": [
+      2465,
+      "ed7e367ca6b348aec96dc74e67583ad5"
+    ],
+    "spike03_business.change_proposals": [
+      893,
+      "1869fc4c2b59ec91793584223f35a1a8"
+    ],
+    "spike03_business.confirmed_snapshots": [
+      1315,
+      "11ae801f3e0651d7a6c0c12e32262183"
+    ],
+    "spike03_business.operation_receipts": [
+      1692,
+      "8c1e5915c01ee3eaf5c7229659c77556"
+    ],
+    "spike03_business.specific_authorizations": [
+      178,
+      "8730604f14044bb0c43e364cc368d0fd"
+    ],
+    "spike03_business.working_drafts": [
+      1135,
+      "56bc9c6f4f6a8b3af6b5b890e9a41844"
+    ]
+  },
+  "existingExperimentAfter": {
+    "m000_business_v1.change_proposals": [
+      452,
+      "9d49f7d8044ed8b72323faac463dc0bb"
+    ],
+    "m000_business_v1.confirmed_snapshots": [
+      453,
+      "5c167bf148660ad68488d481c900c92a"
+    ],
+    "m000_business_v1.integration_runs": [
+      436,
+      "065fdba857dbb149688bed9777255410"
+    ],
+    "m000_business_v1.operation_receipts": [
+      620,
+      "08a580f189a17ac70330aca192aeb426"
+    ],
+    "m000_business_v1.specific_authorizations": [
+      133,
+      "d9aa2a678b1d089cbd8752416bf91c8d"
+    ],
+    "m000_business_v1.working_drafts": [
+      453,
+      "ca827710b072a2ff4043f9bbafd06896"
+    ],
+    "m000_checkpoint_v1.checkpoint_blobs": [
+      604,
+      "289ae3459dd0e8f1eb216d6364905d70"
+    ],
+    "m000_checkpoint_v1.checkpoint_migrations": [
+      10,
+      "c17f84b0e81e68e91d4e5b9a2d6f9ffd"
+    ],
+    "m000_checkpoint_v1.checkpoint_writes": [
+      5213,
+      "e0bd0116ca765332f1949b3fa4f41f37"
+    ],
+    "m000_checkpoint_v1.checkpoints": [
+      1754,
+      "c51c19c5ba978b61a0209805e6c19365"
+    ],
+    "spike02_business.decision_requests": [
+      438,
+      "4d6e2ad2fcc0b4723681f4a88bc7f508"
+    ],
+    "spike02_business.decisions": [
+      392,
+      "fa945ba5ef1330f2603011a068400af7"
+    ],
+    "spike02_business.proposals": [
+      553,
+      "2f184955d6263dc4ec1271f3629c50b0"
+    ],
+    "spike02_business.receipts": [
+      267,
+      "8bb3ac7b465e44a369519f88c38963be"
+    ],
+    "spike02_business.results": [
+      267,
+      "dbae9b1f206d47dfb59779136222ef6a"
+    ],
+    "spike02_checkpoint.checkpoint_blobs": [
+      1152,
+      "26b734325932c0484cf09ef09fa232c5"
+    ],
+    "spike02_checkpoint.checkpoint_migrations": [
+      10,
+      "c17f84b0e81e68e91d4e5b9a2d6f9ffd"
+    ],
+    "spike02_checkpoint.checkpoint_writes": [
+      9053,
+      "d477714e75c9900f24ed9f5d6f343c18"
+    ],
+    "spike02_checkpoint.checkpoints": [
+      2465,
+      "ed7e367ca6b348aec96dc74e67583ad5"
+    ],
+    "spike03_business.change_proposals": [
+      893,
+      "1869fc4c2b59ec91793584223f35a1a8"
+    ],
+    "spike03_business.confirmed_snapshots": [
+      1315,
+      "11ae801f3e0651d7a6c0c12e32262183"
+    ],
+    "spike03_business.operation_receipts": [
+      1692,
+      "8c1e5915c01ee3eaf5c7229659c77556"
+    ],
+    "spike03_business.specific_authorizations": [
+      178,
+      "8730604f14044bb0c43e364cc368d0fd"
+    ],
+    "spike03_business.working_drafts": [
+      1135,
+      "56bc9c6f4f6a8b3af6b5b890e9a41844"
+    ]
+  },
+  "unchanged": true
+}

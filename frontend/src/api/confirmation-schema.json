@@ -1,0 +1,1274 @@
+{
+  "Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____": {
+    "oneOf": [
+      {
+        "$ref": "#/components/schemas/MissingAnswer"
+      },
+      {
+        "$ref": "#/components/schemas/ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      }
+    ],
+    "discriminator": {
+      "propertyName": "state",
+      "mapping": {
+        "no_preference": "#/components/schemas/MissingAnswer",
+        "provided": "#/components/schemas/ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____",
+        "unanswered": "#/components/schemas/MissingAnswer"
+      }
+    }
+  },
+  "BudgetResult": {
+    "properties": {
+      "known_subtotal_cents": {
+        "type": "integer",
+        "title": "Known Subtotal Cents"
+      },
+      "total_cents": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Total Cents"
+      },
+      "unknown_cost_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "title": "Unknown Cost Ids"
+      },
+      "verification": {
+        "type": "string",
+        "enum": [
+          "VERIFIED",
+          "ESTIMATED",
+          "INDETERMINATE"
+        ],
+        "title": "Verification"
+      },
+      "constraint": {
+        "type": "string",
+        "enum": [
+          "WITHIN_LIMIT",
+          "OVER_LIMIT",
+          "UNDETERMINED"
+        ],
+        "title": "Constraint"
+      },
+      "verified_cost_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "title": "Verified Cost Ids"
+      },
+      "evidence_issues": {
+        "items": {
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "type": "array",
+          "maxItems": 2,
+          "minItems": 2
+        },
+        "type": "array",
+        "title": "Evidence Issues"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "known_subtotal_cents",
+      "total_cents",
+      "unknown_cost_ids",
+      "verification",
+      "constraint",
+      "verified_cost_ids",
+      "evidence_issues"
+    ],
+    "title": "BudgetResult"
+  },
+  "ConfirmRequest": {
+    "properties": {
+      "expected_intake_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Expected Intake Revision"
+      },
+      "expected_working_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Expected Working Revision"
+      },
+      "seen_disclosure_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Seen Disclosure Hash"
+      },
+      "seen_risk_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Seen Risk Hash"
+      },
+      "explicit_confirmation": {
+        "type": "boolean",
+        "title": "Explicit Confirmation"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "expected_intake_revision",
+      "expected_working_revision",
+      "seen_disclosure_hash",
+      "seen_risk_hash",
+      "explicit_confirmation"
+    ],
+    "title": "ConfirmRequest"
+  },
+  "ConfirmResult": {
+    "properties": {
+      "operation_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Operation Id"
+      },
+      "snapshot": {
+        "$ref": "#/components/schemas/SnapshotView"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "operation_id",
+      "snapshot"
+    ],
+    "title": "ConfirmResult"
+  },
+  "ConfirmationPreview": {
+    "properties": {
+      "trip_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Trip Id"
+      },
+      "intake_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Intake Revision"
+      },
+      "working_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Working Revision"
+      },
+      "budget": {
+        "$ref": "#/components/schemas/BudgetResult"
+      },
+      "pending_requirements_budget": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/BudgetResult"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "disclosure_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Disclosure Hash"
+      },
+      "risk_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Risk Hash"
+      },
+      "risks": {
+        "items": {
+          "$ref": "#/components/schemas/Risk"
+        },
+        "type": "array",
+        "title": "Risks"
+      },
+      "unknown_costs": {
+        "items": {
+          "$ref": "#/components/schemas/UnknownCost"
+        },
+        "type": "array",
+        "title": "Unknown Costs"
+      },
+      "confirmation_allowed": {
+        "type": "boolean",
+        "title": "Confirmation Allowed"
+      },
+      "blocking_reasons": {
+        "items": {
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "type": "array",
+        "title": "Blocking Reasons"
+      },
+      "readiness": {
+        "type": "string",
+        "const": "NOT_ASSESSED",
+        "title": "Readiness"
+      },
+      "booked": {
+        "type": "boolean",
+        "const": false,
+        "title": "Booked"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "trip_id",
+      "intake_revision",
+      "working_revision",
+      "budget",
+      "pending_requirements_budget",
+      "disclosure_hash",
+      "risk_hash",
+      "risks",
+      "unknown_costs",
+      "confirmation_allowed",
+      "blocking_reasons",
+      "readiness",
+      "booked"
+    ],
+    "title": "ConfirmationPreview"
+  },
+  "ConfirmedSnapshot": {
+    "properties": {
+      "snapshot_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Snapshot Id"
+      },
+      "trip_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Trip Id"
+      },
+      "source_working_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Source Working Revision"
+      },
+      "requirements": {
+        "$ref": "#/components/schemas/TripRequirements"
+      },
+      "payload": {
+        "$ref": "#/components/schemas/PlanDraftOutput"
+      },
+      "item_confirmations": {
+        "items": {
+          "$ref": "#/components/schemas/ItemConfirmation"
+        },
+        "type": "array",
+        "title": "Item Confirmations"
+      },
+      "disclosure_hash": {
+        "type": "string",
+        "title": "Disclosure Hash"
+      },
+      "budget": {
+        "$ref": "#/components/schemas/BudgetResult"
+      },
+      "confirmed_by": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Confirmed By"
+      },
+      "confirmed_at": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Confirmed At"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "snapshot_id",
+      "trip_id",
+      "source_working_revision",
+      "requirements",
+      "payload",
+      "item_confirmations",
+      "disclosure_hash",
+      "budget",
+      "confirmed_by",
+      "confirmed_at"
+    ],
+    "title": "ConfirmedSnapshot"
+  },
+  "CostLine": {
+    "properties": {
+      "id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Id"
+      },
+      "item_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Item Id"
+      },
+      "amount_cents": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "maximum": 1000000000000.0,
+            "minimum": 0.0
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Amount Cents"
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "quote",
+          "estimate",
+          "unknown"
+        ],
+        "title": "Category"
+      },
+      "unknown_reason": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Unknown Reason"
+      },
+      "query": {
+        "$ref": "#/components/schemas/PriceQuery"
+      },
+      "evidence_id": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Evidence Id"
+      },
+      "is_mock": {
+        "type": "boolean",
+        "title": "Is Mock"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "id",
+      "item_id",
+      "amount_cents",
+      "category",
+      "unknown_reason",
+      "query",
+      "evidence_id",
+      "is_mock"
+    ],
+    "title": "CostLine"
+  },
+  "DateWindow": {
+    "properties": {
+      "mode": {
+        "type": "string",
+        "const": "window",
+        "title": "Mode"
+      },
+      "earliest_start": {
+        "type": "string",
+        "format": "date",
+        "title": "Earliest Start"
+      },
+      "latest_end": {
+        "type": "string",
+        "format": "date",
+        "title": "Latest End"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "mode",
+      "earliest_start",
+      "latest_end"
+    ],
+    "title": "DateWindow"
+  },
+  "DraftContext": {
+    "properties": {
+      "intake_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Intake Revision"
+      },
+      "input": {
+        "$ref": "#/components/schemas/RequirementsInput"
+      },
+      "notes": {
+        "$ref": "#/components/schemas/GenerationNotes"
+      },
+      "risk_rules_version": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Risk Rules Version"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "intake_revision",
+      "input",
+      "notes",
+      "risk_rules_version"
+    ],
+    "title": "DraftContext"
+  },
+  "FixedDates": {
+    "properties": {
+      "mode": {
+        "type": "string",
+        "const": "fixed",
+        "title": "Mode"
+      },
+      "start_date": {
+        "type": "string",
+        "format": "date",
+        "title": "Start Date"
+      },
+      "end_date": {
+        "type": "string",
+        "format": "date",
+        "title": "End Date"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "mode",
+      "start_date",
+      "end_date"
+    ],
+    "title": "FixedDates"
+  },
+  "GenerationNotes": {
+    "properties": {
+      "transport_advice": {
+        "items": {
+          "$ref": "#/components/schemas/TransportAdvice"
+        },
+        "type": "array",
+        "maxItems": 200,
+        "title": "Transport Advice"
+      },
+      "risks": {
+        "items": {
+          "$ref": "#/components/schemas/Risk"
+        },
+        "type": "array",
+        "maxItems": 100,
+        "title": "Risks"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "transport_advice",
+      "risks"
+    ],
+    "title": "GenerationNotes"
+  },
+  "ItemConfirmation": {
+    "properties": {
+      "item_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Item Id"
+      },
+      "item_hash": {
+        "type": "string",
+        "title": "Item Hash"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "item_id",
+      "item_hash"
+    ],
+    "title": "ItemConfirmation"
+  },
+  "MissingAnswer": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "enum": [
+          "unanswered",
+          "no_preference"
+        ],
+        "title": "State"
+      },
+      "value": {
+        "type": "null",
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "MissingAnswer"
+  },
+  "PlanDraftOutput": {
+    "properties": {
+      "items": {
+        "items": {
+          "$ref": "#/components/schemas/PlanItem"
+        },
+        "type": "array",
+        "maxItems": 100,
+        "minItems": 1,
+        "title": "Items"
+      },
+      "costs": {
+        "items": {
+          "$ref": "#/components/schemas/CostLine"
+        },
+        "type": "array",
+        "maxItems": 300,
+        "minItems": 1,
+        "title": "Costs"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "items",
+      "costs"
+    ],
+    "title": "PlanDraftOutput"
+  },
+  "PlanItem": {
+    "properties": {
+      "id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Id"
+      },
+      "kind": {
+        "type": "string",
+        "enum": [
+          "hotel",
+          "activity"
+        ],
+        "title": "Kind"
+      },
+      "resource_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Resource Id"
+      },
+      "title": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Title"
+      },
+      "start": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Start"
+      },
+      "end": {
+        "type": "string",
+        "format": "date-time",
+        "title": "End"
+      },
+      "room_type": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Room Type"
+      },
+      "check_in": {
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Check In"
+      },
+      "check_out": {
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Check Out"
+      },
+      "rooms": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Rooms"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "id",
+      "kind",
+      "resource_id",
+      "title",
+      "start",
+      "end"
+    ],
+    "title": "PlanItem"
+  },
+  "PriceQuery": {
+    "properties": {
+      "resource_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Resource Id"
+      },
+      "start_date": {
+        "type": "string",
+        "format": "date",
+        "title": "Start Date"
+      },
+      "end_date": {
+        "type": "string",
+        "format": "date",
+        "title": "End Date"
+      },
+      "currency": {
+        "type": "string",
+        "const": "CNY",
+        "title": "Currency"
+      },
+      "room_type": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Room Type"
+      },
+      "rooms": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Rooms"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "resource_id",
+      "start_date",
+      "end_date",
+      "currency",
+      "room_type",
+      "rooms"
+    ],
+    "title": "PriceQuery",
+    "description": "Exact scope of an already expanded CNY total; no room/night arithmetic."
+  },
+  "ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FixedDates"
+          },
+          {
+            "$ref": "#/components/schemas/DateWindow"
+          }
+        ],
+        "title": "Value",
+        "discriminator": {
+          "propertyName": "mode",
+          "mapping": {
+            "fixed": "#/components/schemas/FixedDates",
+            "window": "#/components/schemas/DateWindow"
+          }
+        }
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[Union[FixedDates, DateWindow], FieldInfo(annotation=NoneType, required=True, discriminator='mode')]]"
+  },
+  "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "integer",
+        "maximum": 1000000000000.0,
+        "minimum": 0.0,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=0), Le(le=1000000000000)])]]"
+  },
+  "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "integer",
+        "maximum": 2.0,
+        "minimum": 1.0,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=1), Le(le=2)])]]"
+  },
+  "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "integer",
+        "maximum": 5.0,
+        "minimum": 1.0,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), Ge(ge=1), Le(le=5)])]]"
+  },
+  "ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____": {
+    "properties": {
+      "state": {
+        "type": "string",
+        "const": "provided",
+        "title": "State"
+      },
+      "value": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Value"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "state",
+      "value"
+    ],
+    "title": "ProvidedAnswer[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), MaxLen(max_length=500)])]]"
+  },
+  "RequirementsInput": {
+    "properties": {
+      "origin": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "destination": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "dates": {
+        "$ref": "#/components/schemas/Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____"
+      },
+      "days": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____"
+      },
+      "travelers": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____"
+      },
+      "target_budget_cents": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+      },
+      "hard_limit_cents": {
+        "$ref": "#/components/schemas/Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____"
+      },
+      "transport": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "hotel": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "restrictions": {
+        "$ref": "#/components/schemas/Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____"
+      },
+      "raw_text": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Raw Text"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "origin",
+      "destination",
+      "dates",
+      "days",
+      "travelers",
+      "target_budget_cents",
+      "hard_limit_cents",
+      "transport",
+      "hotel",
+      "restrictions",
+      "raw_text"
+    ],
+    "title": "RequirementsInput"
+  },
+  "Risk": {
+    "properties": {
+      "code": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Code"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "blocker",
+          "warning"
+        ],
+        "title": "Severity"
+      },
+      "message": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Message"
+      },
+      "item_ids": {
+        "items": {
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "type": "array",
+        "title": "Item Ids"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "code",
+      "severity",
+      "message",
+      "item_ids"
+    ],
+    "title": "Risk"
+  },
+  "RiskDisclosure": {
+    "properties": {
+      "risk_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Risk Hash"
+      },
+      "risks": {
+        "items": {
+          "$ref": "#/components/schemas/Risk"
+        },
+        "type": "array",
+        "title": "Risks"
+      },
+      "input_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Input Hash"
+      },
+      "risk_rules_version": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Risk Rules Version"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "risk_hash",
+      "risks",
+      "input_hash",
+      "risk_rules_version"
+    ],
+    "title": "RiskDisclosure"
+  },
+  "SnapshotView": {
+    "properties": {
+      "snapshot": {
+        "$ref": "#/components/schemas/ConfirmedSnapshot"
+      },
+      "context": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/DraftContext"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "risk_disclosure": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/RiskDisclosure"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "readiness": {
+        "type": "string",
+        "const": "NOT_ASSESSED",
+        "title": "Readiness"
+      },
+      "booked": {
+        "type": "boolean",
+        "const": false,
+        "title": "Booked"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "snapshot",
+      "context",
+      "risk_disclosure",
+      "readiness",
+      "booked"
+    ],
+    "title": "SnapshotView"
+  },
+  "TransportAdvice": {
+    "properties": {
+      "from_item_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "From Item Id"
+      },
+      "to_item_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "To Item Id"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "public_transit",
+          "walk"
+        ],
+        "title": "Mode"
+      },
+      "text": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Text"
+      },
+      "verification": {
+        "type": "string",
+        "const": "unverified",
+        "title": "Verification"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "from_item_id",
+      "to_item_id",
+      "mode",
+      "text",
+      "verification"
+    ],
+    "title": "TransportAdvice"
+  },
+  "TripRequirements": {
+    "properties": {
+      "destination": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Destination"
+      },
+      "start_date": {
+        "type": "string",
+        "format": "date",
+        "title": "Start Date"
+      },
+      "end_date": {
+        "type": "string",
+        "format": "date",
+        "title": "End Date"
+      },
+      "timezone": {
+        "type": "string",
+        "const": "Asia/Shanghai",
+        "title": "Timezone"
+      },
+      "currency": {
+        "type": "string",
+        "const": "CNY",
+        "title": "Currency"
+      },
+      "hard_limit_cents": {
+        "type": "integer",
+        "maximum": 1000000000000.0,
+        "minimum": 0.0,
+        "title": "Hard Limit Cents"
+      },
+      "requirements_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Requirements Revision"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "destination",
+      "start_date",
+      "end_date",
+      "timezone",
+      "currency",
+      "hard_limit_cents",
+      "requirements_revision"
+    ],
+    "title": "TripRequirements"
+  },
+  "UnknownCost": {
+    "properties": {
+      "id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Id"
+      },
+      "reason": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Reason"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "id",
+      "reason"
+    ],
+    "title": "UnknownCost"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "source": "M1-05a actual OpenAPI",
+  "schemas": 32,
+  "generatedFiles": [
+    "frontend/src/api/confirmation-schema.json",
+    "frontend/src/api/confirmation-contracts.ts"
+  ],
+  "actualBackendOpenAPIUnchanged": true,
+  "sha256": {
+    "frontend/src/api/confirmation-schema.json": "f96a32fb13e62b468d42594364046b85e37b0244532c58428d869ae5f1113fa0",
+    "frontend/src/api/confirmation-contracts.ts": "2ef6b260f62373d0cd44ff3332867fb7e60cc6cda0584c5fb0a392d1b82ac25a"
+  }
+}
