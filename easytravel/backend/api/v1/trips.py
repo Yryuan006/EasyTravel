@@ -102,3 +102,12 @@ async def get_generation(trip_id: TripId, run_id: TripId, response: Response, ac
     result = await service.get(trip_id,run_id,actor=actor)
     response.headers["Cache-Control"] = "no-store"
     return result
+
+
+from ...domain.generation import GenerationState
+
+@router.get("/{trip_id}/generation-state", response_model=GenerationState, operation_id="getGenerationState")
+async def generation_state(trip_id: TripId, response: Response, actor: Actor, service: Generation):
+    result = await service.state(trip_id,actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result

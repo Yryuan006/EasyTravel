@@ -74,3 +74,25 @@ h3 { font-size: 17px; margin-top: 28px; }
 .question-prompt { font-size: 18px; line-height: 1.7; }
 input, textarea { caret-color: var(--green); }
 ::selection { background: #d9e5d4; color: #173f38; }
+/* Saved itineraries share the workspace's paper and green palette. */
+.itinerary p, .budget-summary p, .cost-breakdown p, .risk-list p { line-height: 1.8; overflow-wrap: anywhere; }
+.day-schedule { border-top: 1px solid var(--line); margin-top: 28px; }
+.day-schedule h3 { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.day-number { color: #66786c; font: 15px Georgia, serif; letter-spacing: .08em; }
+.plan-item { margin: 16px 0; padding: 8px 0 10px 20px; border-left: 2px solid #b7cbbb; }
+h4 { margin: 8px 0; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; }
+.item-time { margin: 0; font-variant-numeric: tabular-nums; font-size: 14px; }
+.item-time span { color: var(--muted); padding-left: 12px; }
+.mock-label { color: #795021; font-size: 13px; }
+.item-costs { padding-left: 18px; font-size: 14px; line-height: 1.8; }
+.hotel-card { border-top: 1px solid var(--line); padding-top: 12px; }
+.budget-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin: 20px 0; }
+.budget-grid strong { font-size: 22px; font-variant-numeric: tabular-nums; }
+.budget-grid p { font-size: 13px; }
+.budget-state { font-weight: 600; overflow-wrap: anywhere; }
+.cost-lines, .risk-list ul { list-style: none; padding: 0; }
+.cost-lines li, .risk-list li { border-top: 1px solid var(--line); padding: 18px 0; overflow-wrap: anywhere; }
+.cost-lines p { margin: 6px 0; font-size: 14px; }
+.cost-lines .cost-amount { font-size: 21px; font-variant-numeric: tabular-nums; }
+small { color: var(--muted); line-height: 1.8; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .budget-grid { grid-template-columns: 1fr; gap: 4px; } .budget-grid > div { padding-bottom: 14px; border-bottom: 1px solid var(--line); } .actions > button { width: 100%; } }

@@ -1,0 +1,8 @@
+
+ RUN  v5.1.0 D:/Project/EasyTravel/frontend
+
+
+ Test Files  5 passed (5)
+      Tests  91 passed (91)
+   Start at  08:39:37
+   Duration  788ms (environment 77%, import 9%, tests 8%, transform 4%, worker 1%)

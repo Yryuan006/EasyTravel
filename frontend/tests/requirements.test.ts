@@ -131,7 +131,7 @@ it('accepts persisted CURRENT draft and shows truthful unconfirmed mock compatib
   expect(validTrip(persisted.trip)).toBe(true)
   const w = mount(TripSummary, { props: { trip: persisted.trip as TripView } })
   expect(w.text()).toContain('模拟工作稿 r1 · 未确认')
-  expect(w.text()).toContain('完整行程展示将在后续阶段提供')
+  expect(w.text()).toContain('每日行程与服务端预算见上方')
   expect(w.text()).not.toContain('无法证明旧工作稿')
   expect(validTrip({ ...persisted.trip, working: { ...persisted.trip.working, context: null } })).toBe(false)
   const broken = structuredClone(persisted.trip); (broken.working.context as unknown as Record<string, unknown>).intake_revision = 0

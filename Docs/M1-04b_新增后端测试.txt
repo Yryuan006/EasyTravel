@@ -1,0 +1,9 @@
+tests/backend/test_generation_display.py::test_retry_classification[known_costs_exceed_hard_limit-False] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[stale_input-False] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[invalid_output-True] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[worker_interrupted-True] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[persistence_failed-True] PASSED
+tests/backend/test_generation_display.py::test_projection_reopen_owner_revision PASSED
+tests/backend/test_generation_display.py::test_over_limit_blocks_retry_without_changing_receipt PASSED
+
+7 targeted tests PASSED; extracted from the complete 358-test isolated regression.

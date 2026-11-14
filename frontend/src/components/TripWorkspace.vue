@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import type { RequirementsInput, TripView, AnswerRequest } from '../api/contracts'
 import { useRequirements } from '../composables/useRequirements'
+import { useGeneration } from '../composables/useGeneration'
+import { type PlanItem, type CostLine, type Notes } from '../api/generations'
+import ItineraryView from './ItineraryView.vue'
+import BudgetSummary from './BudgetSummary.vue'
+import CostBreakdown from './CostBreakdown.vue'
+import RiskList from './RiskList.vue'
+import GenerationStatus from './GenerationStatus.vue'
 import TripSummary from './TripSummary.vue'
 import RequirementsForm from './RequirementsForm.vue'
 import ClarificationCard from './ClarificationCard.vue'
@@ -10,7 +17,14 @@ const session = useRequirements(props.initial, () => props.token)
 const { saved, next, busy, error, conflict, pending, retryAllowed } = session
 const editing = ref(false), paused = ref(false), notice = ref(''), formEpoch = ref(0), reviewed = ref(true)
 const retainedAnswer = ref<AnswerRequest['answer']>()
-onMounted(() => void session.question())
+const generation = useGeneration(saved, () => props.token)
+const { run, projection, pending: generationPending, busy: generationBusy, error: generationError, ready: generationReady, active: generationActive, eligible, retryable } = generation
+const items = computed(() => (saved.value.working?.payload.items ?? []) as PlanItem[])
+const costs = computed(() => (saved.value.working?.payload.costs ?? []) as CostLine[])
+const notes = computed(() => (saved.value.working?.context as { notes: Notes } | null)?.notes ?? null)
+const sourceBudget = computed(() => projection.value?.working_revision === saved.value.working?.revision ? projection.value?.source_run?.diagnostics_budget : null)
+const hardLimit = computed(() => Number(saved.value.working?.requirements.hard_limit_cents ?? saved.value.intake.input.hard_limit_cents.value))
+onMounted(() => { void session.question(); void generation.refresh() })
 function edit() { session.edit(); editing.value = true; paused.value = false; notice.value = '' }
 async function update(input: RequirementsInput) { if (await session.write('update', input)) await finished() }
 async function answer(input: AnswerRequest['answer']) {
@@ -40,6 +54,28 @@ function review() { reviewed.value = true; retainedAnswer.value = undefined; not
 function discard() { formEpoch.value++; reviewed.value = true; notice.value = ''; retainedAnswer.value = undefined; editing.value = false; void session.question() }
 </script>
 <template>
+  <section class="trip-panel" aria-labelledby="generation-heading">
+    <p class="eyebrow">MOCK PLANNER / 模拟规划</p><h2 id="generation-heading">生成与运行</h2>
+    <p v-if="saved.intake.collection_status !== 'READY_TO_GENERATE'">需求尚不完整，请补充下方必要信息。</p>
+    <p v-if="saved.working">当前工作稿未确认，已有工作稿不能直接覆盖；重规划留待后续阶段。</p>
+    <GenerationStatus :run="run" />
+    <p v-if="generationError" role="alert" class="notice form-error">{{ generationError }} 已显示的数据为上次读取结果，可能已有变化。</p>
+    <p v-if="generationBusy" role="status">正在同步生成状态…</p>
+    <div class="actions">
+      <button v-if="eligible && !editing && !busy && !conflict && reviewed && (!run || run.status !== 'FAILED' || run.intake_revision !== saved.intake.intake_revision || retryable)" class="primary" @click="generation.start()">{{ retryable ? '显式重试模拟生成' : '生成模拟行程' }}</button>
+      <button v-if="generationPending && !saved.working && !generationActive" :disabled="generationBusy || busy" @click="generation.start(true)">使用原生成请求重试（同一幂等键）</button>
+      <button :disabled="generationBusy || busy" @click="generation.refresh()">重新读取行程与运行状态</button>
+    </div>
+    <p v-if="generationPending">生成请求结果可能尚未确定，原键及内容保留在当前页面。请恢复查询或使用原请求重试，不要创建新请求。</p>
+  </section>
+  <template v-if="saved.working">
+    <p v-if="saved.synchronization === 'STALE'" class="notice">STALE：以下是旧需求下的工作稿与预算，不能作为当前需求的有效结果。</p>
+    <BudgetSummary v-if="sourceBudget" :budget="sourceBudget" :hard-limit="hardLimit" :current-limit="saved.intake.input.hard_limit_cents.value" />
+    <p v-else class="notice">{{ generationReady ? '无法定位当前工作稿的成功来源预算，不推断总额。' : '正在读取来源预算；已有显示可能过期。' }}</p>
+    <ItineraryView :items="items" :costs="costs" />
+    <section class="trip-panel"><CostBreakdown :items="items" :costs="costs" /><RiskList :notes="notes" /></section>
+  </template>
+  <BudgetSummary v-else-if="run?.status === 'FAILED' && run.intake_revision === saved.intake.intake_revision && run.diagnostics_budget" :budget="run.diagnostics_budget" :hard-limit="hardLimit" />
   <TripSummary :trip="saved" />
   <p v-if="notice" role="status">{{ notice }}</p>
   <div v-if="error" role="alert" class="notice form-error">
@@ -54,7 +90,7 @@ function discard() { formEpoch.value++; reviewed.value = true; notice.value = ''
   <template v-else-if="!conflict && reviewed">
     <ClarificationCard v-if="!paused && next?.question" :key="next.question.question_id" :question="next.question" :busy="busy" @answer="answer" @edit="edit" @pause="paused = true" />
     <p v-if="paused" role="status">旅行已保存，可稍后继续。已保存事实不会丢失。</p>
-    <p v-if="next && !next.question">{{ saved.intake.collection_status === 'READY_TO_GENERATE' ? '需求已足够。此页面暂未提供生成操作；已有模拟稿仅显示只读摘要。' : '暂无下一问题，请修改或稍后补充尚缺信息。' }}</p>
+    <p v-if="next && !next.question">{{ saved.intake.collection_status === 'READY_TO_GENERATE' ? '需求已足够，可以生成模拟行程。' : '暂无下一问题，请修改或稍后补充尚缺信息。' }}</p>
   </template>
   <p v-if="busy" role="status">正在与服务器同步…</p>
   <div class="actions"><button v-if="!editing" :disabled="busy" @click="edit">修改需求</button><button v-if="editing" :disabled="busy" @click="discard">取消编辑并读取下一问题</button><button v-if="paused && !editing" :disabled="busy" @click="paused = false; session.question()">继续补充</button><button v-if="!editing && !paused && !busy && !conflict && reviewed && !next" @click="session.question()">重新读取下一问题</button></div>

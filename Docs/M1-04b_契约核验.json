@@ -1,0 +1,10 @@
+{
+  "actualOpenAPIMatchesSnapshot": true,
+  "frontendSchemasMatchActualOpenAPI": true,
+  "previousPathsAndSchemasUnchanged": true,
+  "newPaths": [
+    "/api/v1/trips/{trip_id}/generation-state"
+  ],
+  "appliedSQLAndLegacySpikeSourceUnchanged": true,
+  "dependenciesUnchanged": true
+}

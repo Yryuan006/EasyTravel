@@ -20,7 +20,7 @@ ERROR_MESSAGES = {
 }
 
 def failure(code):
-    return dict(code=code,message=ERROR_MESSAGES[code],retryable=True)
+    return dict(code=code,message=ERROR_MESSAGES[code],retryable=code not in ("known_costs_exceed_hard_limit", "stale_input"))
 
 class GenerationService:
     def __init__(self, uow, *, now=lambda: datetime.now(timezone.utc)):
@@ -50,7 +50,8 @@ class GenerationService:
             attempt = 1
             if request.retry_of:
                 old = await repo.run(trip_id,request.retry_of)
-                if old.status != 'FAILED' or old.intake_revision != request.expected_intake_revision:
+                if (old.status != 'FAILED' or old.intake_revision != request.expected_intake_revision
+                        or not old.error or old.error.code not in ('invalid_output', 'worker_interrupted', 'persistence_failed')):
                     raise ChangeError('invalid_retry')
                 attempt = old.attempt+1
             result = await repo.accept(trip,str(uuid4()),attempt,request.retry_of)
@@ -61,6 +62,12 @@ class GenerationService:
         PlanService.identifier(actor)
         async with self.uow(actor) as repo:
             return await repo.run(trip_id,run_id)
+
+    async def state(self, trip_id, *, actor):
+        PlanService.identifier(actor)
+        async with self.uow(actor) as repo:
+            await repo.lock_trip(trip_id)
+            return await repo.state(trip_id)
 
     async def frozen_input(self, run, *, actor):
         async with self.uow(actor) as repo:

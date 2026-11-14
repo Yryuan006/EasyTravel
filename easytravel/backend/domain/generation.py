@@ -61,3 +61,10 @@ def validate_initial(payload, requirements, *, now):
     if any(not c.is_mock or c.evidence_id is not None or c.category == "quote" for c in payload.costs):
         raise ChangeError("invalid_output")
     return check_constraints(payload, requirements, now=now)
+
+
+class GenerationState(InputContract):
+    trip_id: ID
+    working_revision: Revision | None
+    source_run: GenerationRun | None
+    latest_run: GenerationRun | None

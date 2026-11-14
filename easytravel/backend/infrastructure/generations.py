@@ -25,6 +25,22 @@ class PostgresGenerationRepository(PostgresIntakeRepository):
         row.pop("owner_id")
         return GenerationRun.model_validate(row | dict(base_working_revision=None))
 
+    async def state(self, trip_id):
+        from ..domain.generation import GenerationState
+        trip = await self.read_trip(trip_id)
+        source = None
+        if trip.working:
+            row = await (await self.conn.execute("""SELECT g.run_id FROM easytravel.draft_contexts c
+                JOIN easytravel.generation_runs g ON g.run_id=c.run_id AND g.trip_id=c.trip_id AND g.owner_id=c.owner_id
+                WHERE c.trip_id=%s AND c.owner_id=%s AND c.working_revision=%s AND g.status='SUCCEEDED' AND g.intake_revision=c.intake_revision
+                AND (g.result->>'working_revision')::integer=c.working_revision""",
+                (trip_id,self.actor,trip.working.revision))).fetchone()
+            if row:
+                source = await self.run(trip_id,row['run_id'])
+        latest = await (await self.conn.execute("SELECT run_id FROM easytravel.generation_runs WHERE trip_id=%s AND owner_id=%s ORDER BY created_at DESC,run_id DESC LIMIT 1",(trip_id,self.actor))).fetchone()
+        return GenerationState(trip_id=trip_id,working_revision=trip.working.revision if trip.working else None,
+            source_run=source,latest_run=await self.run(trip_id,latest['run_id']) if latest else None)
+
     async def failed_for_input(self, trip_id, revision):
         return await (await self.conn.execute("SELECT 1 FROM easytravel.generation_runs WHERE trip_id=%s AND owner_id=%s AND intake_revision=%s AND status='FAILED' LIMIT 1", (trip_id,self.actor,revision))).fetchone() is not None
 

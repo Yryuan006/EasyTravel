@@ -1,0 +1,1 @@
+TypeScript checks passed (vue-tsc + tsc).

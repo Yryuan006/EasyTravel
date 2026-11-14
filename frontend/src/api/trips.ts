@@ -10,7 +10,7 @@ export interface RequestOptions { fetcher?: typeof fetch; timeoutMs?: number; si
 export class TripApiError extends ApiError {
   constructor(kind: 'http' | 'network' | 'timeout' | 'contract', message: string, status?: number, public readonly code?: string) { super(kind, message, status) }
 }
-async function request<T>(path: string, token: string, command: { key: string; body: string } | undefined, options: RequestOptions, method: 'POST' | 'PUT' | 'GET', validate: (v: unknown) => v is T, expectedStatus: number, expectedId?: string): Promise<T> {
+export async function request<T>(path: string, token: string, command: { key: string; body: string } | undefined, options: RequestOptions, method: 'POST' | 'PUT' | 'GET', validate: (v: unknown) => v is T, expectedStatus: number, expectedId?: string): Promise<T> {
   const controller = new AbortController()
   const abort = () => controller.abort()
   options.signal?.addEventListener('abort', abort, { once: true })
