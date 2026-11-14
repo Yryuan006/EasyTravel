@@ -55,7 +55,8 @@ def test_openapi_and_docs(app):
     assert set(schema["paths"]) == {"/api/v1/health", "/api/v1/trips", "/api/v1/trips/{trip_id}",
         "/api/v1/trips/{trip_id}/requirements", "/api/v1/trips/{trip_id}/clarifications/next",
         "/api/v1/trips/{trip_id}/clarifications/{question_id}/answers",
-        "/api/v1/trips/{trip_id}/generations", "/api/v1/trips/{trip_id}/generations/{run_id}", "/api/v1/trips/{trip_id}/generation-state"}
+        "/api/v1/trips/{trip_id}/generations", "/api/v1/trips/{trip_id}/generations/{run_id}", "/api/v1/trips/{trip_id}/generation-state",
+        "/api/v1/trips/{trip_id}/confirmation-preview", "/api/v1/trips/{trip_id}/confirmations"}
     assert schema["paths"]["/api/v1/health"]["get"]["responses"]["200"]["content"]["application/json"]["schema"] == {
         "$ref": "#/components/schemas/HealthResponse"}
     assert "ErrorResponse" in schema["components"]["schemas"]

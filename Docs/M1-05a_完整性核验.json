@@ -1,0 +1,32 @@
+{
+  "baseline": "2468c031db5b12962df1d72dff3115724be60e50",
+  "appliedMigrations001to004": {
+    "001_initial.sql": {
+      "sha256": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43",
+      "unchanged": true
+    },
+    "002_trip_intakes.sql": {
+      "sha256": "a1f7b4bc3069e20e5c2bc28fded8fe3264050a81f576055c429690976c5b930d",
+      "unchanged": true
+    },
+    "003_clarifications.sql": {
+      "sha256": "461161507a5fb656b720cf09b3cb485f790d1e74a69e5e9b6e58e4e930a98786",
+      "unchanged": true
+    },
+    "004_generations.sql": {
+      "sha256": "b82e6d77b7960ae79898e9b6cbaa68375195dee412f59a013ee7504f456c4d28",
+      "unchanged": true
+    }
+  },
+  "oldReviewedEvidenceUnchanged": true,
+  "oldExperimentFingerprintsUnchanged": true,
+  "testTransportHookRemoved": true,
+  "dedicatedDatabasePasswordsAbsentFromEvidence": true,
+  "backendTests": 384,
+  "newBackendTests": 26,
+  "frontendUnitTests": 92,
+  "frontendBrowserTests": 33,
+  "typecheck": "PASS",
+  "build": "PASS",
+  "finalIsolatedContainer": "easytravel-m105a-isolated-2eef2096ef"
+}

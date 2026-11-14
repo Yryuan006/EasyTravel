@@ -1,0 +1,45 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 26 items
+
+tests/backend/test_confirmations.py::test_known_mock_costs_remain_estimated PASSED
+tests/backend/test_confirmations.py::test_preview_confirmation_facts_immutable E06/E08 backend: unknown != zero; system disclosures survive empty Agent risks; snapshot/context/budget/pointer/receipts immutable and atomic; no hotel grant
+PASSED
+tests/backend/test_confirmations.py::test_strict_intent[False-409-explicit_confirmation_required] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[true-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[1-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[None-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_old_facts[seen_disclosure_hash-disclosure_not_acknowledged] PASSED
+tests/backend/test_confirmations.py::test_old_facts[seen_risk_hash-risk_not_acknowledged] PASSED
+tests/backend/test_confirmations.py::test_old_facts[expected_intake_revision-stale_intake] PASSED
+tests/backend/test_confirmations.py::test_old_facts[expected_working_revision-stale_revision] PASSED
+tests/backend/test_confirmations.py::test_missing_and_stale_pending_budget E07/E13 backend: 200 STALE preview preserves original budget and pending OVER_LIMIT; both stale requests rejected
+PASSED
+tests/backend/test_confirmations.py::test_budget_and_blocker_cannot_be_waived[over-known_costs_exceed_hard_limit] PASSED
+tests/backend/test_confirmations.py::test_budget_and_blocker_cannot_be_waived[blocker-blocking_risks] PASSED
+tests/backend/test_confirmations.py::test_security_and_validation PASSED
+tests/backend/test_confirmations.py::test_rules_change_and_same_source_conflict E17 backend: same-version rule update rejects old risk hash; already-confirmed source cannot acquire different disclosure
+PASSED
+tests/backend/test_confirmations.py::test_concurrent_http[True] PASSED
+tests/backend/test_confirmations.py::test_concurrent_http[False] PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[disclosure] PostgreSQL failure at disclosure: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[pointer] PostgreSQL failure at pointer: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[operation] PostgreSQL failure at operation: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[command] PostgreSQL failure at command: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[commit] PostgreSQL failure at commit: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_database_unavailable_and_internal_errors PASSED
+tests/backend/test_confirmations.py::test_cross_process_replay_after_intake_changed PASSED
+tests/backend/test_confirmations.py::test_legacy_snapshot_not_backfilled PASSED
+tests/backend/test_confirmations.py::test_old_revision_cannot_replace_new_pointer PASSED
+
+============================= 26 passed in 6.27s ==============================

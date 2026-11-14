@@ -17,7 +17,7 @@ function text(key: FieldKey) {
     <p>Intake revision：{{ trip.intake.intake_revision }}</p>
     <p>需求收集状态：{{ trip.intake.collection_status === 'COLLECTING' ? '收集中' : '输入已满足生成前提' }}（{{ trip.intake.collection_status }}）</p>
     <div v-if="!trip.working" class="notice"><strong>尚无行程草案</strong><p>尚未生成、确认或预订行程，出行就绪情况尚未评估。输入充分不代表路线、价格或酒店已经核验。</p></div>
-    <div v-else-if="trip.synchronization === 'CURRENT'" class="notice"><strong>模拟工作稿 r{{ trip.working.revision }} · 未确认 · 只读</strong><p>已保存与当前需求一致的模拟草案。路线、营业、酒店建议及费用未经核验，可能存在未知费用；尚未预订，就绪情况未评估。每日行程与服务端预算见上方。</p></div>
+    <div v-else-if="trip.synchronization === 'CURRENT'" class="notice"><strong>模拟工作稿 r{{ trip.working.revision }} · {{ trip.plan_confirmation === 'CONFIRMED' ? '已确认规划' : '未确认' }} · 只读</strong><p>已保存与当前需求一致的模拟草案。路线、营业、酒店建议及费用未经核验，可能存在未知费用；尚未预订，就绪情况未评估。每日行程与服务端预算见上方。</p></div>
     <div v-else class="notice"><strong>旧工作稿 r{{ trip.working.revision }} · STALE · 只读</strong><p>无法证明旧工作稿与当前需求同步，不能作为当前需求下的有效行程。需后续重规划，本轮不提供行程编辑或确认。</p><p v-if="trip.latest_confirmed_version_id" class="preserve">历史确认快照指针：{{ trip.latest_confirmed_version_id }}。它不代表当前工作稿已确认。</p></div>
     <h3>已保存的需求摘要</h3>
     <p class="preserve">原始需求：{{ trip.intake.input.raw_text ?? '尚未填写' }}</p>

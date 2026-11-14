@@ -165,7 +165,7 @@ class TripView(InputContract):
     working: WorkingView | None
     latest_confirmed_version_id: ID | None
     synchronization: Literal["NO_DRAFT", "CURRENT", "STALE"]
-    plan_confirmation: Literal["UNCONFIRMED"]
+    plan_confirmation: Literal["UNCONFIRMED", "CONFIRMED"]
     active_run_id: ID | None
     readiness: Literal["NOT_ASSESSED"]
     booked: Literal[False]
@@ -196,7 +196,7 @@ def collection(input: RequirementsInput):
     return ordered
 
 
-def trip_view(trip_id, created_at, revision, input, working=None, context=None, active_run_id=None):
+def trip_view(trip_id, created_at, revision, input, working=None, context=None, active_run_id=None, confirmed_revision=None):
     if working is not None:
         working = WorkingView(**working.model_dump(), context=context)
     blocked = collection(input)
@@ -208,7 +208,9 @@ def trip_view(trip_id, created_at, revision, input, working=None, context=None, 
                 and getattr(input, name).state != "unanswered"], suggested_values=[]),
         working=working, latest_confirmed_version_id=working.latest_confirmed_version_id if working else None,
         synchronization=("CURRENT" if context and context.intake_revision == revision else "STALE") if working else "NO_DRAFT",
-        plan_confirmation="UNCONFIRMED", active_run_id=active_run_id, readiness="NOT_ASSESSED", booked=False)
+        plan_confirmation=("CONFIRMED" if working and context and context.intake_revision == revision
+                           and confirmed_revision == working.revision else "UNCONFIRMED"),
+        active_run_id=active_run_id, readiness="NOT_ASSESSED", booked=False)
 
 
 Revision = Annotated[int, Field(strict=True, ge=1)]

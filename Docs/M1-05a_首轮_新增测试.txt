@@ -1,0 +1,570 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 23 items
+
+tests/backend/test_confirmations.py::test_preview_confirmation_facts_immutable FAILED
+tests/backend/test_confirmations.py::test_strict_intent[False-409-explicit_confirmation_required] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[true-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[1-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[None-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_old_facts[seen_disclosure_hash-disclosure_not_acknowledged] PASSED
+tests/backend/test_confirmations.py::test_old_facts[seen_risk_hash-risk_not_acknowledged] PASSED
+tests/backend/test_confirmations.py::test_old_facts[expected_intake_revision-stale_intake] PASSED
+tests/backend/test_confirmations.py::test_old_facts[expected_working_revision-stale_revision] PASSED
+tests/backend/test_confirmations.py::test_missing_and_stale_pending_budget E07/E13 backend: 200 STALE preview preserves original budget and pending OVER_LIMIT; both stale requests rejected
+PASSED
+tests/backend/test_confirmations.py::test_budget_and_blocker_cannot_be_waived[over-known_costs_exceed_hard_limit] PASSED
+tests/backend/test_confirmations.py::test_budget_and_blocker_cannot_be_waived[blocker-blocking_risks] PASSED
+tests/backend/test_confirmations.py::test_security_and_validation PASSED
+tests/backend/test_confirmations.py::test_rules_change_and_same_source_conflict FAILED
+tests/backend/test_confirmations.py::test_concurrent_http[True] FAILED
+tests/backend/test_confirmations.py::test_concurrent_http[False] FAILED
+tests/backend/test_confirmations.py::test_real_database_rollback[disclosure] FAILED
+tests/backend/test_confirmations.py::test_real_database_rollback[pointer] FAILED
+tests/backend/test_confirmations.py::test_real_database_rollback[operation] FAILED
+tests/backend/test_confirmations.py::test_real_database_rollback[command] FAILED
+tests/backend/test_confirmations.py::test_real_database_rollback[commit] FAILED
+tests/backend/test_confirmations.py::test_database_unavailable_and_internal_errors PASSED
+tests/backend/test_confirmations.py::test_cross_process_replay_after_intake_changed FAILED
+
+================================== FAILURES ===================================
+__________________ test_preview_confirmation_facts_immutable __________________
+
+http = <starlette.testclient.TestClient object at 0x00000294418BABA0>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_preview_confirmation_facts_immutable(http,db):
+        path = generated(http,db,'no_agent_risks'); tid=path.split('/')[-1]
+        before = run(facts(db,tid)); p=preview(http,path)
+        assert run(facts(db,tid)) == before
+        assert p['confirmation_allowed'] and not p['blocking_reasons']
+        assert p['budget']['total_cents'] is None and p['budget']['known_subtotal_cents'] == 60000
+        assert p['budget']['verification']=='INDETERMINATE' and p['budget']['constraint']=='UNDETERMINED'
+        assert p['unknown_costs'] and all(x['reason'] for x in p['unknown_costs'])
+        assert {r['code'] for r in p['risks']} >= {'not_booked','mock_data','route_unverified','prices_unverified','unknown_costs'}
+        key=str(uuid4()); body=request(p); r=confirm(http,path,body,key)
+>       assert r.status_code==201,r.text
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_confirmations.py:108: AssertionError
+_________________ test_rules_change_and_same_source_conflict __________________
+
+http = <starlette.testclient.TestClient object at 0x0000029441F63EF0>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000029442013BC0>
+
+    def test_rules_change_and_same_source_conflict(http,db,app):
+        path=generated(http,db); p=preview(http,path); old=request(p)
+        newer=ConfirmationService(unit_of_work(db),rules_version='confirmation-v2-test')
+        app.dependency_overrides[confirmation_service]=lambda:newer
+        assert confirm(http,path,old).json()['error']['code']=='risk_not_acknowledged'
+        q=preview(http,path); assert q['risk_hash']!=p['risk_hash']
+>       assert confirm(http,path,request(q)).status_code==201
+E       AssertionError: assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+E        +    where <Response [500 Internal Server Error]> = confirm(<starlette.testclient.TestClient object at 0x0000029441F63EF0>, '/api/v1/trips/b8b9800d-8732-451e-8ae6-0595c559e007', {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': '1b15adb58efd74282944edeabf92724b23a1d6b2977bbd49e8593160f10cb8a7', ...})
+E        +      where {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': '1b15adb58efd74282944edeabf92724b23a1d6b2977bbd49e8593160f10cb8a7', ...} = request({'trip_id': 'b8b9800d-8732-451e-8ae6-0595c559e007', 'intake_revision': 1, 'working_revision': 1, 'budget': {'known_subtotal_cents': 60000, 'total_cents': None, 'unknown_cost_ids': ['cost_activity_0', 'cost_local_0', 'cost_activity_1', 'cost_local_1', 'cost_activity_2', 'cost_local_2', ...], 'verification': 'INDETERMINATE', ...}, ...})
+
+tests\backend\test_confirmations.py:198: AssertionError
+_________________________ test_concurrent_http[True] __________________________
+
+app = <fastapi.applications.FastAPI object at 0x0000029442085100>
+http = <starlette.testclient.TestClient object at 0x0000029441F63440>
+db = DatabaseSettings(url=SecretStr('**********')), same_key = True
+
+    @pytest.mark.parametrize('same_key',[True,False])
+    def test_concurrent_http(app,http,db,same_key):
+        path=generated(http,db); body=request(preview(http,path)); key=str(uuid4())
+        async def race():
+            async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),base_url='http://127.0.0.1:8000') as c:
+                return await asyncio.gather(*(c.post(path+'/confirmations',json=body,headers=headers(key if same_key else None)) for _ in range(6)))
+>       results=run(race()); assert all(r.status_code==201 for r in results),[r.text for r in results]
+                ^^^^^^^^^^^
+
+tests\backend\test_confirmations.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\backend\test_intakes.py:37: in run
+    return runner.run(asyncio.wait_for(coro, 50))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\tasks.py:520: in wait_for
+    return await fut
+           ^^^^^^^^^
+tests\backend\test_confirmations.py:209: in race
+    return await asyncio.gather(*(c.post(path+'/confirmations',json=body,headers=headers(key if same_key else None)) for _ in range(6)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1859: in post
+    return await self.request(
+.venv\Lib\site-packages\httpx\_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_transports\asgi.py:170: in handle_async_request
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\applications.py:1194: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:683: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2811: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1865: in _handle_selected
+    await original_route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1328: in handle
+    await effective_context.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:166: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:152: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:745: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:372: in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+easytravel\backend\api\v1\trips.py:141: in confirm_trip
+    result = await service.confirm(trip_id, body, key=str(key), actor=actor)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+easytravel\backend\application\confirmations.py:72: in confirm
+    await repo.save_command(key, request_hash, result, str(uuid4()), operation_id, "POST", path, 201)
+easytravel\backend\infrastructure\intakes.py:44: in save_command
+    await self.conn.execute("""INSERT INTO easytravel.api_commands
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.AsyncConnection [BAD] at 0x29441facce0>
+query = 'INSERT INTO easytravel.api_commands\n            (command_id,operation_id,owner_id,method,path,idempotency_key,request_hash,trip_id,response_status,result)\n            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+params = ('a3e72445-029f-435d-a8a9-b4fab7f833ba', 'c013b04d-533b-451f-9179-75d0b2fe11dc', 'm101_owner_a', 'POST', '/api/v1/trips/d62f2591-10d1-4ee0-aa8d-80f9389ec07e/confirmations', '53fcd998-0ee0-4370-b1fb-c30d27ea76f4', ...)
+prepare = None, binary = False
+
+    async def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool = False,
+    ) -> AsyncCursor[Row]:
+        """Execute a query and return a cursor to read its results."""
+        try:
+            cur = self.cursor()
+            if binary:
+                cur.format = BINARY
+    
+            if isinstance(query, Template):
+                if params is not None:
+                    raise TypeError(
+                        "'execute()' with string template query"
+                        " doesn't support parameters"
+                    )
+                return await cur.execute(query, prepare=prepare)
+            else:
+                return await cur.execute(query, params, prepare=prepare)
+    
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.CheckViolation: new row for relation "api_commands" violates check constraint "api_commands_check"
+E           DETAIL:  Failing row contains (a3e72445-029f-435d-a8a9-b4fab7f833ba, c013b04d-533b-451f-9179-75d0b2fe11dc, m101_owner_a, POST, /api/v1/trips/d62f2591-10d1-4ee0-aa8d-80f9389ec07e/confirmations, 53fcd998-0ee0-4370-b1fb-c30d27ea76f4, 571b206f85e3c76aede830783beaaa32bf56b3ad19dfe6709eb27b8d069c5234, d62f2591-10d1-4ee0-aa8d-80f9389ec07e, 201, {"snapshot": {"booked": false, "context": {"input": {"days": {"s..., 2026-11-14 01:31:14.329551+00).
+
+.venv\Lib\site-packages\psycopg\connection_async.py:333: CheckViolation
+_________________________ test_concurrent_http[False] _________________________
+
+app = <fastapi.applications.FastAPI object at 0x00000294420DE5A0>
+http = <starlette.testclient.TestClient object at 0x00000294420DEFF0>
+db = DatabaseSettings(url=SecretStr('**********')), same_key = False
+
+    @pytest.mark.parametrize('same_key',[True,False])
+    def test_concurrent_http(app,http,db,same_key):
+        path=generated(http,db); body=request(preview(http,path)); key=str(uuid4())
+        async def race():
+            async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),base_url='http://127.0.0.1:8000') as c:
+                return await asyncio.gather(*(c.post(path+'/confirmations',json=body,headers=headers(key if same_key else None)) for _ in range(6)))
+>       results=run(race()); assert all(r.status_code==201 for r in results),[r.text for r in results]
+                ^^^^^^^^^^^
+
+tests\backend\test_confirmations.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\backend\test_intakes.py:37: in run
+    return runner.run(asyncio.wait_for(coro, 50))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\tasks.py:520: in wait_for
+    return await fut
+           ^^^^^^^^^
+tests\backend\test_confirmations.py:209: in race
+    return await asyncio.gather(*(c.post(path+'/confirmations',json=body,headers=headers(key if same_key else None)) for _ in range(6)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1859: in post
+    return await self.request(
+.venv\Lib\site-packages\httpx\_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_transports\asgi.py:170: in handle_async_request
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\applications.py:1194: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:683: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2811: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1865: in _handle_selected
+    await original_route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1328: in handle
+    await effective_context.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:166: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:152: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:745: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:372: in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+easytravel\backend\api\v1\trips.py:141: in confirm_trip
+    result = await service.confirm(trip_id, body, key=str(key), actor=actor)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+easytravel\backend\application\confirmations.py:72: in confirm
+    await repo.save_command(key, request_hash, result, str(uuid4()), operation_id, "POST", path, 201)
+easytravel\backend\infrastructure\intakes.py:44: in save_command
+    await self.conn.execute("""INSERT INTO easytravel.api_commands
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.AsyncConnection [BAD] at 0x29441f17980>
+query = 'INSERT INTO easytravel.api_commands\n            (command_id,operation_id,owner_id,method,path,idempotency_key,request_hash,trip_id,response_status,result)\n            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+params = ('95fc3ba6-64fe-4b6b-8f63-57743d5c7eb4', 'b07adb08-9a11-4edf-9ad7-8041977c9326', 'm101_owner_a', 'POST', '/api/v1/trips/182ea817-619f-4000-bd6d-2a685c388232/confirmations', '6f0e0e92-8a9d-4ef5-9a29-a6fa679f5362', ...)
+prepare = None, binary = False
+
+    async def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool = False,
+    ) -> AsyncCursor[Row]:
+        """Execute a query and return a cursor to read its results."""
+        try:
+            cur = self.cursor()
+            if binary:
+                cur.format = BINARY
+    
+            if isinstance(query, Template):
+                if params is not None:
+                    raise TypeError(
+                        "'execute()' with string template query"
+                        " doesn't support parameters"
+                    )
+                return await cur.execute(query, prepare=prepare)
+            else:
+                return await cur.execute(query, params, prepare=prepare)
+    
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.CheckViolation: new row for relation "api_commands" violates check constraint "api_commands_check"
+E           DETAIL:  Failing row contains (95fc3ba6-64fe-4b6b-8f63-57743d5c7eb4, b07adb08-9a11-4edf-9ad7-8041977c9326, m101_owner_a, POST, /api/v1/trips/182ea817-619f-4000-bd6d-2a685c388232/confirmations, 6f0e0e92-8a9d-4ef5-9a29-a6fa679f5362, 6b1b96a4d8ecf2411b93d3f35d5449405ec4cb6cd1a4b4c3bd52a937423c4abc, 182ea817-619f-4000-bd6d-2a685c388232, 201, {"snapshot": {"booked": false, "context": {"input": {"days": {"s..., 2026-11-14 01:31:14.702689+00).
+
+.venv\Lib\site-packages\psycopg\connection_async.py:333: CheckViolation
+___________________ test_real_database_rollback[disclosure] ___________________
+
+http = <starlette.testclient.TestClient object at 0x000002944202DE80>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x000002944202F680>
+failure_at = 'disclosure'
+
+    @pytest.mark.parametrize('failure_at',['disclosure','pointer','operation','command','commit'])
+    def test_real_database_rollback(http,db,app,failure_at):
+        path=generated(http,db); body=request(preview(http,path)); tid=path.split('/')[-1]; before=run(facts(db,tid))
+        @asynccontextmanager
+        async def broken(actor):
+            async with connection(db) as conn, conn.transaction():
+                repo=PostgresConfirmationRepository(conn,actor)
+                name={'disclosure':'save_disclosure','pointer':'point_snapshot','operation':'save_receipt','command':'save_command','commit':'save_command'}[failure_at]
+                original=getattr(repo,name)
+                async def fail(*args,**kwargs):
+                    await original(*args,**kwargs)
+                    if failure_at=='commit':
+                        # Real deferred FK violation, raised by PostgreSQL at COMMIT.
+                        await conn.execute('CREATE TEMP TABLE m105_commit_failure (id text REFERENCES easytravel.trips(trip_id) DEFERRABLE INITIALLY DEFERRED)')
+                        await conn.execute("INSERT INTO m105_commit_failure VALUES ('missing-parent-m105')")
+                    else:
+                        await conn.execute('SELECT 1/0')
+                setattr(repo,name,fail)
+                yield repo
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(broken)
+        key=str(uuid4()); r=confirm(http,path,body,key)
+        assert r.status_code==500 and r.json()=={'error':{'code':'internal_error','message':'Internal server error.'}}
+        assert run(facts(db,tid))==before
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(unit_of_work(db))
+>       assert confirm(http,path,body,key).status_code==201
+E       AssertionError: assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+E        +    where <Response [500 Internal Server Error]> = confirm(<starlette.testclient.TestClient object at 0x000002944202DE80>, '/api/v1/trips/1ddcabc5-853e-48d1-ad66-0fd44d6c0a42', {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': '54b1cc864afe2ec27e4cbb608c0b356806e24df30e236e1c677339ac84d54d1b', ...}, '77eae0eb-b5eb-4a74-85b2-4ed4d8e7fd24')
+
+tests\backend\test_confirmations.py:241: AssertionError
+____________________ test_real_database_rollback[pointer] _____________________
+
+http = <starlette.testclient.TestClient object at 0x000002944202FD70>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000029441F33830>
+failure_at = 'pointer'
+
+    @pytest.mark.parametrize('failure_at',['disclosure','pointer','operation','command','commit'])
+    def test_real_database_rollback(http,db,app,failure_at):
+        path=generated(http,db); body=request(preview(http,path)); tid=path.split('/')[-1]; before=run(facts(db,tid))
+        @asynccontextmanager
+        async def broken(actor):
+            async with connection(db) as conn, conn.transaction():
+                repo=PostgresConfirmationRepository(conn,actor)
+                name={'disclosure':'save_disclosure','pointer':'point_snapshot','operation':'save_receipt','command':'save_command','commit':'save_command'}[failure_at]
+                original=getattr(repo,name)
+                async def fail(*args,**kwargs):
+                    await original(*args,**kwargs)
+                    if failure_at=='commit':
+                        # Real deferred FK violation, raised by PostgreSQL at COMMIT.
+                        await conn.execute('CREATE TEMP TABLE m105_commit_failure (id text REFERENCES easytravel.trips(trip_id) DEFERRABLE INITIALLY DEFERRED)')
+                        await conn.execute("INSERT INTO m105_commit_failure VALUES ('missing-parent-m105')")
+                    else:
+                        await conn.execute('SELECT 1/0')
+                setattr(repo,name,fail)
+                yield repo
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(broken)
+        key=str(uuid4()); r=confirm(http,path,body,key)
+        assert r.status_code==500 and r.json()=={'error':{'code':'internal_error','message':'Internal server error.'}}
+        assert run(facts(db,tid))==before
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(unit_of_work(db))
+>       assert confirm(http,path,body,key).status_code==201
+E       AssertionError: assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+E        +    where <Response [500 Internal Server Error]> = confirm(<starlette.testclient.TestClient object at 0x000002944202FD70>, '/api/v1/trips/5f07b7d1-251a-45d9-8685-f1d2b265449e', {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': '911c9b2c6a08cb01e33b787b39de8cc2a2d98d4f1e066fb84d00009a37e814a7', ...}, 'ee9f45eb-7b4b-46b8-aa7f-b477e7a5cdb1')
+
+tests\backend\test_confirmations.py:241: AssertionError
+___________________ test_real_database_rollback[operation] ____________________
+
+http = <starlette.testclient.TestClient object at 0x0000029441EB68A0>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000029441D1E750>
+failure_at = 'operation'
+
+    @pytest.mark.parametrize('failure_at',['disclosure','pointer','operation','command','commit'])
+    def test_real_database_rollback(http,db,app,failure_at):
+        path=generated(http,db); body=request(preview(http,path)); tid=path.split('/')[-1]; before=run(facts(db,tid))
+        @asynccontextmanager
+        async def broken(actor):
+            async with connection(db) as conn, conn.transaction():
+                repo=PostgresConfirmationRepository(conn,actor)
+                name={'disclosure':'save_disclosure','pointer':'point_snapshot','operation':'save_receipt','command':'save_command','commit':'save_command'}[failure_at]
+                original=getattr(repo,name)
+                async def fail(*args,**kwargs):
+                    await original(*args,**kwargs)
+                    if failure_at=='commit':
+                        # Real deferred FK violation, raised by PostgreSQL at COMMIT.
+                        await conn.execute('CREATE TEMP TABLE m105_commit_failure (id text REFERENCES easytravel.trips(trip_id) DEFERRABLE INITIALLY DEFERRED)')
+                        await conn.execute("INSERT INTO m105_commit_failure VALUES ('missing-parent-m105')")
+                    else:
+                        await conn.execute('SELECT 1/0')
+                setattr(repo,name,fail)
+                yield repo
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(broken)
+        key=str(uuid4()); r=confirm(http,path,body,key)
+        assert r.status_code==500 and r.json()=={'error':{'code':'internal_error','message':'Internal server error.'}}
+        assert run(facts(db,tid))==before
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(unit_of_work(db))
+>       assert confirm(http,path,body,key).status_code==201
+E       AssertionError: assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+E        +    where <Response [500 Internal Server Error]> = confirm(<starlette.testclient.TestClient object at 0x0000029441EB68A0>, '/api/v1/trips/5955ea23-5318-4ad0-99d1-8dd2893fa935', {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': 'a8fe10eeff66823bfd16f9480c9e359cbd67ec451b90dc286bcee3845dd0a856', ...}, '8ed6ae2c-08e6-4101-806e-fbcc5f374854')
+
+tests\backend\test_confirmations.py:241: AssertionError
+____________________ test_real_database_rollback[command] _____________________
+
+http = <starlette.testclient.TestClient object at 0x0000029441E486E0>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000029441E48590>
+failure_at = 'command'
+
+    @pytest.mark.parametrize('failure_at',['disclosure','pointer','operation','command','commit'])
+    def test_real_database_rollback(http,db,app,failure_at):
+        path=generated(http,db); body=request(preview(http,path)); tid=path.split('/')[-1]; before=run(facts(db,tid))
+        @asynccontextmanager
+        async def broken(actor):
+            async with connection(db) as conn, conn.transaction():
+                repo=PostgresConfirmationRepository(conn,actor)
+                name={'disclosure':'save_disclosure','pointer':'point_snapshot','operation':'save_receipt','command':'save_command','commit':'save_command'}[failure_at]
+                original=getattr(repo,name)
+                async def fail(*args,**kwargs):
+                    await original(*args,**kwargs)
+                    if failure_at=='commit':
+                        # Real deferred FK violation, raised by PostgreSQL at COMMIT.
+                        await conn.execute('CREATE TEMP TABLE m105_commit_failure (id text REFERENCES easytravel.trips(trip_id) DEFERRABLE INITIALLY DEFERRED)')
+                        await conn.execute("INSERT INTO m105_commit_failure VALUES ('missing-parent-m105')")
+                    else:
+                        await conn.execute('SELECT 1/0')
+                setattr(repo,name,fail)
+                yield repo
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(broken)
+        key=str(uuid4()); r=confirm(http,path,body,key)
+        assert r.status_code==500 and r.json()=={'error':{'code':'internal_error','message':'Internal server error.'}}
+        assert run(facts(db,tid))==before
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(unit_of_work(db))
+>       assert confirm(http,path,body,key).status_code==201
+E       AssertionError: assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+E        +    where <Response [500 Internal Server Error]> = confirm(<starlette.testclient.TestClient object at 0x0000029441E486E0>, '/api/v1/trips/3f904c75-b317-4d1a-80c9-ca346c82d710', {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': '37e9d8ae2b57d507246f0352cfb417c791bdc724114e9bc7e56451da9e62fca7', ...}, '23318151-7ac1-4154-9a80-5c497ea765e8')
+
+tests\backend\test_confirmations.py:241: AssertionError
+_____________________ test_real_database_rollback[commit] _____________________
+
+http = <starlette.testclient.TestClient object at 0x0000029441E24770>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000029441E242C0>
+failure_at = 'commit'
+
+    @pytest.mark.parametrize('failure_at',['disclosure','pointer','operation','command','commit'])
+    def test_real_database_rollback(http,db,app,failure_at):
+        path=generated(http,db); body=request(preview(http,path)); tid=path.split('/')[-1]; before=run(facts(db,tid))
+        @asynccontextmanager
+        async def broken(actor):
+            async with connection(db) as conn, conn.transaction():
+                repo=PostgresConfirmationRepository(conn,actor)
+                name={'disclosure':'save_disclosure','pointer':'point_snapshot','operation':'save_receipt','command':'save_command','commit':'save_command'}[failure_at]
+                original=getattr(repo,name)
+                async def fail(*args,**kwargs):
+                    await original(*args,**kwargs)
+                    if failure_at=='commit':
+                        # Real deferred FK violation, raised by PostgreSQL at COMMIT.
+                        await conn.execute('CREATE TEMP TABLE m105_commit_failure (id text REFERENCES easytravel.trips(trip_id) DEFERRABLE INITIALLY DEFERRED)')
+                        await conn.execute("INSERT INTO m105_commit_failure VALUES ('missing-parent-m105')")
+                    else:
+                        await conn.execute('SELECT 1/0')
+                setattr(repo,name,fail)
+                yield repo
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(broken)
+        key=str(uuid4()); r=confirm(http,path,body,key)
+        assert r.status_code==500 and r.json()=={'error':{'code':'internal_error','message':'Internal server error.'}}
+        assert run(facts(db,tid))==before
+        app.dependency_overrides[confirmation_service]=lambda:ConfirmationService(unit_of_work(db))
+>       assert confirm(http,path,body,key).status_code==201
+E       AssertionError: assert 500 == 201
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+E        +    where <Response [500 Internal Server Error]> = confirm(<starlette.testclient.TestClient object at 0x0000029441E24770>, '/api/v1/trips/f12f63e8-e3ae-4d5f-ba2c-723f6ddbb251', {'expected_intake_revision': 1, 'expected_working_revision': 1, 'seen_disclosure_hash': 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', 'seen_risk_hash': '784e0d25658f9ce8da372c28dc026e2dced2cde59f1760da95cad36faf811b7f', ...}, 'd7cd8913-b3f0-4295-87a1-22db128502a2')
+
+tests\backend\test_confirmations.py:241: AssertionError
+_______________ test_cross_process_replay_after_intake_changed ________________
+
+http = <starlette.testclient.TestClient object at 0x0000029441955E50>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_cross_process_replay_after_intake_changed(http,db):
+        path=generated(http,db); body=request(preview(http,path)); key=str(uuid4())
+        result=confirm(http,path,body,key).json()
+        t=http.get(path,headers=headers()).json()
+        assert http.put(path+'/requirements',headers=headers(),json=dict(expected_intake_revision=1,expected_working_revision=1,requirements=t['intake']['input'])).status_code==200
+>       assert confirm(http,path,body,key).json()==result  # replay precedes stale intake
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'error': {'c...disclosure.'}} == {'error': {'c...rver error.'}}
+E         
+E         Differing items:
+E         {'error': {'code': 'stale_intake', 'message': 'Confirmation conflicts with the current draft or disclosure.'}} != {'error': {'code': 'internal_error', 'message': 'Internal server error.'}}
+E         
+E         Full diff: (-: missing in left side, +: extra in left side)
+E           {
+E               'error': {...
+E         
+E         ...Full output truncated, use '-vv' to show
+
+tests\backend\test_confirmations.py:263: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/backend/test_confirmations.py::test_preview_confirmation_facts_immutable
+FAILED tests/backend/test_confirmations.py::test_rules_change_and_same_source_conflict
+FAILED tests/backend/test_confirmations.py::test_concurrent_http[True] - psyc...
+FAILED tests/backend/test_confirmations.py::test_concurrent_http[False] - psy...
+FAILED tests/backend/test_confirmations.py::test_real_database_rollback[disclosure]
+FAILED tests/backend/test_confirmations.py::test_real_database_rollback[pointer]
+FAILED tests/backend/test_confirmations.py::test_real_database_rollback[operation]
+FAILED tests/backend/test_confirmations.py::test_real_database_rollback[command]
+FAILED tests/backend/test_confirmations.py::test_real_database_rollback[commit]
+FAILED tests/backend/test_confirmations.py::test_cross_process_replay_after_intake_changed
+======================== 10 failed, 13 passed in 5.62s ========================

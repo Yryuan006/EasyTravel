@@ -15,7 +15,7 @@ export interface TripView {
   intake: { intake_revision: number; input: RequirementsInput; collection_status: 'COLLECTING' | 'READY_TO_GENERATE'
     blocking_fields: FieldKey[]; provenance: { field: FieldKey; source: 'user' }[]
     suggested_values: { field: FieldKey; text: string; source: 'suggestion' }[] }
-  working: WorkingDraft | null; latest_confirmed_version_id: string | null; synchronization: 'NO_DRAFT' | 'CURRENT' | 'STALE'; plan_confirmation: 'UNCONFIRMED'
+  working: WorkingDraft | null; latest_confirmed_version_id: string | null; synchronization: 'NO_DRAFT' | 'CURRENT' | 'STALE'; plan_confirmation: 'UNCONFIRMED' | 'CONFIRMED'
   active_run_id: string | null; readiness: 'NOT_ASSESSED'; booked: false
 }
 export const labels: Record<FieldKey, string> = { origin: '出发地', destination: '目的地', dates: '出行日期', days: '旅行天数', travelers: '人数', target_budget_cents: '目标预算', hard_limit_cents: '硬预算上限', transport: '交通偏好', hotel: '酒店偏好', restrictions: '特殊限制' }
@@ -54,7 +54,7 @@ export function validTrip(v: unknown): v is TripView {
     && ['COLLECTING', 'READY_TO_GENERATE'].includes(String(i.collection_status)) && Array.isArray(i.blocking_fields) && i.blocking_fields.every(field)
     && Array.isArray(i.provenance) && i.provenance.every(x => object(x) && exact(x, ['field', 'source']) && field(x.field) && x.source === 'user')
     && Array.isArray(i.suggested_values) && i.suggested_values.every(x => object(x) && exact(x, ['field', 'text', 'source']) && field(x.field) && typeof x.text === 'string' && x.text.trim().length > 0 && x.text.length <= 500 && x.source === 'suggestion')
-    && (v.working === null ? v.synchronization === 'NO_DRAFT' && v.latest_confirmed_version_id === null : validWorking(v.working) && v.working.trip_id === v.trip_id && (v.synchronization === 'STALE' || (v.synchronization === 'CURRENT' && object(v.working.context) && v.working.context.intake_revision === i.intake_revision)) && v.working.latest_confirmed_version_id === v.latest_confirmed_version_id) && (v.latest_confirmed_version_id === null || validId(v.latest_confirmed_version_id)) && (v.active_run_id === null || validId(v.active_run_id)) && v.plan_confirmation === 'UNCONFIRMED' && v.readiness === 'NOT_ASSESSED' && v.booked === false
+    && (v.working === null ? v.synchronization === 'NO_DRAFT' && v.latest_confirmed_version_id === null : validWorking(v.working) && v.working.trip_id === v.trip_id && (v.synchronization === 'STALE' || (v.synchronization === 'CURRENT' && object(v.working.context) && v.working.context.intake_revision === i.intake_revision)) && v.working.latest_confirmed_version_id === v.latest_confirmed_version_id) && (v.latest_confirmed_version_id === null || validId(v.latest_confirmed_version_id)) && (v.active_run_id === null || validId(v.active_run_id)) && (v.plan_confirmation === 'UNCONFIRMED' || (v.plan_confirmation === 'CONFIRMED' && v.synchronization === 'CURRENT' && v.latest_confirmed_version_id !== null)) && v.readiness === 'NOT_ASSESSED' && v.booked === false
 }
 
 export interface WorkingDraft { context?: unknown; trip_id: string; owner_id: string; revision: number; requirements: Record<string, unknown>; payload: Record<string, unknown>; item_confirmations: unknown[]; latest_confirmed_version_id: string | null }

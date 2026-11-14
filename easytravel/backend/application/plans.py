@@ -172,11 +172,7 @@ class PlanService:
                 seen_disclosure_hash=seen_disclosure_hash, explicit_confirmation=explicit_confirmation)
             if not assessment.allowed:
                 raise ChangeError(assessment.reason)
-            snapshot = ConfirmedSnapshot(snapshot_id=str(uuid4()), trip_id=trip_id,
-                source_working_revision=working.revision, requirements=working.requirements,
-                payload=working.payload, item_confirmations=working.item_confirmations,
-                disclosure_hash=assessment.disclosure_hash, budget=assessment.budget,
-                confirmed_by=actor, confirmed_at=self.now())
+            snapshot = self.confirmed_snapshot(working, assessment, actor=actor)
             snapshot = await repo.save_snapshot(snapshot)
             await repo.point_snapshot(working, snapshot.snapshot_id)
             result = dict(operation_id=operation_id, operation_type="confirm_plan", trip_id=trip_id,
@@ -184,3 +180,11 @@ class PlanService:
                 plan_confirmation="CONFIRMED", budget=budget_data(assessment.budget), readiness="NOT_ASSESSED", booked=False)
             await repo.save_receipt(operation_id, trip_id, "confirm_plan", request_hash, result)
             return result
+
+    def confirmed_snapshot(self, working, assessment, *, actor):
+        """One immutable snapshot model shared by legacy and HTTP confirmation."""
+        return ConfirmedSnapshot(snapshot_id=str(uuid4()), trip_id=working.trip_id,
+            source_working_revision=working.revision, requirements=working.requirements,
+            payload=working.payload, item_confirmations=working.item_confirmations,
+            disclosure_hash=assessment.disclosure_hash, budget=assessment.budget,
+            confirmed_by=actor, confirmed_at=self.now())

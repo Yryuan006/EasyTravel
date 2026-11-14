@@ -2,7 +2,8 @@ import { afterEach, expect, it, vi } from 'vitest'
 import { mount, flushPromises } from '@vue/test-utils'
 import { shallowRef } from 'vue'
 import persisted from '../../Docs/M1-04a_独立进程读取.json'
-import type { TripView } from '../src/api/contracts'
+import { validTrip, type TripView } from '../src/api/contracts'
+import TripSummary from '../src/components/TripSummary.vue'
 import { canRetry, generate, getRun, money, validState, shanghaiDate, type GenerationRun, type BudgetResult, type PlanItem, type CostLine } from '../src/api/generations'
 import { useGeneration } from '../src/composables/useGeneration'
 import ItineraryView from '../src/components/ItineraryView.vue'
@@ -13,6 +14,15 @@ const trip = persisted.trip as TripView
 const run = persisted.run as unknown as GenerationRun
 const res = (v: unknown, status = 200) => new Response(JSON.stringify(v), { status })
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers() })
+it('accepts a confirmed current Trip and keeps confirmation distinct from booking and stale history', () => {
+  const confirmed = { ...trip, plan_confirmation: 'CONFIRMED' as const, latest_confirmed_version_id: 'snapshot-m105',
+    working: { ...trip.working!, latest_confirmed_version_id: 'snapshot-m105' } }
+  expect(validTrip(confirmed)).toBe(true)
+  const w = mount(TripSummary, { props: { trip: confirmed } })
+  expect(w.text()).toContain('已确认规划'); expect(w.text()).toContain('尚未预订'); w.unmount()
+  expect(validTrip({ ...confirmed, synchronization: 'STALE' })).toBe(false)
+  expect(validTrip({ ...confirmed, booked: true })).toBe(false)
+})
 it('preserves unknown, explicit zero and estimates with integer-cent formatting', () => {
   expect(money(null)).toBe('未知'); expect(money(0)).toBe('¥0.00'); expect(money(29)).toBe('¥0.29')
   const w = mount(BudgetSummary, { props: { budget: run.diagnostics_budget as BudgetResult, hardLimit: 230000 } })

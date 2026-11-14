@@ -57,6 +57,12 @@ async def business_error_handler(request: Request, exc: BusinessError) -> JSONRe
     if isinstance(exc, ResourceNotFound):
         return error_response(404, "resource_not_found", "Resource not found.")
     from ..domain.rules import ChangeError
+    if isinstance(exc, ChangeError) and str(exc) in {
+        "stale_intake", "stale_revision", "draft_not_ready", "blocking_risks",
+        "known_costs_exceed_hard_limit", "disclosure_not_acknowledged", "risk_not_acknowledged",
+        "explicit_confirmation_required", "snapshot_disclosure_conflict",
+    }:
+        return error_response(409, str(exc), "Confirmation conflicts with the current draft or disclosure.")
     if isinstance(exc, ChangeError) and str(exc) in {"scope_replan_not_supported", "stale_intake", "requirements_incomplete", "generation_in_progress", "invalid_retry", "explicit_retry_required"}:
         return error_response(409, str(exc), "Generation request conflicts with current state.")
     if isinstance(exc, BusinessConflict):

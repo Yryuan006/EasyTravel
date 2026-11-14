@@ -111,3 +111,33 @@ async def generation_state(trip_id: TripId, response: Response, actor: Actor, se
     result = await service.state(trip_id,actor=actor)
     response.headers["Cache-Control"] = "no-store"
     return result
+
+
+def confirmation_service(request: Request):
+    from ...infrastructure.database import load_database_settings
+    from ...infrastructure.confirmations import unit_of_work
+    from ...application.confirmations import ConfirmationService
+    try:
+        database = load_database_settings()
+    except ValueError:
+        raise LocalApiError(503, "business_dependency_unavailable") from None
+    return ConfirmationService(unit_of_work(database))
+
+
+from ...domain.confirmation import ConfirmRequest, ConfirmResult, ConfirmationPreview
+Confirmation = Annotated[object, Depends(confirmation_service)]
+
+
+@router.get("/{trip_id}/confirmation-preview", response_model=ConfirmationPreview, operation_id="getConfirmationPreview")
+async def confirmation_preview(trip_id: TripId, response: Response, actor: Actor, service: Confirmation):
+    result = await service.preview(trip_id, actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result
+
+
+@router.post("/{trip_id}/confirmations", response_model=ConfirmResult, status_code=201, operation_id="confirmTrip")
+async def confirm_trip(trip_id: TripId, body: ConfirmRequest, response: Response,
+                       actor: Actor, service: Confirmation, key: CommandKey):
+    result = await service.confirm(trip_id, body, key=str(key), actor=actor)
+    response.headers["Cache-Control"] = "no-store"
+    return result

@@ -48,13 +48,14 @@ class PostgresIntakeRepository:
 
     async def read_trip(self, trip_id):
         row = await (await self.conn.execute("""SELECT t.trip_id,t.created_at,v.revision,v.input, w.revision AS working_revision,w.latest_confirmed_version_id,
-                   d.requirements,d.payload,d.item_confirmations
+                   d.requirements,d.payload,d.item_confirmations,s.source_working_revision AS confirmed_revision
             FROM easytravel.trips t JOIN easytravel.trip_intakes i
               ON (t.trip_id,t.owner_id)=(i.trip_id,i.owner_id)
             JOIN easytravel.trip_intake_versions v
               ON (i.trip_id,i.owner_id,i.revision)=(v.trip_id,v.owner_id,v.revision)
             LEFT JOIN easytravel.working_drafts w ON (w.trip_id,w.owner_id)=(t.trip_id,t.owner_id)
             LEFT JOIN easytravel.draft_versions d ON (d.trip_id,d.owner_id,d.revision)=(w.trip_id,w.owner_id,w.revision)
+            LEFT JOIN easytravel.confirmed_snapshots s ON (s.snapshot_id,s.trip_id,s.confirmed_by)=(w.latest_confirmed_version_id,w.trip_id,w.owner_id)
             WHERE t.trip_id=%s AND t.owner_id=%s""",
             (trip_id, self.actor))).fetchone()
         if row is None:
@@ -75,7 +76,7 @@ class PostgresIntakeRepository:
             run = await (await self.conn.execute("SELECT run_id FROM easytravel.generation_runs WHERE trip_id=%s AND owner_id=%s AND status IN ('ACCEPTED','RUNNING')", (trip_id,self.actor))).fetchone()
             active = run["run_id"] if run else None
         return trip_view(row["trip_id"], row["created_at"], row["revision"],
-                         RequirementsInput.model_validate(row["input"]), working, context, active)
+                         RequirementsInput.model_validate(row["input"]), working, context, active, row["confirmed_revision"])
 
 
     async def lock_trip(self, trip_id):
