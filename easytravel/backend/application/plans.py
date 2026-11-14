@@ -101,44 +101,48 @@ class PlanService:
         self.identifier(actor)
         self.identifier(operation_id)
         async with self.uow(actor) as repo:
-            await repo.lock_operation(operation_id)
-            proposal = await repo.proposal(proposal_id)
-            self.validate_proposal(proposal)
-            request_hash = digest(dict(kind="apply_working_change", trip_id=proposal.trip_id, actor=actor,
-                proposal_id=proposal_id, candidate_hash=proposal.candidate_hash, authorization_id=authorization_id))
-            existing = await repo.receipt(operation_id, request_hash)
-            if existing is not None:
-                return existing
-            working = await repo.working(proposal.trip_id)
-            if proposal.requirements_revision != working.requirements.requirements_revision:
-                raise ChangeError("stale_requirements")
-            candidate = construct_candidate(working, proposal.output)
-            if (candidate.payload != proposal.candidate or candidate.level != proposal.level
-                    or candidate.touched != proposal.touched_item_ids):
-                raise ChangeError("candidate_mismatch")
-            if candidate.level == "L3":
-                if authorization_id is None:
-                    raise ChangeError("specific_authorization_required")
-                grant, consumed = await repo.authorization(authorization_id)
-                if (grant.trip_id != working.trip_id or grant.proposal_id != proposal_id
-                        or grant.candidate_hash != proposal.candidate_hash or grant.granted_by != actor
-                        or grant.base_working_revision != working.revision or grant.item_ids != candidate.touched
-                        or consumed is not None):
-                    raise ChangeError("authorization_scope_mismatch")
-                await repo.consume(authorization_id, operation_id)
-            elif authorization_id is not None:
-                raise ChangeError("unexpected_authorization")
-            budget = check_constraints(candidate.payload, working.requirements, now=self.now())
-            updated = WorkingDraft(trip_id=working.trip_id, owner_id=actor, revision=working.revision+1,
-                requirements=working.requirements, payload=candidate.payload,
-                item_confirmations=candidate.remaining_confirmations,
-                latest_confirmed_version_id=working.latest_confirmed_version_id)
-            await repo.advance(working, updated)
-            result = dict(operation_id=operation_id, operation_type="apply_working_change", trip_id=working.trip_id,
-                working_revision=updated.revision, latest_confirmed_version_id=working.latest_confirmed_version_id,
-                level=candidate.level, explanation=proposal.output.explanation, budget=budget_data(budget))
-            await repo.save_receipt(operation_id, working.trip_id, "apply_working_change", request_hash, result)
-            return result
+            return await self.apply_in_transaction(repo, proposal_id, operation_id=operation_id, actor=actor, authorization_id=authorization_id)
+
+    async def apply_in_transaction(self, repo, proposal_id, *, operation_id, actor, authorization_id=None):
+        """Reuse the same validated apply path within an outer atomic decision UoW."""
+        await repo.lock_operation(operation_id)
+        proposal = await repo.proposal(proposal_id)
+        self.validate_proposal(proposal)
+        request_hash = digest(dict(kind="apply_working_change", trip_id=proposal.trip_id, actor=actor,
+            proposal_id=proposal_id, candidate_hash=proposal.candidate_hash, authorization_id=authorization_id))
+        existing = await repo.receipt(operation_id, request_hash)
+        if existing is not None:
+            return existing
+        working = await repo.working(proposal.trip_id)
+        if proposal.requirements_revision != working.requirements.requirements_revision:
+            raise ChangeError("stale_requirements")
+        candidate = construct_candidate(working, proposal.output)
+        if (candidate.payload != proposal.candidate or candidate.level != proposal.level
+                or candidate.touched != proposal.touched_item_ids):
+            raise ChangeError("candidate_mismatch")
+        if candidate.level == "L3":
+            if authorization_id is None:
+                raise ChangeError("specific_authorization_required")
+            grant, consumed = await repo.authorization(authorization_id)
+            if (grant.trip_id != working.trip_id or grant.proposal_id != proposal_id
+                    or grant.candidate_hash != proposal.candidate_hash or grant.granted_by != actor
+                    or grant.base_working_revision != working.revision or grant.item_ids != candidate.touched
+                    or consumed is not None):
+                raise ChangeError("authorization_scope_mismatch")
+            await repo.consume(authorization_id, operation_id)
+        elif authorization_id is not None:
+            raise ChangeError("unexpected_authorization")
+        budget = check_constraints(candidate.payload, working.requirements, now=self.now())
+        updated = WorkingDraft(trip_id=working.trip_id, owner_id=actor, revision=working.revision+1,
+            requirements=working.requirements, payload=candidate.payload,
+            item_confirmations=candidate.remaining_confirmations,
+            latest_confirmed_version_id=working.latest_confirmed_version_id)
+        await repo.advance(working, updated)
+        result = dict(operation_id=operation_id, operation_type="apply_working_change", trip_id=working.trip_id,
+            working_revision=updated.revision, latest_confirmed_version_id=working.latest_confirmed_version_id,
+            level=candidate.level, explanation=proposal.output.explanation, budget=budget_data(budget))
+        await repo.save_receipt(operation_id, working.trip_id, "apply_working_change", request_hash, result)
+        return result
 
     async def confirmation_preview(self, trip_id, *, actor):
         self.identifier(actor)

@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 28 items
+
+tests/backend/test_change_workflow.py::test_activity_applies_without_grant_preserves_snapshot PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[missing] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[less] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[more] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[hash] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[string] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[number] PASSED
+tests/backend/test_change_workflow.py::test_l3_atomic_apply_replay_and_reject PASSED
+tests/backend/test_change_workflow.py::test_stale_input_revision_parent_and_owner PASSED
+tests/backend/test_change_workflow.py::test_unknown_intent_failed_no_proposal PASSED
+tests/backend/test_change_workflow.py::test_atomic_rollback[save_decision] PASSED
+tests/backend/test_change_workflow.py::test_atomic_rollback[commit] PASSED
+tests/backend/test_change_workflow.py::test_concurrent_replay_and_changed_command PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u5220\u9664\u6d3b\u52a8] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u66ff\u6362\u6d3b\u52a8] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u8c03\u6574\u6d3b\u52a8\u65f6\u95f4] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u6dfb\u52a0\u6d3b\u52a8] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u4fee\u6539\u6d3b\u52a8\u6807\u9898] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[invalid_json] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[over_budget] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[out_of_dates] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[hotel_with_activity] PASSED
+tests/backend/test_change_workflow.py::test_process_replay_reads_decision_proposal_and_draft[True] PASSED
+tests/backend/test_change_workflow.py::test_process_replay_reads_decision_proposal_and_draft[False] PASSED
+tests/backend/test_change_workflow.py::test_interrupted_change_run_recovers_without_proposal PASSED
+tests/backend/test_change_workflow.py::test_concurrent_intent_replays_one_frozen_run_and_survives_process_exit PASSED
+tests/backend/test_change_workflow.py::test_protected_activity_is_l3_and_stale_proposal_cannot_overwrite PASSED
+tests/backend/test_change_workflow.py::test_generation_frozen_base_cannot_override_new_intake PASSED
+
+============================= 28 passed in 11.80s =============================

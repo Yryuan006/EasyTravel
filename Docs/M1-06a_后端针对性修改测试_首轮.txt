@@ -1,0 +1,398 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/backend/test_changes.py::test_activity_applies_without_grant_preserves_snapshot FAILED
+tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[missing] FAILED
+tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[less] FAILED
+tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[more] FAILED
+tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[hash] FAILED
+tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[string] FAILED
+tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[number] FAILED
+tests/backend/test_changes.py::test_l3_atomic_apply_replay_and_reject FAILED
+tests/backend/test_changes.py::test_stale_input_revision_parent_and_owner FAILED
+tests/backend/test_changes.py::test_unknown_intent_failed_no_proposal PASSED
+tests/backend/test_changes.py::test_atomic_rollback[save_decision] FAILED
+tests/backend/test_changes.py::test_atomic_rollback[commit] FAILED
+tests/backend/test_changes.py::test_concurrent_replay_and_changed_command FAILED
+
+================================== FAILURES ===================================
+___________ test_activity_applies_without_grant_preserves_snapshot ____________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC15F9DF0>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_activity_applies_without_grant_preserves_snapshot(http,db):
+        path=generated(http,db);p=preview(http,path);assert confirm(http,path,confirm_request(p)).status_code==201
+        tid=path.split('/')[-1];before=run(facts(db,tid))
+>       pp,p=proposal(http,db,path);assert p['proposal']['level']=='L2' and p['state']=='PENDING'
+             ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC15F9DF0>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/49d1cc59-50fa-416e-a57a-a0349a55e2ef', text = '第二天安排轻松一点'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_______________ test_l3_exact_scope_and_strict_intent[missing] ________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC19FE1B0>
+db = DatabaseSettings(url=SecretStr('**********')), bad = 'missing'
+
+    @pytest.mark.parametrize('bad',['missing','less','more','hash','string','number'])
+    def test_l3_exact_scope_and_strict_intent(http,db,bad):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));assert p['proposal']['level']=='L3'
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC19FE1B0>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/8d16dcbb-59eb-44af-82f8-bb028562467f', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_________________ test_l3_exact_scope_and_strict_intent[less] _________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A6F500>
+db = DatabaseSettings(url=SecretStr('**********')), bad = 'less'
+
+    @pytest.mark.parametrize('bad',['missing','less','more','hash','string','number'])
+    def test_l3_exact_scope_and_strict_intent(http,db,bad):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));assert p['proposal']['level']=='L3'
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A6F500>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/406154c9-fff6-4670-9386-2816a7682134', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_________________ test_l3_exact_scope_and_strict_intent[more] _________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A39850>
+db = DatabaseSettings(url=SecretStr('**********')), bad = 'more'
+
+    @pytest.mark.parametrize('bad',['missing','less','more','hash','string','number'])
+    def test_l3_exact_scope_and_strict_intent(http,db,bad):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));assert p['proposal']['level']=='L3'
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A39850>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/ecd6ecf4-98a5-4529-b746-9803f5a28bd5', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_________________ test_l3_exact_scope_and_strict_intent[hash] _________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A38500>
+db = DatabaseSettings(url=SecretStr('**********')), bad = 'hash'
+
+    @pytest.mark.parametrize('bad',['missing','less','more','hash','string','number'])
+    def test_l3_exact_scope_and_strict_intent(http,db,bad):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));assert p['proposal']['level']=='L3'
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A38500>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/70788522-f825-47db-b034-58c6deadc44e', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+________________ test_l3_exact_scope_and_strict_intent[string] ________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1BC7920>
+db = DatabaseSettings(url=SecretStr('**********')), bad = 'string'
+
+    @pytest.mark.parametrize('bad',['missing','less','more','hash','string','number'])
+    def test_l3_exact_scope_and_strict_intent(http,db,bad):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));assert p['proposal']['level']=='L3'
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1BC7920>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/10c2bec9-7ede-4bbb-8d56-3d75117edb30', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+________________ test_l3_exact_scope_and_strict_intent[number] ________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A3BCB0>
+db = DatabaseSettings(url=SecretStr('**********')), bad = 'number'
+
+    @pytest.mark.parametrize('bad',['missing','less','more','hash','string','number'])
+    def test_l3_exact_scope_and_strict_intent(http,db,bad):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));assert p['proposal']['level']=='L3'
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1A3BCB0>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/1ab877bb-7610-4131-8ba7-72861d8c24dc', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+___________________ test_l3_atomic_apply_replay_and_reject ____________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1DE3F20>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_l3_atomic_apply_replay_and_reject(http,db):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));body=decision(p);key=str(uuid4())
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1DE3F20>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/a6ea4a07-3538-48e5-ae79-6bcdd77e0ad4', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_________________ test_stale_input_revision_parent_and_owner __________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1D41820>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_stale_input_revision_parent_and_owner(http,db):
+>       path=generated(http,db);pp,p=proposal(http,db,path);other=generated(http,db)
+                                     ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1D41820>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/5535c9c9-e404-4b3c-9321-726474c202a6', text = '第二天安排轻松一点'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_____________________ test_atomic_rollback[save_decision] _____________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1B5BD10>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000021CC1BA2630>
+phase = 'save_decision'
+
+    @pytest.mark.parametrize('phase',['save_decision','commit'])
+    def test_atomic_rollback(http,db,app,phase):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));tid=path.split('/')[-1];before=run(facts(db,tid))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1B5BD10>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/f0189b70-e62c-44bb-b327-22596e4ff349', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+________________________ test_atomic_rollback[commit] _________________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1BA3D40>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000021CC1E7FA10>
+phase = 'commit'
+
+    @pytest.mark.parametrize('phase',['save_decision','commit'])
+    def test_atomic_rollback(http,db,app,phase):
+>       path=generated(http,db);pp,p=proposal(http,db,path,hotel_intent(http,path));tid=path.split('/')[-1];before=run(facts(db,tid))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\backend\test_changes.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1BA3D40>
+db = DatabaseSettings(url=SecretStr('**********'))
+path = '/api/v1/trips/f665c321-e0ff-4dc1-b589-f5f37929eae3', text = '更换酒店 hotel'
+
+    def proposal(http,db,path,text='第二天安排轻松一点'):
+        r,_=intent(http,path,text);assert r.status_code==202,r.text
+        run(step(db))
+        result=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()
+        assert result['status']=='SUCCEEDED',result
+        pid=result['result']['proposal_id']
+>       r=http.get(path+'/proposals/'+pid,headers=headers());assert r.status_code==200,r.text
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {"error":{"code":"internal_error","message":"Internal server error."}}
+E       assert 500 == 200
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_changes.py:59: AssertionError
+_________________ test_concurrent_replay_and_changed_command __________________
+
+http = <starlette.testclient.TestClient object at 0x0000021CC1D412B0>
+db = DatabaseSettings(url=SecretStr('**********'))
+app = <fastapi.applications.FastAPI object at 0x0000021CC1D40C80>
+
+    def test_concurrent_replay_and_changed_command(http,db,app):
+        path=generated(http,db);key=str(uuid4());r,body=intent(http,path,key=key);assert r.status_code==202
+        assert http.post(path+'/change-intents',headers=headers(key),json=body).json()==r.json()
+        assert http.post(path+'/change-intents',headers=headers(key),json=body|dict(intent='different')).json()['error']['code']=='idempotency_key_reused'
+        run(step(db));pid=http.get(path+'/generations/'+r.json()['run_id'],headers=headers()).json()['result']['proposal_id']
+>       pp=path+'/proposals/'+pid;p=http.get(pp,headers=headers()).json();body=decision(p);key=str(uuid4())
+                                                                               ^^^^^^^^^^^
+
+tests\backend\test_changes.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+p = {'error': {'code': 'internal_error', 'message': 'Internal server error.'}}
+approve = True
+
+    def decision(p,approve=True):
+>       body=dict(expected_intake_revision=p['intake_revision'],expected_working_revision=p['proposal']['output']['base_working_revision'],
+                                           ^^^^^^^^^^^^^^^^^^^^
+            seen_candidate_hash=p['proposal']['candidate_hash'],decision='approve' if approve else 'reject')
+E       KeyError: 'intake_revision'
+
+tests\backend\test_changes.py:64: KeyError
+=========================== short test summary info ===========================
+FAILED tests/backend/test_changes.py::test_activity_applies_without_grant_preserves_snapshot
+FAILED tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[missing]
+FAILED tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[less]
+FAILED tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[more]
+FAILED tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[hash]
+FAILED tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[string]
+FAILED tests/backend/test_changes.py::test_l3_exact_scope_and_strict_intent[number]
+FAILED tests/backend/test_changes.py::test_l3_atomic_apply_replay_and_reject
+FAILED tests/backend/test_changes.py::test_stale_input_revision_parent_and_owner
+FAILED tests/backend/test_changes.py::test_atomic_rollback[save_decision] - A...
+FAILED tests/backend/test_changes.py::test_atomic_rollback[commit] - Assertio...
+FAILED tests/backend/test_changes.py::test_concurrent_replay_and_changed_command
+======================== 12 failed, 1 passed in 4.04s =========================

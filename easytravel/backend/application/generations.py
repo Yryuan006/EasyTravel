@@ -12,6 +12,7 @@ from ..domain.models import WorkingDraft
 from .plans import PlanService, budget_data
 
 ERROR_MESSAGES = {
+    "unsupported_change_intent": "Mock supports only the documented exact change commands; rewrite the intent.",
     "invalid_output": "Mock output failed validation.",
     "known_costs_exceed_hard_limit": "Known costs exceed the hard budget limit.",
     "stale_input": "Requirements changed during generation.",

@@ -39,8 +39,16 @@ class GenerationWorker:
         if claimed is None:
             return False
         run,actor = claimed
+        service = self.service
+        adapter_factory = self.adapter_factory
+        if run.kind == 'CHANGE_INTENT':
+            from .application.changes import ChangeService
+            from .infrastructure.changes import unit_of_work as change_uow
+            from .infrastructure.mock_changes import mock_change_adapter
+            service = ChangeService(change_uow(self.settings))
+            adapter_factory = mock_change_adapter
         try:
-            await self.service.execute(run,actor=actor,adapter_factory=self.adapter_factory)
+            await service.execute(run,actor=actor,adapter_factory=adapter_factory)
         except asyncio.CancelledError:
             await self.service.fail(run,'worker_interrupted',actor=actor)
             raise

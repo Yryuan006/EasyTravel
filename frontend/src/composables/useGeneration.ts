@@ -34,7 +34,7 @@ export function useGeneration(saved: ShallowRef<TripView>, token: () => string) 
       if (version !== epoch) return
       if (state.working_revision !== (trip.working?.revision ?? null)) throw new Error('工作稿版本已变化，请重新读取。')
       // Keep requirements writes authoritative: never replace a newer local revision.
-      if (trip.intake.intake_revision < saved.value.intake.intake_revision) throw new Error('读取结果已过期，请重新读取。')
+      if (trip.intake.intake_revision < saved.value.intake.intake_revision || (trip.working?.revision ?? 0) < (saved.value.working?.revision ?? 0)) throw new Error('读取结果已过期，请重新读取。')
       saved.value = trip; projection.value = state; run.value = state.latest_run ?? undefined; ready.value = true
       if (active.value && run.value) poll(run.value.run_id, version)
     } catch (e) { if (version === epoch) error.value = e instanceof Error ? e.message : '读取生成状态失败。' }

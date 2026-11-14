@@ -10,6 +10,8 @@ import CostBreakdown from './CostBreakdown.vue'
 import RiskList from './RiskList.vue'
 import GenerationStatus from './GenerationStatus.vue'
 import ConfirmationReview from './ConfirmationReview.vue'
+import ChangeReview from './ChangeReview.vue'
+import { useChanges } from '../composables/useChanges'
 import { useConfirmation } from '../composables/useConfirmation'
 import TripSummary from './TripSummary.vue'
 import RequirementsForm from './RequirementsForm.vue'
@@ -21,9 +23,11 @@ const editing = ref(false), paused = ref(false), notice = ref(''), formEpoch = r
 const retainedAnswer = ref<AnswerRequest['answer']>()
 const generation = useGeneration(saved, () => props.token)
 const { run, projection, pending: generationPending, busy: generationBusy, error: generationError, ready: generationReady, active: generationActive, eligible, retryable } = generation
-const confirmationBlocked = computed(() => busy.value || editing.value || !reviewed.value || conflict.value || !!pending.value || generationBusy.value || generationActive.value || !!generationPending.value)
+const confirmationBlocked = computed(() => busy.value || editing.value || !reviewed.value || conflict.value || !!pending.value || generationBusy.value || generationActive.value || !!generationPending.value || changes.locked.value)
 const confirmation = useConfirmation(saved, () => props.token, () => confirmationBlocked.value)
-const confirmationLocked = confirmation.locked
+const changeBlocked = computed(() => busy.value || editing.value || !reviewed.value || conflict.value || !!pending.value || confirmation.locked.value || generationBusy.value || !!generationPending.value)
+const changes = useChanges(saved, () => props.token, () => changeBlocked.value)
+const confirmationLocked = computed(() => confirmation.locked.value || changes.locked.value)
 const items = computed(() => (saved.value.working?.payload.items ?? []) as PlanItem[])
 const costs = computed(() => (saved.value.working?.payload.costs ?? []) as CostLine[])
 const notes = computed(() => (saved.value.working?.context as { notes: Notes } | null)?.notes ?? null)
@@ -77,6 +81,7 @@ function discard() { formEpoch.value++; reviewed.value = true; notice.value = ''
     <p v-if="generationPending">生成请求结果可能尚未确定，原键及内容保留在当前页面。请恢复查询或使用原请求重试，不要创建新请求。</p>
   </section>
   <ConfirmationReview v-if="saved.working" :trip="saved" :session="confirmation" :blocked="confirmationBlocked" />
+  <ChangeReview v-if="saved.working" :trip="saved" :session="changes" :blocked="changeBlocked" />
   <template v-if="saved.working">
     <p v-if="saved.synchronization === 'STALE'" class="notice">STALE：以下是旧需求下的工作稿与预算，不能作为当前需求的有效结果。</p>
     <BudgetSummary v-if="sourceBudget" :budget="sourceBudget" :hard-limit="hardLimit" :current-limit="saved.intake.input.hard_limit_cents.value" />

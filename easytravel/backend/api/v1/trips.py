@@ -141,3 +141,40 @@ async def confirm_trip(trip_id: TripId, body: ConfirmRequest, response: Response
     result = await service.confirm(trip_id, body, key=str(key), actor=actor)
     response.headers["Cache-Control"] = "no-store"
     return result
+
+
+def change_service(request: Request):
+    from ...infrastructure.database import load_database_settings
+    from ...infrastructure.changes import unit_of_work
+    from ...application.changes import ChangeService
+    try:
+        database = load_database_settings()
+    except ValueError:
+        raise LocalApiError(503, 'business_dependency_unavailable') from None
+    return ChangeService(unit_of_work(database))
+
+
+from ...domain.changes import ChangeIntentRequest, ProposalView, DecisionRequest, DecisionResult
+Changes = Annotated[object, Depends(change_service)]
+
+
+@router.post('/{trip_id}/change-intents', response_model=GenerationRun, status_code=202, operation_id='requestChange')
+async def request_change(trip_id: TripId, body: ChangeIntentRequest, response: Response, actor: Actor, service: Changes, key: CommandKey):
+    result = await service.accept(trip_id,body,key=str(key),actor=actor)
+    response.headers['Cache-Control'] = 'no-store'
+    response.headers['Location'] = f'/api/v1/trips/{trip_id}/generations/{result.run_id}'
+    return result
+
+
+@router.get('/{trip_id}/proposals/{proposal_id}', response_model=ProposalView, operation_id='getProposal')
+async def get_proposal(trip_id: TripId, proposal_id: TripId, response: Response, actor: Actor, service: Changes):
+    result = await service.get(trip_id,proposal_id,actor=actor)
+    response.headers['Cache-Control'] = 'no-store'
+    return result
+
+
+@router.post('/{trip_id}/proposals/{proposal_id}/decisions', response_model=DecisionResult, operation_id='decideProposal')
+async def decide_proposal(trip_id: TripId, proposal_id: TripId, body: DecisionRequest, response: Response, actor: Actor, service: Changes, key: CommandKey):
+    result = await service.decide(trip_id,proposal_id,body,key=str(key),actor=actor)
+    response.headers['Cache-Control'] = 'no-store'
+    return result

@@ -58,6 +58,12 @@ async def business_error_handler(request: Request, exc: BusinessError) -> JSONRe
         return error_response(404, "resource_not_found", "Resource not found.")
     from ..domain.rules import ChangeError
     if isinstance(exc, ChangeError) and str(exc) in {
+        'stale_revision', 'stale_proposal', 'candidate_mismatch', 'proposal_context_mismatch',
+        'specific_authorization_required', 'authorization_scope_mismatch', 'unexpected_authorization',
+        'proposal_already_decided', 'unsupported_change_intent',
+    }:
+        return error_response(409, str(exc), 'Change request conflicts with the reviewed proposal or current draft.')
+    if isinstance(exc, ChangeError) and str(exc) in {
         "stale_intake", "stale_revision", "draft_not_ready", "blocking_risks",
         "known_costs_exceed_hard_limit", "disclosure_not_acknowledged", "risk_not_acknowledged",
         "explicit_confirmation_required", "snapshot_disclosure_conflict",

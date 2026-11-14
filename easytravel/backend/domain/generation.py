@@ -1,7 +1,7 @@
 """Generation API records and deterministic first-draft constraints."""
 from datetime import datetime, timedelta
 from typing import Literal
-from pydantic import Field
+from pydantic import Field, model_validator
 from ...contracts import Contract, ID, Revision, TripRequirements
 from .intake import InputContract
 from .rules import ChangeError, check_constraints
@@ -24,9 +24,9 @@ class RunError(InputContract):
 class GenerationRun(Contract):
     run_id: ID
     trip_id: ID
-    kind: Literal["INITIAL_PLAN"]
+    kind: Literal["INITIAL_PLAN", "CHANGE_INTENT"]
     intake_revision: Revision
-    base_working_revision: None
+    base_working_revision: Revision | None
     status: Literal["ACCEPTED", "RUNNING", "SUCCEEDED", "FAILED"]
     attempt: Revision
     retry_of: ID | None
@@ -35,6 +35,20 @@ class GenerationRun(Contract):
     result: RunResult | None
     error: RunError | None
     diagnostics_budget: BudgetResult | None
+
+    @model_validator(mode='after')
+    def paired_result(self):
+        if (self.kind=='INITIAL_PLAN') != (self.base_working_revision is None):
+            raise ValueError('run base mismatch')
+        if self.status=='SUCCEEDED':
+            if self.result is None or self.error is not None:
+                raise ValueError('missing run result')
+            if self.kind=='INITIAL_PLAN':
+                if self.result.working_revision!=1 or self.result.proposal_id is not None:raise ValueError('initial result mismatch')
+            elif self.result.working_revision is not None or self.result.proposal_id is None:raise ValueError('proposal result mismatch')
+        elif self.result is not None or (self.status=='FAILED') != (self.error is not None):
+            raise ValueError('run state mismatch')
+        return self
 
 
 def requirements_from(input):

@@ -23,7 +23,7 @@ class PostgresGenerationRepository(PostgresIntakeRepository):
         if row is None:
             raise ResourceNotFound()
         row.pop("owner_id")
-        return GenerationRun.model_validate(row | dict(base_working_revision=None))
+        return GenerationRun.model_validate(row)
 
     async def state(self, trip_id):
         from ..domain.generation import GenerationState
@@ -33,7 +33,8 @@ class PostgresGenerationRepository(PostgresIntakeRepository):
             row = await (await self.conn.execute("""SELECT g.run_id FROM easytravel.draft_contexts c
                 JOIN easytravel.generation_runs g ON g.run_id=c.run_id AND g.trip_id=c.trip_id AND g.owner_id=c.owner_id
                 WHERE c.trip_id=%s AND c.owner_id=%s AND c.working_revision=%s AND g.status='SUCCEEDED' AND g.intake_revision=c.intake_revision
-                AND (g.result->>'working_revision')::integer=c.working_revision""",
+                AND ((g.kind='INITIAL_PLAN' AND (g.result->>'working_revision')::integer=c.working_revision)
+                     OR (g.kind='CHANGE_INTENT' AND g.base_working_revision+1=c.working_revision))""",
                 (trip_id,self.actor,trip.working.revision))).fetchone()
             if row:
                 source = await self.run(trip_id,row['run_id'])

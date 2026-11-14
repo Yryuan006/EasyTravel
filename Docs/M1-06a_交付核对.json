@@ -1,0 +1,21 @@
+{
+  "baseline": "7fe4352c9d37cbebe8e57858d92b766f62345f44",
+  "backendNewTests": 28,
+  "backendAllTests": 412,
+  "vitest": 137,
+  "playwright": 57,
+  "protectedSourcesAndOldEvidenceUnchanged": true,
+  "migrations001to005ByteIdentical": true,
+  "migration006SHA256": "69c974aaaf079b663960dcd70c1813173fbc29566f858ced6e728771e5a8d562",
+  "isolationContainer": "easytravel-m106a-isolated-04f538ec77",
+  "oldExperimentFingerprintsUnchanged": true,
+  "testTransportRestored": true,
+  "browserChains": [
+    "E09",
+    "E10/E12/E18",
+    "E11"
+  ],
+  "confirmedSnapshotAndDisclosureRowsUnchangedAfterActivityEdit": true,
+  "l3AuthorizationCount": 1,
+  "rejectedCreatesNewDraft": false
+}

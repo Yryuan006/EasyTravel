@@ -1,0 +1,166 @@
+{
+  "post": {
+    "status": 201,
+    "key": "4d0e89b6-4e7c-4093-a7e1-767f148d15f2",
+    "request": {
+      "requirements": {
+        "raw_text": "上海出发去杭州放松，日期和人数稍后补充。",
+        "origin": {
+          "state": "unanswered",
+          "value": null
+        },
+        "destination": {
+          "state": "unanswered",
+          "value": null
+        },
+        "dates": {
+          "state": "provided",
+          "value": {
+            "mode": "fixed",
+            "start_date": "2026-12-04",
+            "end_date": "2026-12-06"
+          }
+        },
+        "days": {
+          "state": "unanswered",
+          "value": null
+        },
+        "travelers": {
+          "state": "provided",
+          "value": 2
+        },
+        "target_budget_cents": {
+          "state": "provided",
+          "value": 123456
+        },
+        "hard_limit_cents": {
+          "state": "provided",
+          "value": 200000
+        },
+        "transport": {
+          "state": "unanswered",
+          "value": null
+        },
+        "hotel": {
+          "state": "no_preference",
+          "value": null
+        },
+        "restrictions": {
+          "state": "unanswered",
+          "value": null
+        }
+      }
+    },
+    "response": {
+      "trip_id": "01c51763-904e-4527-8b81-6ad15f6fcdf9",
+      "created_at": "2026-11-14T13:39:05.289363Z",
+      "intake": {
+        "intake_revision": 1,
+        "input": {
+          "origin": {
+            "state": "unanswered",
+            "value": null
+          },
+          "destination": {
+            "state": "unanswered",
+            "value": null
+          },
+          "dates": {
+            "state": "provided",
+            "value": {
+              "mode": "fixed",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-06"
+            }
+          },
+          "days": {
+            "state": "unanswered",
+            "value": null
+          },
+          "travelers": {
+            "state": "provided",
+            "value": 2
+          },
+          "target_budget_cents": {
+            "state": "provided",
+            "value": 123456
+          },
+          "hard_limit_cents": {
+            "state": "provided",
+            "value": 200000
+          },
+          "transport": {
+            "state": "unanswered",
+            "value": null
+          },
+          "hotel": {
+            "state": "no_preference",
+            "value": null
+          },
+          "restrictions": {
+            "state": "unanswered",
+            "value": null
+          },
+          "raw_text": "上海出发去杭州放松，日期和人数稍后补充。"
+        },
+        "collection_status": "COLLECTING",
+        "blocking_fields": [
+          "origin",
+          "destination",
+          "transport"
+        ],
+        "provenance": [
+          {
+            "field": "dates",
+            "source": "user"
+          },
+          {
+            "field": "travelers",
+            "source": "user"
+          },
+          {
+            "field": "target_budget_cents",
+            "source": "user"
+          },
+          {
+            "field": "hard_limit_cents",
+            "source": "user"
+          },
+          {
+            "field": "hotel",
+            "source": "user"
+          }
+        ],
+        "suggested_values": []
+      },
+      "working": null,
+      "latest_confirmed_version_id": null,
+      "synchronization": "NO_DRAFT",
+      "plan_confirmation": "UNCONFIRMED",
+      "active_run_id": null,
+      "readiness": "NOT_ASSESSED",
+      "booked": false
+    }
+  },
+  "get": {
+    "status": 200,
+    "identical": true
+  },
+  "replay": {
+    "status": 201,
+    "identical": true
+  },
+  "changedBodySameKey": 409,
+  "refresh": {
+    "status": 200,
+    "identical": true,
+    "automaticPosts": 0
+  },
+  "crossOwner": 404,
+  "storage": {
+    "local": [],
+    "session": [],
+    "databases": []
+  },
+  "tokenInUrlOrConsole": false
+}

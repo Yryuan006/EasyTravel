@@ -113,3 +113,8 @@ small { color: var(--muted); line-height: 1.8; overflow-wrap: anywhere; }
 .unknown-costs li { margin: 18px 0; }
 .unknown-costs p { margin: 4px 0; }
 .confirmation-review .notice h3 { margin-top: 0; }
+.change-review { line-height: 1.8; overflow-wrap: anywhere; }
+.change-review textarea { width: 100%; resize: vertical; }
+.change-review button { white-space: normal; }
+.change-review .notice { margin: 16px 0; }
+.proposal-differences h4 { margin-top: 0; }
