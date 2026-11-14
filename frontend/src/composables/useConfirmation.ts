@@ -7,22 +7,36 @@ export const PREVIEW_TTL_MS = 300000
 export function useConfirmation(saved: ShallowRef<TripView>, token: () => string, blocked: () => boolean) {
   const preview = shallowRef<ConfirmationPreview>(), result = shallowRef<ConfirmResult>()
   const pending = shallowRef<ConfirmationCommand>()
-  const busy = ref(false), acknowledged = ref(false), fresh = ref(false), error = ref(''), verified = ref(false), retryAllowed = ref(false)
+  const busy = ref(false), acknowledged = ref(false), fresh = ref(false), error = ref(''), retryAllowed = ref(false)
+  const receiptChecked = ref(false)
   const opened = ref(false)
   let epoch = 0, controller = new AbortController(), expiry: ReturnType<typeof setTimeout> | undefined, loadedAt = 0
-  const locked = computed(() => busy.value || !!pending.value || !!result.value && !verified.value)
+  function matchesReceipt(trip: TripView) {
+    const s = result.value?.snapshot
+    return !!s && trip.trip_id === s.snapshot.trip_id
+      && trip.latest_confirmed_version_id === s.snapshot.snapshot_id
+      && trip.working?.latest_confirmed_version_id === s.snapshot.snapshot_id
+      && trip.working?.revision === s.snapshot.source_working_revision
+      && trip.intake.intake_revision === s.context?.intake_revision
+      && trip.synchronization === 'CURRENT' && trip.plan_confirmation === 'CONFIRMED'
+  }
+  const verified = computed(() => receiptChecked.value && matchesReceipt(saved.value))
+  // An unchecked 201 must keep its recovery lock; a checked historical receipt must not.
+  const awaitingVerification = computed(() => !!result.value && !receiptChecked.value)
+  const locked = computed(() => busy.value || !!pending.value || awaitingVerification.value)
   const current = computed(() => !!preview.value && preview.value.trip_id === saved.value.trip_id
     && preview.value.working_revision === saved.value.working?.revision && preview.value.intake_revision === saved.value.intake.intake_revision)
   const canSubmit = computed(() => acknowledged.value && fresh.value && current.value && !blocked() && !locked.value
-    && !result.value && saved.value.plan_confirmation !== 'CONFIRMED' && saved.value.synchronization === 'CURRENT' && preview.value?.confirmation_allowed === true)
+    && !verified.value && saved.value.plan_confirmation !== 'CONFIRMED' && saved.value.synchronization === 'CURRENT' && preview.value?.confirmation_allowed === true)
   function invalidate() { acknowledged.value = false; fresh.value = false; clearTimeout(expiry) }
   function cancel() { epoch++; controller.abort(); controller = new AbortController(); clearTimeout(expiry) }
   function reset() {
     cancel(); invalidate(); preview.value = undefined; result.value = undefined; pending.value = undefined
-    busy.value = false; verified.value = false; retryAllowed.value = false; error.value = ''; opened.value = false
+    busy.value = false; receiptChecked.value = false; retryAllowed.value = false; error.value = ''; opened.value = false
   }
   watch(token, reset, { flush: 'sync' })
-  watch(() => [saved.value.trip_id, saved.value.intake.intake_revision, saved.value.working?.revision], () => {
+  watch(() => [saved.value.trip_id, saved.value.intake.intake_revision, saved.value.working?.revision,
+    saved.value.latest_confirmed_version_id, saved.value.synchronization, saved.value.plan_confirmation], () => {
     invalidate()
     if (!pending.value && !result.value) { cancel(); preview.value = undefined; busy.value = false }
   }, { flush: 'sync' })
@@ -56,10 +70,7 @@ export function useConfirmation(saved: ShallowRef<TripView>, token: () => string
     if (trip.intake.intake_revision < saved.value.intake.intake_revision || (trip.working?.revision ?? 0) < (saved.value.working?.revision ?? 0)) throw new Error('读取结果已过期，请重新核对服务器行程。')
     saved.value = trip
     if (!result.value) return
-    const s = result.value.snapshot
-    verified.value = trip.latest_confirmed_version_id === s.snapshot.snapshot_id
-      && trip.working?.revision === s.snapshot.source_working_revision && trip.plan_confirmation === 'CONFIRMED'
-      && trip.intake.intake_revision === s.context?.intake_revision
+    receiptChecked.value = true
     if (!verified.value) throw new Error('服务端已返回不可变快照，但当前行程已变化或指针不一致。请核对最新行程；该快照不代表当前稿已确认。')
   }
 
@@ -88,7 +99,7 @@ export function useConfirmation(saved: ShallowRef<TripView>, token: () => string
     try {
       const r = await confirmTrip(token(), saved.value.trip_id, command, { signal: controller.signal })
       if (version !== epoch) return
-      result.value = r; pending.value = undefined
+      receiptChecked.value = false; result.value = r; pending.value = undefined
       await verifyTrip(version)
     } catch (e) {
       if (version !== epoch) return
@@ -105,5 +116,5 @@ export function useConfirmation(saved: ShallowRef<TripView>, token: () => string
       } else retryAllowed.value = !!pending.value
     } finally { if (version === epoch) busy.value = false }
   }
-  return { preview, result, pending, busy, acknowledged, fresh, error, verified, retryAllowed, opened, locked, current, canSubmit, load, submit, refreshTrip, invalidate }
+  return { preview, result, pending, busy, acknowledged, fresh, error, verified, awaitingVerification, retryAllowed, opened, locked, current, canSubmit, load, submit, refreshTrip, invalidate }
 }

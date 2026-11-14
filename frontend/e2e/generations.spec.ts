@@ -66,7 +66,7 @@ test('uncertain POST response reuses exact key, duplicate click protected, netwo
   await expect(page.getByText('生成请求已接受，尚未开始',{exact:true})).toBeVisible()
   const replayed=await replayResponse;expect(replayed.request().headers()['idempotency-key']).toBe(sent[0].key);expect(replayed.request().postDataJSON()).toEqual(sent[0].body)
   const acceptedState=await (await request.get(`/api/v1/trips/${t.trip_id}/generation-state`,{headers:auth()})).json()
-  worker('run');await page.route('**/generation-state',route=>route.fulfill({status:503,json:{error:{code:'business_dependency_unavailable'}}}))
+  await page.route('**/generation-state',route=>route.fulfill({status:503,json:{error:{code:'business_dependency_unavailable'}}}));worker('run')
   await expect(page.getByRole('alert')).toContainText('不可用');await page.unroute('**/generation-state')
   await page.getByRole('button',{name:'重新读取行程与运行状态'}).click();await expect(page.getByRole('heading',{name:'每日行程',exact:true})).toBeVisible()
   const trip=await(await request.get(`/api/v1/trips/${t.trip_id}`,{headers:auth()})).json(),state=await(await request.get(`/api/v1/trips/${t.trip_id}/generation-state`,{headers:auth()})).json()

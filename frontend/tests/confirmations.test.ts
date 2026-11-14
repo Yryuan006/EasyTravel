@@ -137,6 +137,110 @@ it('never claims current confirmation when POST succeeds but Trip verification f
   expect(h.session.verified.value).toBe(true); expect(f.mock.calls.filter(c => c[1]?.method === 'POST')).toHaveLength(1)
 })
 
+it('keeps the receipt as history after i2 becomes STALE/UNCONFIRMED, then allows a newly reviewed version', async () => {
+  const f = fetchDefault(), h = harness()
+  await h.session.load(); h.session.acknowledged.value = true; await h.session.submit()
+  const receipt = structuredClone(h.session.result.value)
+  h.saved.value = { ...confirmed, intake: { ...confirmed.intake, intake_revision: 2 }, synchronization: 'STALE', plan_confirmation: 'UNCONFIRMED' }
+  await flushPromises()
+  expect(h.session.verified.value).toBe(false)
+  expect(h.session.result.value).toEqual(receipt)
+  expect(h.w.text()).toContain('此前版本已确认，当前规划未确认')
+  expect(h.w.text()).not.toContain('规划确认成功（HTTP 201，已核对当前指针）')
+  expect(h.w.text()).toContain(s.snapshot_id)
+  expect(h.session.locked.value).toBe(false)
+  expect(h.session.acknowledged.value).toBe(false)
+  // A future valid r2/i2 read must permit a fresh review without reusing r1 consent.
+  h.saved.value = { ...trip, intake: { ...trip.intake, intake_revision: 2 }, working: { ...trip.working!, revision: 2 }, synchronization: 'CURRENT' }
+  f.mockResolvedValueOnce(res({ ...preview, intake_revision: 2, working_revision: 2, disclosure_hash: 'a'.repeat(64), risk_hash: 'b'.repeat(64) }))
+  await h.session.load()
+  expect(h.session.canSubmit.value).toBe(false)
+  h.session.acknowledged.value = true
+  expect(h.session.canSubmit.value).toBe(true)
+  expect(h.session.result.value).toEqual(receipt)
+  const nextResult = { ...result, snapshot: { ...result.snapshot,
+    snapshot: { ...s, snapshot_id: 'snapshot-r2', source_working_revision: 2, disclosure_hash: 'a'.repeat(64) },
+    context: { ...result.snapshot.context, intake_revision: 2 },
+    risk_disclosure: { ...result.snapshot.risk_disclosure, risk_hash: 'b'.repeat(64) } } }
+  f.mockResolvedValueOnce(res(nextResult,201)).mockResolvedValueOnce(res({ error: { code: 'business_dependency_unavailable' } },503))
+  await h.session.submit()
+  expect(h.session.result.value).toEqual(nextResult)
+  expect(h.session.verified.value).toBe(false)
+  expect(h.session.locked.value).toBe(true) // The new 201 needs its own successful GET.
+  expect(h.session.awaitingVerification.value).toBe(true)
+  const posts = f.mock.calls.filter(c => c[1]?.method === 'POST')
+  expect(posts).toHaveLength(2)
+  expect(JSON.parse(posts[1]![1]!.body as string).expected_working_revision).toBe(2)
+  expect(posts[1]![1]!.headers).not.toEqual(posts[0]![1]!.headers)
+})
+
+it.each([
+  { trip_id: 'another-trip' },
+  { latest_confirmed_version_id: 'another-snapshot' },
+  { working: { ...confirmed.working!, revision: 2 } },
+  { intake: { ...confirmed.intake, intake_revision: 2 } },
+  { plan_confirmation: 'UNCONFIRMED' as const },
+  { synchronization: 'STALE' as const },
+])('binds current success to every current Trip fact: %j', async patch => {
+  fetchDefault(); const h = harness()
+  await h.session.load(); h.session.acknowledged.value = true; await h.session.submit()
+  h.saved.value = { ...confirmed, ...patch }; await flushPromises()
+  expect(h.session.verified.value).toBe(false)
+  expect(h.w.text()).not.toContain('规划确认成功（HTTP 201，已核对当前指针）')
+  expect(h.session.result.value?.snapshot.snapshot.snapshot_id).toBe(s.snapshot_id)
+})
+
+it('keeps CONFIRMED after reading the same version again', async () => {
+  const f = fetchDefault(), h = harness()
+  await h.session.load(); h.session.acknowledged.value = true; await h.session.submit()
+  await h.session.refreshTrip(); await flushPromises()
+  expect(h.session.verified.value).toBe(true)
+  expect(h.w.text()).toContain('规划确认成功（HTTP 201，已核对当前指针）')
+  expect(f.mock.calls.filter(c => c[1]?.method === 'POST')).toHaveLength(1)
+})
+
+it('retains an unchecked 201 receipt across newer reads until GET verification actually succeeds', async () => {
+  const f = fetchDefault(); f.mockImplementation(async (path, init) => init?.method === 'POST' ? res(result,201) : String(path).endsWith('confirmation-preview') ? res(preview) : res({ error: { code: 'business_dependency_unavailable' } },503))
+  const h = harness(); await h.session.load(); h.session.acknowledged.value = true; await h.session.submit()
+  const newer = { ...confirmed, intake: { ...confirmed.intake, intake_revision: 2 }, synchronization: 'STALE', plan_confirmation: 'UNCONFIRMED' } as TripView
+  h.saved.value = newer; await flushPromises()
+  expect(h.session.result.value).toEqual(result)
+  expect(h.session.locked.value).toBe(true)
+  expect(h.w.text()).toContain('已收到服务端确认快照，当前指针待核对')
+  await h.session.load(); await h.session.submit()
+  expect(f.mock.calls.filter(c => c[1]?.method === 'POST')).toHaveLength(1)
+  f.mockResolvedValueOnce(res(newer)); await h.session.refreshTrip(); await flushPromises()
+  expect(h.session.result.value).toEqual(result)
+  expect(h.session.locked.value).toBe(false)
+  expect(h.w.text()).toContain('此前版本已确认，当前规划未确认')
+})
+
+it('does not restore prior-user confirmation through a delayed Trip verification response', async () => {
+  let resolve!: (v: Response) => void
+  const f = fetchDefault(); f.mockImplementation((path, init) => init?.method === 'POST' ? Promise.resolve(res(result,201)) : String(path).endsWith('confirmation-preview') ? Promise.resolve(res(preview)) : new Promise(r => { resolve = r }))
+  const h = harness(); await h.session.load(); h.session.acknowledged.value = true
+  const sending = h.session.submit(); await flushPromises()
+  expect(h.session.result.value).toEqual(result)
+  h.token.value = 'private-b'; resolve(res(confirmed)); await sending; await flushPromises()
+  expect(h.session.result.value).toBeUndefined()
+  expect(h.session.verified.value).toBe(false)
+  expect(h.saved.value.plan_confirmation).toBe('UNCONFIRMED')
+  expect(h.w.text()).not.toContain(s.snapshot_id)
+})
+
+it('does not let an older Trip read restore success after a newer intake was saved', async () => {
+  const f = fetchDefault(), h = harness()
+  await h.session.load(); h.session.acknowledged.value = true; await h.session.submit()
+  let resolve!: (v: Response) => void
+  f.mockImplementationOnce(() => new Promise(r => { resolve = r }))
+  const reading = h.session.refreshTrip()
+  h.saved.value = { ...confirmed, intake: { ...confirmed.intake, intake_revision: 2 }, synchronization: 'STALE', plan_confirmation: 'UNCONFIRMED' }
+  resolve(res(confirmed)); await reading; await flushPromises()
+  expect(h.saved.value.intake.intake_revision).toBe(2)
+  expect(h.session.verified.value).toBe(false)
+  expect(h.w.text()).toContain('此前版本已确认，当前规划未确认')
+})
+
 it.each([401,403,404,422,503,500])('uses safe HTTP %s handling and preserves only uncertain commands', async status => {
   vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockImplementation(async (_, init) => init?.method === 'POST' ? res({ error: { code: 'private_error', message: 'DSN PRIVATE' } }, status) : res(preview)))
   const h = harness(); await h.session.load(); h.session.acknowledged.value = true; await h.session.submit()

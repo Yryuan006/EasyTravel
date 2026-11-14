@@ -1,0 +1,15 @@
+{
+  "baseline": "b2259143293039f150d946929e4e821a19fc8922",
+  "backendAndTestsAndScriptsDiff": [],
+  "inheritedBackendTests": 384,
+  "inheritedEvidenceSHA256": {
+    "Docs/M1-05b_后端全量回归.txt": "fd56edee71aa953e83735adade2efd1aaee441c54dab78021971fc803e0f2920"
+  },
+  "vitestPassed": 126,
+  "playwrightPassed": 54,
+  "transportHookRemoved": true,
+  "oldDatabaseFingerprintUnchanged": true,
+  "snapshotDisclosureAndSourceRowsUnchanged": true,
+  "tripId": "62549cab-f87a-455c-86d7-11afde2dd19b",
+  "snapshotId": "4cb4d214-1725-4eb1-aa8f-65ade30745f5"
+}

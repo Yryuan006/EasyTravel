@@ -9,7 +9,7 @@ import CostBreakdown from './CostBreakdown.vue'
 import RiskList from './RiskList.vue'
 
 const props = defineProps<{ trip: TripView; session: ReturnType<typeof useConfirmation>; blocked: boolean }>()
-const { preview, result, pending, busy, acknowledged, fresh, error, verified, retryAllowed, opened, locked, current, canSubmit } = props.session
+const { preview, result, pending, busy, acknowledged, fresh, error, verified, awaitingVerification, retryAllowed, opened, locked, current, canSubmit } = props.session
 const items = computed(() => (props.trip.working?.payload.items ?? []) as PlanItem[])
 const costs = computed(() => (props.trip.working?.payload.costs ?? []) as CostLine[])
 const sourceLimit = computed(() => Number(props.trip.working?.requirements.hard_limit_cents))
@@ -26,7 +26,7 @@ const confirmedAt = computed(() => result.value ? new Intl.DateTimeFormat('zh-CN
       <button v-if="opened" :disabled="busy" @click="session.refreshTrip()">读取最新行程并核对确认状态</button>
     </div>
     <p v-if="busy" role="status">{{ pending ? '正在提交原确认请求，请勿重复操作…' : '正在从服务器读取并核对…' }}</p>
-    <div v-if="error" role="alert" class="notice form-error"><p>{{ error }}</p><p v-if="result">服务端已返回快照；当前行程指针尚未核对成功，请只重试读取。</p></div>
+    <div v-if="error" role="alert" class="notice form-error"><p>{{ error }}</p><p v-if="awaitingVerification">服务端已返回快照；当前行程指针尚未核对成功，请只重试读取。</p></div>
     <div v-if="pending" class="notice" role="status">
       <p>未收到有效确认响应，不代表数据库没有确认成功。原路径、Idempotency-Key 和请求内容保留在本页；请恢复原请求，不要用新键重复确认。</p>
       <p>恢复完成前已暂停需求修改。清除凭证或离开页面会丢失本页内存中的请求；再次进入须先读取服务器确认状态。</p>
@@ -51,11 +51,11 @@ const confirmedAt = computed(() => result.value ? new Intl.DateTimeFormat('zh-CN
       <p v-else class="confirmation-eligibility">服务端允许确认当前规划；仍需你明确同意，且页面版本保持同步。</p>
       <p class="scope-note">本次预览五分钟内有效。重新读取、版本或披露变化、切换页面后，都需要重新审阅并勾选。</p>
       <p v-if="trip.synchronization !== 'CURRENT'" class="form-error">工作稿为 STALE，无法确认当前需求下的行程。</p>
-      <label class="confirmation-consent"><input v-model="acknowledged" type="checkbox" :disabled="!fresh || !current || !preview.confirmation_allowed || trip.synchronization !== 'CURRENT' || locked || blocked || !!result || trip.plan_confirmation === 'CONFIRMED'" /><span>我已查看当前行程的预算、未知费用及相关风险，确认这份旅行规划，并理解这不代表已经完成酒店预订、购票或支付。</span></label>
+      <label class="confirmation-consent"><input v-model="acknowledged" type="checkbox" :disabled="!fresh || !current || !preview.confirmation_allowed || trip.synchronization !== 'CURRENT' || locked || blocked || trip.plan_confirmation === 'CONFIRMED'" /><span>我已查看当前行程的预算、未知费用及相关风险，确认这份旅行规划，并理解这不代表已经完成酒店预订、购票或支付。</span></label>
       <button class="primary" :disabled="!canSubmit" @click="session.submit()">确认当前行程 r{{ preview.working_revision }}</button>
     </template>
     <div v-if="result" class="confirmation-receipt" role="status">
-      <h3>{{ verified ? '规划确认成功（HTTP 201，已核对当前指针）' : '已收到服务端确认快照，当前指针待核对' }}</h3>
+      <h3>{{ verified ? '规划确认成功（HTTP 201，已核对当前指针）' : awaitingVerification ? '已收到服务端确认快照，当前指针待核对' : trip.plan_confirmation === 'CONFIRMED' ? '历史确认快照（当前行程已有其他确认）' : '此前版本已确认，当前规划未确认' }}</h3>
       <dl class="requirements-list">
         <div><dt>快照 ID</dt><dd>{{ result.snapshot.snapshot.snapshot_id }}</dd></div>
         <div><dt>来源工作稿</dt><dd>r{{ result.snapshot.snapshot.source_working_revision }}</dd></div>

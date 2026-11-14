@@ -84,6 +84,37 @@ test('known Mock prices and explicit zero remain estimates in confirmation',asyn
   records.push({scenario:'known estimates and explicit zero',tripId:t.trip_id,preview:p,confirmation:await record(r),proof:control('proof',t.trip_id)})
 })
 
+test('FIX-01 confirmed r1 becomes historical after saving i2 in the same workspace',async({page,request})=>{
+  const t=await seed(request);await open(page,t)
+  const post=await send(page);expect(post.status()).toBe(201)
+  const receipt=await post.json(), sid=receipt.snapshot.snapshot.snapshot_id
+  await expect(section(page).getByText('规划确认成功（HTTP 201，已核对当前指针）')).toBeVisible()
+  const before=control('proof',t.trip_id)
+  await section(page).getByRole('button',{name:'读取最新行程并核对确认状态'}).click()
+  await expect(section(page).getByText('规划确认成功（HTTP 201，已核对当前指针）')).toBeVisible()
+  await page.getByRole('button',{name:'修改需求',exact:true}).click()
+  await page.getByLabel('目的地',{exact:true}).fill('苏州')
+  const saved=page.waitForResponse(r=>r.request().method()==='PUT'&&r.url().endsWith('/requirements'))
+  await page.getByRole('button',{name:'保存修改',exact:true}).click()
+  const response=await saved;expect(response.status()).toBe(200);const trip=await response.json()
+  expect(trip.intake.intake_revision).toBe(2);expect(trip.synchronization).toBe('STALE');expect(trip.plan_confirmation).toBe('UNCONFIRMED')
+  expect(trip.latest_confirmed_version_id).toBe(sid)
+  await expect(section(page).getByText('此前版本已确认，当前规划未确认',{exact:true})).toBeVisible()
+  await expect(section(page).getByText('规划确认成功（HTTP 201，已核对当前指针）')).toHaveCount(0)
+  await expect(section(page).locator('.confirmation-status')).toHaveCount(0)
+  await expect(section(page).locator('.confirmation-receipt')).toContainText(sid)
+  await expect(section(page).getByRole('button',{name:'重新读取确认预览',exact:true})).toBeEnabled()
+  await section(page).getByRole('button',{name:'重新读取确认预览',exact:true}).click()
+  await expect(section(page).getByRole('checkbox')).not.toBeChecked()
+  await expect(section(page).getByRole('checkbox')).toBeDisabled()
+  const after=control('proof',t.trip_id)
+  expect(after.confirmed_snapshots).toEqual(before.confirmed_snapshots)
+  expect(after.confirmation_disclosures).toEqual(before.confirmation_disclosures)
+  expect(after.draft_versions).toEqual(before.draft_versions)
+  await section(page).locator('.confirmation-receipt').screenshot({path:'../Docs/M1-05b_FIX-01_历史确认状态.png'})
+  writeFileSync('../Docs/M1-05b_FIX-01_连续交互证据.json',JSON.stringify({tripId:t.trip_id,receipt,updatedTrip:trip,before,after},null,2))
+})
+
 for(const mode of ['over','blocker','stale'])test(`E07 blocked 200 preview ${mode}`,async({page,request})=>{
   const t=await seed(request,mode==='stale'?'run':mode)
   if(mode==='stale') {
