@@ -41,7 +41,7 @@ export function confirmTrip(token: string, id: string, command: ConfirmationComm
 }
 
 export const blockingText: Record<string, string> = {
-  stale_intake: '需求与工作稿不同步。请先核对需求；本阶段尚不支持重规划，不能确认旧稿。',
+  stale_intake: '需求与工作稿不同步。请先审阅新需求并完成重规划，再读取当前行程的预算与风险；不能确认旧稿。',
   stale_revision: '工作稿已变化。请重新读取行程和预览，再次审阅。',
   draft_not_ready: '草案或来源上下文不完整，暂不能确认。请核对生成结果。',
   blocking_risks: '存在必须解决的 blocker 风险，不能以整体确认豁免。',

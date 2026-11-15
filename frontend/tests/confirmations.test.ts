@@ -59,6 +59,10 @@ it.each([
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue(res({ ...preview, ...(patch.budget ? { budget: patch.budget } : {}), ...('risks' in patch ? { risks: patch.risks } : {}), confirmation_allowed: false, blocking_reasons: [patch.reason] })))
   const h = harness(); await h.session.load(); await flushPromises()
   expect(h.w.text()).toContain('当前不能确认'); expect(h.w.get('input').attributes('disabled')).toBeDefined()
+  if (patch.reason === 'stale_intake') {
+    expect(h.w.text()).not.toContain('尚不支持重规划')
+    expect(h.w.text()).toContain('完成重规划')
+  }
   h.session.acknowledged.value = true; await h.session.submit(); expect(h.session.pending.value).toBeUndefined()
 })
 

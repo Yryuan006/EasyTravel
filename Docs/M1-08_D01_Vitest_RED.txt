@@ -1,0 +1,30 @@
+
+ RUN  v5.1.0 D:/Project/EasyTravel/frontend
+
+ ❯ tests/confirmations.test.ts (34 tests | 1 failed | 31 skipped) 57ms
+   × keeps 200 blocked preview non-actionable: stale_intake 15ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed | 31 skipped (34)
+   Start at  17:01:56
+   Duration  794ms (environment 72%, import 10%, transform 9%, tests 8%, worker 1%)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/confirmations.test.ts > keeps 200 blocked preview non-actionable: stale_intake
+AssertionError: expected '确认旅行规划审阅预算、未知费用和全部风险后，明确确认当前工作草案。整体确认…' not to contain '尚不支持重规划'
+
+Expected: "尚不支持重规划"
+Received: "确认旅行规划审阅预算、未知费用和全部风险后，明确确认当前工作草案。整体确认不代表酒店授权、预订、购票或支付。Trip ID：961d68e1-d20d-4ddd-abad-cf582d31c601当前工作草案 r1 · intake revision 1重新读取确认预览读取最新行程并核对确认状态SERVER BUDGET / 服务端计算预算概览已知费用小计¥600.00整趟总额总额暂无法确定生成时硬预算上限¥2300.00INDETERMINATE · UNDETERMINEDVERIFIED = 已核验 · ESTIMATED = 估算 · INDETERMINATE = 含未知费用。WITHIN_LIMIT = 可确定在上限内 · OVER_LIMIT = 已知费用已超限 · UNDETERMINED = 尚不能确定。已知小计可能包含估算，不等于已核验总价。未知费用不计作 ¥0，模拟价格不能视作已核验。未知费用（8 项）模拟：轻松活动建议，路线及营业未核验：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_activity_0模拟：市内公共交通、餐饮及必要杂费待核验：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_local_0模拟：轻松活动建议，路线及营业未核验：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_activity_1模拟：市内公共交通、餐饮及必要杂费待核验：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_local_1模拟：轻松活动建议，路线及营业未核验：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_activity_2模拟：市内公共交通、餐饮及必要杂费待核验：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_local_2模拟：出发地至目的地公共交通时段建议，无真实班次：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_outbound模拟：返程公共交通时段建议，无真实班次：未知模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 ID：cost_return费用明细金额均为人民币元，已包含对应人数、房间和晚数；不再次相乘。模拟：轻松活动建议，路线及营业未核验未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_activity_0 / 归属 activity_0模拟：市内公共交通、餐饮及必要杂费待核验未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_local_0 / 归属 local_0模拟：轻松活动建议，路线及营业未核验未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_activity_1 / 归属 activity_1模拟：市内公共交通、餐饮及必要杂费待核验未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_local_1 / 归属 local_1模拟：轻松活动建议，路线及营业未核验未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_activity_2 / 归属 activity_2模拟：市内公共交通、餐饮及必要杂费待核验未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_local_2 / 归属 local_2模拟：出发地至目的地公共交通时段建议，无真实班次未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_outbound / 归属 outbound模拟：返程公共交通时段建议，无真实班次未知类别：unknown · Mock · 模拟建议，尚未核验未知原因：模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）费用 cost_return / 归属 return模拟住宿建议，非真实酒店或报价¥600.00类别：estimate · Mock · 模拟建议，尚未核验费用 cost_hotel / 归属 hotel风险与待核实事项warning · mock_data本行程使用 Mock 模拟资料，价格不能视为已核验。warning · not_booked尚未预订、付款或出票；整体确认不授予酒店具体授权，也不代表出行就绪。warning · prices_unverified费用包含估算或未知价格，已知小计不代表已核验总价。warning · route_unverified路线、交通衔接和营业时间尚未核验。warning · unknown_costs存在未知费用，未知金额没有计为零，总额暂无法确定。所有路线及酒店建议待核验；未预订、未付款、未出票，出行就绪情况未评估。当前不能确认需求与工作稿不同步。请先核对需求；本阶段尚不支持重规划，不能确认旧稿。 （stale_intake）本次预览五分钟内有效。重新读取、版本或披露变化、切换页面后，都需要重新审阅并勾选。我已查看当前行程的预算、未知费用及相关风险，确认这份旅行规划，并理解这不代表已经完成酒店预订、购票或支付。确认当前行程 r1"
+
+ ❯ tests/confirmations.test.ts:63:28
+     61|   expect(h.w.text()).toContain('当前不能确认'); expect(h.w.get('input').attr…
+     62|   if (patch.reason === 'stale_intake') {
+     63|     expect(h.w.text()).not.toContain('尚不支持重规划')
+       |                            ^
+     64|     expect(h.w.text()).toContain('完成重规划')
+     65|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

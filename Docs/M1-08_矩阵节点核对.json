@@ -1,0 +1,232 @@
+{
+  "status": "all_executed",
+  "scenarios": [
+    {
+      "id": "E01",
+      "status": "已通过",
+      "backendNodes": [
+        "I::test_create_read_input_and_no_draft"
+      ],
+      "browser": "requirements.spec.ts: real create → hard-budget answer → date update → reload → SQL evidence"
+    },
+    {
+      "id": "E02",
+      "status": "已通过",
+      "backendNodes": [
+        "G::test_rejections",
+        "C::test_semantic_rules_and_priority",
+        "C::test_explicit_missing_state_and_correction"
+      ],
+      "browser": "requirements.spec.ts: explicit no preference on required budget saves fact and pauses repeated question；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E03",
+      "status": "已通过",
+      "backendNodes": [
+        "C::test_update_history_replay_and_restart",
+        "C::test_answer_versions_old_question_and_field_mismatch"
+      ],
+      "browser": "requirements.spec.ts: real create → hard-budget answer → date update → reload → SQL evidence"
+    },
+    {
+      "id": "E04",
+      "status": "已通过",
+      "backendNodes": [
+        "G::test_success_real_read_and_replay",
+        "G::test_supported_duration_boundaries"
+      ],
+      "browser": "generations.spec.ts: real 1 day / 5 day generation；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E05",
+      "status": "已通过",
+      "backendNodes": [
+        "G::test_invalid_and_budget",
+        "M::test_untrusted_candidate_and_complete_l3_scope"
+      ],
+      "browser": "generations.spec.ts: safe failure invalid"
+    },
+    {
+      "id": "E06",
+      "status": "已通过",
+      "backendNodes": [
+        "F::test_preview_confirmation_facts_immutable",
+        "F::test_known_mock_costs_remain_estimated"
+      ],
+      "browser": "confirmations.spec.ts: E06 E08 real preview；known Mock prices and explicit zero；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E07",
+      "status": "已通过",
+      "backendNodes": [
+        "G::test_invalid_and_budget",
+        "F::test_missing_and_stale_pending_budget",
+        "F::test_budget_and_blocker_cannot_be_waived",
+        "R::test_over_budget_and_explicit_retry_policy",
+        "M::test_untrusted_candidate_and_complete_l3_scope"
+      ],
+      "browser": "confirmations.spec.ts: E07 blocked 200 preview over；generations.spec.ts: safe failure over_budget"
+    },
+    {
+      "id": "E08",
+      "status": "已通过",
+      "backendNodes": [
+        "F::test_preview_confirmation_facts_immutable",
+        "F::test_strict_intent",
+        "P::test_immutable_snapshot_and_source_version"
+      ],
+      "browser": "confirmations.spec.ts: E06 E08 real preview；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E09",
+      "status": "已通过",
+      "backendNodes": [
+        "M::test_activity_applies_without_grant_preserves_snapshot",
+        "H::test_empty_then_two_versions_and_read_only_restart"
+      ],
+      "browser": "changes.spec.ts: E09 activity change preserves confirmed history；history.spec.ts；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E10",
+      "status": "已通过",
+      "backendNodes": [
+        "M::test_l3_exact_scope_and_strict_intent",
+        "M::test_untrusted_candidate_and_complete_l3_scope"
+      ],
+      "browser": "changes.spec.ts: E10 E18 hotel L3 requires explicit full scope；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E11",
+      "status": "已通过",
+      "backendNodes": [
+        "M::test_l3_atomic_apply_replay_and_reject",
+        "M::test_process_replay_reads_decision_proposal_and_draft",
+        "R::test_reject_keeps_new_intake_and_replays"
+      ],
+      "browser": "changes.spec.ts: E11 reject persists；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E12",
+      "status": "已通过",
+      "backendNodes": [
+        "I::test_concurrent_creates_and_committed_timeout_replay",
+        "C::test_concurrent_updates_and_answers",
+        "G::test_concurrent_idempotency",
+        "M::test_concurrent_replay_and_changed_command",
+        "M::test_concurrent_intent_replays_one_frozen_run_and_survives_process_exit",
+        "F::test_concurrent_http",
+        "R::test_replan_concurrent_decision_and_new_process"
+      ],
+      "browser": "changes.spec.ts: lost response replays exact command once；confirmations.spec.ts: committed network response；trips.spec.ts: browser timeout"
+    },
+    {
+      "id": "E13",
+      "status": "已通过",
+      "backendNodes": [
+        "C::test_answer_versions_old_question_and_field_mismatch",
+        "F::test_old_facts",
+        "F::test_old_revision_cannot_replace_new_pointer",
+        "M::test_stale_input_revision_parent_and_owner",
+        "R::test_exact_l3_and_version_guards"
+      ],
+      "browser": "requirements.spec.ts: actual concurrent revision, old answer conflict；confirmations.spec.ts: conflict cases"
+    },
+    {
+      "id": "E14",
+      "status": "已通过",
+      "backendNodes": [
+        "I::test_unavailable_database_and_health",
+        "F::test_database_unavailable_and_internal_errors",
+        "H::test_unavailable_database_is_503"
+      ],
+      "browser": "health.spec.ts: loading, network failure；confirmations.spec.ts: preview 503；trips/requirements.spec.ts: timeout"
+    },
+    {
+      "id": "E15",
+      "status": "已通过",
+      "backendNodes": [
+        "I::test_independent_process_reads_and_replays",
+        "F::test_cross_process_replay_after_intake_changed",
+        "M::test_process_replay_reads_decision_proposal_and_draft",
+        "H::test_empty_then_two_versions_and_read_only_restart"
+      ],
+      "browser": "history.spec.ts: real immutable history, refresh credentials；zz-lifecycle.spec.ts: API restart"
+    },
+    {
+      "id": "E16",
+      "status": "已通过",
+      "backendNodes": [
+        "J::test_all_business_routes_authority_and_safe_errors",
+        "I::test_non_loopback_peer_cannot_spoof_forwarding",
+        "I::test_origin_host_and_actor_header"
+      ],
+      "browser": "trips.spec.ts: isolation and memory-only token；history.spec.ts；zz-lifecycle.spec.ts: owner B"
+    },
+    {
+      "id": "E17",
+      "status": "已通过",
+      "backendNodes": [
+        "F::test_rules_change_and_same_source_conflict",
+        "F::test_old_facts",
+        "P::test_confirmation_rechecks_acknowledgement_and_revision"
+      ],
+      "browser": "confirmations.spec.ts: E17 reload changed risks clears consent, never auto confirms new hash"
+    },
+    {
+      "id": "E18",
+      "status": "已通过",
+      "backendNodes": [
+        "P::test_authorization_exact_scope_and_single_consumption",
+        "M::test_untrusted_candidate_and_complete_l3_scope",
+        "M::test_atomic_rollback",
+        "R::test_commit_failure_all_rolls_back"
+      ],
+      "browser": "changes.spec.ts: E10 E18 hotel L3 requires explicit full scope；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E19",
+      "status": "已通过",
+      "backendNodes": [
+        "R::test_date_replan_preserves_confirmed_history",
+        "R::test_intake_and_requirements_revision_are_distinct",
+        "R::test_v1_and_v2_hash_parent_and_owner"
+      ],
+      "browser": "replanning.spec.ts: E19 real date change；zz-lifecycle.spec.ts"
+    },
+    {
+      "id": "E20",
+      "status": "已通过",
+      "backendNodes": [
+        "G::test_stale_input_during_model_no_transaction_lock",
+        "G::test_real_process_interruption_restart_replay",
+        "M::test_interrupted_change_run_recovers_without_proposal",
+        "M::test_generation_frozen_base_cannot_override_new_intake",
+        "R::test_real_replan_executor_exit_and_replay",
+        "R::test_uniform_explicit_retry"
+      ],
+      "browser": "generations.spec.ts: safe failure interrupted/stale"
+    },
+    {
+      "id": "E21",
+      "status": "已通过",
+      "backendNodes": [
+        "I::test_reject_invalid_input_without_side_effects",
+        "C::test_invalid_answer_and_full_update",
+        "C::test_semantic_rules_and_priority",
+        "G::test_supported_duration_boundaries"
+      ],
+      "browser": "generations.spec.ts: real 1 day / 5 day generation；estimated known total within limit and explicit zero"
+    },
+    {
+      "id": "E22",
+      "status": "已通过",
+      "backendNodes": [
+        "G::test_owner_path_and_idempotency",
+        "M::test_stale_input_revision_parent_and_owner",
+        "R::test_v1_and_v2_hash_parent_and_owner",
+        "H::test_owner_parent_auth_and_missing"
+      ],
+      "browser": "history.spec.ts: real immutable history, mobile and owner boundary"
+    }
+  ]
+}

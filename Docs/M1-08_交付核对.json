@@ -1,0 +1,235 @@
+{
+  "baseline": "8889df6651310e9d8f7e56be4e6f751bbf54a4b3",
+  "backend": 454,
+  "vitest": 151,
+  "playwright": 61,
+  "currentWorkingRevision": 5,
+  "currentIntakeRevision": 4,
+  "currentRequirementsRevision": 2,
+  "snapshots": 2,
+  "consumedL3Grants": 2,
+  "wholeFormalTableRestartEquality": true,
+  "realAPIProcessRestart": true,
+  "allBusinessEndpointsSecurityChecks": 66,
+  "oldEvidenceUnchanged": true,
+  "migrationsUnchanged": true,
+  "gates": {
+    "M1-08_首轮生命周期数据库隔离.json": {
+      "container": "easytravel-m108-isolated-26780dbc44",
+      "cluster": "7708320244805894183",
+      "oldCluster": "7706148506022567975",
+      "old24TablesUnchanged": true,
+      "transportHookRemoved": true
+    },
+    "M1-08_全量数据库隔离.json": {
+      "container": "easytravel-m108-isolated-814eac7e82",
+      "cluster": "7708320412043014182",
+      "oldCluster": "7706148506022567975",
+      "old24TablesUnchanged": true,
+      "transportHookRemoved": true
+    },
+    "M1-08_默认Node全表针对性数据库隔离.json": {
+      "container": "easytravel-m108-isolated-ce0774b8b5",
+      "cluster": "7708322207270187046",
+      "oldCluster": "7706148506022567975",
+      "old24TablesUnchanged": true,
+      "transportHookRemoved": true
+    },
+    "M1-08_数据库隔离.json": {
+      "container": "easytravel-m108-isolated-e4220f582c",
+      "cluster": "7708324973526900774",
+      "oldCluster": "7706148506022567975",
+      "old24TablesUnchanged": true,
+      "transportHookRemoved": true
+    }
+  },
+  "screenshots": [
+    {
+      "file": "M1-08_创建与待澄清_1280.png",
+      "width": 836,
+      "height": 1934
+    },
+    {
+      "file": "M1-08_创建与待澄清_320.png",
+      "width": 280,
+      "height": 2442
+    },
+    {
+      "file": "M1-08_创建与待澄清_390.png",
+      "width": 350,
+      "height": 2419
+    },
+    {
+      "file": "M1-08_历史S1与费用风险_1280.png",
+      "width": 1280,
+      "height": 8253
+    },
+    {
+      "file": "M1-08_历史S1与费用风险_320.png",
+      "width": 320,
+      "height": 10955
+    },
+    {
+      "file": "M1-08_历史S1与费用风险_390.png",
+      "width": 390,
+      "height": 9785
+    },
+    {
+      "file": "M1-08_生成后的每日行程_1280.png",
+      "width": 836,
+      "height": 2330
+    },
+    {
+      "file": "M1-08_生成后的每日行程_320.png",
+      "width": 280,
+      "height": 2733
+    },
+    {
+      "file": "M1-08_生成后的每日行程_390.png",
+      "width": 350,
+      "height": 2582
+    },
+    {
+      "file": "M1-08_确认历史列表_1280.png",
+      "width": 836,
+      "height": 765
+    },
+    {
+      "file": "M1-08_确认历史列表_320.png",
+      "width": 280,
+      "height": 1095
+    },
+    {
+      "file": "M1-08_确认历史列表_390.png",
+      "width": 350,
+      "height": 961
+    },
+    {
+      "file": "M1-08_酒店L3完整授权_1280.png",
+      "width": 836,
+      "height": 3264
+    },
+    {
+      "file": "M1-08_酒店L3完整授权_320.png",
+      "width": 280,
+      "height": 6165
+    },
+    {
+      "file": "M1-08_酒店L3完整授权_390.png",
+      "width": 350,
+      "height": 5215
+    },
+    {
+      "file": "M1-08_重规划v2待审_1280.png",
+      "width": 836,
+      "height": 10629
+    },
+    {
+      "file": "M1-08_重规划v2待审_320.png",
+      "width": 280,
+      "height": 17449
+    },
+    {
+      "file": "M1-08_重规划v2待审_390.png",
+      "width": 350,
+      "height": 14353
+    },
+    {
+      "file": "M1-08_首次确认披露_1280.png",
+      "width": 836,
+      "height": 4883
+    },
+    {
+      "file": "M1-08_首次确认披露_320.png",
+      "width": 280,
+      "height": 7665
+    },
+    {
+      "file": "M1-08_首次确认披露_390.png",
+      "width": 350,
+      "height": 6527
+    }
+  ],
+  "sha256": {
+    "M1-08_Build.txt": "0bd05fdc90aa28043c5ba6c23928b14dedfaebd3070fe751e59597edb19d49a9",
+    "M1-08_Build_默认Node.txt": "2621173181b01d028e736851686d9435a26e7006e864fc8bcd76978acc7aa3d2",
+    "M1-08_D01_Vitest_GREEN.txt": "45405384d1bd58efd1918fc6375b8454878eeaa6d1437138eface851f1cc7ce3",
+    "M1-08_D01_Vitest_RED.txt": "9678e9ff0e33c6026e523540273cb531dffcfe077502251a0d253c854cf8f367",
+    "M1-08_E01-E22验收矩阵.md": "e77215eddeb2cf216b9a19a0f4752914d6c55556b8cd59a2a0b33ceef072f94a",
+    "M1-08_OpenAPI.json": "0d0991f7c85c1c777c91c208c5ffa913740ce508d95bdfc0d6e6fdccf39f7996",
+    "M1-08_Playwright.txt": "38490b67ea0880fc495903415db7f81a634173e6ac6c3cda4432920c572da01a",
+    "M1-08_Playwright_生命周期针对性.txt": "fda763133d6d9dc5fa8331f7e76b9f24d210b64559ce0491ae757685bc27d70c",
+    "M1-08_Playwright_首轮生命周期针对性.txt": "9fa2b53ea8dd51d74ac7664ad43b5500b7d95368da08ca643c61d36958723a51",
+    "M1-08_Playwright_默认Node.txt": "e5b485e415ac5481ab691cd20d94bb1b31146ba06bd9adf715a64860222746e3",
+    "M1-08_TypeScript.txt": "7c2a94d20d33b419314662fbcdbe2dabdf848ff4ede8ed040938dd21e7600a6a",
+    "M1-08_TypeScript_默认Node.txt": "7c2a94d20d33b419314662fbcdbe2dabdf848ff4ede8ed040938dd21e7600a6a",
+    "M1-08_Vitest.txt": "4a013710dff9f64e9145d7ec2cbdc0e562313f58869013ab6ea01777f62f0bcf",
+    "M1-08_Vitest_默认Node.txt": "cd9dc07f6cf72f88937b29bd25014401b2a621c89a910c15c7ff363c11e22a6d",
+    "M1-08_全端点身份安全证据.json": "c26ed5b2dbf1bfa2a336e30bb40ef0ac201c541ff061e463682a16de978e5d25",
+    "M1-08_全量数据库隔离.json": "daca696db2d009fc81c177d20408a11540c4bba09ca232ff9aba5ac1aa4c2ba8",
+    "M1-08_全量生命周期HTTP与PostgreSQL证据.json": "eeef50c80ae557501688fa3e53e1eb5fc20ef47a7fb9600bef110258a37b58cf",
+    "M1-08_创建与待澄清_1280.png": "17af1fd54dd8f2998e1c09a20ab3cdc8b24f2f465e047d59332c5da07e4e09c7",
+    "M1-08_创建与待澄清_320.png": "d263cb30ba53018afc9ec3478b7434329d21e31a26ba61291073da4eceb28a68",
+    "M1-08_创建与待澄清_390.png": "4117d9d50214aae91cbca0cc4c366c88b94055fd3495b95612c216c8d9b7b0d1",
+    "M1-08_前端工具链.json": "2c313bdf4dfe0947f217e672c12eb5e0f3ca4f714dac93124918b62dae633c42",
+    "M1-08_剩余能力与下一阶段建议.md": "63bb43d51a9b0c5c12a9859172e99d1631080bae64abc37a68ff2c308a3c53fa",
+    "M1-08_历史S1与费用风险_1280.png": "d90f674a9f09b5a4a833105a52e167a75c365ffe00fec74ff5348e86fd08a06d",
+    "M1-08_历史S1与费用风险_320.png": "f643561b1a983452a7aa0ee753c4403004e76e09eb66712c4d4a191e631f5f11",
+    "M1-08_历史S1与费用风险_390.png": "ba1c7dc86fdf2d82cdc317b08ebe457bf2f409d9c4e197680ee3a3954e54664c",
+    "M1-08_后端全量回归.txt": "36b840336d49d29f84857318df3f2ef75cadd1ef6bbaa66bc00455976f3d9257",
+    "M1-08_回归_M1-03b_HTTP证据.json": "330dd5e45ca6ac57e3b172ea9056449d3704be0e92d8c3294140cfc40b5ddfd0",
+    "M1-08_回归_M1-03b_创建回归_浏览器HTTP证据.json": "d64ec19e1c5fb747198fec21864649d365db1837278aaba4b2eb951d05c1aad0",
+    "M1-08_回归_M1-04a_恢复_accepted.json": "2560a630c8baf95b2e93a64148460f4e685457f623b2417556ed94403b96d2c7",
+    "M1-08_回归_M1-04a_恢复_committed.json": "2fc0068064dfa0c4e06c108e86ebbf233d1459699ad5c397a66cd96a1e8881e2",
+    "M1-08_回归_M1-04a_恢复_running.json": "08601a0ecabcf7427278c4ed22b12c9d18f33711cf50e2480f4d84b594d1d3f0",
+    "M1-08_回归_M1-04a_独立进程读取.json": "0ea38dc0524d2f5b9dfd2292b0b9e9b07c05fcd260252aaf21f05d2aa0475c95",
+    "M1-08_回归_M1-04b_HTTP证据.json": "a03b4b3c987b73bf3246fdd33b91646625756610aab097df68ce191458d7000d",
+    "M1-08_回归_M1-05a_PostgreSQL证据.json": "04a0745aba0c4272ba0bf44bc3741227e5c74b4e27de0a0e48b98ffe87a434eb",
+    "M1-08_回归_M1-05a_跨进程重放.json": "0f12b8b32d12c6a0f0fc00c9fa75ac66d14ccbc2db7b4884902fb0dca22891bb",
+    "M1-08_回归_M1-05b_FIX-01_连续交互证据.json": "48a5122509872fe7b36b675b1d5bd59d6bd9bb10fe71f3a827983af52d8131e9",
+    "M1-08_回归_M1-05b_HTTP与数据库证据.json": "88efd10c70ef86e7efc35ed7a9ebd946124be3179baf9d93b959addea6c17351",
+    "M1-08_回归_M1-06a_HTTP与数据库证据.json": "fc5f61833fee8bd4f15296232fc696014f47e9ccc2c653423b08ef7e9296aca7",
+    "M1-08_回归_M1-06a_独立进程_APPLIED.json": "ad4e9458f2fbc91fc03caaab57b141a5e674d5fb8eae034cbc69347e9bf60178",
+    "M1-08_回归_M1-06a_独立进程_REJECTED.json": "5ed0fa740364b4e86984ab98129adf238f1a5ceb99b5598090e9ce5cac75d16a",
+    "M1-08_回归_M1-06b_HTTP与PostgreSQL证据.json": "32dab9a3ffb74f34f8365d3084d3f977fb5ae0b541e092f96216e26b66ed2aa9",
+    "M1-08_回归_M1-06b_独立进程_False.json": "504e501d5454ba118a728ec5980497bd42fbea942296a582fb6601958def4403",
+    "M1-08_回归_M1-06b_独立进程_True.json": "d9a9b0e75f94f46160198ed8cc4e06c40dc3d03fb763152f6278912cf282fe19",
+    "M1-08_回归_M1-06b_进程退出_accepted.json": "6813361e3873e2951a1ca540d8b71c681538637c450988b840543154f8a01663",
+    "M1-08_回归_M1-06b_进程退出_committed.json": "aabf4c455dcba080bd606f88604f3c773fecd86e9c96f0cd6e39299ef1eef3a1",
+    "M1-08_回归_M1-06b_进程退出_running.json": "3c6614df674b099f5577e4d0023f5717734d3875ca99c4b1fb57cd7c3567d2fd",
+    "M1-08_回归_M1-07_HTTP与PostgreSQL证据.json": "a1a5ca3d5efd8d965a09f1e45bd61987034f1c717f3a76f0c04bf45d4facbeb5",
+    "M1-08_回归_M1-07_浏览器HTTP与PostgreSQL证据.json": "6de7f04dfc49fb8637025c0589e6dc828fa40bdd2f2fd6e83210f9f5eac36783",
+    "M1-08_完整生命周期HTTP与PostgreSQL证据.json": "eeef50c80ae557501688fa3e53e1eb5fc20ef47a7fb9600bef110258a37b58cf",
+    "M1-08_完整闭环联合验收报告.md": "447353f2a81e6c5f06424a80fca168163c79e8bbc7910ec63cc5c5d0279ac274",
+    "M1-08_数据库隔离.json": "f0cfa732f8260dfed1560b28ef1e5fbb86692ab628dd02794c822481da378735",
+    "M1-08_最终API与数据契约核查.md": "ea28d1f2bfe1393c5f04393a6c030163fe890508fd0af6f02b059e745e1337ad",
+    "M1-08_架构与契约核查.json": "6f3bcf1bdeab603a59c7e62fd39cf26acdb80d6e3925c7c17cf9878028b417e5",
+    "M1-08_测试环境隔离证据.md": "b6018e1f1618628a7f1ff2ca25c041bc64f1b2f7daf289c2f65707f264ec2e99",
+    "M1-08_浏览器工具链.json": "f584047542c528592378ea63c2b064feb186e5e9ee19498937b320614885433f",
+    "M1-08_生命周期针对性数据库隔离.json": "d68e7b57450ba28b235d2f2b241dc193ec77d0a28828fc7d838745a78f540853",
+    "M1-08_生成后的每日行程_1280.png": "3aa4d9e28f4747f395e83b3d07f40781a6e44375df1ddb7f41a6ca4d79a809bc",
+    "M1-08_生成后的每日行程_320.png": "a3419f619d04a3bf8f17a38e751e4496dc7beec74203076e23daf41e451ad2f4",
+    "M1-08_生成后的每日行程_390.png": "338adecd6cdbb6e1d99b339801a3e7990cc51b3c7b039540f0847a1085a07736",
+    "M1-08_矩阵节点核对.json": "1b0076b034b1ef208ce86e7f4947fa6d667b2116e41970a0b6636c209c2899ef",
+    "M1-08_确认历史列表_1280.png": "55cb4d0c19baeed706d13dbaf23236087290da0e456753be145cfc009b9d7a89",
+    "M1-08_确认历史列表_320.png": "714153536c251440af6da2f2881db88f2d8cc295bf4a116ac6058d48e1716dc6",
+    "M1-08_确认历史列表_390.png": "83fb42d30804f3b1460cb05d184dabd832194f2589e904a3e1e71c0a66569db5",
+    "M1-08_缺陷与修复记录.md": "c1cc0fac50f3c6795b9369803e2b5fc38f442d2a96e4212f6c78a8f412e2a254",
+    "M1-08_运行中OpenAPI.json": "0d0991f7c85c1c777c91c208c5ffa913740ce508d95bdfc0d6e6fdccf39f7996",
+    "M1-08_酒店L3完整授权_1280.png": "975215defe32f2664c54bae79229ba1d1ce9321e802f4ceec2b5f5ff2ed8f4ee",
+    "M1-08_酒店L3完整授权_320.png": "a162525a52acf89ac0338a33b9c0bff75fd4895e7fbed5ed48c3dde39462ab01",
+    "M1-08_酒店L3完整授权_390.png": "b5ee4a2d4afe2da4cf89841806cb73cef821404704179176e509172fb15a4908",
+    "M1-08_重规划v2待审_1280.png": "03373cd8cbaabcdeded9c8b8cba4b5f4f79d0ee2cd979b08afd7071f70dc1d7c",
+    "M1-08_重规划v2待审_320.png": "7f25ec293926e2eac97f9d13482f2ae3e4436210d0d4ae519ee412549f55609d",
+    "M1-08_重规划v2待审_390.png": "5d90f730ed39953fe7f6f60414498505e216c0d10dfafd38920110a997835466",
+    "M1-08_首次确认披露_1280.png": "8e4fd914fb29b73572ab7325101c049f0bafcb45223e822aa44a6ee14e0bdafb",
+    "M1-08_首次确认披露_320.png": "6523e5e611d32da6660a7a0033ec516da99abaffbc5a3b4d4e2c3df6e128d93c",
+    "M1-08_首次确认披露_390.png": "13e30af29559340e6cd318b43af1d4c095a576711e48925128732080ff4a034d",
+    "M1-08_首轮生命周期数据库隔离.json": "d68e7b57450ba28b235d2f2b241dc193ec77d0a28828fc7d838745a78f540853",
+    "M1-08_默认Node全表针对性数据库隔离.json": "b1a5b252320282e17d24c1b2bf61b62c34733dd61f5b217cd8eaacb79e61626d",
+    "M1-08_默认Node全量数据库隔离.json": "daca696db2d009fc81c177d20408a11540c4bba09ca232ff9aba5ac1aa4c2ba8",
+    "M1-08_默认Node最终生命周期证据.json": "260309269f47f3cdf70d4406fc57b934f2788b36d58eff00618847274ceb2f53"
+  },
+  "hashNormalization": "Text CRLF normalized to LF as in Git; PNG exact bytes",
+  "stopBeforeM2": true
+}

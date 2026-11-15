@@ -1,0 +1,72 @@
+{
+  "run_id": "a642291b-4ddd-4f0f-9d7c-b2e21e309718",
+  "trip_id": "bdbe6752-caa2-46c3-87a9-91f6bab842a9",
+  "kind": "REPLAN",
+  "intake_revision": 2,
+  "base_working_revision": 1,
+  "status": "SUCCEEDED",
+  "attempt": 1,
+  "retry_of": null,
+  "created_at": "2026-11-15T09:01:22.108880Z",
+  "updated_at": "2026-11-15T09:01:22.184497Z",
+  "result": {
+    "working_revision": null,
+    "proposal_id": "85d16bc1-74f9-4dac-ae88-9864fe766ad3"
+  },
+  "error": null,
+  "diagnostics_budget": {
+    "known_subtotal_cents": 60000,
+    "total_cents": null,
+    "unknown_cost_ids": [
+      "cost_activity_0",
+      "cost_local_0",
+      "cost_activity_1",
+      "cost_local_1",
+      "cost_activity_2",
+      "cost_local_2",
+      "cost_outbound",
+      "cost_return"
+    ],
+    "verification": "INDETERMINATE",
+    "constraint": "UNDETERMINED",
+    "verified_cost_ids": [],
+    "evidence_issues": [
+      [
+        "cost_activity_0",
+        "unknown_price"
+      ],
+      [
+        "cost_local_0",
+        "unknown_price"
+      ],
+      [
+        "cost_activity_1",
+        "unknown_price"
+      ],
+      [
+        "cost_local_1",
+        "unknown_price"
+      ],
+      [
+        "cost_activity_2",
+        "unknown_price"
+      ],
+      [
+        "cost_local_2",
+        "unknown_price"
+      ],
+      [
+        "cost_outbound",
+        "unknown_price"
+      ],
+      [
+        "cost_return",
+        "unknown_price"
+      ],
+      [
+        "cost_hotel",
+        "estimate"
+      ]
+    ]
+  }
+}
