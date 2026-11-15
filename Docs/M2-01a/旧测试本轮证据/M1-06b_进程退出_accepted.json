@@ -1,0 +1,19 @@
+{
+  "run_id": "e3311529-ea0c-4068-b0b5-d8405e2bd988",
+  "trip_id": "6d84a079-3983-4707-b908-700d477a4453",
+  "kind": "REPLAN",
+  "intake_revision": 2,
+  "base_working_revision": 1,
+  "status": "FAILED",
+  "attempt": 1,
+  "retry_of": null,
+  "created_at": "2026-11-15T11:10:08.564364Z",
+  "updated_at": "2026-11-15T11:10:08.828653Z",
+  "result": null,
+  "error": {
+    "code": "worker_interrupted",
+    "message": "Executor stopped before completing this run; explicitly retry with a new key.",
+    "retryable": true
+  },
+  "diagnostics_budget": null
+}

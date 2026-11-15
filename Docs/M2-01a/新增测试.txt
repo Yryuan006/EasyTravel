@@ -1,0 +1,71 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 59 items
+
+tests/places/test_place_sources.py::test_all_fifteen_fabricated_records_normalize 15 fabricated records / 14 sites normalized or explicitly rejected; no supplier recordings
+PASSED
+tests/places/test_place_sources.py::test_unique_identity_and_detail_are_date_scoped PASSED
+tests/places/test_place_sources.py::test_same_name_district_ambiguity_does_not_select_first PASSED
+tests/places/test_place_sources.py::test_same_name_entrances_need_explicit_choice_and_share_site PASSED
+tests/places/test_place_sources.py::test_truncated_ambiguity_is_not_unique PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change0] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change1] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change2] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change3] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change4] PASSED
+tests/places/test_place_sources.py::test_city_and_full_resource_binding PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u6b8b\u7f3a\u5730\u5740\u9986-address] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-coordinates.crs] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u533a\u53bf\u9986-district] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u5f02\u5750\u6807\u9986-crs_mismatch] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-crs_unknown] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates_missing] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance_unknown] PASSED
+tests/places/test_place_sources.py::test_same_crs_precondition_is_not_a_route_result PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates0] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates1] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates2] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates3] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates4] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates5] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates6] PASSED
+tests/places/test_place_sources.py::test_provider_id_conflict_rejected_not_used_as_internal_id PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[timeout] PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unavailable] PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unsupported] PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[schema_changed] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change0] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change1] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change2] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change3] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change4] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change5] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change6] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change7] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change8] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change9] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change10] PASSED
+tests/places/test_place_sources.py::test_catalogue_rejects_extra_authority_and_bad_types PASSED
+tests/places/test_place_sources.py::test_normalized_schema_cannot_hide_gaps_or_add_authority PASSED
+tests/places/test_place_sources.py::test_server_observation_ids_and_non_live_boundary PASSED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[live] PASSED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[sandbox] PASSED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[replay] PASSED
+tests/places/test_place_sources.py::test_boundary_revalidates_bypass_provider_future_scope_and_count PASSED
+tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure0-timeout] PASSED
+tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure1-unavailable] PASSED
+tests/places/test_place_sources.py::test_supplier_instructions_are_inert_text_and_never_authority PASSED
+tests/places/test_place_sources.py::test_observation_time_is_aware_and_not_applicability PASSED
+tests/places/test_place_sources.py::test_typed_result_rejects_incoherent_or_authority_payload PASSED
+tests/places/test_place_sources.py::test_result_rejects_conflicting_provider_or_internal_bindings PASSED
+tests/places/test_place_sources.py::test_detail_never_silently_selects_shared_poi_entrance PASSED
+tests/places/test_place_sources.py::test_library_has_no_business_or_transport_dependencies PASSED
+
+============================= 59 passed in 0.22s ==============================

@@ -1,0 +1,26 @@
+{
+  "baseline": "4c86b80fb0970120865b5f347bb08d7e084b1305",
+  "acceptedFilesUnchanged": true,
+  "actualOpenAPIUnchanged": true,
+  "migrationFilesUnchanged": {
+    "001_initial.sql": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43",
+    "002_trip_intakes.sql": "a1f7b4bc3069e20e5c2bc28fded8fe3264050a81f576055c429690976c5b930d",
+    "003_clarifications.sql": "461161507a5fb656b720cf09b3cb485f790d1e74a69e5e9b6e58e4e930a98786",
+    "004_generations.sql": "b82e6d77b7960ae79898e9b6cbaa68375195dee412f59a013ee7504f456c4d28",
+    "005_confirmation_disclosures.sql": "d9adb53e173e056af8e2e26150eb985694849df77dc97f096fcb1edcd666a999",
+    "006_changes.sql": "69c974aaaf079b663960dcd70c1813173fbc29566f858ced6e728771e5a8d562",
+    "007_replanning.sql": "bc25908ff7630520160cca010ca123ad8feb6ff400c1c83dc3927bb9774cac5e"
+  },
+  "noNewMigration": true,
+  "notWiredIntoBusinessPaths": true,
+  "newRuntimeFiles": [
+    "easytravel/backend/domain/places.py",
+    "easytravel/backend/application/place_sources.py",
+    "easytravel/backend/application/place_lookup.py",
+    "easytravel/backend/infrastructure/synthetic_places.py"
+  ],
+  "syntheticFixtureSHA256": "dc96b64b84fc8bb3de6212e3cdb2cc9fcd3c81ee0cb8a53cb93f247804d37719",
+  "placeEvidenceUsableForRealTrip": false,
+  "providerRecordings": false,
+  "note": "Static/API/schema checks plus separate network-denied source tests; not real-data validation."
+}
