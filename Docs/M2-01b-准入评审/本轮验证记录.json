@@ -1,0 +1,17 @@
+{
+  "baseline": "955e8bc3a4aada3822a5c6b7942f670bfa0e8a6f",
+  "review_date": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "markdown_files": 6,
+  "references_checked": 60,
+  "local_links_valid": true,
+  "utf8_valid": true,
+  "no_keys_in_reference_urls": true,
+  "accepted_tracked_files_unchanged": true,
+  "real_supplier_api_calls": 0,
+  "keys_read_or_submitted": false,
+  "database_migrations_changed": false,
+  "business_code_changed": false,
+  "tests_run": false,
+  "reason": "Documentation-only vendor gate; no runtime changes, no real adapter or account operations."
+}
