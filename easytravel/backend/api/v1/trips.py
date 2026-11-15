@@ -2,7 +2,7 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, Header, Path, Response
+from fastapi import APIRouter, Depends, Header, Path, Response, Query
 
 from ...application.intakes import IntakeService
 from ...domain.intake import (CreateTripRequest, TripView, UpdateRequirementsRequest,
@@ -176,5 +176,41 @@ async def get_proposal(trip_id: TripId, proposal_id: TripId, response: Response,
 @router.post('/{trip_id}/proposals/{proposal_id}/decisions', response_model=DecisionResult, operation_id='decideProposal')
 async def decide_proposal(trip_id: TripId, proposal_id: TripId, body: DecisionRequest, response: Response, actor: Actor, service: Changes, key: CommandKey):
     result = await service.decide(trip_id,proposal_id,body,key=str(key),actor=actor)
+    response.headers['Cache-Control'] = 'no-store'
+    return result
+
+
+def snapshot_service():
+    from ...infrastructure.database import load_database_settings
+    from ...infrastructure.snapshots import unit_of_work
+    from ...application.snapshots import SnapshotService
+    try:
+        database = load_database_settings()
+    except ValueError:
+        raise LocalApiError(503, 'business_dependency_unavailable') from None
+    return SnapshotService(unit_of_work(database))
+
+
+from ...domain.snapshots import SnapshotPage
+from ...domain.confirmation import SnapshotView
+from ...application.snapshots import InvalidCursor
+Snapshots = Annotated[object, Depends(snapshot_service)]
+
+
+@router.get('/{trip_id}/snapshots', response_model=SnapshotPage, operation_id='listSnapshots')
+async def list_snapshots(trip_id: TripId, response: Response, actor: Actor, service: Snapshots,
+        limit: Annotated[int, Query(ge=1, le=100)] = 20,
+        cursor: Annotated[str | None, Query(min_length=1, max_length=500)] = None):
+    try:
+        result = await service.list(trip_id, actor=actor, limit=limit, cursor=cursor)
+    except InvalidCursor:
+        raise LocalApiError(422, 'invalid_request') from None
+    response.headers['Cache-Control'] = 'no-store'
+    return result
+
+
+@router.get('/{trip_id}/snapshots/{snapshot_id}', response_model=SnapshotView, operation_id='getSnapshot')
+async def get_snapshot(trip_id: TripId, snapshot_id: TripId, response: Response, actor: Actor, service: Snapshots):
+    result = await service.get(trip_id, snapshot_id, actor=actor)
     response.headers['Cache-Control'] = 'no-store'
     return result

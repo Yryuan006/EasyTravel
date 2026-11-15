@@ -41,6 +41,11 @@ async def trusted_actor(request: Request,
             actor = identity.actor
     if actor is None:
         raise LocalApiError(401, "authentication_required")
-    if request.query_params or "x-actor" in request.headers:
+    pairs = list(request.query_params.multi_items())
+    history_query = (request.method == 'GET' and request.scope.get('route') is not None
+        and request.scope['route'].path == '/api/v1/trips/{trip_id}/snapshots'
+        and all(k in {'limit', 'cursor'} for k, _ in pairs)
+        and len({k for k, _ in pairs}) == len(pairs))
+    if (pairs and not history_query) or "x-actor" in request.headers:
         raise LocalApiError(422, "invalid_request")
     return actor

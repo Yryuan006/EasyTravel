@@ -2,7 +2,8 @@ import current from './generation-schema.json'
 import legacy from './working-schema.json'
 import confirmation from './confirmation-schema.json'
 import changes from './change-schema.json'
-const schemas = { ...legacy, ...current, ...confirmation, ...changes }
+import snapshots from './snapshot-schema.json'
+const schemas = { ...legacy, ...current, ...confirmation, ...changes, ...snapshots }
 import type { WorkingDraft } from './contracts'
 // The read-only legacy draft subset is copied verbatim from the actual OpenAPI.
 // Domain consistency remains the backend's responsibility; no plan is inferred here.

@@ -3,6 +3,7 @@ import HealthStatus from './components/HealthStatus.vue'
 import { useHealth } from './composables/useHealth'
 import { computed, onUnmounted, ref } from 'vue'
 import RequirementsForm from './components/RequirementsForm.vue'
+import TripHistory from './components/TripHistory.vue'
 import TripWorkspace from './components/TripWorkspace.vue'
 import { useTrip } from './composables/useTrip'
 import type { RequirementsInput } from './api/contracts'
@@ -14,10 +15,11 @@ const path = ref(location.pathname)
 const identityEpoch = ref(0)
 const created = ref(false)
 const isNew = computed(() => path.value === '/' || path.value === '/trips/new')
-const tripId = computed(() => isNew.value ? undefined : /^\/trips\/([^/]+)$/.exec(path.value)?.[1])
+const historyMatch = computed(() => /^\/trips\/([A-Za-z0-9_-]{1,80})\/history(?:\/([A-Za-z0-9_-]{1,80}))?$/.exec(path.value))
+const tripId = computed(() => isNew.value ? undefined : historyMatch.value?.[1] ?? /^\/trips\/([^/]+)$/.exec(path.value)?.[1])
 const localDevelopment = import.meta.env.DEV && ['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname)
 function navigate(url: string) { history.pushState(null, '', url); path.value = url }
-function onPop() { trip.reset(); created.value = false; path.value = location.pathname; if (token.value && tripId.value) void trip.load(token.value, tripId.value) }
+function onPop() { trip.reset(); created.value = false; path.value = location.pathname; if (token.value && tripId.value && !historyMatch.value) void trip.load(token.value, tripId.value) }
 addEventListener('popstate', onPop)
 onUnmounted(() => removeEventListener('popstate', onPop))
 function clearIdentity() { token.value = ''; credential.value = ''; trip.reset(); identityEpoch.value++; created.value = false }
@@ -25,13 +27,14 @@ function useCredential() {
   const next = credential.value.trim()
   clearIdentity()
   token.value = next
-  if (token.value && tripId.value) void trip.load(token.value, tripId.value)
+  if (token.value && tripId.value && !historyMatch.value) void trip.load(token.value, tripId.value)
 }
 async function save(input?: RequirementsInput) {
   const identity = identityEpoch.value
   await trip.save(token.value, input)
   if (identity === identityEpoch.value && trip.state.value.status === 'success') { created.value = true; navigate(`/trips/${trip.state.value.data.trip_id}`) }
 }
+function openPage(url: string) { trip.reset(); created.value = false; navigate(url); if (token.value && tripId.value && !historyMatch.value) void trip.load(token.value, tripId.value) }
 function newTrip() { trip.reset(); created.value = false; identityEpoch.value++; navigate('/trips/new') }
 </script>
 
@@ -42,7 +45,7 @@ function newTrip() { trip.reset(); created.value = false; identityEpoch.value++;
     <nav aria-label="主导航"><a href="/trips/new" @click.prevent="newTrip">创建旅行</a><a href="#health-heading">服务状态</a></nav>
   </header>
   <main id="main" class="workspace">
-    <div class="intro"><p class="eyebrow">EASYTRAVEL / 旅行需求</p><h1>从你的旅行想法开始。</h1><p class="intro-copy">先保存需求，再一步步补充旅程的细节。</p></div>
+    <div class="intro"><p class="eyebrow">EASYTRAVEL / 旅行需求</p><h1>{{ historyMatch ? '回看每次明确确认的旅程。' : '从你的旅行想法开始。' }}</h1><p class="intro-copy">{{ historyMatch ? '保存当时的行程、预算与披露，和当前工作稿清楚区分。' : '先保存需求，再一步步补充旅程的细节。' }}</p></div>
     <template v-if="localDevelopment">
       <section class="credential-panel" aria-labelledby="credential-heading">
         <h2 id="credential-heading">本地开发凭证</h2>
@@ -51,6 +54,7 @@ function newTrip() { trip.reset(); created.value = false; identityEpoch.value++;
         <template v-else><p>已提供本地凭证，身份有效性由后端验证。</p><button @click="clearIdentity">清除或更换凭证</button></template>
       </section>
       <template v-if="token">
+        <TripHistory v-if="historyMatch && tripId" :key="identityEpoch" :token="token" :trip-id="tripId" :snapshot-id="historyMatch[2]" @navigate="openPage" />
         <RequirementsForm v-if="isNew" :key="identityEpoch" :busy="trip.state.value.status === 'loading'" @submit="save" />
         <p v-if="trip.state.value.status === 'loading'" role="status">{{ isNew ? '正在创建旅行，请勿重复提交。' : '正在从服务器读取旅行…' }}</p>
         <div v-if="trip.state.value.status === 'error'" class="notice form-error" role="alert">
@@ -63,7 +67,7 @@ function newTrip() { trip.reset(); created.value = false; identityEpoch.value++;
         </div>
         <template v-if="trip.state.value.status === 'success'">
           <p v-if="created" role="status">旅行创建成功（HTTP 201）。</p>
-          <TripWorkspace :key="`${identityEpoch}-${trip.state.value.data.trip_id}`" :initial="trip.state.value.data" :token="token" />
+          <TripWorkspace v-if="!historyMatch" @navigate="openPage" :key="`${identityEpoch}-${trip.state.value.data.trip_id}`" :initial="trip.state.value.data" :token="token" />
         </template>
       </template>
       <p v-else-if="!isNew">请重新输入本地凭证，从服务器读取此旅行。</p>

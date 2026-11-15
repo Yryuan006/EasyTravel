@@ -1,0 +1,128 @@
+{
+  "SnapshotPage": {
+    "properties": [
+      "items",
+      "next_cursor"
+    ],
+    "required": [
+      "items",
+      "next_cursor"
+    ],
+    "matchesM100": true
+  },
+  "SnapshotView": {
+    "properties": [
+      "booked",
+      "context",
+      "readiness",
+      "risk_disclosure",
+      "snapshot"
+    ],
+    "required": [
+      "booked",
+      "context",
+      "readiness",
+      "risk_disclosure",
+      "snapshot"
+    ],
+    "matchesM100": true
+  },
+  "SnapshotSummary": {
+    "matchesM100InlineItem": true,
+    "properties": [
+      "snapshot_id",
+      "source_working_revision",
+      "confirmed_at",
+      "budget"
+    ]
+  },
+  "TypeScript": {
+    "summaryAndPageFieldsMatch": true,
+    "SnapshotViewReusesConfirmationContract": true,
+    "runtimeSchemaEqualsActualOpenAPI": true,
+    "reachableRuntimeSchemasVerified": [
+      "Answer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____",
+      "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____",
+      "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____",
+      "Answer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____",
+      "Answer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____",
+      "BudgetResult",
+      "ConfirmedSnapshot",
+      "CostLine",
+      "DateWindow",
+      "DraftContext",
+      "FixedDates",
+      "GenerationNotes",
+      "ItemConfirmation",
+      "MissingAnswer",
+      "PlanDraftOutput",
+      "PlanItem",
+      "PriceQuery",
+      "ProvidedAnswer_Annotated_Union_FixedDates__DateWindow___FieldInfo_annotation_NoneType__required_True__discriminator__mode____",
+      "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_0___Le_le_1000000000000_____",
+      "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_2_____",
+      "ProvidedAnswer_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True___Ge_ge_1___Le_le_5_____",
+      "ProvidedAnswer_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1___MaxLen_max_length_500_____",
+      "RequirementsInput",
+      "Risk",
+      "RiskDisclosure",
+      "SnapshotPage",
+      "SnapshotSummary",
+      "SnapshotView",
+      "TransportAdvice",
+      "TripRequirements"
+    ]
+  },
+  "paginationParameters": [
+    {
+      "name": "trip_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_-]{1,80}$",
+        "title": "Trip Id"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "integer",
+        "maximum": 100,
+        "minimum": 1,
+        "default": 20,
+        "title": "Limit"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Cursor"
+      }
+    }
+  ],
+  "migrations": {
+    "001_initial.sql": "71dad1b913d25acfe2a7f0e3cf96e8c7370e65c54855240023c64c8dbd1b7b43",
+    "002_trip_intakes.sql": "a1f7b4bc3069e20e5c2bc28fded8fe3264050a81f576055c429690976c5b930d",
+    "003_clarifications.sql": "461161507a5fb656b720cf09b3cb485f790d1e74a69e5e9b6e58e4e930a98786",
+    "004_generations.sql": "b82e6d77b7960ae79898e9b6cbaa68375195dee412f59a013ee7504f456c4d28",
+    "005_confirmation_disclosures.sql": "d9adb53e173e056af8e2e26150eb985694849df77dc97f096fcb1edcd666a999",
+    "006_changes.sql": "69c974aaaf079b663960dcd70c1813173fbc29566f858ced6e728771e5a8d562",
+    "007_replanning.sql": "bc25908ff7630520160cca010ca123ad8feb6ff400c1c83dc3927bb9774cac5e"
+  },
+  "confirmationAndLegacyRepositoryUnchangedIgnoringCheckoutNewlines": true
+}

@@ -1,0 +1,28 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 17 items
+
+tests/backend/test_snapshots.py::test_empty_then_two_versions_and_read_only_restart PASSED
+tests/backend/test_snapshots.py::test_pagination_ties_binding_and_mutation PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=0] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=101] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=-1] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=x] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=1.5] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[cursor=] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=1&limit=2] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[actor=a] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[cursor=x&cursor=y] PASSED
+tests/backend/test_snapshots.py::test_owner_parent_auth_and_missing PASSED
+tests/backend/test_snapshots.py::test_legacy_no_context_no_disclosure PASSED
+tests/backend/test_snapshots.py::test_default_maximum_and_equal_time_keyset PASSED
+tests/backend/test_snapshots.py::test_context_without_disclosure_stays_unacknowledged PASSED
+tests/backend/test_snapshots.py::test_unavailable_database_is_503[] PASSED
+tests/backend/test_snapshots.py::test_unavailable_database_is_503[/missing] PASSED
+
+============================= 17 passed in 14.66s =============================

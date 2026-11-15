@@ -52,7 +52,7 @@ def test_openapi_and_docs(app):
     OpenAPI.model_validate(schema)
     assert schema == app.openapi()
     assert schema["openapi"].startswith("3.1.")
-    assert set(schema["paths"]) == {"/api/v1/health", "/api/v1/trips", "/api/v1/trips/{trip_id}",
+    assert set(schema["paths"]) == {"/api/v1/trips/{trip_id}/snapshots", "/api/v1/trips/{trip_id}/snapshots/{snapshot_id}", "/api/v1/health", "/api/v1/trips", "/api/v1/trips/{trip_id}",
         "/api/v1/trips/{trip_id}/requirements", "/api/v1/trips/{trip_id}/clarifications/next",
         "/api/v1/trips/{trip_id}/clarifications/{question_id}/answers",
         "/api/v1/trips/{trip_id}/generations", "/api/v1/trips/{trip_id}/generations/{run_id}", "/api/v1/trips/{trip_id}/generation-state",

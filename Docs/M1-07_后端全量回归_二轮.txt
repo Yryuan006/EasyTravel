@@ -1,0 +1,633 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 451 items
+
+tests/backend/test_app.py::test_factory_isolated_configuration PASSED
+tests/backend/test_app.py::test_health PASSED
+tests/backend/test_app.py::test_openapi_and_docs PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[ResourceNotFound-404-resource_not_found-Resource not found.] PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[BusinessConflict-409-business_conflict-Operation conflicts with current state.] PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[BusinessError-500-internal_error-Internal server error.] PASSED
+tests/backend/test_app.py::test_safe_exception_mapping[RuntimeError-500-internal_error-Internal server error.] PASSED
+tests/backend/test_app.py::test_safe_http_exception_and_missing_route PASSED
+tests/backend/test_app.py::test_validation_does_not_echo_input PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values0-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values1-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values2-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values3-environment] PASSED
+tests/backend/test_app.py::test_bad_config_fails_explicitly_without_values[values4-debug] PASSED
+tests/backend/test_app.py::test_factory_rejects_bad_environment PASSED
+tests/backend/test_app.py::test_settings_reject_extra_fields_and_mutation PASSED
+tests/backend/test_app.py::test_import_factory_and_http_need_no_external_adapters PASSED
+tests/backend/test_change_workflow.py::test_activity_applies_without_grant_preserves_snapshot PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[missing] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[less] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[more] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[hash] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[string] PASSED
+tests/backend/test_change_workflow.py::test_l3_exact_scope_and_strict_intent[number] PASSED
+tests/backend/test_change_workflow.py::test_l3_atomic_apply_replay_and_reject PASSED
+tests/backend/test_change_workflow.py::test_stale_input_revision_parent_and_owner PASSED
+tests/backend/test_change_workflow.py::test_unknown_intent_failed_no_proposal PASSED
+tests/backend/test_change_workflow.py::test_atomic_rollback[save_decision] PASSED
+tests/backend/test_change_workflow.py::test_atomic_rollback[commit] PASSED
+tests/backend/test_change_workflow.py::test_concurrent_replay_and_changed_command PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u5220\u9664\u6d3b\u52a8] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u66ff\u6362\u6d3b\u52a8] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u8c03\u6574\u6d3b\u52a8\u65f6\u95f4] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u6dfb\u52a0\u6d3b\u52a8] PASSED
+tests/backend/test_change_workflow.py::test_supported_activity_commands[\u4fee\u6539\u6d3b\u52a8\u6807\u9898] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[invalid_json] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[over_budget] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[out_of_dates] PASSED
+tests/backend/test_change_workflow.py::test_untrusted_candidate_and_complete_l3_scope[hotel_with_activity] PASSED
+tests/backend/test_change_workflow.py::test_process_replay_reads_decision_proposal_and_draft[True] PASSED
+tests/backend/test_change_workflow.py::test_process_replay_reads_decision_proposal_and_draft[False] PASSED
+tests/backend/test_change_workflow.py::test_interrupted_change_run_recovers_without_proposal PASSED
+tests/backend/test_change_workflow.py::test_concurrent_intent_replays_one_frozen_run_and_survives_process_exit PASSED
+tests/backend/test_change_workflow.py::test_protected_activity_is_l3_and_stale_proposal_cannot_overwrite PASSED
+tests/backend/test_change_workflow.py::test_generation_frozen_base_cannot_override_new_intake PASSED
+tests/backend/test_clarifications.py::test_update_history_replay_and_restart M1-01 compatibility: genuine 001+002 Trip upgraded with unchanged facts/receipts; descriptors explicitly backfilled
+PASSED
+tests/backend/test_clarifications.py::test_get_pure_legacy_complete_and_no_inference PASSED
+tests/backend/test_clarifications.py::test_answer_versions_old_question_and_field_mismatch PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[travelers-3] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[travelers-True] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[days-6] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[days-0] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[hard_limit_cents--1] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[hard_limit_cents-1.5] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[hard_limit_cents-1000000000001] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[hard_limit_cents-100] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[dates-value8] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[dates-value9] PASSED
+tests/backend/test_clarifications.py::test_invalid_answer_and_full_update[dates-value10] PASSED
+tests/backend/test_clarifications.py::test_explicit_missing_state_and_correction[unanswered] PASSED
+tests/backend/test_clarifications.py::test_explicit_missing_state_and_correction[no_preference] PASSED
+tests/backend/test_clarifications.py::test_semantic_rules_and_priority PASSED
+tests/backend/test_clarifications.py::test_cross_owner_and_expected_working PASSED
+tests/backend/test_clarifications.py::test_concurrent_updates_and_answers Concurrent PUT distinct-key [200, 409, 409, 409, 409]
+Concurrent PUT same-key [200, 200, 200, 200, 200]
+Concurrent POST distinct-key [200, 409, 409, 409, 409]
+Concurrent POST same-key [200, 200, 200, 200, 200]
+PASSED
+tests/backend/test_clarifications.py::test_atomic_rollback[statement-update] Full rollback: update statement versions, pointer, questions, answers, receipt unchanged
+PASSED
+tests/backend/test_clarifications.py::test_atomic_rollback[statement-answer] Full rollback: answer statement versions, pointer, questions, answers, receipt unchanged
+PASSED
+tests/backend/test_clarifications.py::test_atomic_rollback[commit-update] Full rollback: update commit versions, pointer, questions, answers, receipt unchanged
+PASSED
+tests/backend/test_clarifications.py::test_atomic_rollback[commit-answer] Full rollback: answer commit versions, pointer, questions, answers, receipt unchanged
+PASSED
+tests/backend/test_clarifications.py::test_draft_preservation_and_stale_confirmation PASSED
+tests/backend/test_clarifications.py::test_read_only_transaction_and_legacy_answer GET executes in PostgreSQL READ ONLY; pre-003 Trip successfully answered to revision 2
+PASSED
+tests/backend/test_clarifications.py::test_new_write_key_and_auth_contract[PUT-/requirements-body0] PASSED
+tests/backend/test_clarifications.py::test_new_write_key_and_auth_contract[POST-/clarifications/q/answers-body1] PASSED
+tests/backend/test_clarifications.py::test_question_answer_database_immutability PASSED
+tests/backend/test_confirmations.py::test_known_mock_costs_remain_estimated PASSED
+tests/backend/test_confirmations.py::test_preview_confirmation_facts_immutable E06/E08 backend: unknown != zero; system disclosures survive empty Agent risks; snapshot/context/budget/pointer/receipts immutable and atomic; no hotel grant
+PASSED
+tests/backend/test_confirmations.py::test_strict_intent[False-409-explicit_confirmation_required] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[true-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[1-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_strict_intent[None-422-invalid_request] PASSED
+tests/backend/test_confirmations.py::test_old_facts[seen_disclosure_hash-disclosure_not_acknowledged] PASSED
+tests/backend/test_confirmations.py::test_old_facts[seen_risk_hash-risk_not_acknowledged] PASSED
+tests/backend/test_confirmations.py::test_old_facts[expected_intake_revision-stale_intake] PASSED
+tests/backend/test_confirmations.py::test_old_facts[expected_working_revision-stale_revision] PASSED
+tests/backend/test_confirmations.py::test_missing_and_stale_pending_budget E07/E13 backend: 200 STALE preview preserves original budget and pending OVER_LIMIT; both stale requests rejected
+PASSED
+tests/backend/test_confirmations.py::test_budget_and_blocker_cannot_be_waived[over-known_costs_exceed_hard_limit] PASSED
+tests/backend/test_confirmations.py::test_budget_and_blocker_cannot_be_waived[blocker-blocking_risks] PASSED
+tests/backend/test_confirmations.py::test_security_and_validation PASSED
+tests/backend/test_confirmations.py::test_rules_change_and_same_source_conflict E17 backend: same-version rule update rejects old risk hash; already-confirmed source cannot acquire different disclosure
+PASSED
+tests/backend/test_confirmations.py::test_concurrent_http[True] PASSED
+tests/backend/test_confirmations.py::test_concurrent_http[False] PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[disclosure] PostgreSQL failure at disclosure: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[pointer] PostgreSQL failure at pointer: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[operation] PostgreSQL failure at operation: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[command] PostgreSQL failure at command: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_real_database_rollback[commit] PostgreSQL failure at commit: snapshot/disclosure/pointer/both receipts rolled back; same key retry succeeds
+PASSED
+tests/backend/test_confirmations.py::test_database_unavailable_and_internal_errors PASSED
+tests/backend/test_confirmations.py::test_cross_process_replay_after_intake_changed PASSED
+tests/backend/test_confirmations.py::test_legacy_snapshot_not_backfilled PASSED
+tests/backend/test_confirmations.py::test_old_revision_cannot_replace_new_pointer PASSED
+tests/backend/test_generation_display.py::test_retry_classification[known_costs_exceed_hard_limit-False] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[stale_input-False] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[invalid_output-True] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[worker_interrupted-True] PASSED
+tests/backend/test_generation_display.py::test_retry_classification[persistence_failed-True] PASSED
+tests/backend/test_generation_display.py::test_projection_reopen_owner_revision PASSED
+tests/backend/test_generation_display.py::test_over_limit_blocks_retry_without_changing_receipt PASSED
+tests/backend/test_generations.py::test_success_real_read_and_replay E04 E06 E12: 202 ACCEPTED -> SUCCEEDED; r1/context atomic; independent process matches; replay retains original 202
+PASSED
+tests/backend/test_generations.py::test_rejections[incomplete] PASSED
+tests/backend/test_generations.py::test_rejections[stale] PASSED
+tests/backend/test_generations.py::test_rejections[replan] PASSED
+tests/backend/test_generations.py::test_rejections[extra] PASSED
+tests/backend/test_generations.py::test_rejections[missing_key] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[invalid_json] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[duplicate_keys] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[dangling] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[hotel] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[overlap] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[outside] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[not_mock] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[quote] PASSED
+tests/backend/test_generations.py::test_invalid_and_budget[over_budget] PASSED
+tests/backend/test_generations.py::test_owner_path_and_idempotency PASSED
+tests/backend/test_generations.py::test_concurrent_idempotency PASSED
+tests/backend/test_generations.py::test_stale_input_during_model_no_transaction_lock PASSED
+tests/backend/test_generations.py::test_atomic_rollback[context] PASSED
+tests/backend/test_generations.py::test_atomic_rollback[commit] PASSED
+tests/backend/test_generations.py::test_context_immutable_and_second_submit PASSED
+tests/backend/test_generations.py::test_real_process_interruption_restart_replay[accepted] E20 actual process kill/exit: accepted -> FAILED ; replay and explicit retry verified
+PASSED
+tests/backend/test_generations.py::test_real_process_interruption_restart_replay[running] E20 actual process kill/exit: running -> FAILED ; replay and explicit retry verified
+PASSED
+tests/backend/test_generations.py::test_real_process_interruption_restart_replay[committed] E20 actual process kill/exit: committed -> SUCCEEDED ; replay and explicit retry verified
+PASSED
+tests/backend/test_generations.py::test_retry_requires_failed_same_input_and_parent PASSED
+tests/backend/test_generations.py::test_supported_duration_boundaries[1] PASSED
+tests/backend/test_generations.py::test_supported_duration_boundaries[5] PASSED
+tests/backend/test_generations.py::test_different_key_concurrency PASSED
+tests/backend/test_intakes.py::test_default_disabled_and_health_without_database PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change0] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change1] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change2] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change3] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change4] PASSED
+tests/backend/test_intakes.py::test_unsafe_local_configuration_rejected[change5] PASSED
+tests/backend/test_intakes.py::test_invalid_token_configuration[short] PASSED
+tests/backend/test_intakes.py::test_invalid_token_configuration[not a token] PASSED
+tests/backend/test_intakes.py::test_invalid_token_configuration[value2] PASSED
+tests/backend/test_intakes.py::test_local_config_load_and_secret_repr PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[None] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[Bearer wrong] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[Basic anything] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[Bearer] PASSED
+tests/backend/test_intakes.py::test_missing_or_invalid_identity_fails_before_database[auth4] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra0-403-origin_not_allowed] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra1-403-origin_not_allowed] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra2-403-local_only_api] PASSED
+tests/backend/test_intakes.py::test_origin_host_and_actor_header[extra3-422-invalid_request] PASSED
+tests/backend/test_intakes.py::test_non_loopback_peer_cannot_spoof_forwarding PASSED
+tests/backend/test_intakes.py::test_missing_database_is_safe_503 PASSED
+tests/backend/test_intakes.py::test_create_read_input_and_no_draft[complete] M1-01 dedicated database initialized: 001 legacy snapshot preserved, 002 applied once; no reset
+HTTP complete: POST 201 / GET 200; input persisted, no draft, GET fingerprint unchanged
+PASSED
+tests/backend/test_intakes.py::test_create_read_input_and_no_draft[destination] HTTP destination: POST 201 / GET 200; input persisted, no draft, GET fingerprint unchanged
+PASSED
+tests/backend/test_intakes.py::test_create_read_input_and_no_draft[raw] HTTP raw: POST 201 / GET 200; input persisted, no draft, GET fingerprint unchanged
+PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[empty] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[missing] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[money] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[money_bool] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[travelers] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[extra_owner] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[extra_actor] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[answer_extra] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[provided_null] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[unanswered_value] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[blank_destination] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[blank_raw] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[bad_date] PASSED
+tests/backend/test_intakes.py::test_reject_invalid_input_without_side_effects[extra_status] PASSED
+tests/backend/test_intakes.py::test_idempotency_header_required[None] PASSED
+tests/backend/test_intakes.py::test_idempotency_header_required[invalid-uuid] PASSED
+tests/backend/test_intakes.py::test_owner_scope_and_forged_query PASSED
+tests/backend/test_intakes.py::test_sequential_replay_conflict_and_actor_key_scope PASSED
+tests/backend/test_intakes.py::test_concurrent_creates_and_committed_timeout_replay PASSED
+tests/backend/test_intakes.py::test_transaction_failure_rolls_back_http_command_and_intake[statement] PASSED
+tests/backend/test_intakes.py::test_transaction_failure_rolls_back_http_command_and_intake[commit] PASSED
+tests/backend/test_intakes.py::test_independent_process_reads_and_replays PASSED
+tests/backend/test_intakes.py::test_legacy_trip_has_no_fabricated_input PASSED
+tests/backend/test_intakes.py::test_intake_and_command_database_guards PASSED
+tests/backend/test_intakes.py::test_command_lock_timeout_is_retryable_409 PASSED
+tests/backend/test_intakes.py::test_unavailable_database_and_health PASSEDIsolation verified: 24 experiment/Checkpoint tables + 21 retained formal tables + seeded legacy snapshot unchanged
+
+tests/backend/test_persistence.py::test_fresh_schema_and_repeat_upgrade_preserves_data Fresh empty database initialized with 001-007; 21 formal tables; concurrent installers serialized
+Database migration succeeded; applied=
+PASSED
+tests/backend/test_persistence.py::test_connection_scope_closes_after_commit_and_exception PASSED
+tests/backend/test_persistence.py::test_schema_has_no_experiment_or_checkpoint_links PASSED
+tests/backend/test_persistence.py::test_checksum_drift_and_unknown_migration_fail PASSED
+tests/backend/test_persistence.py::test_failed_migration_rolls_back_ddl_and_ledger PASSED
+tests/backend/test_persistence.py::test_working_revision_conflict_and_cas PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[UPDATE easytravel.confirmed_snapshots SET disclosure_hash=disclosure_hash WHERE snapshot_id=%s] PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[DELETE FROM easytravel.confirmed_snapshots WHERE snapshot_id=%s] PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[UPDATE easytravel.draft_versions SET payload=payload WHERE trip_id=%s] PASSED
+tests/backend/test_persistence.py::test_immutable_snapshot_and_source_version[DELETE FROM easytravel.draft_versions WHERE trip_id=%s] PASSED
+tests/backend/test_persistence.py::test_snapshot_remains_old_after_working_change PASSED
+tests/backend/test_persistence.py::test_confirmation_rechecks_acknowledgement_and_revision[override0-explicit_confirmation_required] PASSED
+tests/backend/test_persistence.py::test_confirmation_rechecks_acknowledgement_and_revision[override1-explicit_confirmation_required] PASSED
+tests/backend/test_persistence.py::test_confirmation_rechecks_acknowledgement_and_revision[override2-disclosure_not_acknowledged] PASSED
+tests/backend/test_persistence.py::test_confirmation_rechecks_acknowledgement_and_revision[override3-stale_revision] PASSED
+tests/backend/test_persistence.py::test_new_process_reads_committed_state PASSED
+tests/backend/test_persistence.py::test_repeated_and_concurrent_operation_one_result PASSED
+tests/backend/test_persistence.py::test_concurrent_different_operations_conflict PASSED
+tests/backend/test_persistence.py::test_confirmation_receipt_and_unique_snapshot PASSED
+tests/backend/test_persistence.py::test_authorization_exact_scope_and_single_consumption PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[save_receipt-apply] PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[save_receipt-confirm] PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[commit-apply] PASSED
+tests/backend/test_persistence.py::test_database_error_rolls_back_entire_business_transaction[commit-confirm] PASSED
+tests/backend/test_persistence.py::test_owner_boundary_all_reads_and_writes PASSED
+tests/backend/test_persistence.py::test_unavailable_database_and_cli_explicit_failure PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[postgresql://a:secret@127.0.0.1:55432/easytravel_env00_test] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[dbname=x] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[postgresql://a:secret@localhost:5432/postgres] PASSED
+tests/backend/test_persistence.py::test_database_config_rejects_implicit_or_experiment_target[postgresql://a:secret@localhost:5432/formal?options=-csearch_path=public] PASSED
+tests/backend/test_persistence.py::test_database_config_explicit_and_secret_safe PASSED
+tests/backend/test_persistence.py::test_domain_and_application_do_not_import_drivers_or_experiments PASSEDIsolation verified: 24 experiment/Checkpoint tables unchanged (counts + full-row hashes)
+
+tests/backend/test_replanning.py::test_date_replan_preserves_confirmed_history PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[missing] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[less] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[more] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[hash] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[intake] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[working] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[string] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[number] PASSED
+tests/backend/test_replanning.py::test_preference_only_payload_no_change_preserves_protection PASSED
+tests/backend/test_replanning.py::test_reject_keeps_new_intake_and_replays PASSED
+tests/backend/test_replanning.py::test_over_budget_and_explicit_retry_policy PASSED
+tests/backend/test_replanning.py::test_v1_and_v2_hash_parent_and_owner PASSED
+tests/backend/test_replanning.py::test_commit_failure_all_rolls_back PASSED
+tests/backend/test_replanning.py::test_uniform_explicit_retry[INITIAL_PLAN] PASSED
+tests/backend/test_replanning.py::test_uniform_explicit_retry[CHANGE_INTENT] PASSED
+tests/backend/test_replanning.py::test_uniform_explicit_retry[REPLAN] PASSED
+tests/backend/test_replanning.py::test_real_replan_executor_exit_and_replay[accepted] PASSED
+tests/backend/test_replanning.py::test_real_replan_executor_exit_and_replay[running] PASSED
+tests/backend/test_replanning.py::test_real_replan_executor_exit_and_replay[committed] PASSED
+tests/backend/test_replanning.py::test_replan_concurrent_decision_and_new_process[True] PASSED
+tests/backend/test_replanning.py::test_replan_concurrent_decision_and_new_process[False] PASSED
+tests/backend/test_replanning.py::test_intake_and_requirements_revision_are_distinct PASSED
+tests/backend/test_replanning.py::test_v2_context_digest_immutable_and_retry_source_guards PASSED
+tests/backend/test_snapshots.py::test_empty_then_two_versions_and_read_only_restart PASSED
+tests/backend/test_snapshots.py::test_pagination_ties_binding_and_mutation PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=0] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=101] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=-1] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=x] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=1.5] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[cursor=] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=1&limit=2] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[actor=a] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[cursor=x&cursor=y] PASSED
+tests/backend/test_snapshots.py::test_owner_parent_auth_and_missing PASSED
+tests/backend/test_snapshots.py::test_legacy_no_context_no_disclosure PASSED
+tests/backend/test_snapshots.py::test_default_maximum_and_equal_time_keyset FAILED
+tests/backend/test_snapshots.py::test_context_without_disclosure_stays_unacknowledged PASSED
+tests/m000/test_integration.py::test_agent_rules_and_safe_apply[L1] {"event": "integrated_change", "level": "L1", "revision_before": 1, "revision_after": 2, "snapshot_unchanged": true, "grants": 0, "receipts": 1}
+PASSED
+tests/m000/test_integration.py::test_agent_rules_and_safe_apply[L2] {"event": "integrated_change", "level": "L2", "revision_before": 1, "revision_after": 2, "snapshot_unchanged": true, "grants": 0, "receipts": 1}
+PASSED
+tests/m000/test_integration.py::test_agent_rules_and_safe_apply[L3] {"event": "integrated_change", "level": "L3", "revision_before": 1, "revision_after": 2, "snapshot_unchanged": true, "grants": 1, "receipts": 1}
+PASSED
+tests/m000/test_integration.py::test_rejection_preserves_draft_and_snapshot[False] {"event": "rejected", "draft_unchanged": true, "snapshot_unchanged": true, "grants": 0, "receipts": 0}
+PASSED
+tests/m000/test_integration.py::test_rejection_preserves_draft_and_snapshot[True] {"event": "rejected", "draft_unchanged": true, "snapshot_unchanged": true, "grants": 0, "receipts": 0}
+PASSED
+tests/m000/test_integration.py::test_first_decision_needs_dynamic_interrupt[approve] PASSED
+tests/m000/test_integration.py::test_first_decision_needs_dynamic_interrupt[reject] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[approve-actor] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[approve-hash] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[approve-proposal] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[approve-revision] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[approve-items] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[approve-consent] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[reject-actor] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[reject-hash] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[reject-proposal] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[reject-revision] PASSED
+tests/m000/test_integration.py::test_specific_user_scope_required[reject-items] PASSED
+tests/m000/test_integration.py::test_resume_payload_cannot_create_authorization PASSED
+tests/m000/test_integration.py::test_process_exit_and_graph_recovery[proposal_committed] {"action": "start", "exit_code": 75, "pid": 24272, "event": "forced_exit", "point": "proposal_committed"}
+{"action": "continue_run", "exit_code": 0, "pid": 32524, "event": "result", "result": {"thread_id": "cb98ac0e-656e-48ac-8774-f2ce03d60533", "status": "waiting", "approval_pending": true, "next": ["wait"], "proposal": {"proposal_id": "9e39a1a8-86ef-4112-bc7c-b0cd031c031a", "candidate_hash": "dbdc9a9b75bf7203b1a5abfda027b72e190b18b5afe61c789aa5a297410f2905", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "decision_id": null, "result": null}, "adapter_calls": 0, "connection_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 21004, "event": "result", "result": {"thread_id": "cb98ac0e-656e-48ac-8774-f2ce03d60533", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "9e39a1a8-86ef-4112-bc7c-b0cd031c031a", "candidate_hash": "dbdc9a9b75bf7203b1a5abfda027b72e190b18b5afe61c789aa5a297410f2905", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "decision_id": "fad94dce-52dd-4d91-bb0d-e8d3baff4fea", "result": {"operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "operation_type": "apply_working_change", "trip_id": "5ead1979-62ae-49f9-969a-3df218d36c7d", "working_revision": 2, "latest_confirmed_version_id": "49939b16-5942-4822-972e-59640008ca44", "level": "L3", "explanation": "合成提案：更新指定项目，费用不变", "budget": {"known_subtotal_cents": 134000, "total_cents": 134000, "unknown_cost_ids": [], "verification": "ESTIMATED", "constraint": "WITHIN_LIMIT", "verified_cost_ids": [], "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]]}}}, "adapter_calls": 0, "connection_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 33688, "event": "result", "result": {"thread_id": "cb98ac0e-656e-48ac-8774-f2ce03d60533", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "9e39a1a8-86ef-4112-bc7c-b0cd031c031a", "candidate_hash": "dbdc9a9b75bf7203b1a5abfda027b72e190b18b5afe61c789aa5a297410f2905", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "decision_id": "fad94dce-52dd-4d91-bb0d-e8d3baff4fea", "result": {"operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "operation_type": "apply_working_change", "trip_id": "5ead1979-62ae-49f9-969a-3df218d36c7d", "working_revision": 2, "latest_confirmed_version_id": "49939b16-5942-4822-972e-59640008ca44", "level": "L3", "explanation": "合成提案：更新指定项目，费用不变", "budget": {"known_subtotal_cents": 134000, "total_cents": 134000, "unknown_cost_ids": [], "verification": "ESTIMATED", "constraint": "WITHIN_LIMIT", "verified_cost_ids": [], "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]]}}}, "adapter_calls": 0, "connection_closed": true}
+{"action": "continue_run", "exit_code": 0, "pid": 31732, "event": "result", "result": {"thread_id": "cb98ac0e-656e-48ac-8774-f2ce03d60533", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "9e39a1a8-86ef-4112-bc7c-b0cd031c031a", "candidate_hash": "dbdc9a9b75bf7203b1a5abfda027b72e190b18b5afe61c789aa5a297410f2905", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "decision_id": "fad94dce-52dd-4d91-bb0d-e8d3baff4fea", "result": {"operation_id": "b06e61db-562d-4314-8421-e7db3bf64938", "operation_type": "apply_working_change", "trip_id": "5ead1979-62ae-49f9-969a-3df218d36c7d", "working_revision": 2, "latest_confirmed_version_id": "49939b16-5942-4822-972e-59640008ca44", "level": "L3", "explanation": "合成提案：更新指定项目，费用不变", "budget": {"known_subtotal_cents": 134000, "total_cents": 134000, "unknown_cost_ids": [], "verification": "ESTIMATED", "constraint": "WITHIN_LIMIT", "verified_cost_ids": [], "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]]}}}, "adapter_calls": 0, "connection_closed": true}
+{"event": "recovery_verified", "crash_at": "proposal_committed", "revision": 2, "proposals": 1, "grants": 1, "consumed_by": "b06e61db-562d-4314-8421-e7db3bf64938", "receipts": 1, "snapshot_unchanged": true}
+PASSED
+tests/m000/test_integration.py::test_process_exit_and_graph_recovery[decision_committed] {"action": "start", "exit_code": 0, "pid": 2540, "event": "result", "result": {"thread_id": "1b89352a-17a4-4ff8-894b-efe0d5cb081a", "status": "waiting", "approval_pending": true, "next": ["wait"], "proposal": {"proposal_id": "8145cc33-9f5d-403f-a44f-c3010d7e110d", "candidate_hash": "4d876f5d9f226e6a6aeafad46da3ccf2c9853e8ae7b761740356229e36df1119", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "decision_id": null, "result": null}, "adapter_calls": 1, "connection_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 24684, "event": "forced_exit", "point": "decision_committed"}
+{"action": "continue_run", "exit_code": 0, "pid": 26776, "event": "result", "result": {"thread_id": "1b89352a-17a4-4ff8-894b-efe0d5cb081a", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "8145cc33-9f5d-403f-a44f-c3010d7e110d", "candidate_hash": "4d876f5d9f226e6a6aeafad46da3ccf2c9853e8ae7b761740356229e36df1119", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "decision_id": "2b83df3b-713f-4b53-9985-d388020767cd", "result": {"operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "operation_type": "apply_working_change", "trip_id": "b035ba1f-b136-4257-98e0-8a1a36b985be", "working_revision": 2, "latest_confirmed_version_id": "e4b34226-d353-4f0f-997c-3943abea09c5", "level": "L3", "explanation": "合成提案：更新指定项目，费用不变", "budget": {"known_subtotal_cents": 134000, "total_cents": 134000, "unknown_cost_ids": [], "verification": "ESTIMATED", "constraint": "WITHIN_LIMIT", "verified_cost_ids": [], "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]]}}}, "adapter_calls": 0, "connection_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 17876, "event": "result", "result": {"thread_id": "1b89352a-17a4-4ff8-894b-efe0d5cb081a", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "8145cc33-9f5d-403f-a44f-c3010d7e110d", "candidate_hash": "4d876f5d9f226e6a6aeafad46da3ccf2c9853e8ae7b761740356229e36df1119", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "decision_id": "2b83df3b-713f-4b53-9985-d388020767cd", "result": {"operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "operation_type": "apply_working_change", "trip_id": "b035ba1f-b136-4257-98e0-8a1a36b985be", "working_revision": 2, "latest_confirmed_version_id": "e4b34226-d353-4f0f-997c-3943abea09c5", "level": "L3", "explanation": "合成提案：更新指定项目，费用不变", "budget": {"known_subtotal_cents": 134000, "total_cents": 134000, "unknown_cost_ids": [], "verification": "ESTIMATED", "constraint": "WITHIN_LIMIT", "verified_cost_ids": [], "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]]}}}, "adapter_calls": 0, "connection_closed": true}
+{"action": "continue_run", "exit_code": 0, "pid": 21568, "event": "result", "result": {"thread_id": "1b89352a-17a4-4ff8-894b-efe0d5cb081a", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "8145cc33-9f5d-403f-a44f-c3010d7e110d", "candidate_hash": "4d876f5d9f226e6a6aeafad46da3ccf2c9853e8ae7b761740356229e36df1119", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "decision_id": "2b83df3b-713f-4b53-9985-d388020767cd", "result": {"operation_id": "a9d9f915-6c26-4e1f-9144-f2478910b548", "operation_type": "apply_working_change", "trip_id": "b035ba1f-b136-4257-98e0-8a1a36b985be", "working_revision": 2, "latest_confirmed_version_id": "e4b34226-d353-4f0f-997c-3943abea09c5", "level": "L3", "explanation": "合成提案：更新指定项目，费用不变", "budget": {"known_subtotal_cents": 134000, "total_cents": 134000, "unknown_cost_ids": [], "verification": "ESTIMATED", "constraint": "WITHIN_LIMIT", "verified_cost_ids": [], "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]]}}}, "adapter_calls": 0, "connection_closed": true}
+{"event": "recovery_verified", "crash_at": "decision_committed", "revision": 2, "proposals": 1, "grants": 1, "consumed_by": "a9d9f915-6c26-4e1f-9144-f2478910b548", "receipts": 1, "snapshot_unchanged": true}
+PASSED
+tests/m000/test_integration.py::test_process_exit_and_graph_recovery[after_change_commit] {"action": "start", "exit_code": 0, "pid": 92, "event": "result", "result": {"thread_id": "f54b7614-365e-47e9-a87f-4d220ae69b16", "status": "waiting", "approval_pending": true, "next": ["wait"], "proposal": {"proposal_id": "c0c938db-5585-411c-9643-26c091e26be7", "candidate_hash": "629debb44c6d69232b97130e309ff94922f14d093bbda44e2c1496e0e893d985", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "decision_id": null, "result": null}, "adapter_calls": 1, "connection_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 14128, "event": "forced_exit", "point": "after_change_commit"}
+{"action": "continue_run", "exit_code": 0, "pid": 20684, "event": "result", "result": {"thread_id": "f54b7614-365e-47e9-a87f-4d220ae69b16", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "c0c938db-5585-411c-9643-26c091e26be7", "candidate_hash": "629debb44c6d69232b97130e309ff94922f14d093bbda44e2c1496e0e893d985", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "decision_id": "3ba80f7a-731f-464f-a8cd-50d0a26f23c9", "result": {"level": "L3", "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "8a16ff64-a5e1-40ab-b1c6-fa51347d319f", "explanation": "合成提案：更新指定项目，费用不变", "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "operation_type": "apply_working_change", "working_revision": 2, "latest_confirmed_version_id": "62d7db28-33de-45a8-a49e-cb08e4bcbc20"}}, "adapter_calls": 0, "connection_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 14420, "event": "result", "result": {"thread_id": "f54b7614-365e-47e9-a87f-4d220ae69b16", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "c0c938db-5585-411c-9643-26c091e26be7", "candidate_hash": "629debb44c6d69232b97130e309ff94922f14d093bbda44e2c1496e0e893d985", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "decision_id": "3ba80f7a-731f-464f-a8cd-50d0a26f23c9", "result": {"level": "L3", "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "8a16ff64-a5e1-40ab-b1c6-fa51347d319f", "explanation": "合成提案：更新指定项目，费用不变", "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "operation_type": "apply_working_change", "working_revision": 2, "latest_confirmed_version_id": "62d7db28-33de-45a8-a49e-cb08e4bcbc20"}}, "adapter_calls": 0, "connection_closed": true}
+{"action": "continue_run", "exit_code": 0, "pid": 24920, "event": "result", "result": {"thread_id": "f54b7614-365e-47e9-a87f-4d220ae69b16", "status": "applied", "approval_pending": false, "next": [], "proposal": {"proposal_id": "c0c938db-5585-411c-9643-26c091e26be7", "candidate_hash": "629debb44c6d69232b97130e309ff94922f14d093bbda44e2c1496e0e893d985", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "decision_id": "3ba80f7a-731f-464f-a8cd-50d0a26f23c9", "result": {"level": "L3", "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-1", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-0", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "8a16ff64-a5e1-40ab-b1c6-fa51347d319f", "explanation": "合成提案：更新指定项目，费用不变", "operation_id": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "operation_type": "apply_working_change", "working_revision": 2, "latest_confirmed_version_id": "62d7db28-33de-45a8-a49e-cb08e4bcbc20"}}, "adapter_calls": 0, "connection_closed": true}
+{"event": "recovery_verified", "crash_at": "after_change_commit", "revision": 2, "proposals": 1, "grants": 1, "consumed_by": "880bc608-5d29-4001-81dd-9f80ed6d75c9", "receipts": 1, "snapshot_unchanged": true}
+PASSED
+tests/m000/test_integration.py::test_invalid_agent_output_does_not_write_business_data PASSED
+tests/m000/test_integration.py::test_authorization_cannot_bypass_domain_checks[budget] PASSED
+tests/m000/test_integration.py::test_authorization_cannot_bypass_domain_checks[stale] PASSED
+tests/m000/test_integration.py::test_grant_and_decision_rollback_together PASSED
+tests/m000/test_integration.py::test_old_spike_checkpoint_keeps_its_resume_semantics {"event": "old_checkpoint_isolated", "same_thread_id": "3cccadfe-f18c-4835-9c4f-139915c7279d", "checkpoint_unchanged": true, "old_resume": "rejected"}
+PASSED
+tests/m000/test_integration.py::test_rejected_decision_survives_process_exit {"action": "start", "exit_code": 0, "pid": 29048, "event": "result", "result": {"thread_id": "4942e6a3-bf7f-4b78-aca7-be1ad4982104", "status": "waiting", "approval_pending": true, "next": ["wait"], "proposal": {"proposal_id": "49a869b4-79b8-4624-92b2-b1733d70f837", "candidate_hash": "9f0f8b0dfa64fd61e92f284e1dc6336423ed113438fb80ecd17d57d73fd5861f", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "32015c68-f062-43a4-9cf9-f627b3ad4c0d", "decision_id": null, "result": null}, "adapter_calls": 1, "connection_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 21020, "event": "forced_exit", "point": "decision_committed"}
+{"action": "continue_run", "exit_code": 0, "pid": 35560, "event": "result", "result": {"thread_id": "4942e6a3-bf7f-4b78-aca7-be1ad4982104", "status": "rejected", "approval_pending": false, "next": [], "proposal": {"proposal_id": "49a869b4-79b8-4624-92b2-b1733d70f837", "candidate_hash": "9f0f8b0dfa64fd61e92f284e1dc6336423ed113438fb80ecd17d57d73fd5861f", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "32015c68-f062-43a4-9cf9-f627b3ad4c0d", "decision_id": "8888ec75-c35b-42ae-9dcb-66918a649ff3", "result": null}, "adapter_calls": 0, "connection_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 13024, "event": "result", "result": {"thread_id": "4942e6a3-bf7f-4b78-aca7-be1ad4982104", "status": "rejected", "approval_pending": false, "next": [], "proposal": {"proposal_id": "49a869b4-79b8-4624-92b2-b1733d70f837", "candidate_hash": "9f0f8b0dfa64fd61e92f284e1dc6336423ed113438fb80ecd17d57d73fd5861f", "base_working_revision": 1, "item_ids": ["hotel"], "candidate": {"items": [{"id": "activity-0", "kind": "activity", "resource_id": "resource-0", "title": "合成活动", "start": "2026-12-02T10:00:00+08:00", "end": "2026-12-02T11:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-1", "kind": "activity", "resource_id": "resource-1", "title": "合成活动", "start": "2026-12-02T11:00:00+08:00", "end": "2026-12-02T12:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-2", "kind": "activity", "resource_id": "resource-2", "title": "合成活动", "start": "2026-12-02T12:00:00+08:00", "end": "2026-12-02T13:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "activity-3", "kind": "activity", "resource_id": "resource-3", "title": "合成活动", "start": "2026-12-02T13:00:00+08:00", "end": "2026-12-02T14:00:00+08:00", "room_type": null, "check_in": null, "check_out": null, "rooms": null}, {"id": "hotel", "kind": "hotel", "resource_id": "replacement-resource", "title": "Mock Agent 修改说明", "start": "2026-12-01T14:00:00+08:00", "end": "2026-12-03T10:00:00+08:00", "room_type": "standard", "check_in": "2026-12-01", "check_out": "2026-12-03", "rooms": 1}], "costs": [{"id": "cost-1", "item_id": "activity-0", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-0", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-1", "is_mock": true}, {"id": "cost-2", "item_id": "activity-1", "amount_cents": 16000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-1", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-2", "is_mock": true}, {"id": "cost-3", "item_id": "activity-2", "amount_cents": 24000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-2", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-3", "is_mock": true}, {"id": "cost-4", "item_id": "activity-3", "amount_cents": 10000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "resource-3", "start_date": "2026-12-02", "end_date": "2026-12-02", "currency": "CNY", "room_type": null, "rooms": null}, "evidence_id": "evidence-4", "is_mock": true}, {"id": "cost-0", "item_id": "hotel", "amount_cents": 60000, "category": "quote", "unknown_reason": null, "query": {"resource_id": "replacement-resource", "start_date": "2026-12-01", "end_date": "2026-12-03", "currency": "CNY", "room_type": "standard", "rooms": 1}, "evidence_id": "evidence-0", "is_mock": true}]}, "explanation": "合成提案：更新指定项目，费用不变", "level": "L3"}, "operation_id": "32015c68-f062-43a4-9cf9-f627b3ad4c0d", "decision_id": "8888ec75-c35b-42ae-9dcb-66918a649ff3", "result": null}, "adapter_calls": 0, "connection_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_single_process_and_ten_repeats[approve] PASSED
+tests/spike02/test_workflow.py::test_single_process_and_ten_repeats[reject] PASSED
+tests/spike02/test_workflow.py::test_wrong_identity_or_candidate[actor] PASSED
+tests/spike02/test_workflow.py::test_wrong_identity_or_candidate[proposal] PASSED
+tests/spike02/test_workflow.py::test_wrong_identity_or_candidate[hash] PASSED
+tests/spike02/test_workflow.py::test_conflicting_decision[approve] PASSED
+tests/spike02/test_workflow.py::test_conflicting_decision[reject] PASSED
+tests/spike02/test_workflow.py::test_request_key_cannot_bind_another_proposal PASSED
+tests/spike02/test_workflow.py::test_missing_checkpoint_never_regenerates[inspect] PASSED
+tests/spike02/test_workflow.py::test_missing_checkpoint_never_regenerates[continue_run] PASSED
+tests/spike02/test_workflow.py::test_resume_must_reference_saved_decision PASSED
+tests/spike02/test_workflow.py::test_transaction_failure_rolls_back_and_can_continue PASSED
+tests/spike02/test_workflow.py::test_lost_business_connection_never_reports_success PASSED
+tests/spike02/test_workflow.py::test_checkpoint_connection_failure_never_records_decision PASSED
+tests/spike02/test_workflow.py::test_over_limit_candidate_cannot_reach_wait PASSED
+tests/spike02/test_workflow.py::test_database_guard_rejects_other_targets PASSED
+tests/spike02/test_workflow.py::test_cross_process_start_exit_and_resume[approve] {"action": "start", "exit_code": 0, "pid": 32276, "event": "result", "thread_id": "s02-72cbf99a02a14f3db5896371e1bfa366", "proposal_id": "684c49ae-2113-557d-9924-f63a4970c3b6", "candidate_hash": "5ce3fd7b5dc1fbe7f894ec21d9440d19d3b8060d1c75e33b390599a6e24c37f6", "operation_id": "e1e6b6dc-272b-5b36-94eb-26f8f2c00236", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 1, "connections_closed": true}
+{"action": "inspect", "exit_code": 0, "pid": 23488, "event": "result", "thread_id": "s02-72cbf99a02a14f3db5896371e1bfa366", "proposal_id": "684c49ae-2113-557d-9924-f63a4970c3b6", "candidate_hash": "5ce3fd7b5dc1fbe7f894ec21d9440d19d3b8060d1c75e33b390599a6e24c37f6", "operation_id": "e1e6b6dc-272b-5b36-94eb-26f8f2c00236", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 0, "connections_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 23316, "event": "result", "thread_id": "s02-72cbf99a02a14f3db5896371e1bfa366", "proposal_id": "684c49ae-2113-557d-9924-f63a4970c3b6", "candidate_hash": "5ce3fd7b5dc1fbe7f894ec21d9440d19d3b8060d1c75e33b390599a6e24c37f6", "operation_id": "e1e6b6dc-272b-5b36-94eb-26f8f2c00236", "status": "approved", "decision_id": "67b179d5-bb9c-571b-96b3-7b3f98ef21b5", "choice": "approve", "result_id": "02bff4a9-6d72-552a-897d-bd3b91cac1c3", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 32772, "event": "result", "thread_id": "s02-72cbf99a02a14f3db5896371e1bfa366", "proposal_id": "684c49ae-2113-557d-9924-f63a4970c3b6", "candidate_hash": "5ce3fd7b5dc1fbe7f894ec21d9440d19d3b8060d1c75e33b390599a6e24c37f6", "operation_id": "e1e6b6dc-272b-5b36-94eb-26f8f2c00236", "status": "approved", "decision_id": "67b179d5-bb9c-571b-96b3-7b3f98ef21b5", "choice": "approve", "result_id": "02bff4a9-6d72-552a-897d-bd3b91cac1c3", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_cross_process_start_exit_and_resume[reject] {"action": "start", "exit_code": 0, "pid": 34872, "event": "result", "thread_id": "s02-c64c7299712b4153ab2c4d78fac397e7", "proposal_id": "9a7eac12-c302-53c5-b633-1b89bd668b93", "candidate_hash": "86248e8d3d34e4d737df51f34d97d8ea795bd93cc896dae257564e1c3deeeb5c", "operation_id": "580a8b6e-76b4-57ac-b56d-17994c00d5a0", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 1, "connections_closed": true}
+{"action": "inspect", "exit_code": 0, "pid": 21076, "event": "result", "thread_id": "s02-c64c7299712b4153ab2c4d78fac397e7", "proposal_id": "9a7eac12-c302-53c5-b633-1b89bd668b93", "candidate_hash": "86248e8d3d34e4d737df51f34d97d8ea795bd93cc896dae257564e1c3deeeb5c", "operation_id": "580a8b6e-76b4-57ac-b56d-17994c00d5a0", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 0, "connections_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 34684, "event": "result", "thread_id": "s02-c64c7299712b4153ab2c4d78fac397e7", "proposal_id": "9a7eac12-c302-53c5-b633-1b89bd668b93", "candidate_hash": "86248e8d3d34e4d737df51f34d97d8ea795bd93cc896dae257564e1c3deeeb5c", "operation_id": "580a8b6e-76b4-57ac-b56d-17994c00d5a0", "status": "rejected", "decision_id": "07b7a1d8-c5d9-58c8-b098-457a5fd9c632", "choice": "reject", "result_id": null, "business_committed": false, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "decide", "exit_code": 0, "pid": 32536, "event": "result", "thread_id": "s02-c64c7299712b4153ab2c4d78fac397e7", "proposal_id": "9a7eac12-c302-53c5-b633-1b89bd668b93", "candidate_hash": "86248e8d3d34e4d737df51f34d97d8ea795bd93cc896dae257564e1c3deeeb5c", "operation_id": "580a8b6e-76b4-57ac-b56d-17994c00d5a0", "status": "rejected", "decision_id": "07b7a1d8-c5d9-58c8-b098-457a5fd9c632", "choice": "reject", "result_id": null, "business_committed": false, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_forced_process_exit_recovery[decision_saved-approve] {"action": "start", "exit_code": 0, "pid": 35796, "event": "result", "thread_id": "s02-6951252e2aeb49059d4abac5aaef0e0d", "proposal_id": "253e6942-1c61-5e40-b870-097495929715", "candidate_hash": "aa5a6e5548b312ca80bf4e3309e8f6c5a09ae7b4c02ee90bbaa21409876a213d", "operation_id": "ba805459-ac89-5f0d-aac2-b9872ff21b3f", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 1, "connections_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 5604, "event": "forced_exit", "point": "decision_saved"}
+{"action": "inspect", "exit_code": 0, "pid": 34620, "event": "result", "thread_id": "s02-6951252e2aeb49059d4abac5aaef0e0d", "proposal_id": "253e6942-1c61-5e40-b870-097495929715", "candidate_hash": "aa5a6e5548b312ca80bf4e3309e8f6c5a09ae7b4c02ee90bbaa21409876a213d", "operation_id": "ba805459-ac89-5f0d-aac2-b9872ff21b3f", "status": "waiting", "decision_id": "a45ea9ba-801a-58c8-895a-af463896055e", "choice": "approve", "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 30208, "event": "result", "thread_id": "s02-6951252e2aeb49059d4abac5aaef0e0d", "proposal_id": "253e6942-1c61-5e40-b870-097495929715", "candidate_hash": "aa5a6e5548b312ca80bf4e3309e8f6c5a09ae7b4c02ee90bbaa21409876a213d", "operation_id": "ba805459-ac89-5f0d-aac2-b9872ff21b3f", "status": "approved", "decision_id": "a45ea9ba-801a-58c8-895a-af463896055e", "choice": "approve", "result_id": "9f844080-0f80-51f7-9d88-8a76af400333", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 34748, "event": "result", "thread_id": "s02-6951252e2aeb49059d4abac5aaef0e0d", "proposal_id": "253e6942-1c61-5e40-b870-097495929715", "candidate_hash": "aa5a6e5548b312ca80bf4e3309e8f6c5a09ae7b4c02ee90bbaa21409876a213d", "operation_id": "ba805459-ac89-5f0d-aac2-b9872ff21b3f", "status": "approved", "decision_id": "a45ea9ba-801a-58c8-895a-af463896055e", "choice": "approve", "result_id": "9f844080-0f80-51f7-9d88-8a76af400333", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_forced_process_exit_recovery[decision_saved-reject] {"action": "start", "exit_code": 0, "pid": 31560, "event": "result", "thread_id": "s02-8058a0ab97b94c74b909715ce54e424c", "proposal_id": "64b209ee-a9b9-589f-b8f6-d3180b947ab1", "candidate_hash": "da8ae0cceb43855c31f59877c325e5ad8042f4591a41a7689a6ebb26c189f14e", "operation_id": "7629240f-52eb-5008-8d65-453de208cb5c", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 1, "connections_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 31884, "event": "forced_exit", "point": "decision_saved"}
+{"action": "inspect", "exit_code": 0, "pid": 9280, "event": "result", "thread_id": "s02-8058a0ab97b94c74b909715ce54e424c", "proposal_id": "64b209ee-a9b9-589f-b8f6-d3180b947ab1", "candidate_hash": "da8ae0cceb43855c31f59877c325e5ad8042f4591a41a7689a6ebb26c189f14e", "operation_id": "7629240f-52eb-5008-8d65-453de208cb5c", "status": "waiting", "decision_id": "d64a3435-00e8-5bc1-b2a5-d6a0d16596b3", "choice": "reject", "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 31440, "event": "result", "thread_id": "s02-8058a0ab97b94c74b909715ce54e424c", "proposal_id": "64b209ee-a9b9-589f-b8f6-d3180b947ab1", "candidate_hash": "da8ae0cceb43855c31f59877c325e5ad8042f4591a41a7689a6ebb26c189f14e", "operation_id": "7629240f-52eb-5008-8d65-453de208cb5c", "status": "rejected", "decision_id": "d64a3435-00e8-5bc1-b2a5-d6a0d16596b3", "choice": "reject", "result_id": null, "business_committed": false, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 2952, "event": "result", "thread_id": "s02-8058a0ab97b94c74b909715ce54e424c", "proposal_id": "64b209ee-a9b9-589f-b8f6-d3180b947ab1", "candidate_hash": "da8ae0cceb43855c31f59877c325e5ad8042f4591a41a7689a6ebb26c189f14e", "operation_id": "7629240f-52eb-5008-8d65-453de208cb5c", "status": "rejected", "decision_id": "d64a3435-00e8-5bc1-b2a5-d6a0d16596b3", "choice": "reject", "result_id": null, "business_committed": false, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_forced_process_exit_recovery[before_business_commit-approve] {"action": "start", "exit_code": 0, "pid": 35700, "event": "result", "thread_id": "s02-2f6afff855874e5fbd59ac1616f725cf", "proposal_id": "1fab8fa0-676b-5d4f-95b0-71b144961c1f", "candidate_hash": "3dd1edcc1d795233382a356762b6426669509f8d774a22a160f07e9edbd61b86", "operation_id": "2160126a-d7cc-5dc2-9522-5564fff4ef45", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 1, "connections_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 18132, "event": "forced_exit", "point": "before_business_commit"}
+{"action": "inspect", "exit_code": 0, "pid": 21204, "event": "result", "thread_id": "s02-2f6afff855874e5fbd59ac1616f725cf", "proposal_id": "1fab8fa0-676b-5d4f-95b0-71b144961c1f", "candidate_hash": "3dd1edcc1d795233382a356762b6426669509f8d774a22a160f07e9edbd61b86", "operation_id": "2160126a-d7cc-5dc2-9522-5564fff4ef45", "status": "recoverable", "decision_id": "13749487-834b-5f75-8370-f7de13e797f6", "choice": "approve", "result_id": null, "business_committed": false, "next": ["apply"], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 29096, "event": "result", "thread_id": "s02-2f6afff855874e5fbd59ac1616f725cf", "proposal_id": "1fab8fa0-676b-5d4f-95b0-71b144961c1f", "candidate_hash": "3dd1edcc1d795233382a356762b6426669509f8d774a22a160f07e9edbd61b86", "operation_id": "2160126a-d7cc-5dc2-9522-5564fff4ef45", "status": "approved", "decision_id": "13749487-834b-5f75-8370-f7de13e797f6", "choice": "approve", "result_id": "543a8bf5-41f4-5db6-9776-119012791cf9", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 33100, "event": "result", "thread_id": "s02-2f6afff855874e5fbd59ac1616f725cf", "proposal_id": "1fab8fa0-676b-5d4f-95b0-71b144961c1f", "candidate_hash": "3dd1edcc1d795233382a356762b6426669509f8d774a22a160f07e9edbd61b86", "operation_id": "2160126a-d7cc-5dc2-9522-5564fff4ef45", "status": "approved", "decision_id": "13749487-834b-5f75-8370-f7de13e797f6", "choice": "approve", "result_id": "543a8bf5-41f4-5db6-9776-119012791cf9", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_forced_process_exit_recovery[after_business_commit-approve] {"action": "start", "exit_code": 0, "pid": 33888, "event": "result", "thread_id": "s02-242821901503442fb23130a51efa02eb", "proposal_id": "70510bcf-0980-5b3e-a99a-2b33d3652ace", "candidate_hash": "2e51038e941e6cc49aa5e97b112073936616cf524c3223ed61088a1b1903ac3b", "operation_id": "617147fd-efc4-5560-81a2-2f0f69706875", "status": "waiting", "decision_id": null, "choice": null, "result_id": null, "business_committed": false, "next": ["wait"], "task_error_count": 0, "approval_pending": true, "model_calls": 1, "connections_closed": true}
+{"action": "decide", "exit_code": 75, "pid": 2808, "event": "forced_exit", "point": "after_business_commit"}
+{"action": "inspect", "exit_code": 0, "pid": 30468, "event": "result", "thread_id": "s02-242821901503442fb23130a51efa02eb", "proposal_id": "70510bcf-0980-5b3e-a99a-2b33d3652ace", "candidate_hash": "2e51038e941e6cc49aa5e97b112073936616cf524c3223ed61088a1b1903ac3b", "operation_id": "617147fd-efc4-5560-81a2-2f0f69706875", "status": "recoverable", "decision_id": "9eb52fa9-e966-5166-977c-e545a5d0bd06", "choice": "approve", "result_id": "eb8b006e-f8c3-514c-ba7c-3983201fe2dc", "business_committed": true, "next": ["apply"], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 31440, "event": "result", "thread_id": "s02-242821901503442fb23130a51efa02eb", "proposal_id": "70510bcf-0980-5b3e-a99a-2b33d3652ace", "candidate_hash": "2e51038e941e6cc49aa5e97b112073936616cf524c3223ed61088a1b1903ac3b", "operation_id": "617147fd-efc4-5560-81a2-2f0f69706875", "status": "approved", "decision_id": "9eb52fa9-e966-5166-977c-e545a5d0bd06", "choice": "approve", "result_id": "eb8b006e-f8c3-514c-ba7c-3983201fe2dc", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+{"action": "continue", "exit_code": 0, "pid": 5996, "event": "result", "thread_id": "s02-242821901503442fb23130a51efa02eb", "proposal_id": "70510bcf-0980-5b3e-a99a-2b33d3652ace", "candidate_hash": "2e51038e941e6cc49aa5e97b112073936616cf524c3223ed61088a1b1903ac3b", "operation_id": "617147fd-efc4-5560-81a2-2f0f69706875", "status": "approved", "decision_id": "9eb52fa9-e966-5166-977c-e545a5d0bd06", "choice": "approve", "result_id": "eb8b006e-f8c3-514c-ba7c-3983201fe2dc", "business_committed": true, "next": [], "task_error_count": 0, "approval_pending": false, "model_calls": 0, "connections_closed": true}
+PASSED
+tests/spike02/test_workflow.py::test_checkpoint_write_failure_is_raised_and_business_receipt_survives PASSED
+tests/spike02/test_workflow.py::test_operation_receipt_hash_conflict PASSED
+tests/spike02/test_workflow.py::test_unknown_budget_approval_does_not_confirm_or_book PASSED
+tests/spike02/test_workflow.py::test_first_decision_requires_real_approval_interrupt[approve] PASSED
+tests/spike02/test_workflow.py::test_first_decision_requires_real_approval_interrupt[reject] PASSED
+tests/spike03/test_changes.py::test_working_change_and_whole_confirmation_are_separate[L1] PASSED
+tests/spike03/test_changes.py::test_working_change_and_whole_confirmation_are_separate[L2] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[resource] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[new_id] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[room_type] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[rooms] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[dates] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[delete] PASSED
+tests/spike03/test_changes.py::test_confirmed_hotel_counterexamples_without_authorization[delete_recreate] PASSED
+tests/spike03/test_changes.py::test_specific_hotel_authorization_and_confirmation_not_inherited[None] PASSED
+tests/spike03/test_changes.py::test_specific_hotel_authorization_and_confirmation_not_inherited[new-hotel] PASSED
+tests/spike03/test_changes.py::test_hotel_authorization_is_specific[other_hotel_candidate] PASSED
+tests/spike03/test_changes.py::test_hotel_authorization_is_specific[extra_activity] PASSED
+tests/spike03/test_changes.py::test_hotel_authorization_is_specific[scope] PASSED
+tests/spike03/test_changes.py::test_hotel_authorization_is_specific[hash] PASSED
+tests/spike03/test_changes.py::test_hotel_authorization_is_specific[no_consent] PASSED
+tests/spike03/test_changes.py::test_budget_recomputed_for_full_candidate[equal] PASSED
+tests/spike03/test_changes.py::test_budget_recomputed_for_full_candidate[one_cent_over] PASSED
+tests/spike03/test_changes.py::test_budget_recomputed_for_full_candidate[unknown] PASSED
+tests/spike03/test_changes.py::test_budget_recomputed_for_full_candidate[known_over_with_unknown] PASSED
+tests/spike03/test_changes.py::test_time_and_type_bypasses_rejected[overlap] PASSED
+tests/spike03/test_changes.py::test_time_and_type_bypasses_rejected[outside_trip] PASSED
+tests/spike03/test_changes.py::test_time_and_type_bypasses_rejected[end_before_start] PASSED
+tests/spike03/test_changes.py::test_time_and_type_bypasses_rejected[naive] PASSED
+tests/spike03/test_changes.py::test_time_and_type_bypasses_rejected[hotel_disguised_as_activity] PASSED
+tests/spike03/test_changes.py::test_time_and_type_bypasses_rejected[delete_recreate_same_id] PASSED
+tests/spike03/test_changes.py::test_change_transaction_rolls_back_draft_pointer_receipt_and_authorization[after_working_update] PASSED
+tests/spike03/test_changes.py::test_change_transaction_rolls_back_draft_pointer_receipt_and_authorization[before_change_commit] PASSED
+tests/spike03/test_changes.py::test_confirmation_transaction_rolls_back_snapshot_pointer_receipt[after_snapshot_insert] PASSED
+tests/spike03/test_changes.py::test_confirmation_transaction_rolls_back_snapshot_pointer_receipt[after_confirmation_pointer] PASSED
+tests/spike03/test_changes.py::test_confirmation_transaction_rolls_back_snapshot_pointer_receipt[before_confirmation_commit] PASSED
+tests/spike03/test_changes.py::test_stale_proposal_and_authorization_never_overwrite_new_revision PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[patch] PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[change_budget] PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[change_dates] PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[change_destination] PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[level] PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[authorization] PASSED
+tests/spike03/test_changes.py::test_model_cannot_set_authority_or_unsupported_operations[confirmed] PASSED
+tests/spike03/test_changes.py::test_confirmation_requires_current_revision_and_disclosure[revision] PASSED
+tests/spike03/test_changes.py::test_confirmation_requires_current_revision_and_disclosure[hash] PASSED
+tests/spike03/test_changes.py::test_confirmation_requires_current_revision_and_disclosure[no_consent] PASSED
+tests/spike03/test_changes.py::test_snapshot_immutability_enforced_by_postgres[UPDATE confirmed_snapshots SET data=data WHERE snapshot_id=%s] PASSED
+tests/spike03/test_changes.py::test_snapshot_immutability_enforced_by_postgres[DELETE FROM confirmed_snapshots WHERE snapshot_id=%s] PASSED
+tests/spike03/test_changes.py::test_receipt_precedes_stale_checks_and_conflicts_across_operation_types PASSED
+tests/spike03/test_changes.py::test_overall_confirmation_does_not_confirm_hotel_or_create_duplicate_snapshot PASSED
+tests/spike03/test_changes.py::test_wrong_actor_never_changes_business_state[apply] PASSED
+tests/spike03/test_changes.py::test_wrong_actor_never_changes_business_state[confirm] PASSED
+tests/spike03/test_changes.py::test_wrong_actor_never_changes_business_state[authorize] PASSED
+tests/spike03/test_changes.py::test_wrong_actor_never_changes_business_state[read] PASSED
+tests/spike03/test_changes.py::test_commit_then_process_exit_and_retry_is_idempotent[apply_working_change] {"action": "apply_working_change", "exit_code": 75, "pid": 34892, "event": "forced_exit", "point": "after_change_commit", "operation_id": "op-4491b52e1e92462ab32d8f9f7c89d81a"}
+{"action": "apply_working_change", "exit_code": 0, "pid": 19116, "event": "result", "result": {"level": "L1", "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-0", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-1", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "trip-4a5eb6bb99a24b2c94d131dbe85095ce", "explanation": "\u5408\u6210\u4fee\u6539\u53ca\u5f71\u54cd\u8bf4\u660e", "operation_id": "op-4491b52e1e92462ab32d8f9f7c89d81a", "operation_type": "apply_working_change", "working_revision": 4, "latest_confirmed_version_id": "aebd4ae0-b73b-4d42-a593-3fc0c5c23f7a"}, "connection_closed": true}
+{"action": "apply_working_change", "exit_code": 0, "pid": 34980, "event": "result", "result": {"level": "L1", "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-0", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-1", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "trip-4a5eb6bb99a24b2c94d131dbe85095ce", "explanation": "\u5408\u6210\u4fee\u6539\u53ca\u5f71\u54cd\u8bf4\u660e", "operation_id": "op-4491b52e1e92462ab32d8f9f7c89d81a", "operation_type": "apply_working_change", "working_revision": 4, "latest_confirmed_version_id": "aebd4ae0-b73b-4d42-a593-3fc0c5c23f7a"}, "connection_closed": true}
+PASSED
+tests/spike03/test_changes.py::test_commit_then_process_exit_and_retry_is_idempotent[confirm_plan] {"action": "confirm_plan", "exit_code": 75, "pid": 33640, "event": "forced_exit", "point": "after_confirmation_commit", "operation_id": "op-b459713bc2fd408aaa330b8380240254"}
+{"action": "confirm_plan", "exit_code": 0, "pid": 23428, "event": "result", "result": {"booked": false, "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-0", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-1", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "trip-b2cb0200df3a435b9d2272a9277eafa8", "readiness": "NOT_ASSESSED", "operation_id": "op-b459713bc2fd408aaa330b8380240254", "operation_type": "confirm_plan", "working_revision": 4, "plan_confirmation": "CONFIRMED", "latest_confirmed_version_id": "84fe8b18-b932-41cf-82c6-89570659a927"}, "connection_closed": true}
+{"action": "confirm_plan", "exit_code": 0, "pid": 32908, "event": "result", "result": {"booked": false, "budget": {"constraint": "WITHIN_LIMIT", "total_cents": 134000, "verification": "ESTIMATED", "evidence_issues": [["cost-0", "mock_cost"], ["cost-2", "mock_cost"], ["cost-3", "mock_cost"], ["cost-4", "mock_cost"], ["cost-1", "mock_cost"]], "unknown_cost_ids": [], "verified_cost_ids": [], "known_subtotal_cents": 134000}, "trip_id": "trip-b2cb0200df3a435b9d2272a9277eafa8", "readiness": "NOT_ASSESSED", "operation_id": "op-b459713bc2fd408aaa330b8380240254", "operation_type": "confirm_plan", "working_revision": 4, "plan_confirmation": "CONFIRMED", "latest_confirmed_version_id": "84fe8b18-b932-41cf-82c6-89570659a927"}, "connection_closed": true}
+PASSED
+tests/spike03/test_changes.py::test_specific_authorization_cannot_override_hard_budget PASSED
+tests/spike03/test_changes.py::test_authorization_for_one_hotel_does_not_authorize_another PASSED
+tests/spike03/test_changes.py::test_whole_confirmation_does_not_authorize_l3_hotel_change PASSED
+tests/spike03/test_changes.py::test_unknown_disclosure_must_match_the_content_seen PASSED
+tests/spike03/test_changes.py::test_confirmed_activity_cannot_take_the_unconfirmed_l1_path PASSED
+tests/test_spike01.py::test_valid_end_to_end PASSED
+tests/test_spike01.py::test_strict_money[-1] PASSED
+tests/test_spike01.py::test_strict_money[True] PASSED
+tests/test_spike01.py::test_strict_money[1.5] PASSED
+tests/test_spike01.py::test_strict_money[60000] PASSED
+tests/test_spike01.py::test_strict_money[1000000000001] PASSED
+tests/test_spike01.py::test_forged_authority[confirmed-True] PASSED
+tests/test_spike01.py::test_forged_authority[version-2] PASSED
+tests/test_spike01.py::test_forged_authority[budget_approved-True] PASSED
+tests/test_spike01.py::test_forged_authority[verification-VERIFIED] PASSED
+tests/test_spike01.py::test_forged_authority[level-L1] PASSED
+tests/test_spike01.py::test_forged_authority[evidence-value5] PASSED
+tests/test_spike01.py::test_forged_authority[readiness-READY] PASSED
+tests/test_spike01.py::test_forged_authority[booked-True] PASSED
+tests/test_spike01.py::test_invalid_contract[missing] PASSED
+tests/test_spike01.py::test_invalid_contract[item_id] PASSED
+tests/test_spike01.py::test_invalid_contract[cost_id] PASSED
+tests/test_spike01.py::test_invalid_contract[reference] PASSED
+tests/test_spike01.py::test_invalid_contract[query] PASSED
+tests/test_spike01.py::test_invalid_contract[verified_price] PASSED
+tests/test_spike01.py::test_invalid_contract[hotel] PASSED
+tests/test_spike01.py::test_invalid_contract[time] PASSED
+tests/test_spike01.py::test_invalid_contract[naive] PASSED
+tests/test_spike01.py::test_invalid_contract[unknown] PASSED
+tests/test_spike01.py::test_invalid_contract[uncovered] PASSED
+tests/test_spike01.py::test_invalid_contract[too_many] PASSED
+tests/test_spike01.py::test_parse_failure_bounded[{-invalid_json] PASSED
+tests/test_spike01.py::test_parse_failure_bounded[{"items":[],"items":[]}-invalid_json] PASSED
+tests/test_spike01.py::test_parse_failure_bounded[{"costs": NaN}-invalid_json] PASSED
+tests/test_spike01.py::test_parse_failure_bounded[{}-schema_error] PASSED
+tests/test_spike01.py::test_parse_failure_bounded[{"items": 1, "costs": []}-schema_error] PASSED
+tests/test_spike01.py::test_one_repair_success PASSED
+tests/test_spike01.py::test_nonrepairable_failure[response0-refusal] PASSED
+tests/test_spike01.py::test_nonrepairable_failure[response1-timeout] PASSED
+tests/test_spike01.py::test_nonrepairable_failure[response2-adapter_error] PASSED
+tests/test_spike01.py::test_actual_deadline PASSED
+tests/test_spike01.py::test_budget_edges[0-False-WITHIN_LIMIT] PASSED
+tests/test_spike01.py::test_budget_edges[1-False-OVER_LIMIT] PASSED
+tests/test_spike01.py::test_budget_edges[0-True-UNDETERMINED] PASSED
+tests/test_spike01.py::test_budget_edges[20000-True-OVER_LIMIT] PASSED
+tests/test_spike01.py::test_server_evidence[valid] PASSED
+tests/test_spike01.py::test_server_evidence[missing] PASSED
+tests/test_spike01.py::test_server_evidence[id] PASSED
+tests/test_spike01.py::test_server_evidence[dates] PASSED
+tests/test_spike01.py::test_server_evidence[resource] PASSED
+tests/test_spike01.py::test_server_evidence[rooms] PASSED
+tests/test_spike01.py::test_server_evidence[currency] PASSED
+tests/test_spike01.py::test_server_evidence[amount] PASSED
+tests/test_spike01.py::test_server_evidence[mock] PASSED
+tests/test_spike01.py::test_server_evidence[expired] PASSED
+tests/test_spike01.py::test_server_evidence[future] PASSED
+tests/test_spike01.py::test_server_evidence[estimate] PASSED
+tests/test_spike01.py::test_server_evidence[model_mock_false] PASSED
+tests/test_spike01.py::test_confirmation_separation[unknown] PASSED
+tests/test_spike01.py::test_confirmation_separation[over] PASSED
+tests/test_spike01.py::test_confirmation_separation[no_consent] PASSED
+tests/test_spike01.py::test_confirmation_separation[stale] PASSED
+tests/test_spike01.py::test_confirmation_separation[hash] PASSED
+tests/test_spike01.py::test_confirmation_separation[changed_reason] PASSED
+tests/test_spike01.py::test_confirmation_separation[changed_limit] PASSED
+tests/test_spike01.py::test_proposal_shared_path PASSED
+tests/test_spike01.py::test_trip_scope_and_requirements PASSED
+tests/test_spike01.py::test_safe_schema_diagnostics[missing-missing] PASSED
+tests/test_spike01.py::test_safe_schema_diagnostics[type-int_type] PASSED
+tests/test_spike01.py::test_confirmation_preserves_known_facts[verified] PASSED
+tests/test_spike01.py::test_confirmation_preserves_known_facts[estimated] PASSED
+tests/test_spike01.py::test_confirmation_preserves_known_facts[verified_over_limit] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[empty] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[long_title] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[mock_string] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[zero_rooms] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[activity_hotel_fields] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[unknown_zero] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[wrong_offset] PASSED
+tests/test_spike01.py::test_more_schema_boundaries[evidence_in_item] PASSED
+tests/test_spike01.py::test_no_repair_after_refusal PASSED
+tests/test_spike01.py::test_evidence_models_and_schema_export PASSED
+tests/test_spike01.py::test_proposal_restrictions[hotel] PASSED
+tests/test_spike01.py::test_proposal_restrictions[new_id] PASSED
+tests/test_spike01.py::test_proposal_restrictions[duplicate] PASSED
+tests/test_spike01.py::test_proposal_restrictions[hard_budget] PASSED
+tests/test_spike01.py::test_proposal_restrictions[destination] PASSED
+
+================================== FAILURES ===================================
+_________________ test_default_maximum_and_equal_time_keyset __________________
+
+http = <starlette.testclient.TestClient object at 0x0000020089B84380>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_default_maximum_and_equal_time_keyset(http,db):
+        from psycopg.types.json import Jsonb
+        path=generated(http,db);s=confirm(http,path,request(preview(http,path))).json()['snapshot']['snapshot']
+        tid=path.split('/')[-1]
+        async def seed():
+            async with connection(db) as conn:
+                for revision in range(2,106):
+                    # Controlled immutable historical fixtures with tied confirmation times.
+                    await conn.execute('''INSERT INTO easytravel.draft_versions
+                        (trip_id,owner_id,revision,requirements_revision,requirements,payload,item_confirmations)
+                        VALUES (%s,%s,%s,%s,%s,%s,%s)''',(tid,ACTOR_A,revision,1,Jsonb(s['requirements']),Jsonb(s['payload']),Jsonb([])))
+                    await conn.execute('''INSERT INTO easytravel.confirmed_snapshots
+                        (snapshot_id,trip_id,confirmed_by,source_working_revision,disclosure_hash,budget,confirmed_at)
+                        VALUES (%s,%s,%s,%s,%s,%s,%s)''',(f'tied-{revision:03}',tid,ACTOR_A,revision,s['disclosure_hash'],Jsonb(s['budget']),s['confirmed_at']))
+>       run(seed());before=run(fingerprint(db))
+        ^^^^^^^^^^^
+
+tests\backend\test_snapshots.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\backend\test_intakes.py:37: in run
+    return runner.run(asyncio.wait_for(coro, 50))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\tasks.py:520: in wait_for
+    return await fut
+           ^^^^^^^^^
+tests\backend\test_snapshots.py:132: in seed
+    await conn.execute('''INSERT INTO easytravel.confirmed_snapshots
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.AsyncConnection [BAD] at 0x2008b469130>
+query = 'INSERT INTO easytravel.confirmed_snapshots\n                    (snapshot_id,trip_id,confirmed_by,source_working_revision,disclosure_hash,budget,confirmed_at)\n                    VALUES (%s,%s,%s,%s,%s,%s,%s)'
+params = ('tied-002', '34b156fa-cbba-42c5-ab65-29635e088d63', 'm101_owner_a', 2, 'fb9fc96af7ae6a8c894e10df1d758b9c161c4ae7a31b31693fff27be5a0d1e54', Jsonb({'known_subtotal_cents': 60000, 'to ... (637 chars)), ...)
+prepare = None, binary = False
+
+    async def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool = False,
+    ) -> AsyncCursor[Row]:
+        """Execute a query and return a cursor to read its results."""
+        try:
+            cur = self.cursor()
+            if binary:
+                cur.format = BINARY
+    
+            if isinstance(query, Template):
+                if params is not None:
+                    raise TypeError(
+                        "'execute()' with string template query"
+                        " doesn't support parameters"
+                    )
+                return await cur.execute(query, prepare=prepare)
+            else:
+                return await cur.execute(query, params, prepare=prepare)
+    
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "confirmed_snapshots_pkey"
+E           DETAIL:  Key (snapshot_id)=(tied-002) already exists.
+
+.venv\Lib\site-packages\psycopg\connection_async.py:333: UniqueViolation
+=========================== short test summary info ===========================
+FAILED tests/backend/test_snapshots.py::test_default_maximum_and_equal_time_keyset
+================== 1 failed, 450 passed in 134.32s (0:02:14) ==================

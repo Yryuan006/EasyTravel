@@ -1,0 +1,67 @@
+{
+  "SnapshotPage": {
+    "properties": {
+      "items": {
+        "items": {
+          "$ref": "#/components/schemas/SnapshotSummary"
+        },
+        "type": "array",
+        "maxItems": 100,
+        "title": "Items"
+      },
+      "next_cursor": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Next Cursor"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "items",
+      "next_cursor"
+    ],
+    "title": "SnapshotPage"
+  },
+  "SnapshotSummary": {
+    "properties": {
+      "snapshot_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Snapshot Id"
+      },
+      "source_working_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Source Working Revision"
+      },
+      "confirmed_at": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Confirmed At"
+      },
+      "budget": {
+        "$ref": "#/components/schemas/BudgetResult"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "snapshot_id",
+      "source_working_revision",
+      "confirmed_at",
+      "budget"
+    ],
+    "title": "SnapshotSummary"
+  }
+}

@@ -26,3 +26,13 @@ class PlanRepository(Protocol):
 
 
 UnitOfWorkFactory = Callable[[str], AbstractAsyncContextManager[PlanRepository]]
+
+
+class SnapshotRepository(Protocol):
+    async def read_only(self) -> None: ...
+    async def require_trip(self, trip_id: str) -> None: ...
+    async def snapshot_page(self, trip_id: str, limit: int, position: tuple | None) -> list[dict]: ...
+    async def snapshot_view(self, trip_id: str, snapshot_id: str): ...
+
+
+SnapshotUnitOfWork = Callable[[str], AbstractAsyncContextManager[SnapshotRepository]]

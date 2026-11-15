@@ -1,0 +1,78 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/backend/test_snapshots.py::test_empty_then_two_versions_and_read_only_restart FAILED
+tests/backend/test_snapshots.py::test_pagination_ties_binding_and_mutation FAILED
+tests/backend/test_snapshots.py::test_bad_queries[limit=0] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=101] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=-1] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=x] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=1.5] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[cursor=] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[limit=1&limit=2] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[actor=a] PASSED
+tests/backend/test_snapshots.py::test_bad_queries[cursor=x&cursor=y] PASSED
+tests/backend/test_snapshots.py::test_owner_parent_auth_and_missing PASSED
+tests/backend/test_snapshots.py::test_legacy_no_context_no_disclosure FAILED
+
+================================== FAILURES ===================================
+_____________ test_empty_then_two_versions_and_read_only_restart ______________
+
+http = <starlette.testclient.TestClient object at 0x000001497ADF36E0>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_empty_then_two_versions_and_read_only_restart(http,db):
+        empty=create(http);assert get(http,empty).json()==dict(items=[],next_cursor=None)
+        path,s1,s2=two(http,db);before=run(fingerprint(db))
+>       page=get(http,path);assert page.status_code==200 and page.headers['cache-control']=='no-store'
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (500 == 200)
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\backend\test_snapshots.py:49: AssertionError
+__________________ test_pagination_ties_binding_and_mutation __________________
+
+http = <starlette.testclient.TestClient object at 0x000001497B262FF0>
+db = DatabaseSettings(url=SecretStr('**********'))
+
+    def test_pagination_ties_binding_and_mutation(http,db):
+        path,s1,s2=two(http,db)
+>       first=get(http,path,params={'limit':1}).json();cursor=first['next_cursor'];assert cursor
+                                                              ^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'next_cursor'
+
+tests\backend\test_snapshots.py:76: KeyError
+____________________ test_legacy_no_context_no_disclosure _____________________
+
+http = <starlette.testclient.TestClient object at 0x000001497B6325D0>
+db = DatabaseSettings(url=SecretStr('**********'))
+payload = {'items': [{'id': 'hotel', 'kind': 'hotel', 'resource_id': 'hotel-001', 'title': '合成酒店', ...}, {'id': 'activity-0', 'k...'category': 'quote', ...}, {'id': 'cost-4', 'item_id': 'activity-3', 'amount_cents': 10000, 'category': 'quote', ...}]}
+requirements = TripRequirements(destination='杭州', start_date=datetime.date(2026, 12, 1), end_date=datetime.date(2026, 12, 3), timezone='Asia/Shanghai', currency='CNY', hard_limit_cents=134000, requirements_revision=1)
+
+    def test_legacy_no_context_no_disclosure(http,db,payload,requirements):
+        from easytravel.backend.application.plans import PlanService
+        from easytravel.backend.infrastructure.repository import unit_of_work as plan_uow
+        from easytravel.contracts import PlanDraftOutput
+        from test_persistence import confirm as legacy_confirm
+        service=PlanService(plan_uow(db));tid=str(uuid4())
+        draft=run(service.create_trip(tid,PlanDraftOutput.model_validate(payload),requirements,actor=ACTOR_A))
+        result=run(legacy_confirm(service,ACTOR_A,draft));sid=result['latest_confirmed_version_id']
+        before=run(fingerprint(db));r=get(http,'/api/v1/trips/'+tid,'/'+sid)
+        assert r.status_code==200,r.text
+        assert r.json()['context'] is None and r.json()['risk_disclosure'] is None
+>       assert get(http,'/api/v1/trips/'+tid).json()['items'][0]['snapshot_id']==sid
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'items'
+
+tests\backend\test_snapshots.py:117: KeyError
+=========================== short test summary info ===========================
+FAILED tests/backend/test_snapshots.py::test_empty_then_two_versions_and_read_only_restart
+FAILED tests/backend/test_snapshots.py::test_pagination_ties_binding_and_mutation
+FAILED tests/backend/test_snapshots.py::test_legacy_no_context_no_disclosure
+======================== 3 failed, 10 passed in 3.05s =========================

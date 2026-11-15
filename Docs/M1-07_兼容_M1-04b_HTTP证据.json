@@ -1,0 +1,3924 @@
+{
+  "cases": [
+    {
+      "tripId": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+      "days": 1,
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/0c2bfaee-acf7-4a8a-aae2-c5d9854b1607/generations",
+        "run": {
+          "run_id": "d7192c12-694e-42c1-936c-eeaef44199ff",
+          "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:31.440297Z",
+          "updated_at": "2026-11-15T06:39:31.440297Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "b1b54a72-7b92-4ba2-946b-f7e715ce6497"
+      },
+      "running": {
+        "run_id": "d7192c12-694e-42c1-936c-eeaef44199ff",
+        "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "RUNNING",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:31.440297Z",
+        "updated_at": "2026-11-15T06:39:31.740680Z",
+        "result": null,
+        "error": null,
+        "diagnostics_budget": null
+      },
+      "replay": {
+        "run_id": "d7192c12-694e-42c1-936c-eeaef44199ff",
+        "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "ACCEPTED",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:31.440297Z",
+        "updated_at": "2026-11-15T06:39:31.440297Z",
+        "result": null,
+        "error": null,
+        "diagnostics_budget": null
+      },
+      "refresh": {
+        "trip": {
+          "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+          "created_at": "2026-11-15T06:39:31.143994Z",
+          "intake": {
+            "intake_revision": 1,
+            "input": {
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "start_date": "2026-12-04",
+                  "end_date": "2026-12-04"
+                }
+              },
+              "days": {
+                "state": "provided",
+                "value": 1
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "target_budget_cents": {
+                "state": "no_preference",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "transport": {
+                "state": "provided",
+                "value": "公共交通优先"
+              },
+              "hotel": {
+                "state": "no_preference",
+                "value": null
+              },
+              "restrictions": {
+                "state": "no_preference",
+                "value": null
+              },
+              "raw_text": null
+            },
+            "collection_status": "READY_TO_GENERATE",
+            "blocking_fields": [],
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              },
+              {
+                "field": "hotel",
+                "source": "user"
+              },
+              {
+                "field": "restrictions",
+                "source": "user"
+              }
+            ],
+            "suggested_values": []
+          },
+          "working": {
+            "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+            "owner_id": "m104b_browser_a",
+            "revision": 1,
+            "requirements": {
+              "destination": "杭州",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-04",
+              "timezone": "Asia/Shanghai",
+              "currency": "CNY",
+              "hard_limit_cents": 230000,
+              "requirements_revision": 1
+            },
+            "payload": {
+              "items": [
+                {
+                  "id": "activity_0",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_0",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-04T11:00:00+08:00",
+                  "end": "2026-12-04T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_0",
+                  "kind": "activity",
+                  "resource_id": "mock_local_0",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-04T13:00:00+08:00",
+                  "end": "2026-12-04T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "outbound",
+                  "kind": "activity",
+                  "resource_id": "mock_outbound",
+                  "title": "模拟：出发地至目的地公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T08:00:00+08:00",
+                  "end": "2026-12-04T09:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "return",
+                  "kind": "activity",
+                  "resource_id": "mock_return",
+                  "title": "模拟：返程公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T17:00:00+08:00",
+                  "end": "2026-12-04T18:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                }
+              ],
+              "costs": [
+                {
+                  "id": "cost_activity_0",
+                  "item_id": "activity_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_0",
+                  "item_id": "local_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_outbound",
+                  "item_id": "outbound",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_outbound",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_return",
+                  "item_id": "return",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_return",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                }
+              ]
+            },
+            "item_confirmations": [],
+            "latest_confirmed_version_id": null,
+            "context": {
+              "intake_revision": 1,
+              "input": {
+                "origin": {
+                  "state": "provided",
+                  "value": "上海"
+                },
+                "destination": {
+                  "state": "provided",
+                  "value": "杭州"
+                },
+                "dates": {
+                  "state": "provided",
+                  "value": {
+                    "mode": "fixed",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04"
+                  }
+                },
+                "days": {
+                  "state": "provided",
+                  "value": 1
+                },
+                "travelers": {
+                  "state": "provided",
+                  "value": 2
+                },
+                "target_budget_cents": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "hard_limit_cents": {
+                  "state": "provided",
+                  "value": 230000
+                },
+                "transport": {
+                  "state": "provided",
+                  "value": "公共交通优先"
+                },
+                "hotel": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "restrictions": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "raw_text": null
+              },
+              "notes": {
+                "transport_advice": [],
+                "risks": [
+                  {
+                    "code": "mock_unverified",
+                    "severity": "warning",
+                    "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "outbound",
+                      "return"
+                    ]
+                  },
+                  {
+                    "code": "unknown_costs",
+                    "severity": "warning",
+                    "message": "存在未知费用，总额无法确定，不代表免费。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "outbound",
+                      "return"
+                    ]
+                  }
+                ]
+              },
+              "risk_rules_version": "mock-initial-v1"
+            }
+          },
+          "latest_confirmed_version_id": null,
+          "synchronization": "CURRENT",
+          "plan_confirmation": "UNCONFIRMED",
+          "active_run_id": null,
+          "readiness": "NOT_ASSESSED",
+          "booked": false
+        },
+        "state": {
+          "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+          "working_revision": 1,
+          "source_run": {
+            "run_id": "d7192c12-694e-42c1-936c-eeaef44199ff",
+            "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:31.440297Z",
+            "updated_at": "2026-11-15T06:39:32.184443Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 0,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ]
+              ]
+            }
+          },
+          "latest_run": {
+            "run_id": "d7192c12-694e-42c1-936c-eeaef44199ff",
+            "trip_id": "0c2bfaee-acf7-4a8a-aae2-c5d9854b1607",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:31.440297Z",
+            "updated_at": "2026-11-15T06:39:32.184443Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 0,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "tripId": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+      "days": 5,
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/126ce59a-4519-4652-bcac-8dcb037d6ad1/generations",
+        "run": {
+          "run_id": "40c02d12-89b1-4929-be3c-c560a1a33c53",
+          "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:34.193955Z",
+          "updated_at": "2026-11-15T06:39:34.193955Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "18f6b933-dd10-4b05-8638-b4c7faeb6fa3"
+      },
+      "running": {
+        "run_id": "40c02d12-89b1-4929-be3c-c560a1a33c53",
+        "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "RUNNING",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:34.193955Z",
+        "updated_at": "2026-11-15T06:39:34.478987Z",
+        "result": null,
+        "error": null,
+        "diagnostics_budget": null
+      },
+      "replay": {
+        "run_id": "40c02d12-89b1-4929-be3c-c560a1a33c53",
+        "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "ACCEPTED",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:34.193955Z",
+        "updated_at": "2026-11-15T06:39:34.193955Z",
+        "result": null,
+        "error": null,
+        "diagnostics_budget": null
+      },
+      "refresh": {
+        "trip": {
+          "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+          "created_at": "2026-11-15T06:39:33.906546Z",
+          "intake": {
+            "intake_revision": 1,
+            "input": {
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "start_date": "2026-12-04",
+                  "end_date": "2026-12-08"
+                }
+              },
+              "days": {
+                "state": "provided",
+                "value": 5
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "target_budget_cents": {
+                "state": "no_preference",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "transport": {
+                "state": "provided",
+                "value": "公共交通优先"
+              },
+              "hotel": {
+                "state": "no_preference",
+                "value": null
+              },
+              "restrictions": {
+                "state": "no_preference",
+                "value": null
+              },
+              "raw_text": null
+            },
+            "collection_status": "READY_TO_GENERATE",
+            "blocking_fields": [],
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              },
+              {
+                "field": "hotel",
+                "source": "user"
+              },
+              {
+                "field": "restrictions",
+                "source": "user"
+              }
+            ],
+            "suggested_values": []
+          },
+          "working": {
+            "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+            "owner_id": "m104b_browser_a",
+            "revision": 1,
+            "requirements": {
+              "destination": "杭州",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-08",
+              "timezone": "Asia/Shanghai",
+              "currency": "CNY",
+              "hard_limit_cents": 230000,
+              "requirements_revision": 1
+            },
+            "payload": {
+              "items": [
+                {
+                  "id": "activity_0",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_0",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-04T11:00:00+08:00",
+                  "end": "2026-12-04T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_0",
+                  "kind": "activity",
+                  "resource_id": "mock_local_0",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-04T13:00:00+08:00",
+                  "end": "2026-12-04T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_1",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_1",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-05T11:00:00+08:00",
+                  "end": "2026-12-05T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_1",
+                  "kind": "activity",
+                  "resource_id": "mock_local_1",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-05T13:00:00+08:00",
+                  "end": "2026-12-05T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_2",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_2",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-06T11:00:00+08:00",
+                  "end": "2026-12-06T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_2",
+                  "kind": "activity",
+                  "resource_id": "mock_local_2",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-06T13:00:00+08:00",
+                  "end": "2026-12-06T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_3",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_3",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-07T11:00:00+08:00",
+                  "end": "2026-12-07T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_3",
+                  "kind": "activity",
+                  "resource_id": "mock_local_3",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-07T13:00:00+08:00",
+                  "end": "2026-12-07T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_4",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_4",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-08T11:00:00+08:00",
+                  "end": "2026-12-08T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_4",
+                  "kind": "activity",
+                  "resource_id": "mock_local_4",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-08T13:00:00+08:00",
+                  "end": "2026-12-08T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "outbound",
+                  "kind": "activity",
+                  "resource_id": "mock_outbound",
+                  "title": "模拟：出发地至目的地公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T08:00:00+08:00",
+                  "end": "2026-12-04T09:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "return",
+                  "kind": "activity",
+                  "resource_id": "mock_return",
+                  "title": "模拟：返程公共交通时段建议，无真实班次",
+                  "start": "2026-12-08T17:00:00+08:00",
+                  "end": "2026-12-08T18:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "hotel",
+                  "kind": "hotel",
+                  "resource_id": "mock_hotel",
+                  "title": "模拟住宿建议，非真实酒店或报价",
+                  "start": "2026-12-04T14:00:00+08:00",
+                  "end": "2026-12-08T10:00:00+08:00",
+                  "room_type": "模拟建议：一间双人房，待核验",
+                  "check_in": "2026-12-04",
+                  "check_out": "2026-12-08",
+                  "rooms": 1
+                }
+              ],
+              "costs": [
+                {
+                  "id": "cost_activity_0",
+                  "item_id": "activity_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_0",
+                  "item_id": "local_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_1",
+                  "item_id": "activity_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_1",
+                  "item_id": "local_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_2",
+                  "item_id": "activity_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_2",
+                  "item_id": "local_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_3",
+                  "item_id": "activity_3",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_3",
+                    "start_date": "2026-12-07",
+                    "end_date": "2026-12-07",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_3",
+                  "item_id": "local_3",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_3",
+                    "start_date": "2026-12-07",
+                    "end_date": "2026-12-07",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_4",
+                  "item_id": "activity_4",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_4",
+                    "start_date": "2026-12-08",
+                    "end_date": "2026-12-08",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_4",
+                  "item_id": "local_4",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_4",
+                    "start_date": "2026-12-08",
+                    "end_date": "2026-12-08",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_outbound",
+                  "item_id": "outbound",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_outbound",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_return",
+                  "item_id": "return",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_return",
+                    "start_date": "2026-12-08",
+                    "end_date": "2026-12-08",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_hotel",
+                  "item_id": "hotel",
+                  "amount_cents": 120000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_hotel",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-08",
+                    "currency": "CNY",
+                    "room_type": "模拟建议：一间双人房，待核验",
+                    "rooms": 1
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                }
+              ]
+            },
+            "item_confirmations": [],
+            "latest_confirmed_version_id": null,
+            "context": {
+              "intake_revision": 1,
+              "input": {
+                "origin": {
+                  "state": "provided",
+                  "value": "上海"
+                },
+                "destination": {
+                  "state": "provided",
+                  "value": "杭州"
+                },
+                "dates": {
+                  "state": "provided",
+                  "value": {
+                    "mode": "fixed",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-08"
+                  }
+                },
+                "days": {
+                  "state": "provided",
+                  "value": 5
+                },
+                "travelers": {
+                  "state": "provided",
+                  "value": 2
+                },
+                "target_budget_cents": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "hard_limit_cents": {
+                  "state": "provided",
+                  "value": 230000
+                },
+                "transport": {
+                  "state": "provided",
+                  "value": "公共交通优先"
+                },
+                "hotel": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "restrictions": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "raw_text": null
+              },
+              "notes": {
+                "transport_advice": [],
+                "risks": [
+                  {
+                    "code": "mock_unverified",
+                    "severity": "warning",
+                    "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "activity_1",
+                      "local_1",
+                      "activity_2",
+                      "local_2",
+                      "activity_3",
+                      "local_3",
+                      "activity_4",
+                      "local_4",
+                      "outbound",
+                      "return",
+                      "hotel"
+                    ]
+                  },
+                  {
+                    "code": "unknown_costs",
+                    "severity": "warning",
+                    "message": "存在未知费用，总额无法确定，不代表免费。",
+                    "item_ids": [
+                      "activity_0",
+                      "activity_1",
+                      "activity_2",
+                      "activity_3",
+                      "activity_4",
+                      "local_0",
+                      "local_1",
+                      "local_2",
+                      "local_3",
+                      "local_4",
+                      "outbound",
+                      "return"
+                    ]
+                  }
+                ]
+              },
+              "risk_rules_version": "mock-initial-v1"
+            }
+          },
+          "latest_confirmed_version_id": null,
+          "synchronization": "CURRENT",
+          "plan_confirmation": "UNCONFIRMED",
+          "active_run_id": null,
+          "readiness": "NOT_ASSESSED",
+          "booked": false
+        },
+        "state": {
+          "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+          "working_revision": 1,
+          "source_run": {
+            "run_id": "40c02d12-89b1-4929-be3c-c560a1a33c53",
+            "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:34.193955Z",
+            "updated_at": "2026-11-15T06:39:34.933203Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 120000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_activity_3",
+                "cost_local_3",
+                "cost_activity_4",
+                "cost_local_4",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_3",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_3",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_4",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_4",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          },
+          "latest_run": {
+            "run_id": "40c02d12-89b1-4929-be3c-c560a1a33c53",
+            "trip_id": "126ce59a-4519-4652-bcac-8dcb037d6ad1",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:34.193955Z",
+            "updated_at": "2026-11-15T06:39:34.933203Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 120000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_activity_3",
+                "cost_local_3",
+                "cost_activity_4",
+                "cost_local_4",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_3",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_3",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_4",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_4",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "tripId": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+      "uncertainRequest": {
+        "key": "413c7cd6-26d1-4d7a-b354-68b1a8c973d8",
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        }
+      },
+      "acceptedState": {
+        "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+        "working_revision": null,
+        "source_run": null,
+        "latest_run": {
+          "run_id": "f15d8b40-bafe-4647-8ef2-b1a1b21c4c46",
+          "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:36.736490Z",
+          "updated_at": "2026-11-15T06:39:36.736490Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        }
+      },
+      "refresh": {
+        "trip": {
+          "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+          "created_at": "2026-11-15T06:39:36.424838Z",
+          "intake": {
+            "intake_revision": 1,
+            "input": {
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "start_date": "2026-12-04",
+                  "end_date": "2026-12-06"
+                }
+              },
+              "days": {
+                "state": "provided",
+                "value": 3
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "target_budget_cents": {
+                "state": "no_preference",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "transport": {
+                "state": "provided",
+                "value": "公共交通优先"
+              },
+              "hotel": {
+                "state": "no_preference",
+                "value": null
+              },
+              "restrictions": {
+                "state": "no_preference",
+                "value": null
+              },
+              "raw_text": null
+            },
+            "collection_status": "READY_TO_GENERATE",
+            "blocking_fields": [],
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              },
+              {
+                "field": "hotel",
+                "source": "user"
+              },
+              {
+                "field": "restrictions",
+                "source": "user"
+              }
+            ],
+            "suggested_values": []
+          },
+          "working": {
+            "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+            "owner_id": "m104b_browser_a",
+            "revision": 1,
+            "requirements": {
+              "destination": "杭州",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-06",
+              "timezone": "Asia/Shanghai",
+              "currency": "CNY",
+              "hard_limit_cents": 230000,
+              "requirements_revision": 1
+            },
+            "payload": {
+              "items": [
+                {
+                  "id": "activity_0",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_0",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-04T11:00:00+08:00",
+                  "end": "2026-12-04T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_0",
+                  "kind": "activity",
+                  "resource_id": "mock_local_0",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-04T13:00:00+08:00",
+                  "end": "2026-12-04T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_1",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_1",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-05T11:00:00+08:00",
+                  "end": "2026-12-05T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_1",
+                  "kind": "activity",
+                  "resource_id": "mock_local_1",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-05T13:00:00+08:00",
+                  "end": "2026-12-05T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_2",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_2",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-06T11:00:00+08:00",
+                  "end": "2026-12-06T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_2",
+                  "kind": "activity",
+                  "resource_id": "mock_local_2",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-06T13:00:00+08:00",
+                  "end": "2026-12-06T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "outbound",
+                  "kind": "activity",
+                  "resource_id": "mock_outbound",
+                  "title": "模拟：出发地至目的地公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T08:00:00+08:00",
+                  "end": "2026-12-04T09:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "return",
+                  "kind": "activity",
+                  "resource_id": "mock_return",
+                  "title": "模拟：返程公共交通时段建议，无真实班次",
+                  "start": "2026-12-06T17:00:00+08:00",
+                  "end": "2026-12-06T18:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "hotel",
+                  "kind": "hotel",
+                  "resource_id": "mock_hotel",
+                  "title": "模拟住宿建议，非真实酒店或报价",
+                  "start": "2026-12-04T14:00:00+08:00",
+                  "end": "2026-12-06T10:00:00+08:00",
+                  "room_type": "模拟建议：一间双人房，待核验",
+                  "check_in": "2026-12-04",
+                  "check_out": "2026-12-06",
+                  "rooms": 1
+                }
+              ],
+              "costs": [
+                {
+                  "id": "cost_activity_0",
+                  "item_id": "activity_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_0",
+                  "item_id": "local_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_1",
+                  "item_id": "activity_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_1",
+                  "item_id": "local_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_2",
+                  "item_id": "activity_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_2",
+                  "item_id": "local_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_outbound",
+                  "item_id": "outbound",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_outbound",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_return",
+                  "item_id": "return",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_return",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_hotel",
+                  "item_id": "hotel",
+                  "amount_cents": 60000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_hotel",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": "模拟建议：一间双人房，待核验",
+                    "rooms": 1
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                }
+              ]
+            },
+            "item_confirmations": [],
+            "latest_confirmed_version_id": null,
+            "context": {
+              "intake_revision": 1,
+              "input": {
+                "origin": {
+                  "state": "provided",
+                  "value": "上海"
+                },
+                "destination": {
+                  "state": "provided",
+                  "value": "杭州"
+                },
+                "dates": {
+                  "state": "provided",
+                  "value": {
+                    "mode": "fixed",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-06"
+                  }
+                },
+                "days": {
+                  "state": "provided",
+                  "value": 3
+                },
+                "travelers": {
+                  "state": "provided",
+                  "value": 2
+                },
+                "target_budget_cents": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "hard_limit_cents": {
+                  "state": "provided",
+                  "value": 230000
+                },
+                "transport": {
+                  "state": "provided",
+                  "value": "公共交通优先"
+                },
+                "hotel": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "restrictions": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "raw_text": null
+              },
+              "notes": {
+                "transport_advice": [],
+                "risks": [
+                  {
+                    "code": "mock_unverified",
+                    "severity": "warning",
+                    "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "activity_1",
+                      "local_1",
+                      "activity_2",
+                      "local_2",
+                      "outbound",
+                      "return",
+                      "hotel"
+                    ]
+                  },
+                  {
+                    "code": "unknown_costs",
+                    "severity": "warning",
+                    "message": "存在未知费用，总额无法确定，不代表免费。",
+                    "item_ids": [
+                      "activity_0",
+                      "activity_1",
+                      "activity_2",
+                      "local_0",
+                      "local_1",
+                      "local_2",
+                      "outbound",
+                      "return"
+                    ]
+                  }
+                ]
+              },
+              "risk_rules_version": "mock-initial-v1"
+            }
+          },
+          "latest_confirmed_version_id": null,
+          "synchronization": "CURRENT",
+          "plan_confirmation": "UNCONFIRMED",
+          "active_run_id": null,
+          "readiness": "NOT_ASSESSED",
+          "booked": false
+        },
+        "state": {
+          "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+          "working_revision": 1,
+          "source_run": {
+            "run_id": "f15d8b40-bafe-4647-8ef2-b1a1b21c4c46",
+            "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:36.736490Z",
+            "updated_at": "2026-11-15T06:39:37.164937Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 60000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          },
+          "latest_run": {
+            "run_id": "f15d8b40-bafe-4647-8ef2-b1a1b21c4c46",
+            "trip_id": "70a60cbc-4d91-4185-95b7-858fb26c6cc8",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:36.736490Z",
+            "updated_at": "2026-11-15T06:39:37.164937Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 60000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "tripId": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+      "mode": "invalid",
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/c87bde97-55de-4e4e-be65-4fb3341f3912/generations",
+        "run": {
+          "run_id": "01dfe0d0-de76-44b2-88df-034b3272cac8",
+          "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:37.807996Z",
+          "updated_at": "2026-11-15T06:39:37.807996Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "9dbec64b-476d-40f9-9667-776309dd1eef"
+      },
+      "failed": {
+        "run_id": "01dfe0d0-de76-44b2-88df-034b3272cac8",
+        "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "FAILED",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:37.807996Z",
+        "updated_at": "2026-11-15T06:39:38.124645Z",
+        "result": null,
+        "error": {
+          "code": "invalid_output",
+          "message": "Mock output failed validation.",
+          "retryable": true
+        },
+        "diagnostics_budget": null
+      },
+      "refresh": {
+        "trip": {
+          "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+          "created_at": "2026-11-15T06:39:37.511794Z",
+          "intake": {
+            "intake_revision": 1,
+            "input": {
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "start_date": "2026-12-04",
+                  "end_date": "2026-12-06"
+                }
+              },
+              "days": {
+                "state": "provided",
+                "value": 3
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "target_budget_cents": {
+                "state": "no_preference",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "transport": {
+                "state": "provided",
+                "value": "公共交通优先"
+              },
+              "hotel": {
+                "state": "no_preference",
+                "value": null
+              },
+              "restrictions": {
+                "state": "no_preference",
+                "value": null
+              },
+              "raw_text": null
+            },
+            "collection_status": "READY_TO_GENERATE",
+            "blocking_fields": [],
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              },
+              {
+                "field": "hotel",
+                "source": "user"
+              },
+              {
+                "field": "restrictions",
+                "source": "user"
+              }
+            ],
+            "suggested_values": []
+          },
+          "working": {
+            "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+            "owner_id": "m104b_browser_a",
+            "revision": 1,
+            "requirements": {
+              "destination": "杭州",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-06",
+              "timezone": "Asia/Shanghai",
+              "currency": "CNY",
+              "hard_limit_cents": 230000,
+              "requirements_revision": 1
+            },
+            "payload": {
+              "items": [
+                {
+                  "id": "activity_0",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_0",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-04T11:00:00+08:00",
+                  "end": "2026-12-04T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_0",
+                  "kind": "activity",
+                  "resource_id": "mock_local_0",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-04T13:00:00+08:00",
+                  "end": "2026-12-04T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_1",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_1",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-05T11:00:00+08:00",
+                  "end": "2026-12-05T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_1",
+                  "kind": "activity",
+                  "resource_id": "mock_local_1",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-05T13:00:00+08:00",
+                  "end": "2026-12-05T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_2",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_2",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-06T11:00:00+08:00",
+                  "end": "2026-12-06T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_2",
+                  "kind": "activity",
+                  "resource_id": "mock_local_2",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-06T13:00:00+08:00",
+                  "end": "2026-12-06T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "outbound",
+                  "kind": "activity",
+                  "resource_id": "mock_outbound",
+                  "title": "模拟：出发地至目的地公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T08:00:00+08:00",
+                  "end": "2026-12-04T09:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "return",
+                  "kind": "activity",
+                  "resource_id": "mock_return",
+                  "title": "模拟：返程公共交通时段建议，无真实班次",
+                  "start": "2026-12-06T17:00:00+08:00",
+                  "end": "2026-12-06T18:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "hotel",
+                  "kind": "hotel",
+                  "resource_id": "mock_hotel",
+                  "title": "模拟住宿建议，非真实酒店或报价",
+                  "start": "2026-12-04T14:00:00+08:00",
+                  "end": "2026-12-06T10:00:00+08:00",
+                  "room_type": "模拟建议：一间双人房，待核验",
+                  "check_in": "2026-12-04",
+                  "check_out": "2026-12-06",
+                  "rooms": 1
+                }
+              ],
+              "costs": [
+                {
+                  "id": "cost_activity_0",
+                  "item_id": "activity_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_0",
+                  "item_id": "local_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_1",
+                  "item_id": "activity_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_1",
+                  "item_id": "local_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_2",
+                  "item_id": "activity_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_2",
+                  "item_id": "local_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_outbound",
+                  "item_id": "outbound",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_outbound",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_return",
+                  "item_id": "return",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_return",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_hotel",
+                  "item_id": "hotel",
+                  "amount_cents": 60000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_hotel",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": "模拟建议：一间双人房，待核验",
+                    "rooms": 1
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                }
+              ]
+            },
+            "item_confirmations": [],
+            "latest_confirmed_version_id": null,
+            "context": {
+              "intake_revision": 1,
+              "input": {
+                "origin": {
+                  "state": "provided",
+                  "value": "上海"
+                },
+                "destination": {
+                  "state": "provided",
+                  "value": "杭州"
+                },
+                "dates": {
+                  "state": "provided",
+                  "value": {
+                    "mode": "fixed",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-06"
+                  }
+                },
+                "days": {
+                  "state": "provided",
+                  "value": 3
+                },
+                "travelers": {
+                  "state": "provided",
+                  "value": 2
+                },
+                "target_budget_cents": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "hard_limit_cents": {
+                  "state": "provided",
+                  "value": 230000
+                },
+                "transport": {
+                  "state": "provided",
+                  "value": "公共交通优先"
+                },
+                "hotel": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "restrictions": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "raw_text": null
+              },
+              "notes": {
+                "transport_advice": [],
+                "risks": [
+                  {
+                    "code": "mock_unverified",
+                    "severity": "warning",
+                    "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "activity_1",
+                      "local_1",
+                      "activity_2",
+                      "local_2",
+                      "outbound",
+                      "return",
+                      "hotel"
+                    ]
+                  },
+                  {
+                    "code": "unknown_costs",
+                    "severity": "warning",
+                    "message": "存在未知费用，总额无法确定，不代表免费。",
+                    "item_ids": [
+                      "activity_0",
+                      "activity_1",
+                      "activity_2",
+                      "local_0",
+                      "local_1",
+                      "local_2",
+                      "outbound",
+                      "return"
+                    ]
+                  }
+                ]
+              },
+              "risk_rules_version": "mock-initial-v1"
+            }
+          },
+          "latest_confirmed_version_id": null,
+          "synchronization": "CURRENT",
+          "plan_confirmation": "UNCONFIRMED",
+          "active_run_id": null,
+          "readiness": "NOT_ASSESSED",
+          "booked": false
+        },
+        "state": {
+          "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+          "working_revision": 1,
+          "source_run": {
+            "run_id": "b93147d5-7593-46d5-856c-495b4fb0f0c5",
+            "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 2,
+            "retry_of": "01dfe0d0-de76-44b2-88df-034b3272cac8",
+            "created_at": "2026-11-15T06:39:38.507071Z",
+            "updated_at": "2026-11-15T06:39:38.830070Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 60000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          },
+          "latest_run": {
+            "run_id": "b93147d5-7593-46d5-856c-495b4fb0f0c5",
+            "trip_id": "c87bde97-55de-4e4e-be65-4fb3341f3912",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 2,
+            "retry_of": "01dfe0d0-de76-44b2-88df-034b3272cac8",
+            "created_at": "2026-11-15T06:39:38.507071Z",
+            "updated_at": "2026-11-15T06:39:38.830070Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 60000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "tripId": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+      "mode": "interrupted",
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/4d8d2a48-6d26-4917-8a15-70112cbe0369/generations",
+        "run": {
+          "run_id": "66cbe253-5017-4519-9ebc-60ad0217d963",
+          "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:39.373251Z",
+          "updated_at": "2026-11-15T06:39:39.373251Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "cc05c5a5-c054-412a-95f2-e463718538e6"
+      },
+      "failed": {
+        "run_id": "66cbe253-5017-4519-9ebc-60ad0217d963",
+        "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "FAILED",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:39.373251Z",
+        "updated_at": "2026-11-15T06:39:39.975613Z",
+        "result": null,
+        "error": {
+          "code": "worker_interrupted",
+          "message": "Executor stopped before completing this run; explicitly retry with a new key.",
+          "retryable": true
+        },
+        "diagnostics_budget": null
+      },
+      "refresh": {
+        "trip": {
+          "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+          "created_at": "2026-11-15T06:39:39.080253Z",
+          "intake": {
+            "intake_revision": 1,
+            "input": {
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "start_date": "2026-12-04",
+                  "end_date": "2026-12-06"
+                }
+              },
+              "days": {
+                "state": "provided",
+                "value": 3
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "target_budget_cents": {
+                "state": "no_preference",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "transport": {
+                "state": "provided",
+                "value": "公共交通优先"
+              },
+              "hotel": {
+                "state": "no_preference",
+                "value": null
+              },
+              "restrictions": {
+                "state": "no_preference",
+                "value": null
+              },
+              "raw_text": null
+            },
+            "collection_status": "READY_TO_GENERATE",
+            "blocking_fields": [],
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              },
+              {
+                "field": "hotel",
+                "source": "user"
+              },
+              {
+                "field": "restrictions",
+                "source": "user"
+              }
+            ],
+            "suggested_values": []
+          },
+          "working": {
+            "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+            "owner_id": "m104b_browser_a",
+            "revision": 1,
+            "requirements": {
+              "destination": "杭州",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-06",
+              "timezone": "Asia/Shanghai",
+              "currency": "CNY",
+              "hard_limit_cents": 230000,
+              "requirements_revision": 1
+            },
+            "payload": {
+              "items": [
+                {
+                  "id": "activity_0",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_0",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-04T11:00:00+08:00",
+                  "end": "2026-12-04T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_0",
+                  "kind": "activity",
+                  "resource_id": "mock_local_0",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-04T13:00:00+08:00",
+                  "end": "2026-12-04T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_1",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_1",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-05T11:00:00+08:00",
+                  "end": "2026-12-05T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_1",
+                  "kind": "activity",
+                  "resource_id": "mock_local_1",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-05T13:00:00+08:00",
+                  "end": "2026-12-05T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "activity_2",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_2",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-06T11:00:00+08:00",
+                  "end": "2026-12-06T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_2",
+                  "kind": "activity",
+                  "resource_id": "mock_local_2",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-06T13:00:00+08:00",
+                  "end": "2026-12-06T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "outbound",
+                  "kind": "activity",
+                  "resource_id": "mock_outbound",
+                  "title": "模拟：出发地至目的地公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T08:00:00+08:00",
+                  "end": "2026-12-04T09:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "return",
+                  "kind": "activity",
+                  "resource_id": "mock_return",
+                  "title": "模拟：返程公共交通时段建议，无真实班次",
+                  "start": "2026-12-06T17:00:00+08:00",
+                  "end": "2026-12-06T18:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "hotel",
+                  "kind": "hotel",
+                  "resource_id": "mock_hotel",
+                  "title": "模拟住宿建议，非真实酒店或报价",
+                  "start": "2026-12-04T14:00:00+08:00",
+                  "end": "2026-12-06T10:00:00+08:00",
+                  "room_type": "模拟建议：一间双人房，待核验",
+                  "check_in": "2026-12-04",
+                  "check_out": "2026-12-06",
+                  "rooms": 1
+                }
+              ],
+              "costs": [
+                {
+                  "id": "cost_activity_0",
+                  "item_id": "activity_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_0",
+                  "item_id": "local_0",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_1",
+                  "item_id": "activity_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_1",
+                  "item_id": "local_1",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_1",
+                    "start_date": "2026-12-05",
+                    "end_date": "2026-12-05",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_activity_2",
+                  "item_id": "activity_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_activity_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_2",
+                  "item_id": "local_2",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_local_2",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_outbound",
+                  "item_id": "outbound",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_outbound",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_return",
+                  "item_id": "return",
+                  "amount_cents": null,
+                  "category": "unknown",
+                  "unknown_reason": "模拟项目；交通、餐饮、门票或杂费尚无价格依据（所有旅客合计）",
+                  "query": {
+                    "resource_id": "mock_return",
+                    "start_date": "2026-12-06",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_hotel",
+                  "item_id": "hotel",
+                  "amount_cents": 60000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_hotel",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-06",
+                    "currency": "CNY",
+                    "room_type": "模拟建议：一间双人房，待核验",
+                    "rooms": 1
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                }
+              ]
+            },
+            "item_confirmations": [],
+            "latest_confirmed_version_id": null,
+            "context": {
+              "intake_revision": 1,
+              "input": {
+                "origin": {
+                  "state": "provided",
+                  "value": "上海"
+                },
+                "destination": {
+                  "state": "provided",
+                  "value": "杭州"
+                },
+                "dates": {
+                  "state": "provided",
+                  "value": {
+                    "mode": "fixed",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-06"
+                  }
+                },
+                "days": {
+                  "state": "provided",
+                  "value": 3
+                },
+                "travelers": {
+                  "state": "provided",
+                  "value": 2
+                },
+                "target_budget_cents": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "hard_limit_cents": {
+                  "state": "provided",
+                  "value": 230000
+                },
+                "transport": {
+                  "state": "provided",
+                  "value": "公共交通优先"
+                },
+                "hotel": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "restrictions": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "raw_text": null
+              },
+              "notes": {
+                "transport_advice": [],
+                "risks": [
+                  {
+                    "code": "mock_unverified",
+                    "severity": "warning",
+                    "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "activity_1",
+                      "local_1",
+                      "activity_2",
+                      "local_2",
+                      "outbound",
+                      "return",
+                      "hotel"
+                    ]
+                  },
+                  {
+                    "code": "unknown_costs",
+                    "severity": "warning",
+                    "message": "存在未知费用，总额无法确定，不代表免费。",
+                    "item_ids": [
+                      "activity_0",
+                      "activity_1",
+                      "activity_2",
+                      "local_0",
+                      "local_1",
+                      "local_2",
+                      "outbound",
+                      "return"
+                    ]
+                  }
+                ]
+              },
+              "risk_rules_version": "mock-initial-v1"
+            }
+          },
+          "latest_confirmed_version_id": null,
+          "synchronization": "CURRENT",
+          "plan_confirmation": "UNCONFIRMED",
+          "active_run_id": null,
+          "readiness": "NOT_ASSESSED",
+          "booked": false
+        },
+        "state": {
+          "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+          "working_revision": 1,
+          "source_run": {
+            "run_id": "d68cb68d-7515-45e0-ad90-7f9148e6458d",
+            "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 2,
+            "retry_of": "66cbe253-5017-4519-9ebc-60ad0217d963",
+            "created_at": "2026-11-15T06:39:40.625115Z",
+            "updated_at": "2026-11-15T06:39:41.000249Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 60000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          },
+          "latest_run": {
+            "run_id": "d68cb68d-7515-45e0-ad90-7f9148e6458d",
+            "trip_id": "4d8d2a48-6d26-4917-8a15-70112cbe0369",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 2,
+            "retry_of": "66cbe253-5017-4519-9ebc-60ad0217d963",
+            "created_at": "2026-11-15T06:39:40.625115Z",
+            "updated_at": "2026-11-15T06:39:41.000249Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 60000,
+              "total_cents": null,
+              "unknown_cost_ids": [
+                "cost_activity_0",
+                "cost_local_0",
+                "cost_activity_1",
+                "cost_local_1",
+                "cost_activity_2",
+                "cost_local_2",
+                "cost_outbound",
+                "cost_return"
+              ],
+              "verification": "INDETERMINATE",
+              "constraint": "UNDETERMINED",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_0",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_1",
+                  "unknown_price"
+                ],
+                [
+                  "cost_activity_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_local_2",
+                  "unknown_price"
+                ],
+                [
+                  "cost_outbound",
+                  "unknown_price"
+                ],
+                [
+                  "cost_return",
+                  "unknown_price"
+                ],
+                [
+                  "cost_hotel",
+                  "estimate"
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "tripId": "8df3de11-b065-45fb-bdc3-98897d671043",
+      "mode": "over_budget",
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/8df3de11-b065-45fb-bdc3-98897d671043/generations",
+        "run": {
+          "run_id": "5fb28ba4-3c85-48e0-a5d2-3151cab5a7db",
+          "trip_id": "8df3de11-b065-45fb-bdc3-98897d671043",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:42.311666Z",
+          "updated_at": "2026-11-15T06:39:42.311666Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "37562980-6c06-4e48-9aee-c1969e6ee360"
+      },
+      "failed": {
+        "run_id": "5fb28ba4-3c85-48e0-a5d2-3151cab5a7db",
+        "trip_id": "8df3de11-b065-45fb-bdc3-98897d671043",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "FAILED",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:42.311666Z",
+        "updated_at": "2026-11-15T06:39:42.664855Z",
+        "result": null,
+        "error": {
+          "code": "known_costs_exceed_hard_limit",
+          "message": "Known costs exceed the hard budget limit.",
+          "retryable": false
+        },
+        "diagnostics_budget": {
+          "known_subtotal_cents": 60000,
+          "total_cents": null,
+          "unknown_cost_ids": [
+            "cost_activity_0",
+            "cost_local_0",
+            "cost_activity_1",
+            "cost_local_1",
+            "cost_activity_2",
+            "cost_local_2",
+            "cost_outbound",
+            "cost_return"
+          ],
+          "verification": "INDETERMINATE",
+          "constraint": "OVER_LIMIT",
+          "verified_cost_ids": [],
+          "evidence_issues": [
+            [
+              "cost_activity_0",
+              "unknown_price"
+            ],
+            [
+              "cost_local_0",
+              "unknown_price"
+            ],
+            [
+              "cost_activity_1",
+              "unknown_price"
+            ],
+            [
+              "cost_local_1",
+              "unknown_price"
+            ],
+            [
+              "cost_activity_2",
+              "unknown_price"
+            ],
+            [
+              "cost_local_2",
+              "unknown_price"
+            ],
+            [
+              "cost_outbound",
+              "unknown_price"
+            ],
+            [
+              "cost_return",
+              "unknown_price"
+            ],
+            [
+              "cost_hotel",
+              "estimate"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "tripId": "93403bc5-bd6d-4724-99c0-2610c5532c09",
+      "mode": "stale",
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/93403bc5-bd6d-4724-99c0-2610c5532c09/generations",
+        "run": {
+          "run_id": "6735a323-defa-4529-a818-02c76e9db620",
+          "trip_id": "93403bc5-bd6d-4724-99c0-2610c5532c09",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:43.292933Z",
+          "updated_at": "2026-11-15T06:39:43.292933Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "90fca074-6a3c-4b64-8318-c08d07d3ae13"
+      },
+      "failed": {
+        "run_id": "6735a323-defa-4529-a818-02c76e9db620",
+        "trip_id": "93403bc5-bd6d-4724-99c0-2610c5532c09",
+        "kind": "INITIAL_PLAN",
+        "intake_revision": 1,
+        "base_working_revision": null,
+        "status": "FAILED",
+        "attempt": 1,
+        "retry_of": null,
+        "created_at": "2026-11-15T06:39:43.292933Z",
+        "updated_at": "2026-11-15T06:39:44.017248Z",
+        "result": null,
+        "error": {
+          "code": "stale_input",
+          "message": "Requirements changed during generation.",
+          "retryable": false
+        },
+        "diagnostics_budget": null
+      }
+    },
+    {
+      "tripId": "dcd571da-74d0-4cbf-92db-07696b673663",
+      "mode": "estimated-zero",
+      "accepted": {
+        "httpStatus": 202,
+        "method": "POST",
+        "path": "/api/v1/trips/dcd571da-74d0-4cbf-92db-07696b673663/generations",
+        "run": {
+          "run_id": "0774f7ad-d6af-478c-8cee-7b01215f567b",
+          "trip_id": "dcd571da-74d0-4cbf-92db-07696b673663",
+          "kind": "INITIAL_PLAN",
+          "intake_revision": 1,
+          "base_working_revision": null,
+          "status": "ACCEPTED",
+          "attempt": 1,
+          "retry_of": null,
+          "created_at": "2026-11-15T06:39:44.523894Z",
+          "updated_at": "2026-11-15T06:39:44.523894Z",
+          "result": null,
+          "error": null,
+          "diagnostics_budget": null
+        },
+        "body": {
+          "expected_intake_revision": 1,
+          "expected_working_revision": null,
+          "retry_of": null
+        },
+        "key": "d3455ef0-57a3-41f4-b241-1461290a94ba"
+      },
+      "refresh": {
+        "trip": {
+          "trip_id": "dcd571da-74d0-4cbf-92db-07696b673663",
+          "created_at": "2026-11-15T06:39:44.237086Z",
+          "intake": {
+            "intake_revision": 1,
+            "input": {
+              "origin": {
+                "state": "provided",
+                "value": "上海"
+              },
+              "destination": {
+                "state": "provided",
+                "value": "杭州"
+              },
+              "dates": {
+                "state": "provided",
+                "value": {
+                  "mode": "fixed",
+                  "start_date": "2026-12-04",
+                  "end_date": "2026-12-04"
+                }
+              },
+              "days": {
+                "state": "provided",
+                "value": 1
+              },
+              "travelers": {
+                "state": "provided",
+                "value": 2
+              },
+              "target_budget_cents": {
+                "state": "no_preference",
+                "value": null
+              },
+              "hard_limit_cents": {
+                "state": "provided",
+                "value": 230000
+              },
+              "transport": {
+                "state": "provided",
+                "value": "公共交通优先"
+              },
+              "hotel": {
+                "state": "no_preference",
+                "value": null
+              },
+              "restrictions": {
+                "state": "no_preference",
+                "value": null
+              },
+              "raw_text": null
+            },
+            "collection_status": "READY_TO_GENERATE",
+            "blocking_fields": [],
+            "provenance": [
+              {
+                "field": "origin",
+                "source": "user"
+              },
+              {
+                "field": "destination",
+                "source": "user"
+              },
+              {
+                "field": "dates",
+                "source": "user"
+              },
+              {
+                "field": "days",
+                "source": "user"
+              },
+              {
+                "field": "travelers",
+                "source": "user"
+              },
+              {
+                "field": "target_budget_cents",
+                "source": "user"
+              },
+              {
+                "field": "hard_limit_cents",
+                "source": "user"
+              },
+              {
+                "field": "transport",
+                "source": "user"
+              },
+              {
+                "field": "hotel",
+                "source": "user"
+              },
+              {
+                "field": "restrictions",
+                "source": "user"
+              }
+            ],
+            "suggested_values": []
+          },
+          "working": {
+            "trip_id": "dcd571da-74d0-4cbf-92db-07696b673663",
+            "owner_id": "m104b_browser_a",
+            "revision": 1,
+            "requirements": {
+              "destination": "杭州",
+              "start_date": "2026-12-04",
+              "end_date": "2026-12-04",
+              "timezone": "Asia/Shanghai",
+              "currency": "CNY",
+              "hard_limit_cents": 230000,
+              "requirements_revision": 1
+            },
+            "payload": {
+              "items": [
+                {
+                  "id": "activity_0",
+                  "kind": "activity",
+                  "resource_id": "mock_activity_0",
+                  "title": "模拟：轻松活动建议，路线及营业未核验",
+                  "start": "2026-12-04T11:00:00+08:00",
+                  "end": "2026-12-04T12:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "local_0",
+                  "kind": "activity",
+                  "resource_id": "mock_local_0",
+                  "title": "模拟：市内公共交通、餐饮及必要杂费待核验",
+                  "start": "2026-12-04T13:00:00+08:00",
+                  "end": "2026-12-04T14:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "outbound",
+                  "kind": "activity",
+                  "resource_id": "mock_outbound",
+                  "title": "模拟：出发地至目的地公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T08:00:00+08:00",
+                  "end": "2026-12-04T09:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                },
+                {
+                  "id": "return",
+                  "kind": "activity",
+                  "resource_id": "mock_return",
+                  "title": "模拟：返程公共交通时段建议，无真实班次",
+                  "start": "2026-12-04T17:00:00+08:00",
+                  "end": "2026-12-04T18:00:00+08:00",
+                  "room_type": null,
+                  "check_in": null,
+                  "check_out": null,
+                  "rooms": null
+                }
+              ],
+              "costs": [
+                {
+                  "id": "cost_activity_0",
+                  "item_id": "activity_0",
+                  "amount_cents": 0,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_activity_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_local_0",
+                  "item_id": "local_0",
+                  "amount_cents": 1000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_local_0",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_outbound",
+                  "item_id": "outbound",
+                  "amount_cents": 1000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_outbound",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                },
+                {
+                  "id": "cost_return",
+                  "item_id": "return",
+                  "amount_cents": 1000,
+                  "category": "estimate",
+                  "unknown_reason": null,
+                  "query": {
+                    "resource_id": "mock_return",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04",
+                    "currency": "CNY",
+                    "room_type": null,
+                    "rooms": null
+                  },
+                  "evidence_id": null,
+                  "is_mock": true
+                }
+              ]
+            },
+            "item_confirmations": [],
+            "latest_confirmed_version_id": null,
+            "context": {
+              "intake_revision": 1,
+              "input": {
+                "origin": {
+                  "state": "provided",
+                  "value": "上海"
+                },
+                "destination": {
+                  "state": "provided",
+                  "value": "杭州"
+                },
+                "dates": {
+                  "state": "provided",
+                  "value": {
+                    "mode": "fixed",
+                    "start_date": "2026-12-04",
+                    "end_date": "2026-12-04"
+                  }
+                },
+                "days": {
+                  "state": "provided",
+                  "value": 1
+                },
+                "travelers": {
+                  "state": "provided",
+                  "value": 2
+                },
+                "target_budget_cents": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "hard_limit_cents": {
+                  "state": "provided",
+                  "value": 230000
+                },
+                "transport": {
+                  "state": "provided",
+                  "value": "公共交通优先"
+                },
+                "hotel": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "restrictions": {
+                  "state": "no_preference",
+                  "value": null
+                },
+                "raw_text": null
+              },
+              "notes": {
+                "transport_advice": [],
+                "risks": [
+                  {
+                    "code": "mock_unverified",
+                    "severity": "warning",
+                    "message": "来源：可控 Mock。路线、营业、房型建议与所有价格未经核验；无真实班次或预订。",
+                    "item_ids": [
+                      "activity_0",
+                      "local_0",
+                      "outbound",
+                      "return"
+                    ]
+                  }
+                ]
+              },
+              "risk_rules_version": "mock-initial-v1"
+            }
+          },
+          "latest_confirmed_version_id": null,
+          "synchronization": "CURRENT",
+          "plan_confirmation": "UNCONFIRMED",
+          "active_run_id": null,
+          "readiness": "NOT_ASSESSED",
+          "booked": false
+        },
+        "state": {
+          "trip_id": "dcd571da-74d0-4cbf-92db-07696b673663",
+          "working_revision": 1,
+          "source_run": {
+            "run_id": "0774f7ad-d6af-478c-8cee-7b01215f567b",
+            "trip_id": "dcd571da-74d0-4cbf-92db-07696b673663",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:44.523894Z",
+            "updated_at": "2026-11-15T06:39:44.848852Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 3000,
+              "total_cents": 3000,
+              "unknown_cost_ids": [],
+              "verification": "ESTIMATED",
+              "constraint": "WITHIN_LIMIT",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "estimate"
+                ],
+                [
+                  "cost_local_0",
+                  "estimate"
+                ],
+                [
+                  "cost_outbound",
+                  "estimate"
+                ],
+                [
+                  "cost_return",
+                  "estimate"
+                ]
+              ]
+            }
+          },
+          "latest_run": {
+            "run_id": "0774f7ad-d6af-478c-8cee-7b01215f567b",
+            "trip_id": "dcd571da-74d0-4cbf-92db-07696b673663",
+            "kind": "INITIAL_PLAN",
+            "intake_revision": 1,
+            "base_working_revision": null,
+            "status": "SUCCEEDED",
+            "attempt": 1,
+            "retry_of": null,
+            "created_at": "2026-11-15T06:39:44.523894Z",
+            "updated_at": "2026-11-15T06:39:44.848852Z",
+            "result": {
+              "working_revision": 1,
+              "proposal_id": null
+            },
+            "error": null,
+            "diagnostics_budget": {
+              "known_subtotal_cents": 3000,
+              "total_cents": 3000,
+              "unknown_cost_ids": [],
+              "verification": "ESTIMATED",
+              "constraint": "WITHIN_LIMIT",
+              "verified_cost_ids": [],
+              "evidence_issues": [
+                [
+                  "cost_activity_0",
+                  "estimate"
+                ],
+                [
+                  "cost_local_0",
+                  "estimate"
+                ],
+                [
+                  "cost_outbound",
+                  "estimate"
+                ],
+                [
+                  "cost_return",
+                  "estimate"
+                ]
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

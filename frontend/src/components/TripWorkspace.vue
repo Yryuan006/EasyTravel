@@ -16,6 +16,7 @@ import { useConfirmation } from '../composables/useConfirmation'
 import TripSummary from './TripSummary.vue'
 import RequirementsForm from './RequirementsForm.vue'
 import ClarificationCard from './ClarificationCard.vue'
+defineEmits<{ navigate: [url: string] }>()
 const props = defineProps<{ initial: TripView; token: string }>()
 const session = useRequirements(props.initial, () => props.token)
 const { saved, next, busy, error, conflict, pending, retryAllowed } = session
@@ -66,6 +67,7 @@ function review() { reviewed.value = true; retainedAnswer.value = undefined; not
 function discard() { formEpoch.value++; reviewed.value = true; notice.value = ''; retainedAnswer.value = undefined; editing.value = false; void session.question() }
 </script>
 <template>
+  <div class="actions"><a :href="`/trips/${saved.trip_id}/history`" @click.prevent="$emit('navigate', `/trips/${saved.trip_id}/history`)">查看确认历史</a></div>
   <section class="trip-panel" aria-labelledby="generation-heading">
     <p class="eyebrow">MOCK PLANNER / 模拟规划</p><h2 id="generation-heading">生成与运行</h2>
     <p v-if="saved.intake.collection_status !== 'READY_TO_GENERATE'">需求尚不完整，请补充下方必要信息。</p>
