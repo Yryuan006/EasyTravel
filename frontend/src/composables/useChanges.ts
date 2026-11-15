@@ -11,7 +11,7 @@ export function useChanges(saved: ShallowRef<TripView>, token: () => string, blo
   let epoch = 0, controller = new AbortController(), timer: ReturnType<typeof setTimeout> | undefined
   const active = computed(() => run.value?.status === 'ACCEPTED' || run.value?.status === 'RUNNING')
   const locked = computed(() => busy.value || active.value || !!pending.value || awaitingRead.value)
-  const current = computed(() => proposal.value?.state === 'PENDING' && saved.value.synchronization === 'CURRENT'
+  const current = computed(() => proposal.value?.state === 'PENDING' && saved.value.synchronization === (proposal.value.context_v2 ? 'STALE' : 'CURRENT')
     && proposal.value.intake_revision === saved.value.intake.intake_revision && proposal.value.proposal.output.base_working_revision === saved.value.working?.revision)
   const canDecide = computed(() => current.value && !locked.value && !blocked())
   function cancel() { epoch++; controller.abort(); controller = new AbortController(); clearTimeout(timer) }
@@ -43,7 +43,7 @@ export function useChanges(saved: ShallowRef<TripView>, token: () => string, blo
     } else if (r.status === 'SUCCEEDED' && r.result?.proposal_id) {
       const p = await getProposal(token(), saved.value.trip_id, r.result.proposal_id, { signal: controller.signal })
       if (version === epoch) { proposal.value = p; agreed.value = false }
-    } else if (r.status === 'FAILED') error.value = r.error?.code === 'unsupported_change_intent' ? 'Mock 未识别此修改，请按支持的示例改写。' : '修改运行失败，未应用候选。请查看运行状态并重试。'
+    } else if (r.status === 'FAILED') error.value = r.error?.code === 'unsupported_change_intent' ? 'Mock 未识别此修改，请按支持的示例改写。' : r.error?.retryable ? '运行失败，未应用候选；可使用新键和 retry_of 显式重试。' : '运行失败，未应用候选。请先修改需求或预算，不能重试当前输入。'
   }
   async function refresh() {
     if (busy.value) return
@@ -53,7 +53,7 @@ export function useChanges(saved: ShallowRef<TripView>, token: () => string, blo
       if (version !== epoch || awaitingRead.value || receipt.value) return
       const s = await getGenerationState(token(), saved.value.trip_id, { signal: controller.signal })
       if (version !== epoch) return
-      if (s.latest_run?.kind === 'CHANGE_INTENT') await inspectRun(s.latest_run.run_id, version)
+      if (s.latest_run && ['CHANGE_INTENT','REPLAN'].includes(s.latest_run.kind)) await inspectRun(s.latest_run.run_id, version)
     } catch (e) { if (version === epoch) error.value = e instanceof Error ? e.message : '读取失败。' }
     finally { if (version === epoch) busy.value = false }
   }
@@ -63,7 +63,7 @@ export function useChanges(saved: ShallowRef<TripView>, token: () => string, blo
       const r = await sendChange(token(), saved.value.trip_id, command, { signal: controller.signal })
       if (version !== epoch) return
       pending.value = undefined
-      if (command.kind === 'intent') { proposal.value = undefined; receipt.value = undefined; await inspectRun((r as GenerationRun).run_id, version) }
+      if (command.kind !== 'decision') { proposal.value = undefined; receipt.value = undefined; await inspectRun((r as GenerationRun).run_id, version) }
       else { receipt.value = r as DecisionResult; awaitingRead.value = true; await readBack(version) }
     } catch (e) {
       if (version !== epoch) return
@@ -77,7 +77,15 @@ export function useChanges(saved: ShallowRef<TripView>, token: () => string, blo
   }
   async function start() {
     if (locked.value || blocked() || !intent.value.trim() || saved.value.synchronization !== 'CURRENT' || !saved.value.working || saved.value.active_run_id) return
+    if (run.value?.kind === 'CHANGE_INTENT' && run.value.status === 'FAILED' && run.value.intake_revision === saved.value.intake.intake_revision && run.value.base_working_revision === saved.value.working.revision && !run.value.error?.retryable) { error.value = '当前输入无法重试，请先修改需求或预算。'; return }
     pending.value = { kind: 'intent', path: tripPath(saved.value.trip_id) + '/change-intents', key: crypto.randomUUID(), body: JSON.stringify({ expected_intake_revision: saved.value.intake.intake_revision, expected_working_revision: saved.value.working.revision, intent: intent.value.trim(), retry_of: run.value?.status === 'FAILED' && run.value.intake_revision === saved.value.intake.intake_revision && run.value.base_working_revision === saved.value.working.revision ? run.value.run_id : null }) }
+    await send(pending.value)
+  }
+  async function replan() {
+    if (locked.value || blocked() || saved.value.synchronization !== 'STALE' || !saved.value.working || saved.value.active_run_id || saved.value.intake.blocking_fields.length) return
+    const old = run.value
+    if (old?.kind === 'REPLAN' && old.status === 'FAILED' && old.intake_revision === saved.value.intake.intake_revision && old.base_working_revision === saved.value.working.revision && !old.error?.retryable) { error.value = '当前输入无法重试，请先修改阻塞需求或预算。'; return }
+    pending.value = { kind: 'replan', path: tripPath(saved.value.trip_id) + '/generations', key: crypto.randomUUID(), body: JSON.stringify({ expected_intake_revision: saved.value.intake.intake_revision, expected_working_revision: saved.value.working.revision, retry_of: old?.kind === 'REPLAN' && old.status === 'FAILED' && old.intake_revision === saved.value.intake.intake_revision && old.base_working_revision === saved.value.working.revision ? old.run_id : null }) }
     await send(pending.value)
   }
   async function decide(decision: 'approve' | 'reject') {
@@ -90,5 +98,5 @@ export function useChanges(saved: ShallowRef<TripView>, token: () => string, blo
     await send(pending.value)
   }
   async function retry() { if (!busy.value && pending.value && retryAllowed.value && !blocked()) await send(pending.value) }
-  return { intent, agreed, busy, error, run, proposal, pending, receipt, awaitingRead, verified, locked, current, canDecide, retryAllowed, start, decide, retry, refresh }
+  return { intent, agreed, busy, error, run, proposal, pending, receipt, awaitingRead, verified, locked, current, canDecide, retryAllowed, start, replan, decide, retry, refresh }
 }

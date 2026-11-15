@@ -7,6 +7,8 @@ import { useChanges } from '../src/composables/useChanges'
 import { getProposal, validProposal, type ProposalView } from '../src/api/changes'
 import { validRun, validState } from '../src/api/generations'
 import ChangeReview from '../src/components/ChangeReview.vue'
+import replanEvidence from '../../Docs/M1-06b_独立进程_True.json'
+import replanRunEvidence from '../../Docs/M1-06b_进程退出_committed.json'
 
 const trip = persisted.trip as unknown as TripView
 const w = trip.working!, payload = w.payload as any
@@ -131,4 +133,40 @@ it('does not restore a prior-user decision through a delayed post-response Trip 
   const deciding = h.session.decide('approve'); await flushPromises(); expect(h.session.receipt.value).toBeDefined()
   h.token.value = 'another-user'; resolve(response(updated)); await deciding
   expect(h.session.receipt.value).toBeUndefined(); expect(h.session.verified.value).toBe(false); expect(h.saved.value.working?.revision).toBe(1)
+})
+
+const replanProposal = { ...replanEvidence.proposal, state: 'PENDING' } as unknown as ProposalView
+function stale(h: ReturnType<typeof harness>) {
+  h.saved.value = { ...trip, trip_id: replanProposal.proposal.trip_id, intake: { ...trip.intake, intake_revision: replanProposal.intake_revision, input: replanProposal.context_v2!.candidate_input }, synchronization: 'STALE' }
+}
+it('accepts the real v2 contract while rejecting mixed v1/v2 contexts', () => {
+  expect(validProposal(replanProposal)).toBe(true)
+  expect(validRun({...replanRunEvidence,result:{working_revision:1,proposal_id:null}})).toBe(false)
+  expect(validProposal({ ...replanProposal, context_v2: null })).toBe(false)
+  expect(validProposal({ ...proposal, context_v2: replanProposal.context_v2 })).toBe(false)
+})
+it('binds v2 consent to latest intake and STALE base, without applying on generation success', async () => {
+  const linked={...replanRunEvidence,trip_id:replanProposal.proposal.trip_id,result:{working_revision:null,proposal_id:replanProposal.proposal.proposal_id}}
+  const f=vi.fn<typeof fetch>().mockResolvedValueOnce(response({...linked,status:'ACCEPTED',result:null,diagnostics_budget:null},202)).mockResolvedValueOnce(response(linked)).mockResolvedValueOnce(response(replanProposal))
+  vi.stubGlobal('fetch',f);const h=harness();stale(h);await h.session.replan();await flushPromises()
+  expect(h.session.proposal.value).toEqual(replanProposal);expect(h.saved.value.working?.revision).toBe(1)
+  expect(h.session.current.value).toBe(true);expect(h.session.agreed.value).toBe(false)
+  expect(h.component.text()).toContain('授权范围是新旧全部项目的并集')
+  expect(h.component.text()).toContain('2026-12-11')
+  await h.session.decide('approve');expect(f.mock.calls.filter(c=>c[1]?.method==='POST')).toHaveLength(1)
+  h.session.agreed.value=true;h.saved.value={...h.saved.value,intake:{...h.saved.value.intake,intake_revision:3}}
+  expect(h.session.agreed.value).toBe(false);expect(h.session.current.value).toBe(false)
+})
+it('keeps original REPLAN path, key and body on network failure',async()=>{
+  const f=vi.fn<typeof fetch>().mockRejectedValue(new Error('network'));vi.stubGlobal('fetch',f)
+  const h=harness();stale(h);await h.session.replan();const command=structuredClone(h.session.pending.value)
+  expect(command?.kind).toBe('replan');expect(command?.path).toMatch(/generations$/)
+  expect(JSON.parse(command!.body)).toMatchObject({expected_intake_revision:2,expected_working_revision:1,retry_of:null})
+  await h.session.replan();expect(f).toHaveBeenCalledTimes(1)
+  await h.session.retry();expect(h.session.pending.value).toEqual(command);expect(f.mock.calls[1]![1]!.body).toBe(command!.body)
+})
+it('does not offer infinite retry for a nonretryable REPLAN failure',async()=>{
+  const f=mock(),h=harness();stale(h)
+  h.session.run.value={...replanRunEvidence,status:'FAILED',result:null,error:{code:'known_costs_exceed_hard_limit',message:'budget',retryable:false}} as any
+  await h.session.replan();expect(f).not.toHaveBeenCalled();expect(h.session.error.value).toContain('先修改')
 })

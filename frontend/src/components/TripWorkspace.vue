@@ -69,7 +69,7 @@ function discard() { formEpoch.value++; reviewed.value = true; notice.value = ''
   <section class="trip-panel" aria-labelledby="generation-heading">
     <p class="eyebrow">MOCK PLANNER / 模拟规划</p><h2 id="generation-heading">生成与运行</h2>
     <p v-if="saved.intake.collection_status !== 'READY_TO_GENERATE'">需求尚不完整，请补充下方必要信息。</p>
-    <p v-if="saved.working">当前工作稿{{ saved.plan_confirmation === 'CONFIRMED' ? '已确认规划' : '未确认' }}，已有工作稿不能直接覆盖；重规划留待后续阶段。</p>
+    <p v-if="saved.working">当前工作稿{{ saved.plan_confirmation === 'CONFIRMED' ? '已确认规划' : '未确认' }}，已有工作稿不能直接覆盖；新需求需经重规划提案审阅与 L3 授权后应用。</p>
     <GenerationStatus :run="run" />
     <p v-if="generationError" role="alert" class="notice form-error">{{ generationError }} 已显示的数据为上次读取结果，可能已有变化。</p>
     <p v-if="generationBusy" role="status">正在同步生成状态…</p>

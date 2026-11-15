@@ -1110,7 +1110,8 @@
         "type": "string",
         "enum": [
           "INITIAL_PLAN",
-          "CHANGE_INTENT"
+          "CHANGE_INTENT",
+          "REPLAN"
         ],
         "title": "Kind"
       },
@@ -1704,14 +1705,67 @@
     "title": "PriceQuery",
     "description": "Exact scope of an already expanded CNY total; no room/night arithmetic."
   },
+  "ProposalContextV2": {
+    "properties": {
+      "schema_version": {
+        "type": "integer",
+        "const": 2,
+        "title": "Schema Version"
+      },
+      "base_intake_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Base Intake Revision"
+      },
+      "candidate_requirements": {
+        "$ref": "#/components/schemas/TripRequirements"
+      },
+      "candidate_input": {
+        "$ref": "#/components/schemas/RequirementsInput"
+      },
+      "notes": {
+        "$ref": "#/components/schemas/GenerationNotes"
+      },
+      "risk_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Risk Hash"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "schema_version",
+      "base_intake_revision",
+      "candidate_requirements",
+      "candidate_input",
+      "notes",
+      "risk_hash"
+    ],
+    "title": "ProposalContextV2"
+  },
   "ProposalView": {
     "properties": {
       "proposal": {
-        "$ref": "#/components/schemas/ChangeProposal"
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ChangeProposal"
+          },
+          {
+            "$ref": "#/components/schemas/ReplanProposal"
+          }
+        ],
+        "title": "Proposal"
       },
       "context_v2": {
-        "type": "null",
-        "title": "Context V2"
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ProposalContextV2"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "candidate_notes": {
         "$ref": "#/components/schemas/GenerationNotes"
@@ -1761,6 +1815,16 @@
         },
         "type": "array",
         "title": "Unknown Costs"
+      },
+      "source_input": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/RequirementsInput"
+          },
+          {
+            "type": "null"
+          }
+        ]
       }
     },
     "additionalProperties": false,
@@ -2088,6 +2152,104 @@
       "costs"
     ],
     "title": "ReplaceHotel"
+  },
+  "ReplanOutput": {
+    "properties": {
+      "kind": {
+        "type": "string",
+        "const": "requirements_replan",
+        "title": "Kind"
+      },
+      "base_working_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Base Working Revision"
+      },
+      "explanation": {
+        "type": "string",
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Explanation"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "kind",
+      "base_working_revision",
+      "explanation"
+    ],
+    "title": "ReplanOutput"
+  },
+  "ReplanProposal": {
+    "properties": {
+      "proposal_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Proposal Id"
+      },
+      "trip_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Trip Id"
+      },
+      "owner_id": {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Owner Id"
+      },
+      "requirements_revision": {
+        "type": "integer",
+        "minimum": 1.0,
+        "title": "Requirements Revision"
+      },
+      "output": {
+        "$ref": "#/components/schemas/ReplanOutput"
+      },
+      "candidate": {
+        "$ref": "#/components/schemas/PlanDraftOutput"
+      },
+      "level": {
+        "type": "string",
+        "const": "L3",
+        "title": "Level"
+      },
+      "touched_item_ids": {
+        "items": {
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "type": "array",
+        "title": "Touched Item Ids"
+      },
+      "candidate_hash": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Candidate Hash"
+      }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "proposal_id",
+      "trip_id",
+      "owner_id",
+      "requirements_revision",
+      "output",
+      "candidate",
+      "level",
+      "touched_item_ids",
+      "candidate_hash"
+    ],
+    "title": "ReplanProposal"
   },
   "RequirementsInput": {
     "properties": {

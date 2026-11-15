@@ -34,7 +34,7 @@ class PostgresGenerationRepository(PostgresIntakeRepository):
                 JOIN easytravel.generation_runs g ON g.run_id=c.run_id AND g.trip_id=c.trip_id AND g.owner_id=c.owner_id
                 WHERE c.trip_id=%s AND c.owner_id=%s AND c.working_revision=%s AND g.status='SUCCEEDED' AND g.intake_revision=c.intake_revision
                 AND ((g.kind='INITIAL_PLAN' AND (g.result->>'working_revision')::integer=c.working_revision)
-                     OR (g.kind='CHANGE_INTENT' AND g.base_working_revision+1=c.working_revision))""",
+                     OR (g.kind IN ('CHANGE_INTENT','REPLAN') AND g.base_working_revision+1=c.working_revision))""",
                 (trip_id,self.actor,trip.working.revision))).fetchone()
             if row:
                 source = await self.run(trip_id,row['run_id'])
@@ -44,6 +44,15 @@ class PostgresGenerationRepository(PostgresIntakeRepository):
 
     async def failed_for_input(self, trip_id, revision):
         return await (await self.conn.execute("SELECT 1 FROM easytravel.generation_runs WHERE trip_id=%s AND owner_id=%s AND intake_revision=%s AND status='FAILED' LIMIT 1", (trip_id,self.actor,revision))).fetchone() is not None
+
+    async def failed_for_source(self,trip_id,revision,base,kind):
+        row=await (await self.conn.execute("SELECT status FROM easytravel.generation_runs WHERE trip_id=%s AND owner_id=%s AND intake_revision=%s AND base_working_revision IS NOT DISTINCT FROM %s AND kind=%s ORDER BY created_at DESC,run_id DESC LIMIT 1",(trip_id,self.actor,revision,base,kind))).fetchone()
+        return row is not None and row['status']=='FAILED'
+
+    async def accept_replan(self,trip,run_id,attempt,retry_of):
+        await self.conn.execute("INSERT INTO easytravel.generation_runs(run_id,trip_id,owner_id,intake_revision,base_working_revision,kind,status,attempt,retry_of) VALUES (%s,%s,%s,%s,%s,'REPLAN','ACCEPTED',%s,%s)",(run_id,trip.trip_id,self.actor,trip.intake.intake_revision,trip.working.revision,attempt,retry_of))
+        await self.conn.execute('INSERT INTO easytravel.replan_inputs(run_id,trip_id,owner_id,base_working_revision,source) VALUES (%s,%s,%s,%s,%s)',(run_id,trip.trip_id,self.actor,trip.working.revision,Jsonb(trip.working.model_dump(mode='json'))))
+        return await self.run(trip.trip_id,run_id)
 
     async def frozen_input(self, run):
         from ..domain.intake import RequirementsInput

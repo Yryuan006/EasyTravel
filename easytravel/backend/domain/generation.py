@@ -24,7 +24,7 @@ class RunError(InputContract):
 class GenerationRun(Contract):
     run_id: ID
     trip_id: ID
-    kind: Literal["INITIAL_PLAN", "CHANGE_INTENT"]
+    kind: Literal["INITIAL_PLAN", "CHANGE_INTENT", "REPLAN"]
     intake_revision: Revision
     base_working_revision: Revision | None
     status: Literal["ACCEPTED", "RUNNING", "SUCCEEDED", "FAILED"]

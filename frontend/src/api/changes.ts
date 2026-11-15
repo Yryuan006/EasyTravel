@@ -1,3 +1,4 @@
+import type { RequirementsInput } from './contracts'
 import { validId } from './contracts'
 import { request, TripApiError, type RequestOptions } from './trips'
 import { validSchema } from './working'
@@ -5,18 +6,18 @@ import { validRun, type BudgetResult, type GenerationRun, type Notes, type PlanI
 
 export interface ProposalView {
   proposal: { proposal_id: string; trip_id: string; owner_id: string; requirements_revision: number; candidate_hash: string; level: 'L1' | 'L2' | 'L3'; touched_item_ids: string[]; output: { base_working_revision: number; explanation: string }; candidate: { items: PlanItem[]; costs: CostLine[] } }
-  context_v2: null; candidate_notes: Notes; state: 'PENDING' | 'APPLIED' | 'REJECTED' | 'STALE'; budget: BudgetResult; source_budget: BudgetResult
+  context_v2: null | { schema_version: 2; base_intake_revision: number; candidate_requirements: Record<string, unknown>; candidate_input: RequirementsInput; notes: Notes; risk_hash: string }; source_input?: RequirementsInput | null; candidate_notes: Notes; state: 'PENDING' | 'APPLIED' | 'REJECTED' | 'STALE'; budget: BudgetResult; source_budget: BudgetResult
   risks: Notes['risks']; requires_specific_authorization: boolean; intake_revision: number
   differences: { item_id: string; before: PlanItem | null; after: PlanItem | null; before_costs: CostLine[]; after_costs: CostLine[] }[]
   unknown_costs: { id: string; reason: string }[]
 }
 export interface DecisionResult { proposal_id: string; decision: 'approve' | 'reject'; state: 'APPLIED' | 'REJECTED'; operation_id: string | null; working_revision: number; latest_confirmed_version_id: string | null }
-export interface ChangeCommand { path: string; key: string; body: string; kind: 'intent' | 'decision' }
+export interface ChangeCommand { path: string; key: string; body: string; kind: 'intent' | 'decision' | 'replan' }
 export function tripPath(id: string) { if (!validId(id)) throw new TripApiError('contract', '旅行 ID 无效。'); return `/api/v1/trips/${id}` }
 export function validProposal(v: unknown): v is ProposalView {
   if (!validSchema(v, 'ProposalView')) return false
   const p = v as ProposalView
-  return p.requires_specific_authorization === (p.proposal.level === 'L3') && p.context_v2 === null
+  return p.requires_specific_authorization === (p.proposal.level === 'L3') && (p.context_v2 === null ? !('kind' in p.proposal.output) : p.context_v2.schema_version === 2 && (p.proposal.output as { kind?: string }).kind === 'requirements_replan' && p.proposal.level === 'L3' && JSON.stringify(p.context_v2.notes) === JSON.stringify(p.candidate_notes))
     && p.proposal.touched_item_ids.length === new Set(p.proposal.touched_item_ids).size
     && !(p.proposal.candidate.costs.some(c => c.is_mock) && p.budget.verification === 'VERIFIED')
 }
@@ -26,9 +27,9 @@ export function getProposal(token: string, trip: string, id: string, options: Re
 }
 export function sendChange(token: string, trip: string, command: ChangeCommand, options: RequestOptions = {}) {
   const base = tripPath(trip)
-  if (command.kind === 'intent') {
-    if (command.path !== base + '/change-intents') throw new TripApiError('contract', '原请求路径不一致。')
-    return request(command.path, token, command, options, 'POST', (v): v is GenerationRun => validRun(v) && v.kind === 'CHANGE_INTENT', 202, trip)
+  if (command.kind === 'intent' || command.kind === 'replan') {
+    if (command.path !== base + (command.kind === 'replan' ? '/generations' : '/change-intents')) throw new TripApiError('contract', '原请求路径不一致。')
+    return request(command.path, token, command, options, 'POST', (v): v is GenerationRun => validRun(v) && v.kind === (command.kind === 'replan' ? 'REPLAN' : 'CHANGE_INTENT'), 202, trip)
   }
   const id = command.path.slice((base + '/proposals/').length).replace(/\/decisions$/, '')
   if (!validId(id) || command.path !== base + '/proposals/' + id + '/decisions') throw new TripApiError('contract', '原决定路径不一致。')

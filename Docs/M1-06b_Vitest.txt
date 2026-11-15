@@ -1,0 +1,29 @@
+
+> easytravel-frontend@0.1.0 test
+> vitest run --reporter=dot
+
+
+ RUN  v5.1.0 D:/Project/EasyTravel/frontend
+
+stderr | tests/trips.test.ts > keeps exact command after timeout; changed body uses a new key
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+stderr | tests/trips.test.ts > suppresses stale responses on identity reset and blocks repeated submission
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+stderr | tests/requirements.test.ts > retains exact path/key/body after mutation timeout and changes key on changed content
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+stderr | tests/requirements.test.ts > rejects stale question response and suppresses late mutation after unmount
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+stderr | tests/requirements.test.ts > sends actual working revision and current question identity; clears old answer retry when editing
+[Vue warn]: onUnmounted is called when there is no active component instance to be associated with. Lifecycle injection APIs can only be used during execution of setup(). If you are using async setup(), make sure to register lifecycle hooks before the first await statement.
+
+·············································································································································
+
+ Test Files  7 passed (7)
+      Tests  141 passed (141)
+   Start at  13:47:24
+   Duration  1.59s (environment 61%, transform 19%, tests 12%, import 8%)
+

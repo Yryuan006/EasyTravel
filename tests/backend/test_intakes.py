@@ -198,7 +198,7 @@ def m101db(tmp_path_factory):
         await svc.confirm_plan(legacy_id,actor=ACTOR_A,operation_id=str(uuid4()),expected_revision=1,
             seen_disclosure_hash=preview["disclosure_hash"],explicit_confirmation=True)
         old=await db_fingerprint(settings,trip_id=legacy_id)
-        assert await upgrade(settings)==["002_trip_intakes.sql", "003_clarifications.sql", "004_generations.sql", "005_confirmation_disclosures.sql", "006_changes.sql"]
+        assert await upgrade(settings)==["002_trip_intakes.sql", "003_clarifications.sql", "004_generations.sql", "005_confirmation_disclosures.sql", "006_changes.sql", "007_replanning.sql"]
         assert await upgrade(settings)==[]
         after=await db_fingerprint(settings,trip_id=legacy_id)
         assert all(after[k]==v for k,v in old.items())

@@ -13,6 +13,7 @@ from ..domain.rules import construct_candidate, check_constraints, ChangeError
 from ..domain.errors import ResourceNotFound
 from .plans import PlanService
 from .generations import GenerationService, failure
+from ..domain.replanning import ReplanProposal,validate_v2
 
 
 def validate_change(working, output, *, now):
@@ -56,12 +57,8 @@ class ChangeService:
             await repo.lock_trip(trip_id)
             trip=await repo.read_trip(trip_id);self.check_current(trip,request)
             if trip.active_run_id:raise ChangeError('generation_in_progress')
-            attempt=1
-            if request.retry_of:
-                old=await repo.run(trip_id,request.retry_of)
-                if old.kind!='CHANGE_INTENT' or old.status!='FAILED' or old.intake_revision!=request.expected_intake_revision or old.base_working_revision!=request.expected_working_revision:
-                    raise ChangeError('invalid_retry')
-                attempt=old.attempt+1
+            from .retries import retry_attempt
+            attempt=await retry_attempt(repo,trip_id,request,'CHANGE_INTENT')
             result=await repo.accept_change(trip,request,str(uuid4()),attempt)
             await repo.save_change_command(key,request_hash,result,trip_id,str(uuid4()),path,202)
             return result
@@ -115,14 +112,16 @@ class ChangeService:
             trip=await repo.read_trip(trip_id)
             proposal=await repo.proposal(proposal_id)
             if proposal.trip_id!=trip_id:raise ResourceNotFound()
-            self.plans.validate_proposal(proposal)
+            v2=await repo.replan_context(proposal_id)
+            if v2:validate_v2(proposal,v2)
+            else:self.plans.validate_proposal(proposal)
             context,_=await repo.proposal_context(trip_id,proposal_id)
             decision=await repo.decision(trip_id,proposal_id)
-            stale=trip.synchronization!='CURRENT' or trip.working.revision!=proposal.output.base_working_revision or trip.intake.intake_revision!=context.source.intake_revision
-            return ProposalView(proposal=proposal,context_v2=None,candidate_notes=context.candidate_context.notes,
+            stale=trip.working.revision!=proposal.output.base_working_revision or trip.intake.intake_revision!=(v2.base_intake_revision if v2 else context.source.intake_revision) or trip.synchronization!=('STALE' if v2 else 'CURRENT')
+            return ProposalView(proposal=proposal,context_v2=v2,candidate_notes=context.candidate_context.notes,
                 state=decision.state if decision else 'STALE' if stale else 'PENDING',budget=context.candidate_budget,
                 risks=context.candidate_context.notes.risks,requires_specific_authorization=proposal.level=='L3',
-                intake_revision=context.source.intake_revision,differences=context.differences,source_budget=context.source_budget,
+                intake_revision=v2.base_intake_revision if v2 else context.source.intake_revision,source_input=context.source.input,differences=context.differences,source_budget=context.source_budget,
                 unknown_costs=[UnknownCost(id=c.id,reason=c.unknown_reason) for c in proposal.candidate.costs if c.amount_cents is None])
 
     async def decide(self,trip_id,proposal_id,request,*,key,actor):
@@ -137,9 +136,12 @@ class ChangeService:
             trip=await repo.read_trip(trip_id)
             proposal=await repo.proposal(proposal_id)
             if proposal.trip_id!=trip_id:raise ResourceNotFound()
-            self.plans.validate_proposal(proposal)
+            if not isinstance(proposal,ReplanProposal):self.plans.validate_proposal(proposal)
             context,run_id=await repo.proposal_context(trip_id,proposal_id)
             if await repo.decision(trip_id,proposal_id):raise ChangeError('proposal_already_decided')
+            if isinstance(proposal,ReplanProposal):
+                from .replanning import ReplanService
+                return await ReplanService(self.uow,now=self.now).decide_in_transaction(repo,trip,proposal,context,run_id,request,key=key,request_hash=request_hash,operation_id=operation_id,path=path,actor=actor)
             self.check_current(trip,request)
             if context.source.intake_revision!=trip.intake.intake_revision or proposal.output.base_working_revision!=trip.working.revision:
                 raise ChangeError('stale_proposal')

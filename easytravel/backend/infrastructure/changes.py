@@ -37,8 +37,41 @@ class PostgresChangeRepository(PostgresGenerationRepository, PostgresPlanReposit
 
     async def require_current_intake(self, trip_id):
         trip = await self.read_trip(trip_id)
+        if getattr(self,'replan_source',None)==(trip_id,trip.intake.intake_revision,trip.working.revision) and trip.synchronization=='STALE':
+            return
         if trip.synchronization != 'CURRENT' or trip.working.context is None:
             raise ChangeError('scope_replan_not_supported')
+
+    async def advance_replan(self,current,updated,intake_revision):
+        self.replan_source=(current.trip_id,intake_revision,current.revision)
+        try:
+            await self.advance(current,updated)
+        finally:
+            del self.replan_source
+
+    async def replan_context(self,proposal_id):
+        from ..domain.replanning import ProposalContextV2
+        row=await (await self.conn.execute('SELECT context_v2 FROM easytravel.replan_contexts WHERE proposal_id=%s AND owner_id=%s',(proposal_id,self.actor))).fetchone()
+        return ProposalContextV2.model_validate_json(json.dumps(row['context_v2'])) if row else None
+
+    async def proposal(self,proposal_id):
+        from ..domain.replanning import ReplanProposal,validate_v2
+        context=await self.replan_context(proposal_id)
+        if context is None:
+            return await super().proposal(proposal_id)
+        row=await self.one('SELECT * FROM easytravel.change_proposals WHERE proposal_id=%s AND owner_id=%s',(proposal_id,self.actor))
+        base=row.pop('base_working_revision');p=ReplanProposal.model_validate(row)
+        if base!=p.output.base_working_revision:raise ChangeError('proposal_integrity_error')
+        validate_v2(p,context)
+        return p
+
+    async def frozen_replan(self,run):
+        from ..domain.intake import WorkingView
+        row=await self.one('SELECT source FROM easytravel.replan_inputs WHERE run_id=%s AND trip_id=%s AND owner_id=%s',(run.run_id,run.trip_id,self.actor))
+        return WorkingView.model_validate_json(json.dumps(row['source'])),await self.frozen_input(run)
+
+    async def save_v2_context(self,proposal,context):
+        await self.conn.execute('INSERT INTO easytravel.replan_contexts(proposal_id,trip_id,owner_id,context_v2) VALUES (%s,%s,%s,%s)',(proposal.proposal_id,proposal.trip_id,self.actor,Jsonb(context.model_dump(mode='json'))))
 
     async def accept_change(self, trip, request, run_id, attempt):
         await self.conn.execute("""INSERT INTO easytravel.generation_runs

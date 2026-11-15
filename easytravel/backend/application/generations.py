@@ -38,23 +38,26 @@ class GenerationService:
                 return replay
             await repo.lock_trip(trip_id)
             trip = await repo.read_trip(trip_id)
-            if trip.working or request.expected_working_revision is not None:
-                raise ChangeError('scope_replan_not_supported')
             if trip.intake.intake_revision != request.expected_intake_revision:
                 raise ChangeError('stale_intake')
             if trip.intake.blocking_fields:
                 raise ChangeError('requirements_incomplete')
             if trip.active_run_id:
                 raise ChangeError('generation_in_progress')
-            if request.retry_of is None and await repo.failed_for_input(trip_id,request.expected_intake_revision):
-                raise ChangeError('explicit_retry_required')
-            attempt = 1
-            if request.retry_of:
-                old = await repo.run(trip_id,request.retry_of)
-                if (old.status != 'FAILED' or old.intake_revision != request.expected_intake_revision
-                        or not old.error or old.error.code not in ('invalid_output', 'worker_interrupted', 'persistence_failed')):
-                    raise ChangeError('invalid_retry')
-                attempt = old.attempt+1
+            kind='REPLAN' if trip.working else 'INITIAL_PLAN'
+            if trip.working:
+                if trip.synchronization!='STALE' or trip.working.context is None:
+                    raise ChangeError('scope_replan_not_supported')
+                if request.expected_working_revision!=trip.working.revision:
+                    raise ChangeError('stale_revision')
+            elif request.expected_working_revision is not None:
+                raise ChangeError('stale_revision')
+            from .retries import retry_attempt
+            attempt=await retry_attempt(repo,trip_id,request,kind)
+            if kind=='REPLAN':
+                result=await repo.accept_replan(trip,str(uuid4()),attempt,request.retry_of)
+                await repo.save_command(key,request_hash,result,str(uuid4()),str(uuid4()),'POST',path,202)
+                return result
             result = await repo.accept(trip,str(uuid4()),attempt,request.retry_of)
             await repo.save_command(key,request_hash,result,str(uuid4()),str(uuid4()),'POST',path,202)
             return result

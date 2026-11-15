@@ -6,6 +6,8 @@ from ...rules import BudgetResult
 from .confirmation import Hash, UnknownCost
 from .intake import InputContract, DraftContext, GenerationNotes, Risk
 from .models import ChangeProposal
+from .replanning import ReplanProposal, ProposalContextV2
+from .intake import RequirementsInput
 
 
 class ChangeIntentRequest(InputContract):
@@ -57,8 +59,8 @@ class ProposalContext(InputContract):
 
 
 class ProposalView(InputContract):
-    proposal: ChangeProposal
-    context_v2: None
+    proposal: ChangeProposal | ReplanProposal
+    context_v2: ProposalContextV2 | None
     candidate_notes: GenerationNotes
     state: Literal['PENDING', 'APPLIED', 'REJECTED', 'STALE']
     budget: BudgetResult
@@ -69,6 +71,15 @@ class ProposalView(InputContract):
     differences: list[ItemDiff]
     source_budget: BudgetResult
     unknown_costs: list[UnknownCost]
+    source_input: RequirementsInput | None = None
+
+    @model_validator(mode='after')
+    def paired_context(self):
+        if isinstance(self.proposal,ReplanProposal) != (self.context_v2 is not None):
+            raise ValueError('proposal context mismatch')
+        if self.context_v2 and self.context_v2.notes!=self.candidate_notes:
+            raise ValueError('candidate notes mismatch')
+        return self
 
 
 class DecisionResult(InputContract):

@@ -41,6 +41,10 @@ class GenerationWorker:
         run,actor = claimed
         service = self.service
         adapter_factory = self.adapter_factory
+        if run.kind == 'REPLAN':
+            from .application.replanning import ReplanService
+            from .infrastructure.changes import unit_of_work as replan_uow
+            service=ReplanService(replan_uow(self.settings))
         if run.kind == 'CHANGE_INTENT':
             from .application.changes import ChangeService
             from .infrastructure.changes import unit_of_work as change_uow

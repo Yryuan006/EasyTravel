@@ -1,0 +1,35 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 24 items
+
+tests/backend/test_replanning.py::test_date_replan_preserves_confirmed_history PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[missing] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[less] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[more] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[hash] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[intake] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[working] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[string] PASSED
+tests/backend/test_replanning.py::test_exact_l3_and_version_guards[number] PASSED
+tests/backend/test_replanning.py::test_preference_only_payload_no_change_preserves_protection PASSED
+tests/backend/test_replanning.py::test_reject_keeps_new_intake_and_replays PASSED
+tests/backend/test_replanning.py::test_over_budget_and_explicit_retry_policy PASSED
+tests/backend/test_replanning.py::test_v1_and_v2_hash_parent_and_owner PASSED
+tests/backend/test_replanning.py::test_commit_failure_all_rolls_back PASSED
+tests/backend/test_replanning.py::test_uniform_explicit_retry[INITIAL_PLAN] PASSED
+tests/backend/test_replanning.py::test_uniform_explicit_retry[CHANGE_INTENT] PASSED
+tests/backend/test_replanning.py::test_uniform_explicit_retry[REPLAN] PASSED
+tests/backend/test_replanning.py::test_real_replan_executor_exit_and_replay[accepted] PASSED
+tests/backend/test_replanning.py::test_real_replan_executor_exit_and_replay[running] PASSED
+tests/backend/test_replanning.py::test_real_replan_executor_exit_and_replay[committed] PASSED
+tests/backend/test_replanning.py::test_replan_concurrent_decision_and_new_process[True] PASSED
+tests/backend/test_replanning.py::test_replan_concurrent_decision_and_new_process[False] PASSED
+tests/backend/test_replanning.py::test_intake_and_requirements_revision_are_distinct PASSED
+tests/backend/test_replanning.py::test_v2_context_digest_immutable_and_retry_source_guards PASSED
+
+============================= 24 passed in 13.63s =============================

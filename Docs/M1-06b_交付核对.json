@@ -1,0 +1,20 @@
+{
+  "baseline": "3f178283a43986353409e83168409aabd0fce9bd",
+  "backendNew": 24,
+  "backendAll": 436,
+  "vitest": 141,
+  "playwright": 58,
+  "protectedSourcesAndOldEvidenceUnchanged": true,
+  "oldExperimentFingerprintsUnchanged": true,
+  "transportHookRemoved": true,
+  "container": "easytravel-m106b-isolated-967d4562af",
+  "migration007SHA256": "bc25908ff7630520160cca010ca123ad8feb6ff400c1c83dc3927bb9774cac5e",
+  "tripId": "bae6a1c5-26d9-4eb8-a44e-fdaba4cf4e3b",
+  "snapshotId": "10c6bf44-1319-4fa7-aafe-d439d73d9755",
+  "snapshotDisclosureAndSourceRowsUnchanged": true,
+  "authorizationConsumedExactlyOnce": true,
+  "currentWorkingRevision": 2,
+  "intakeRevision": 2,
+  "formalRequirementsRevision": 2,
+  "planConfirmation": "UNCONFIRMED"
+}
