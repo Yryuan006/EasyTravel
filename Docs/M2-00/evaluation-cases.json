@@ -1,0 +1,24 @@
+{
+  "dataset_id": "ET-M2-v1",
+  "artifact_kind": "design_fixture_recipes_not_runtime_dtos",
+  "executed": false,
+  "source_environment": "synthetic",
+  "default_clock": "2026-11-15T10:00:00Z",
+  "timezone": "Asia/Shanghai",
+  "currency": "CNY",
+  "recipe_reference": "06_质量评测.md",
+  "cases": [
+    {"id":"Q01","scenario":"3_day_city","travelers":2,"start_date":"2026-12-01","days":3,"nights":2,"known_cents":200000,"hard_limit_cents":250000,"unknown_costs":0,"expected":{"verification":"ESTIMATED","constraint":"WITHIN_LIMIT","total_cents":200000,"confirmation_allowed":true,"booked":false}},
+    {"id":"Q02","scenario":"1_day_short_trip","travelers":1,"start_date":"2026-12-01","days":1,"nights":0,"known_cents":45000,"hard_limit_cents":60000,"unknown_costs":0,"expected":{"hotel_count":0,"verification":"ESTIMATED","constraint":"WITHIN_LIMIT","confirmation_allowed":true}},
+    {"id":"Q03","scenario":"5_day_trip","travelers":2,"start_date":"2026-12-01","days":5,"nights":4,"known_cents":300000,"hard_limit_cents":350000,"unknown_costs":0,"expected":{"verification":"ESTIMATED","constraint":"WITHIN_LIMIT","confirmation_allowed":true,"no_double_room_night_expansion":true}},
+    {"id":"Q04","scenario":"tight_budget","base":"Q01","hard_limit_cents":205000,"expected":{"constraint":"WITHIN_LIMIT","remaining_cents":5000,"warning":"low_budget_margin_with_estimates","confirmation_allowed":true}},
+    {"id":"Q05","scenario":"missing_critical_transit","base":"Q01","overrides":{"critical_return_departure":"2026-12-02T17:20:00+08:00","route_outcome":"no_result","sole_public_connection":true},"expected":{"check":"F04","status":"UNKNOWN","blocking_reason":"critical_transit_unknown","confirmation_allowed":false,"claim_no_transit_exists":false}},
+    {"id":"Q06","scenario":"conflicting_opening","base":"Q01","overrides":{"trip_start_date":"2026-12-07","trip_end_date":"2026-12-09","shift_all_date_scopes":true,"activity_start":"2026-12-07T09:00:00+08:00","ordinary_opening":"08:00-18:00","specific_date_notice":"closed","conflict_resolved":false},"expected":{"state":"CONFLICT","check":"F02","status":"UNKNOWN","confirmation_allowed":false},"variant":{"conflict_resolved_to":"closed","expected_status":"FAIL"}},
+    {"id":"Q07","scenario":"expired_hotel_quote","base":"Q01","clock":"2026-11-15T10:16:00Z","overrides":{"hotel_observation_cents":60000,"hotel_expires_at":"2026-11-15T10:15:00Z","current_other_costs_cents":140000,"hotel_fallback_estimate":null},"expected":{"hotel_state":"EXPIRED","known_subtotal_cents":140000,"total_cents":null,"verification":"INDETERMINATE","constraint":"UNDETERMINED","hotel_available_claim":false}},
+    {"id":"Q08","scenario":"date_change_replan","base":"Q01","overrides":{"new_start_date":"2026-12-08","new_end_date":"2026-12-10","old_quote_wall_clock_fresh":true},"expected":{"old_quote_reusable":false,"scope_issue":"scope_mismatch","requires_new_assessment":true,"old_disclosure_confirmation_status":409,"snapshot_hash_unchanged":true}},
+    {"id":"Q09","scenario":"disclosable_unknown_cost","base":"Q01","overrides":{"extra_cost":{"purpose":"necessary_incidental","amount_cents":null,"reason":"fee_not_published"}},"expected":{"known_subtotal_cents":200000,"total_cents":null,"verification":"INDETERMINATE","constraint":"UNDETERMINED","confirmation_after_explicit_disclosure":true}},
+    {"id":"Q10","scenario":"known_over_budget_with_unknown","base":"Q01","overrides":{"current_known_cents":260000,"hard_limit_cents":250000,"unknown_costs":1},"expected":{"constraint":"OVER_LIMIT","total_cents":null,"candidate_attach_allowed":false,"confirmation_allowed":false}},
+    {"id":"Q11","scenario":"provider_error_and_model_authority_spoof","base":"Q01","overrides":{"http_status":200,"provider_business_status":"error","model_injects":["provider","evidence_id","route_verified"]},"expected":{"source_outcome":"unavailable","model_authority_accepted":false,"verified_from_error":false,"secrets_in_output":false}},
+    {"id":"Q12","scenario":"expiry_boundary_and_traveler_change","base":"Q01","overrides":{"preview_at":"2026-11-15T10:14:59Z","confirm_at":"2026-11-15T10:15:00Z","expires_at":"2026-11-15T10:15:00Z","test_verifier_context":"isolated_rule_test_not_production"},"expected":{"current_at_boundary":false,"old_disclosure_confirmation_status":409,"original_receipt_replay_unchanged":true},"variant":{"old_travelers":1,"new_travelers":2,"expected_old_quote_reusable":false}}
+  ]
+}
