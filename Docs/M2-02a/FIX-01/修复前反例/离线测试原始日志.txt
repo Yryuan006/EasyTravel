@@ -1,0 +1,382 @@
+M2-02a DNS/TCP/UDP deny guards installed before pytest imports
+Guard self-tests: DNS/TCP/UDP blocked before network I/O; asyncio local wakeups exempt
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 248 items
+
+tests/feasibility/test_opening_feasibility.py::test_normal_fully_contained_is_only_synthetic_f02_pass PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[08:00-09:00-PASS-inside_opening_window] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[16:00-18:00-PASS-admission_allowed] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[16:01-17:01-FAIL-after_last_entry] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[07:59-09:00-FAIL-outside_opening_windows] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[15:00-18:01-FAIL-outside_opening_windows] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[09:00-09:59-FAIL-visit_too_short] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[09:00-10:00-PASS-duration_sufficient] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[09:00-09:00-FAIL-invalid_interval] PASSED
+tests/feasibility/test_opening_feasibility.py::test_exact_time_boundaries[10:00-09:00-FAIL-invalid_interval] PASSED
+tests/feasibility/test_opening_feasibility.py::test_split_opening_and_lunch_gap[11:00-12:00-PASS] PASSED
+tests/feasibility/test_opening_feasibility.py::test_split_opening_and_lunch_gap[13:00-14:00-PASS] PASSED
+tests/feasibility/test_opening_feasibility.py::test_split_opening_and_lunch_gap[11:00-14:00-FAIL] PASSED
+tests/feasibility/test_opening_feasibility.py::test_split_opening_and_lunch_gap[12:00-13:00-FAIL] PASSED
+tests/feasibility/test_opening_feasibility.py::test_adjacent_half_open_windows_are_continuous PASSED
+tests/feasibility/test_opening_feasibility.py::test_weekly_explicit_closed PASSED
+tests/feasibility/test_opening_feasibility.py::test_q06_unresolved_notice_then_resolved_closure PASSED
+tests/feasibility/test_opening_feasibility.py::test_exception_replaces_entire_day_including_admission PASSED
+tests/feasibility/test_opening_feasibility.py::test_open_exception_overrides_weekly_closure PASSED
+tests/feasibility/test_opening_feasibility.py::test_disagreeing_sources_are_unknown_not_winner_selection[closed] PASSED
+tests/feasibility/test_opening_feasibility.py::test_disagreeing_sources_are_unknown_not_winner_selection[hours] PASSED
+tests/feasibility/test_opening_feasibility.py::test_disagreeing_sources_are_unknown_not_winner_selection[admission] PASSED
+tests/feasibility/test_opening_feasibility.py::test_matching_sources_and_permutation_are_stable PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[missing-missing_opening_facts] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[wrong_date-date_not_applicable] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[weekday-weekday_unknown] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[incomplete-exceptions_incomplete] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[admission-admission_unknown] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[expired-source_expired] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_never_borrows_typical_hours[future-observation_in_future] PASSED
+tests/feasibility/test_opening_feasibility.py::test_date_change_requires_applicable_hours PASSED
+tests/feasibility/test_opening_feasibility.py::test_cross_day_and_timezone_fail[2026-12-07T23:00:00+08:00-2026-12-08T01:00:00+08:00-Asia/Shanghai-cross_day_unsupported] PASSED
+tests/feasibility/test_opening_feasibility.py::test_cross_day_and_timezone_fail[2026-12-07T09:00:00-2026-12-07T11:00:00-Asia/Shanghai-invalid_timezone] PASSED
+tests/feasibility/test_opening_feasibility.py::test_cross_day_and_timezone_fail[2026-12-07T09:00:00+00:00-2026-12-07T11:00:00+00:00-Asia/Shanghai-invalid_timezone] PASSED
+tests/feasibility/test_opening_feasibility.py::test_cross_day_and_timezone_fail[2026-12-07T09:00:00+08:00-2026-12-07T11:00:00+09:00-Asia/Shanghai-invalid_timezone] PASSED
+tests/feasibility/test_opening_feasibility.py::test_cross_day_and_timezone_fail[2026-12-07T09:00:00+08:00-2026-12-07T11:00:00+08:00-UTC-invalid_timezone] PASSED
+tests/feasibility/test_opening_feasibility.py::test_same_name_different_internal_id_never_shares_facts PASSED
+tests/feasibility/test_opening_feasibility.py::test_conflicting_internal_binding_fails[city-\u5408\u6210\u53e6\u4e00\u57ce] PASSED
+tests/feasibility/test_opening_feasibility.py::test_conflicting_internal_binding_fails[district-\u5408\u6210\u5357\u533a] PASSED
+tests/feasibility/test_opening_feasibility.py::test_conflicting_internal_binding_fails[provider_resource_id-other_poi] PASSED
+tests/feasibility/test_opening_feasibility.py::test_conflicting_internal_binding_fails[provider-other_provider] PASSED
+tests/feasibility/test_opening_feasibility.py::test_site_and_entrances_not_interchangeable[None-south] PASSED
+tests/feasibility/test_opening_feasibility.py::test_site_and_entrances_not_interchangeable[north-None] PASSED
+tests/feasibility/test_opening_feasibility.py::test_site_and_entrances_not_interchangeable[north-south] PASSED
+tests/feasibility/test_opening_feasibility.py::test_explicit_same_entrance_scope_does_not_prove_route PASSED
+tests/feasibility/test_opening_feasibility.py::test_reservation_restriction[True-PASS-reservation_satisfied] PASSED
+tests/feasibility/test_opening_feasibility.py::test_reservation_restriction[False-FAIL-reservation_missing] PASSED
+tests/feasibility/test_opening_feasibility.py::test_reservation_restriction[None-UNKNOWN-reservation_unknown] PASSED
+tests/feasibility/test_opening_feasibility.py::test_restriction_text_is_unknown_and_cannot_grant_pass PASSED
+tests/feasibility/test_opening_feasibility.py::test_note_text_cannot_override_known_failure PASSED
+tests/feasibility/test_opening_feasibility.py::test_source_authority_injection_rejected[environment-live] PASSED
+tests/feasibility/test_opening_feasibility.py::test_source_authority_injection_rejected[verification_state-VERIFIED] PASSED
+tests/feasibility/test_opening_feasibility.py::test_source_authority_injection_rejected[provider-amap] PASSED
+tests/feasibility/test_opening_feasibility.py::test_source_authority_injection_rejected[evidence_id-forged] PASSED
+tests/feasibility/test_opening_feasibility.py::test_source_authority_injection_rejected[status-PASS] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_fields_strictly_rejected[root] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_fields_strictly_rejected[fact] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_fields_strictly_rejected[visit] PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_fields_strictly_rejected[admission] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[reversed] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[overlap] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[duplicate_weekday] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[duplicate_exception] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[outside_exception] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[window_timezone] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[fractional_time] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[bad_minutes] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[string_bool] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_fact_schema_rejected[closed_windows] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fail_dominates_unknown_in_one_visit PASSED
+tests/feasibility/test_opening_feasibility.py::test_fail_dominates_conflicting_other_visit PASSED
+tests/feasibility/test_opening_feasibility.py::test_aggregation[states0-NOT_APPLICABLE] PASSED
+tests/feasibility/test_opening_feasibility.py::test_aggregation[states1-NOT_APPLICABLE] PASSED
+tests/feasibility/test_opening_feasibility.py::test_aggregation[states2-PASS] PASSED
+tests/feasibility/test_opening_feasibility.py::test_aggregation[states3-UNKNOWN] PASSED
+tests/feasibility/test_opening_feasibility.py::test_aggregation[states4-FAIL] PASSED
+tests/feasibility/test_opening_feasibility.py::test_aggregation[states5-FAIL] PASSED
+tests/feasibility/test_opening_feasibility.py::test_free_time_and_empty_report_are_not_pass PASSED
+tests/feasibility/test_opening_feasibility.py::test_important_unknown_requires_facts_or_replacement PASSED
+tests/feasibility/test_opening_feasibility.py::test_output_reproducible_traceable_and_roundtrips PASSED
+tests/feasibility/test_opening_feasibility.py::test_no_implicit_wall_clock_or_expiry_extension PASSED
+tests/feasibility/test_opening_feasibility.py::test_bypassed_nested_model_validation_is_rechecked PASSED
+tests/feasibility/test_opening_feasibility.py::test_collection_limits_and_duplicate_ids[visits] PASSED
+tests/feasibility/test_opening_feasibility.py::test_collection_limits_and_duplicate_ids[facts] PASSED
+tests/feasibility/test_opening_feasibility.py::test_minimum_stay_not_inferred_from_model_or_place_name PASSED
+tests/feasibility/test_opening_feasibility.py::test_cutoff_and_duration_preserve_seconds PASSED
+tests/feasibility/test_opening_feasibility.py::test_explicit_no_extra_cutoff_is_distinct_from_unknown_admission PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_exception_coverage_cannot_hide_known_gap FAILED
+tests/feasibility/test_opening_feasibility.py::test_exception_without_admission_does_not_inherit_weekly_rule PASSED
+tests/feasibility/test_opening_feasibility.py::test_expired_closure_is_not_a_current_known_failure PASSED
+tests/feasibility/test_opening_feasibility.py::test_multi_source_unresolved_exception_cannot_be_silently_ignored PASSED
+tests/feasibility/test_opening_feasibility.py::test_unknown_admission_does_not_hide_unambiguous_closure PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_source_clock_rejected[observed_at-2026-11-18T09:00:00] PASSED
+tests/feasibility/test_opening_feasibility.py::test_invalid_source_clock_rejected[expires_at-2026-11-18T08:00:00+08:00] PASSED
+tests/feasibility/test_opening_feasibility.py::test_report_cannot_expand_scope_or_become_confirmed_evidence[evaluated_checks-value0] PASSED
+tests/feasibility/test_opening_feasibility.py::test_report_cannot_expand_scope_or_become_confirmed_evidence[unimplemented_checks-value1] PASSED
+tests/feasibility/test_opening_feasibility.py::test_report_cannot_expand_scope_or_become_confirmed_evidence[overall_trip_ready-True] PASSED
+tests/feasibility/test_opening_feasibility.py::test_report_cannot_expand_scope_or_become_confirmed_evidence[usable_in_confirmed_snapshot-True] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[closed] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[outside] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[late] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[short] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[reservation] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[inside] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[closed-FAIL-closed_on_date] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[outside-FAIL-outside_opening_windows] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[late-FAIL-after_last_entry] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[open-PASS-inside_opening_window] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_unresolved_target_never_uses_weekly_fallback PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_another_dates_override_does_not_complete_target FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_independent_time_failure_still_dominates[reversed-invalid_interval] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_independent_time_failure_still_dominates[timezone-invalid_timezone] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_independent_activity_failure_aggregates_over_incomplete_opening PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_conflicting_sources_cannot_select_open_winner[False-False] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_conflicting_sources_cannot_select_open_winner[False-True] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_conflicting_sources_cannot_select_open_winner[True-False] PASSED
+tests/feasibility/test_opening_feasibility.py::test_fix01_conflicting_sources_cannot_select_open_winner[True-True] FAILED
+tests/feasibility/test_opening_feasibility.py::test_fix01_complete_weekly_closure_remains_known PASSED
+tests/places/test_amap_offline_preparation.py::test_search_detail_and_unverified_observation PASSED
+tests/places/test_amap_offline_preparation.py::test_coverage_complete_incomplete_unknown_and_trim_guards PASSED
+tests/places/test_amap_offline_preparation.py::test_even_complete_single_result_needs_explicit_detail PASSED
+tests/places/test_amap_offline_preparation.py::test_multiple_same_names_are_not_merged_and_truncation_remains_visible PASSED
+tests/places/test_amap_offline_preparation.py::test_alias_and_child_relationships_do_not_rename_or_create_entrances PASSED
+tests/places/test_amap_offline_preparation.py::test_unseen_or_unselected_identity_cannot_trigger_detail PASSED
+tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change0] PASSED
+tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change1] PASSED
+tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change2] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change0] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change1] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change2] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change3] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change4] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change5] PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change6] PASSED
+tests/places/test_amap_offline_preparation.py::test_registry_stable_in_process_rejects_reused_id_and_does_not_promise_restart_identity PASSED
+tests/places/test_amap_offline_preparation.py::test_conflicting_or_duplicate_supplier_ids_fail_whole_page PASSED
+tests/places/test_amap_offline_preparation.py::test_self_parent_or_conflicting_child_ids_fail PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[181,2] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1,-91] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[NaN,2] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[Infinity,2] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[2] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1,2,3] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[True] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[location7] PASSED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1e100,2] PASSED
+tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[None] PASSED
+tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[] PASSED
+tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[location2] PASSED
+tests/places/test_amap_offline_preparation.py::test_empty_optional_fields_and_missing_crs_do_not_grant_geometry PASSED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{] PASSED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[[]] PASSED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[null] PASSED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{"status":"1","status":"0"}] PASSED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{"x":NaN}] PASSED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type["text"] PASSED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change0] PASSED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change1] PASSED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change2] PASSED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change3] PASSED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change4] PASSED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[401-auth_denied] PASSED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[403-forbidden] PASSED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[429-quota_exceeded] PASSED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[500-unavailable] PASSED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[503-unavailable] PASSED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[302-unsupported] PASSED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10001-auth_denied] PASSED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10005-auth_denied] PASSED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10012-forbidden] PASSED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10003-quota_exceeded] PASSED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10014-quota_exceeded] PASSED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[99999-unavailable] PASSED
+tests/places/test_amap_offline_preparation.py::test_transport_exceptions_do_not_leak[exception0-timeout] PASSED
+tests/places/test_amap_offline_preparation.py::test_transport_exceptions_do_not_leak[exception1-unavailable] PASSED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[verified-True] PASSED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[verification_state-VERIFIED] PASSED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[evidence_id-forged] PASSED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[environment-live] PASSED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[provider-attacker] PASSED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[crs-WGS84] PASSED
+tests/places/test_amap_offline_preparation.py::test_instructions_in_names_are_data_only PASSED
+tests/places/test_amap_offline_preparation.py::test_default_closed_and_concrete_fake_transport_required PASSED
+tests/places/test_amap_offline_preparation.py::test_input_limits_reject_without_transport PASSED
+tests/places/test_amap_offline_preparation.py::test_no_result_or_bad_detail_cannot_create_observation PASSED
+tests/places/test_amap_offline_preparation.py::test_observation_cannot_grant_authority_or_snapshot_use PASSED
+tests/places/test_amap_offline_preparation.py::test_source_result_revalidation_blocks_environment_time_and_query_spoof PASSED
+tests/places/test_amap_offline_preparation.py::test_detail_failures_all_produce_safe_typed_errors PASSED
+tests/places/test_amap_offline_preparation.py::test_no_business_or_network_imports_and_unchanged_v1_contracts PASSED
+tests/places/test_place_sources.py::test_all_fifteen_fabricated_records_normalize 15 fabricated records / 14 sites normalized or explicitly rejected; no supplier recordings
+PASSED
+tests/places/test_place_sources.py::test_unique_identity_and_detail_are_date_scoped PASSED
+tests/places/test_place_sources.py::test_same_name_district_ambiguity_does_not_select_first PASSED
+tests/places/test_place_sources.py::test_same_name_entrances_need_explicit_choice_and_share_site PASSED
+tests/places/test_place_sources.py::test_truncated_ambiguity_is_not_unique PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change0] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change1] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change2] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change3] PASSED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change4] PASSED
+tests/places/test_place_sources.py::test_city_and_full_resource_binding PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u6b8b\u7f3a\u5730\u5740\u9986-address] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-coordinates.crs] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance] PASSED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u533a\u53bf\u9986-district] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u5f02\u5750\u6807\u9986-crs_mismatch] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-crs_unknown] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates_missing] PASSED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance_unknown] PASSED
+tests/places/test_place_sources.py::test_same_crs_precondition_is_not_a_route_result PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates0] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates1] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates2] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates3] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates4] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates5] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates6] PASSED
+tests/places/test_place_sources.py::test_provider_id_conflict_rejected_not_used_as_internal_id PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[timeout] PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unavailable] PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unsupported] PASSED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[schema_changed] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change0] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change1] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change2] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change3] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change4] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change5] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change6] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change7] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change8] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change9] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change10] PASSED
+tests/places/test_place_sources.py::test_catalogue_rejects_extra_authority_and_bad_types PASSED
+tests/places/test_place_sources.py::test_normalized_schema_cannot_hide_gaps_or_add_authority PASSED
+tests/places/test_place_sources.py::test_server_observation_ids_and_non_live_boundary PASSED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[live] PASSED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[sandbox] PASSED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[replay] PASSED
+tests/places/test_place_sources.py::test_boundary_revalidates_bypass_provider_future_scope_and_count PASSED
+tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure0-timeout] PASSED
+tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure1-unavailable] PASSED
+tests/places/test_place_sources.py::test_supplier_instructions_are_inert_text_and_never_authority PASSED
+tests/places/test_place_sources.py::test_observation_time_is_aware_and_not_applicability PASSED
+tests/places/test_place_sources.py::test_typed_result_rejects_incoherent_or_authority_payload PASSED
+tests/places/test_place_sources.py::test_result_rejects_conflicting_provider_or_internal_bindings PASSED
+tests/places/test_place_sources.py::test_detail_never_silently_selects_shared_poi_entrance PASSED
+tests/places/test_place_sources.py::test_library_has_no_business_or_transport_dependencies PASSED
+
+================================== FAILURES ===================================
+____________ test_unknown_exception_coverage_cannot_hide_known_gap ____________
+tests\feasibility\test_opening_feasibility.py:387: in test_unknown_exception_coverage_cannot_hide_known_gap
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+____ test_fix01_incomplete_exceptions_cannot_establish_weekly_day[closed] _____
+tests\feasibility\test_opening_feasibility.py:450: in test_fix01_incomplete_exceptions_cannot_establish_weekly_day
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+____ test_fix01_incomplete_exceptions_cannot_establish_weekly_day[outside] ____
+tests\feasibility\test_opening_feasibility.py:450: in test_fix01_incomplete_exceptions_cannot_establish_weekly_day
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+_____ test_fix01_incomplete_exceptions_cannot_establish_weekly_day[late] ______
+tests\feasibility\test_opening_feasibility.py:450: in test_fix01_incomplete_exceptions_cannot_establish_weekly_day
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+_____ test_fix01_incomplete_exceptions_cannot_establish_weekly_day[short] _____
+tests\feasibility\test_opening_feasibility.py:450: in test_fix01_incomplete_exceptions_cannot_establish_weekly_day
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+__ test_fix01_incomplete_exceptions_cannot_establish_weekly_day[reservation] __
+tests\feasibility\test_opening_feasibility.py:450: in test_fix01_incomplete_exceptions_cannot_establish_weekly_day
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+____ test_fix01_incomplete_exceptions_cannot_establish_weekly_day[inside] _____
+tests\feasibility\test_opening_feasibility.py:452: in test_fix01_incomplete_exceptions_cannot_establish_weekly_day
+    assert [(c.check_id, c.status) for c in result.checks] == [("F02.time", "PASS"), ("F02.opening", "UNKNOWN")]
+E   AssertionError: assert [('F02.time',...ion', 'PASS')] == [('F02.time',...', 'UNKNOWN')]
+E     
+E     At index 1 diff: ('F02.opening', 'PASS') != ('F02.opening', 'UNKNOWN')
+E     Left contains 3 more items, first extra item: ('F02.opening', 'UNKNOWN')
+E     
+E     Full diff: (-: missing in left side, +: extra in left side)
+E       [
+E           (...
+E     
+E     ...Full output truncated, use '-vv' to show
+_ test_fix01_target_override_is_effective_despite_incomplete_other_dates[outside-FAIL-outside_opening_windows] _
+tests\feasibility\test_opening_feasibility.py:471: in test_fix01_target_override_is_effective_despite_incomplete_other_dates
+    assert "exceptions_incomplete" not in {c.reason_code for c in result.checks}
+E   AssertionError: assert 'exceptions_incomplete' not in {'admission_allowed', 'duration_sufficient', 'exceptions_incomplete', 'outside_opening_windows', 'valid_activity_time'}
+_ test_fix01_target_override_is_effective_despite_incomplete_other_dates[late-FAIL-after_last_entry] _
+tests\feasibility\test_opening_feasibility.py:471: in test_fix01_target_override_is_effective_despite_incomplete_other_dates
+    assert "exceptions_incomplete" not in {c.reason_code for c in result.checks}
+E   AssertionError: assert 'exceptions_incomplete' not in {'after_last_entry', 'duration_sufficient', 'exceptions_incomplete', 'inside_opening_window', 'valid_activity_time'}
+_ test_fix01_target_override_is_effective_despite_incomplete_other_dates[open-PASS-inside_opening_window] _
+tests\feasibility\test_opening_feasibility.py:470: in test_fix01_target_override_is_effective_despite_incomplete_other_dates
+    assert_reason(result, status, reason)
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'UNKNOWN' == 'PASS'
+E     
+E     - PASS
+E     + UNKNOWN
+_________ test_fix01_another_dates_override_does_not_complete_target __________
+tests\feasibility\test_opening_feasibility.py:486: in test_fix01_another_dates_override_does_not_complete_target
+    assert_reason(evaluate(payload), "UNKNOWN", "exceptions_incomplete")
+tests\feasibility\test_opening_feasibility.py:39: in assert_reason
+    assert report.status == status
+E   AssertionError: assert 'FAIL' == 'UNKNOWN'
+E     
+E     - UNKNOWN
+E     + FAIL
+____ test_fix01_conflicting_sources_cannot_select_open_winner[False-True] _____
+tests\feasibility\test_opening_feasibility.py:521: in test_fix01_conflicting_sources_cannot_select_open_winner
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete" if incomplete else "source_conflict")
+tests\feasibility\test_opening_feasibility.py:40: in assert_reason
+    assert reason in {c.reason_code for c in report.checks}
+E   AssertionError: assert 'exceptions_incomplete' in {'source_conflict', 'valid_activity_time'}
+_____ test_fix01_conflicting_sources_cannot_select_open_winner[True-True] _____
+tests\feasibility\test_opening_feasibility.py:521: in test_fix01_conflicting_sources_cannot_select_open_winner
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete" if incomplete else "source_conflict")
+tests\feasibility\test_opening_feasibility.py:40: in assert_reason
+    assert reason in {c.reason_code for c in report.checks}
+E   AssertionError: assert 'exceptions_incomplete' in {'source_conflict', 'valid_activity_time'}
+=========================== short test summary info ===========================
+FAILED tests/feasibility/test_opening_feasibility.py::test_unknown_exception_coverage_cannot_hide_known_gap
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[closed]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[outside]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[late]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[short]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[reservation]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_incomplete_exceptions_cannot_establish_weekly_day[inside]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[outside-FAIL-outside_opening_windows]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[late-FAIL-after_last_entry]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_target_override_is_effective_despite_incomplete_other_dates[open-PASS-inside_opening_window]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_another_dates_override_does_not_complete_target
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_conflicting_sources_cannot_select_open_winner[False-True]
+FAILED tests/feasibility/test_opening_feasibility.py::test_fix01_conflicting_sources_cannot_select_open_winner[True-True]
+======================= 13 failed, 235 passed in 0.50s ========================

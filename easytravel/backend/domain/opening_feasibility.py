@@ -18,7 +18,7 @@ def local_minute(value: time) -> time:
 
 LocalMinute = Annotated[time, AfterValidator(local_minute)]
 Status = Literal["PASS", "FAIL", "UNKNOWN", "NOT_APPLICABLE"]
-RULE_VERSION = "F02-synthetic-v1"
+RULE_VERSION = "F02-synthetic-v1-fix01"
 
 
 class OpeningWindow(PlaceContract):
@@ -99,7 +99,11 @@ class OpeningFacts(PlaceContract):
     source: OpeningSource
     weekly: Annotated[tuple[WeeklyOpening, ...], Field(max_length=7)]
     exceptions: Annotated[tuple[OpeningException, ...], Field(max_length=31)]
-    exceptions_complete: bool
+    exceptions_complete: bool = Field(description=(
+        "All date exceptions needed within applicable_scope are known. Without a resolved "
+        "target-date OVERRIDE, false means the weekly schedule and its admission rules "
+        "cannot establish target-date opening facts. This is not source verification."
+    ))
     note: Text | None = None  # Inert; never interpreted as a rule or instruction.
 
     @model_validator(mode="after")
@@ -172,7 +176,7 @@ class FeasibilityCheck(PlaceContract):
     fact_ids: tuple[Identifier, ...]
     severity: Literal["info", "warning", "blocker"]
     action: Literal["none", "revise_activity", "obtain_facts", "replace_or_obtain_facts"]
-    rule_version: Literal["F02-synthetic-v1"] = RULE_VERSION
+    rule_version: Literal["F02-synthetic-v1-fix01"] = RULE_VERSION
 
 
 def aggregate_status(states: tuple[Status, ...]) -> Status:
@@ -185,7 +189,7 @@ def aggregate_status(states: tuple[Status, ...]) -> Status:
 
 class ValidationReport(PlaceContract):
     schema_version: Literal["opening-validation-report-v1"] = "opening-validation-report-v1"
-    rule_version: Literal["F02-synthetic-v1"] = RULE_VERSION
+    rule_version: Literal["F02-synthetic-v1-fix01"] = RULE_VERSION
     evaluated_at: datetime
     input_sha256: Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
     environment: Literal["synthetic"] = "synthetic"
@@ -246,7 +250,7 @@ def check_visit(visit: ActivityVisit, facts: tuple[OpeningFacts, ...], now: date
         return tuple(checks)
     schedules = []
     eligible = []
-    unresolved = False
+    indeterminate_schedule = False
     for fact in selected:
         reason = None
         if not fact.applicable_scope.start_date <= target <= fact.applicable_scope.end_date:
@@ -260,8 +264,14 @@ def check_visit(visit: ActivityVisit, facts: tuple[OpeningFacts, ...], now: date
             continue
         exception = next((e for e in fact.exceptions if e.applicable_date == target), None)
         if exception and exception.resolution == "UNRESOLVED":
-            unresolved = True
+            indeterminate_schedule = True
             add("opening", "UNKNOWN", "unresolved_exception", (fact,))
+            continue
+        if exception is None and not fact.exceptions_complete:
+            # A missing exception may replace the whole weekly day, including
+            # closure, windows, admission, duration and reservation restrictions.
+            indeterminate_schedule = True
+            add("opening", "UNKNOWN", "exceptions_incomplete", (fact,))
             continue
         weekly = next((w for w in fact.weekly if w.weekday == target.weekday()), None)
         schedule = exception.schedule if exception else weekly.schedule if weekly else None
@@ -270,8 +280,9 @@ def check_visit(visit: ActivityVisit, facts: tuple[OpeningFacts, ...], now: date
             continue
         eligible.append(fact)
         schedules.append(schedule)
-    # Unresolved contradictory evidence must not become a closed-day FAIL or PASS.
-    if unresolved:
+    # Never select another source to bypass unresolved/incomplete day facts.
+    # Independent time/binding failures above retain their own authority.
+    if indeterminate_schedule:
         return tuple(checks)
     if not schedules:
         return tuple(checks)
@@ -291,8 +302,6 @@ def check_visit(visit: ActivityVisit, facts: tuple[OpeningFacts, ...], now: date
             windows.append((window.start, window.end))
     contained = any(a <= visit.start.time() and visit.end.time() <= b for a, b in windows)
     add("opening", "PASS" if contained else "FAIL", "inside_opening_window" if contained else "outside_opening_windows", eligible)
-    if any(not f.exceptions_complete for f in eligible):
-        add("opening", "UNKNOWN", "exceptions_incomplete", eligible)
     rule = schedule.admission
     if rule is None:
         add("admission", "UNKNOWN", "admission_unknown", eligible)

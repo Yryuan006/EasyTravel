@@ -1,0 +1,21 @@
+{
+  "guardInstalledBeforePytest": true,
+  "guardSelfTestBlockedDNS": true,
+  "guardSelfTestBlockedTCP": true,
+  "guardSelfTestBlockedUDP": true,
+  "selfTestAttempts": {
+    "dns": 1,
+    "tcp": 1,
+    "udp": 1
+  },
+  "suiteAttempts": {
+    "dns": 0,
+    "tcp": 0,
+    "udp": 0
+  },
+  "asyncioLocalWakeupConnections": 212,
+  "exception": "Only stdlib socketpair loopback setup; never supplier or test application traffic",
+  "realProviderRequests": 0,
+  "transport": "Pure F02 functions and accepted FakeTransport place tests only",
+  "pytestExit": 1
+}

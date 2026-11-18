@@ -380,11 +380,14 @@ def test_explicit_no_extra_cutoff_is_distinct_from_unknown_admission(payload):
 
 
 def test_unknown_exception_coverage_cannot_hide_known_gap(payload):
+    # FIX-01: a gap in the weekly template is not a known target-date gap.
     payload["facts"][0]["exceptions_complete"] = False
     interval(payload, "07:00", "09:00")
     result = evaluate(payload)
-    assert_reason(result, "FAIL", "exceptions_incomplete")
-    assert "outside_opening_windows" in {c.reason_code for c in result.checks}
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+    assert "outside_opening_windows" not in {c.reason_code for c in result.checks}
+    assert not any(c.status == "FAIL" for c in result.checks)
+    assert result.checks[-1].fact_ids == ("opening_a",)
 
 
 def test_exception_without_admission_does_not_inherit_weekly_rule(payload):
@@ -427,3 +430,102 @@ def test_report_cannot_expand_scope_or_become_confirmed_evidence(payload, field,
     data[field] = value
     with pytest.raises(ValidationError):
         ValidationReport.model_validate_json(json.dumps(data))
+
+
+@pytest.mark.parametrize("condition", ["closed", "outside", "late", "short", "reservation", "inside"])
+def test_fix01_incomplete_exceptions_cannot_establish_weekly_day(payload, condition):
+    payload["facts"][0]["exceptions_complete"] = False
+    if condition == "closed":
+        payload["facts"][0]["weekly"][0]["schedule"] = dict(closed=True, windows=[], admission=None)
+    elif condition == "outside":
+        interval(payload, "07:00", "09:00")
+    elif condition == "late":
+        interval(payload, "16:30", "17:30")
+    elif condition == "short":
+        interval(payload, "09:00", "09:30")
+    elif condition == "reservation":
+        schedule(payload)["admission"]["reservation_required"] = True
+        payload["visits"][0]["reservation_held"] = False
+    result = evaluate(payload)
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete")
+    assert result.checks[-1].fact_ids == ("opening_a",)
+    assert [(c.check_id, c.status) for c in result.checks] == [("F02.time", "PASS"), ("F02.opening", "UNKNOWN")]
+    assert result.valid_until is None
+
+
+@pytest.mark.parametrize("condition,status,reason", [
+    ("closed", "FAIL", "closed_on_date"),
+    ("outside", "FAIL", "outside_opening_windows"),
+    ("late", "FAIL", "after_last_entry"),
+    ("open", "PASS", "inside_opening_window"),
+])
+def test_fix01_target_override_is_effective_despite_incomplete_other_dates(payload, condition, status, reason):
+    payload["facts"][0]["exceptions_complete"] = False
+    add_exception(payload, closed=condition == "closed")
+    if condition == "outside":
+        payload["facts"][0]["exceptions"][0]["schedule"]["windows"] = [dict(start="10:00", end="12:00")]
+    elif condition == "late":
+        payload["facts"][0]["exceptions"][0]["schedule"]["admission"]["last_entry"] = "10:00"
+        interval(payload, "10:30", "11:30")
+    elif condition == "open":
+        payload["facts"][0]["weekly"][0]["schedule"] = dict(closed=True, windows=[], admission=None)
+    result = evaluate(payload)
+    assert_reason(result, status, reason)
+    assert "exceptions_incomplete" not in {c.reason_code for c in result.checks}
+    assert result.checks[-1].fact_ids == ("opening_a",)
+
+
+def test_fix01_unresolved_target_never_uses_weekly_fallback(payload):
+    payload["facts"][0]["exceptions_complete"] = False
+    add_exception(payload, "UNRESOLVED")
+    assert_reason(evaluate(payload), "UNKNOWN", "unresolved_exception")
+
+
+def test_fix01_another_dates_override_does_not_complete_target(payload):
+    payload["facts"][0]["exceptions_complete"] = False
+    add_exception(payload)
+    payload["facts"][0]["exceptions"][0]["applicable_date"] = "2026-12-08"
+    interval(payload, "07:00", "09:00")
+    assert_reason(evaluate(payload), "UNKNOWN", "exceptions_incomplete")
+
+
+@pytest.mark.parametrize("invalid,reason", [("reversed", "invalid_interval"), ("timezone", "invalid_timezone")])
+def test_fix01_independent_time_failure_still_dominates(payload, invalid, reason):
+    payload["facts"][0]["exceptions_complete"] = False
+    if invalid == "reversed":
+        interval(payload, "11:00", "09:00")
+    else:
+        payload["visits"][0]["timezone"] = "UTC"
+    assert_reason(evaluate(payload), "FAIL", reason)
+
+
+def test_fix01_independent_activity_failure_aggregates_over_incomplete_opening(payload):
+    payload["facts"][0]["exceptions_complete"] = False
+    other = deepcopy(payload["visits"][0])
+    other.update(item_id="invalid_time", end=other["start"])
+    payload["visits"].append(other)
+    result = evaluate(payload)
+    assert_reason(result, "FAIL", "exceptions_incomplete")
+    assert {c.status for c in result.checks} >= {"FAIL", "UNKNOWN"}
+
+
+@pytest.mark.parametrize("incomplete_source", [None, "opening_a", "opening_b"])
+@pytest.mark.parametrize("reverse", [False, True])
+def test_fix01_conflicting_sources_cannot_select_open_winner(payload, incomplete_source, reverse):
+    second = deepcopy(payload["facts"][0])
+    second["fact_id"] = "opening_b"
+    second["source"].update(source_id="notice_b", source_reference="synthetic-opening:notice_b")
+    second["weekly"][0]["schedule"] = dict(closed=True, windows=[], admission=None)
+    payload["facts"].append(second)
+    for fact in payload["facts"]:
+        fact["exceptions_complete"] = fact["fact_id"] != incomplete_source
+    if reverse:
+        payload["facts"].reverse()
+    result = evaluate(payload)
+    assert_reason(result, "UNKNOWN", "exceptions_incomplete" if incomplete_source else "source_conflict")
+    assert not any(c.status == "FAIL" for c in result.checks)
+
+
+def test_fix01_complete_weekly_closure_remains_known(payload):
+    payload["facts"][0]["weekly"][0]["schedule"] = dict(closed=True, windows=[], admission=None)
+    assert_reason(evaluate(payload), "FAIL", "closed_on_date")

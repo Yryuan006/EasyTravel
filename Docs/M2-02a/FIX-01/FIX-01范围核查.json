@@ -1,0 +1,16 @@
+{
+  "baseline": "d656c01f5713d48c3b7662dfadad2eb3db6582c5",
+  "changedExistingFiles": [
+    "Docs/M2-02a/README.md",
+    "Docs/M2-02a/实施与验收报告.md",
+    "easytravel/backend/domain/opening_feasibility.py",
+    "tests/feasibility/test_opening_feasibility.py"
+  ],
+  "onlyF02RuntimeChanged": true,
+  "ruleVersion": "F02-synthetic-v1-fix01",
+  "originalBusinessDatabasePlaceAndEvidenceUnchanged": true,
+  "backend454Rerun": false,
+  "reason": "No production business/database code changes or F02 production wiring",
+  "reusedRegressionEvidence": "Docs/M2-02a/后端454项回归.txt",
+  "databaseAccessThisRun": false
+}
