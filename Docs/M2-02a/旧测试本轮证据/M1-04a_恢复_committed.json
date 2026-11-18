@@ -1,0 +1,157 @@
+{
+  "mode": "committed",
+  "before": {
+    "run_id": "9ec9b1ea-6237-43e4-975c-eda9f4ee7885",
+    "trip_id": "046e7af9-e8a0-4b71-ab61-046b1bab5ff9",
+    "kind": "INITIAL_PLAN",
+    "intake_revision": 1,
+    "base_working_revision": null,
+    "status": "SUCCEEDED",
+    "attempt": 1,
+    "retry_of": null,
+    "created_at": "2026-11-18T13:43:04.945667Z",
+    "updated_at": "2026-11-18T13:43:05.001741Z",
+    "result": {
+      "working_revision": 1,
+      "proposal_id": null
+    },
+    "error": null,
+    "diagnostics_budget": {
+      "known_subtotal_cents": 60000,
+      "total_cents": null,
+      "unknown_cost_ids": [
+        "cost_activity_0",
+        "cost_local_0",
+        "cost_activity_1",
+        "cost_local_1",
+        "cost_activity_2",
+        "cost_local_2",
+        "cost_outbound",
+        "cost_return"
+      ],
+      "verification": "INDETERMINATE",
+      "constraint": "UNDETERMINED",
+      "verified_cost_ids": [],
+      "evidence_issues": [
+        [
+          "cost_activity_0",
+          "unknown_price"
+        ],
+        [
+          "cost_local_0",
+          "unknown_price"
+        ],
+        [
+          "cost_activity_1",
+          "unknown_price"
+        ],
+        [
+          "cost_local_1",
+          "unknown_price"
+        ],
+        [
+          "cost_activity_2",
+          "unknown_price"
+        ],
+        [
+          "cost_local_2",
+          "unknown_price"
+        ],
+        [
+          "cost_outbound",
+          "unknown_price"
+        ],
+        [
+          "cost_return",
+          "unknown_price"
+        ],
+        [
+          "cost_hotel",
+          "estimate"
+        ]
+      ]
+    }
+  },
+  "after": {
+    "run_id": "9ec9b1ea-6237-43e4-975c-eda9f4ee7885",
+    "trip_id": "046e7af9-e8a0-4b71-ab61-046b1bab5ff9",
+    "kind": "INITIAL_PLAN",
+    "intake_revision": 1,
+    "base_working_revision": null,
+    "status": "SUCCEEDED",
+    "attempt": 1,
+    "retry_of": null,
+    "created_at": "2026-11-18T13:43:04.945667Z",
+    "updated_at": "2026-11-18T13:43:05.001741Z",
+    "result": {
+      "working_revision": 1,
+      "proposal_id": null
+    },
+    "error": null,
+    "diagnostics_budget": {
+      "known_subtotal_cents": 60000,
+      "total_cents": null,
+      "unknown_cost_ids": [
+        "cost_activity_0",
+        "cost_local_0",
+        "cost_activity_1",
+        "cost_local_1",
+        "cost_activity_2",
+        "cost_local_2",
+        "cost_outbound",
+        "cost_return"
+      ],
+      "verification": "INDETERMINATE",
+      "constraint": "UNDETERMINED",
+      "verified_cost_ids": [],
+      "evidence_issues": [
+        [
+          "cost_activity_0",
+          "unknown_price"
+        ],
+        [
+          "cost_local_0",
+          "unknown_price"
+        ],
+        [
+          "cost_activity_1",
+          "unknown_price"
+        ],
+        [
+          "cost_local_1",
+          "unknown_price"
+        ],
+        [
+          "cost_activity_2",
+          "unknown_price"
+        ],
+        [
+          "cost_local_2",
+          "unknown_price"
+        ],
+        [
+          "cost_outbound",
+          "unknown_price"
+        ],
+        [
+          "cost_return",
+          "unknown_price"
+        ],
+        [
+          "cost_hotel",
+          "estimate"
+        ]
+      ]
+    }
+  },
+  "restart_stdout": "Generation executor ready; recovered=0\n",
+  "counts": {
+    "trips": 1,
+    "trip_intake_versions": 1,
+    "draft_versions": 1,
+    "working_drafts": 1,
+    "draft_contexts": 1,
+    "confirmed_snapshots": 0,
+    "generation_runs": 1
+  }
+}

@@ -1,0 +1,1673 @@
+{
+  "OpeningFacts": {
+    "$defs": {
+      "AdmissionRule": {
+        "additionalProperties": false,
+        "properties": {
+          "last_entry": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Entry"
+          },
+          "minimum_visit_minutes": {
+            "maximum": 1440,
+            "minimum": 1,
+            "title": "Minimum Visit Minutes",
+            "type": "integer"
+          },
+          "reservation_required": {
+            "title": "Reservation Required",
+            "type": "boolean"
+          },
+          "other_restrictions": {
+            "default": [],
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Other Restrictions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "last_entry",
+          "minimum_visit_minutes",
+          "reservation_required"
+        ],
+        "title": "AdmissionRule",
+        "type": "object"
+      },
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "DayOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "closed": {
+            "title": "Closed",
+            "type": "boolean"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/$defs/OpeningWindow"
+            },
+            "maxItems": 8,
+            "title": "Windows",
+            "type": "array"
+          },
+          "admission": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/AdmissionRule"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "closed",
+          "windows",
+          "admission"
+        ],
+        "title": "DayOpening",
+        "type": "object"
+      },
+      "OpeningException": {
+        "additionalProperties": false,
+        "properties": {
+          "applicable_date": {
+            "format": "date",
+            "title": "Applicable Date",
+            "type": "string"
+          },
+          "schedule": {
+            "$ref": "#/$defs/DayOpening"
+          },
+          "resolution": {
+            "enum": [
+              "OVERRIDE",
+              "UNRESOLVED"
+            ],
+            "title": "Resolution",
+            "type": "string"
+          }
+        },
+        "required": [
+          "applicable_date",
+          "schedule",
+          "resolution"
+        ],
+        "title": "OpeningException",
+        "type": "object"
+      },
+      "OpeningSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_opening_fixture",
+            "default": "synthetic_opening_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-opening:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "OpeningSource",
+        "type": "object"
+      },
+      "OpeningWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "format": "time",
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "format": "time",
+            "title": "End",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "OpeningWindow",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "WeeklyOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "weekday": {
+            "maximum": 6,
+            "minimum": 0,
+            "title": "Weekday",
+            "type": "integer"
+          },
+          "schedule": {
+            "$ref": "#/$defs/DayOpening"
+          }
+        },
+        "required": [
+          "weekday",
+          "schedule"
+        ],
+        "title": "WeeklyOpening",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "opening-facts-v1",
+        "default": "opening-facts-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "fact_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Fact Id",
+        "type": "string"
+      },
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "entrance_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Entrance Id"
+      },
+      "applicable_scope": {
+        "$ref": "#/$defs/ApplicableScope"
+      },
+      "timezone": {
+        "const": "Asia/Shanghai",
+        "default": "Asia/Shanghai",
+        "title": "Timezone",
+        "type": "string"
+      },
+      "source": {
+        "$ref": "#/$defs/OpeningSource"
+      },
+      "weekly": {
+        "items": {
+          "$ref": "#/$defs/WeeklyOpening"
+        },
+        "maxItems": 7,
+        "title": "Weekly",
+        "type": "array"
+      },
+      "exceptions": {
+        "items": {
+          "$ref": "#/$defs/OpeningException"
+        },
+        "maxItems": 31,
+        "title": "Exceptions",
+        "type": "array"
+      },
+      "exceptions_complete": {
+        "title": "Exceptions Complete",
+        "type": "boolean"
+      },
+      "note": {
+        "anyOf": [
+          {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Note"
+      }
+    },
+    "required": [
+      "fact_id",
+      "resource",
+      "entrance_id",
+      "applicable_scope",
+      "source",
+      "weekly",
+      "exceptions",
+      "exceptions_complete"
+    ],
+    "title": "OpeningFacts",
+    "type": "object"
+  },
+  "OpeningException": {
+    "$defs": {
+      "AdmissionRule": {
+        "additionalProperties": false,
+        "properties": {
+          "last_entry": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Entry"
+          },
+          "minimum_visit_minutes": {
+            "maximum": 1440,
+            "minimum": 1,
+            "title": "Minimum Visit Minutes",
+            "type": "integer"
+          },
+          "reservation_required": {
+            "title": "Reservation Required",
+            "type": "boolean"
+          },
+          "other_restrictions": {
+            "default": [],
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Other Restrictions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "last_entry",
+          "minimum_visit_minutes",
+          "reservation_required"
+        ],
+        "title": "AdmissionRule",
+        "type": "object"
+      },
+      "DayOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "closed": {
+            "title": "Closed",
+            "type": "boolean"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/$defs/OpeningWindow"
+            },
+            "maxItems": 8,
+            "title": "Windows",
+            "type": "array"
+          },
+          "admission": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/AdmissionRule"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "closed",
+          "windows",
+          "admission"
+        ],
+        "title": "DayOpening",
+        "type": "object"
+      },
+      "OpeningWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "format": "time",
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "format": "time",
+            "title": "End",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "OpeningWindow",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "applicable_date": {
+        "format": "date",
+        "title": "Applicable Date",
+        "type": "string"
+      },
+      "schedule": {
+        "$ref": "#/$defs/DayOpening"
+      },
+      "resolution": {
+        "enum": [
+          "OVERRIDE",
+          "UNRESOLVED"
+        ],
+        "title": "Resolution",
+        "type": "string"
+      }
+    },
+    "required": [
+      "applicable_date",
+      "schedule",
+      "resolution"
+    ],
+    "title": "OpeningException",
+    "type": "object"
+  },
+  "AdmissionRule": {
+    "additionalProperties": false,
+    "properties": {
+      "last_entry": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Last Entry"
+      },
+      "minimum_visit_minutes": {
+        "maximum": 1440,
+        "minimum": 1,
+        "title": "Minimum Visit Minutes",
+        "type": "integer"
+      },
+      "reservation_required": {
+        "title": "Reservation Required",
+        "type": "boolean"
+      },
+      "other_restrictions": {
+        "default": [],
+        "items": {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 10,
+        "title": "Other Restrictions",
+        "type": "array"
+      }
+    },
+    "required": [
+      "last_entry",
+      "minimum_visit_minutes",
+      "reservation_required"
+    ],
+    "title": "AdmissionRule",
+    "type": "object"
+  },
+  "ActivityVisit": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "item_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Item Id",
+        "type": "string"
+      },
+      "name": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Name",
+        "type": "string"
+      },
+      "kind": {
+        "default": "visit",
+        "enum": [
+          "visit",
+          "free_time"
+        ],
+        "title": "Kind",
+        "type": "string"
+      },
+      "resource": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "entrance_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Entrance Id"
+      },
+      "start": {
+        "format": "date-time",
+        "title": "Start",
+        "type": "string"
+      },
+      "end": {
+        "format": "date-time",
+        "title": "End",
+        "type": "string"
+      },
+      "timezone": {
+        "default": "Asia/Shanghai",
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Timezone",
+        "type": "string"
+      },
+      "important": {
+        "default": false,
+        "title": "Important",
+        "type": "boolean"
+      },
+      "reservation_held": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Reservation Held"
+      }
+    },
+    "required": [
+      "item_id",
+      "name",
+      "resource",
+      "start",
+      "end"
+    ],
+    "title": "ActivityVisit",
+    "type": "object"
+  },
+  "FeasibilityCheck": {
+    "additionalProperties": false,
+    "properties": {
+      "check_id": {
+        "enum": [
+          "F02.time",
+          "F02.binding",
+          "F02.opening",
+          "F02.admission",
+          "F02.duration",
+          "F02.reservation",
+          "F02.restrictions"
+        ],
+        "title": "Check Id",
+        "type": "string"
+      },
+      "item_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Item Id",
+        "type": "string"
+      },
+      "internal_resource_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Internal Resource Id"
+      },
+      "entrance_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Entrance Id"
+      },
+      "target_start": {
+        "format": "date-time",
+        "title": "Target Start",
+        "type": "string"
+      },
+      "target_end": {
+        "format": "date-time",
+        "title": "Target End",
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "reason_code": {
+        "enum": [
+          "free_time",
+          "invalid_timezone",
+          "invalid_interval",
+          "cross_day_unsupported",
+          "valid_activity_time",
+          "resource_binding_conflict",
+          "missing_opening_facts",
+          "entrance_scope_mismatch",
+          "date_not_applicable",
+          "observation_in_future",
+          "source_expired",
+          "unresolved_exception",
+          "weekday_unknown",
+          "source_conflict",
+          "closed_on_date",
+          "outside_opening_windows",
+          "inside_opening_window",
+          "exceptions_incomplete",
+          "admission_unknown",
+          "after_last_entry",
+          "admission_allowed",
+          "visit_too_short",
+          "duration_sufficient",
+          "reservation_missing",
+          "reservation_unknown",
+          "reservation_satisfied",
+          "other_restrictions_unknown"
+        ],
+        "title": "Reason Code",
+        "type": "string"
+      },
+      "fact_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Fact Ids",
+        "type": "array"
+      },
+      "severity": {
+        "enum": [
+          "info",
+          "warning",
+          "blocker"
+        ],
+        "title": "Severity",
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "none",
+          "revise_activity",
+          "obtain_facts",
+          "replace_or_obtain_facts"
+        ],
+        "title": "Action",
+        "type": "string"
+      },
+      "rule_version": {
+        "const": "F02-synthetic-v1",
+        "default": "F02-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "check_id",
+      "item_id",
+      "internal_resource_id",
+      "entrance_id",
+      "target_start",
+      "target_end",
+      "status",
+      "reason_code",
+      "fact_ids",
+      "severity",
+      "action"
+    ],
+    "title": "FeasibilityCheck",
+    "type": "object"
+  },
+  "ValidationReport": {
+    "$defs": {
+      "FeasibilityCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "enum": [
+              "F02.time",
+              "F02.binding",
+              "F02.opening",
+              "F02.admission",
+              "F02.duration",
+              "F02.reservation",
+              "F02.restrictions"
+            ],
+            "title": "Check Id",
+            "type": "string"
+          },
+          "item_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Item Id",
+            "type": "string"
+          },
+          "internal_resource_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Internal Resource Id"
+          },
+          "entrance_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entrance Id"
+          },
+          "target_start": {
+            "format": "date-time",
+            "title": "Target Start",
+            "type": "string"
+          },
+          "target_end": {
+            "format": "date-time",
+            "title": "Target End",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason_code": {
+            "enum": [
+              "free_time",
+              "invalid_timezone",
+              "invalid_interval",
+              "cross_day_unsupported",
+              "valid_activity_time",
+              "resource_binding_conflict",
+              "missing_opening_facts",
+              "entrance_scope_mismatch",
+              "date_not_applicable",
+              "observation_in_future",
+              "source_expired",
+              "unresolved_exception",
+              "weekday_unknown",
+              "source_conflict",
+              "closed_on_date",
+              "outside_opening_windows",
+              "inside_opening_window",
+              "exceptions_incomplete",
+              "admission_unknown",
+              "after_last_entry",
+              "admission_allowed",
+              "visit_too_short",
+              "duration_sufficient",
+              "reservation_missing",
+              "reservation_unknown",
+              "reservation_satisfied",
+              "other_restrictions_unknown"
+            ],
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Fact Ids",
+            "type": "array"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "blocker"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "none",
+              "revise_activity",
+              "obtain_facts",
+              "replace_or_obtain_facts"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "rule_version": {
+            "const": "F02-synthetic-v1",
+            "default": "F02-synthetic-v1",
+            "title": "Rule Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "item_id",
+          "internal_resource_id",
+          "entrance_id",
+          "target_start",
+          "target_end",
+          "status",
+          "reason_code",
+          "fact_ids",
+          "severity",
+          "action"
+        ],
+        "title": "FeasibilityCheck",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "opening-validation-report-v1",
+        "default": "opening-validation-report-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "rule_version": {
+        "const": "F02-synthetic-v1",
+        "default": "F02-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      },
+      "evaluated_at": {
+        "format": "date-time",
+        "title": "Evaluated At",
+        "type": "string"
+      },
+      "input_sha256": {
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Input Sha256",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "evaluated_checks": {
+        "default": [
+          "F02"
+        ],
+        "maxItems": 1,
+        "minItems": 1,
+        "prefixItems": [
+          {
+            "const": "F02",
+            "type": "string"
+          }
+        ],
+        "title": "Evaluated Checks",
+        "type": "array"
+      },
+      "unimplemented_checks": {
+        "default": [
+          "F01",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08"
+        ],
+        "maxItems": 7,
+        "minItems": 7,
+        "prefixItems": [
+          {
+            "const": "F01",
+            "type": "string"
+          },
+          {
+            "const": "F03",
+            "type": "string"
+          },
+          {
+            "const": "F04",
+            "type": "string"
+          },
+          {
+            "const": "F05",
+            "type": "string"
+          },
+          {
+            "const": "F06",
+            "type": "string"
+          },
+          {
+            "const": "F07",
+            "type": "string"
+          },
+          {
+            "const": "F08",
+            "type": "string"
+          }
+        ],
+        "title": "Unimplemented Checks",
+        "type": "array"
+      },
+      "checks": {
+        "items": {
+          "$ref": "#/$defs/FeasibilityCheck"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "valid_until": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Valid Until"
+      },
+      "overall_trip_ready": {
+        "const": false,
+        "default": false,
+        "title": "Overall Trip Ready",
+        "type": "boolean"
+      },
+      "usable_in_confirmed_snapshot": {
+        "const": false,
+        "default": false,
+        "title": "Usable In Confirmed Snapshot",
+        "type": "boolean"
+      },
+      "usable_for_real_trip": {
+        "const": false,
+        "default": false,
+        "title": "Usable For Real Trip",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "evaluated_at",
+      "input_sha256",
+      "checks",
+      "status",
+      "valid_until"
+    ],
+    "title": "ValidationReport",
+    "type": "object"
+  },
+  "OpeningValidationInput": {
+    "$defs": {
+      "ActivityVisit": {
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Item Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "kind": {
+            "default": "visit",
+            "enum": [
+              "visit",
+              "free_time"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "resource": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entrance_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entrance Id"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          },
+          "timezone": {
+            "default": "Asia/Shanghai",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Timezone",
+            "type": "string"
+          },
+          "important": {
+            "default": false,
+            "title": "Important",
+            "type": "boolean"
+          },
+          "reservation_held": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Reservation Held"
+          }
+        },
+        "required": [
+          "item_id",
+          "name",
+          "resource",
+          "start",
+          "end"
+        ],
+        "title": "ActivityVisit",
+        "type": "object"
+      },
+      "AdmissionRule": {
+        "additionalProperties": false,
+        "properties": {
+          "last_entry": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Entry"
+          },
+          "minimum_visit_minutes": {
+            "maximum": 1440,
+            "minimum": 1,
+            "title": "Minimum Visit Minutes",
+            "type": "integer"
+          },
+          "reservation_required": {
+            "title": "Reservation Required",
+            "type": "boolean"
+          },
+          "other_restrictions": {
+            "default": [],
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Other Restrictions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "last_entry",
+          "minimum_visit_minutes",
+          "reservation_required"
+        ],
+        "title": "AdmissionRule",
+        "type": "object"
+      },
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "DayOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "closed": {
+            "title": "Closed",
+            "type": "boolean"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/$defs/OpeningWindow"
+            },
+            "maxItems": 8,
+            "title": "Windows",
+            "type": "array"
+          },
+          "admission": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/AdmissionRule"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "closed",
+          "windows",
+          "admission"
+        ],
+        "title": "DayOpening",
+        "type": "object"
+      },
+      "OpeningException": {
+        "additionalProperties": false,
+        "properties": {
+          "applicable_date": {
+            "format": "date",
+            "title": "Applicable Date",
+            "type": "string"
+          },
+          "schedule": {
+            "$ref": "#/$defs/DayOpening"
+          },
+          "resolution": {
+            "enum": [
+              "OVERRIDE",
+              "UNRESOLVED"
+            ],
+            "title": "Resolution",
+            "type": "string"
+          }
+        },
+        "required": [
+          "applicable_date",
+          "schedule",
+          "resolution"
+        ],
+        "title": "OpeningException",
+        "type": "object"
+      },
+      "OpeningFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "opening-facts-v1",
+            "default": "opening-facts-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "entrance_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entrance Id"
+          },
+          "applicable_scope": {
+            "$ref": "#/$defs/ApplicableScope"
+          },
+          "timezone": {
+            "const": "Asia/Shanghai",
+            "default": "Asia/Shanghai",
+            "title": "Timezone",
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/$defs/OpeningSource"
+          },
+          "weekly": {
+            "items": {
+              "$ref": "#/$defs/WeeklyOpening"
+            },
+            "maxItems": 7,
+            "title": "Weekly",
+            "type": "array"
+          },
+          "exceptions": {
+            "items": {
+              "$ref": "#/$defs/OpeningException"
+            },
+            "maxItems": 31,
+            "title": "Exceptions",
+            "type": "array"
+          },
+          "exceptions_complete": {
+            "title": "Exceptions Complete",
+            "type": "boolean"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Note"
+          }
+        },
+        "required": [
+          "fact_id",
+          "resource",
+          "entrance_id",
+          "applicable_scope",
+          "source",
+          "weekly",
+          "exceptions",
+          "exceptions_complete"
+        ],
+        "title": "OpeningFacts",
+        "type": "object"
+      },
+      "OpeningSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_opening_fixture",
+            "default": "synthetic_opening_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-opening:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "OpeningSource",
+        "type": "object"
+      },
+      "OpeningWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "format": "time",
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "format": "time",
+            "title": "End",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "OpeningWindow",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "WeeklyOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "weekday": {
+            "maximum": 6,
+            "minimum": 0,
+            "title": "Weekday",
+            "type": "integer"
+          },
+          "schedule": {
+            "$ref": "#/$defs/DayOpening"
+          }
+        },
+        "required": [
+          "weekday",
+          "schedule"
+        ],
+        "title": "WeeklyOpening",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "opening-validation-input-v1",
+        "default": "opening-validation-input-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "visits": {
+        "items": {
+          "$ref": "#/$defs/ActivityVisit"
+        },
+        "maxItems": 30,
+        "title": "Visits",
+        "type": "array"
+      },
+      "facts": {
+        "items": {
+          "$ref": "#/$defs/OpeningFacts"
+        },
+        "maxItems": 100,
+        "title": "Facts",
+        "type": "array"
+      }
+    },
+    "required": [
+      "visits",
+      "facts"
+    ],
+    "title": "OpeningValidationInput",
+    "type": "object"
+  }
+}

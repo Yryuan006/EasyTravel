@@ -1,0 +1,11 @@
+{
+  "env00InitiallyRunning": false,
+  "env00FinallyRunning": false,
+  "env00ReadOnlyFingerprint": true,
+  "env00StateRestored": true,
+  "acceptedRunner": "scripts/verify_m201a_isolated.py",
+  "newClusterEveryRun": true,
+  "inheritedResourcePrefix": "m201a-isolated",
+  "reusedOldDatabaseForWrites": false,
+  "suite": "454 accepted tests; places and F02 tested separately under deny guards"
+}
