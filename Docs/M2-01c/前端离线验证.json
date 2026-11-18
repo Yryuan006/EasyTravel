@@ -1,0 +1,21 @@
+{
+  "node": "v24.22.2",
+  "npmNotInvoked": true,
+  "localCLIsOnly": true,
+  "networkGuardsEnabled": true,
+  "processes": [
+    {
+      "pid": 22992,
+      "attempts": 0
+    },
+    {
+      "pid": 4316,
+      "attempts": 0
+    },
+    {
+      "pid": 14768,
+      "attempts": 0
+    }
+  ],
+  "frontendSourceChanged": false
+}

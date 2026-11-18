@@ -1,0 +1,2723 @@
+M2-01c DNS/TCP/UDP deny guards installed before pytest imports
+Guard self-tests: DNS and TCP blocked before network I/O; asyncio local wakeups exempt
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- D:\Project\EasyTravel\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Project\EasyTravel
+configfile: pyproject.toml
+plugins: anyio-4.16.0, langsmith-0.14.17, asyncio-1.4.1.post1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 129 items
+
+tests/places/test_amap_offline_preparation.py::test_search_detail_and_unverified_observation FAILED
+tests/places/test_amap_offline_preparation.py::test_coverage_complete_incomplete_unknown_and_trim_guards PASSED
+tests/places/test_amap_offline_preparation.py::test_even_complete_single_result_needs_explicit_detail FAILED
+tests/places/test_amap_offline_preparation.py::test_multiple_same_names_are_not_merged_and_truncation_remains_visible FAILED
+tests/places/test_amap_offline_preparation.py::test_alias_and_child_relationships_do_not_rename_or_create_entrances FAILED
+tests/places/test_amap_offline_preparation.py::test_unseen_or_unselected_identity_cannot_trigger_detail FAILED
+tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change0] FAILED
+tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change1] FAILED
+tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change2] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change0] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change1] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change2] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change3] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change4] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change5] FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change6] FAILED
+tests/places/test_amap_offline_preparation.py::test_registry_stable_in_process_rejects_reused_id_and_does_not_promise_restart_identity FAILED
+tests/places/test_amap_offline_preparation.py::test_conflicting_or_duplicate_supplier_ids_fail_whole_page FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[181,2] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1,-91] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[NaN,2] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[Infinity,2] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[2] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1,2,3] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[True] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[location7] FAILED
+tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1e100,2] FAILED
+tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[None] FAILED
+tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[] FAILED
+tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[location2] FAILED
+tests/places/test_amap_offline_preparation.py::test_empty_optional_fields_and_missing_crs_do_not_grant_geometry FAILED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{] FAILED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[[]] FAILED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[null] FAILED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{"status":"1","status":"0"}] FAILED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{"x":NaN}] FAILED
+tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type["text"] FAILED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change0] FAILED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change1] FAILED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change2] FAILED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change3] FAILED
+tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change4] FAILED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[401-auth_denied] FAILED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[403-forbidden] FAILED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[429-quota_exceeded] FAILED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[500-unavailable] FAILED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[503-unavailable] FAILED
+tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[302-unsupported] FAILED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10001-auth_denied] FAILED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10005-auth_denied] FAILED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10012-forbidden] FAILED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10003-quota_exceeded] FAILED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10014-quota_exceeded] FAILED
+tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[99999-unavailable] FAILED
+tests/places/test_amap_offline_preparation.py::test_transport_exceptions_do_not_leak[exception0-timeout] FAILED
+tests/places/test_amap_offline_preparation.py::test_transport_exceptions_do_not_leak[exception1-unavailable] FAILED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[verified-True] FAILED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[verification_state-VERIFIED] FAILED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[evidence_id-forged] FAILED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[environment-live] FAILED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[provider-attacker] FAILED
+tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[crs-WGS84] FAILED
+tests/places/test_amap_offline_preparation.py::test_instructions_in_names_are_data_only FAILED
+tests/places/test_amap_offline_preparation.py::test_default_closed_and_concrete_fake_transport_required FAILED
+tests/places/test_amap_offline_preparation.py::test_input_limits_reject_without_transport FAILED
+tests/places/test_amap_offline_preparation.py::test_no_result_or_bad_detail_cannot_create_observation FAILED
+tests/places/test_amap_offline_preparation.py::test_observation_cannot_grant_authority_or_snapshot_use FAILED
+tests/places/test_amap_offline_preparation.py::test_source_result_revalidation_blocks_environment_time_and_query_spoof FAILED
+tests/places/test_amap_offline_preparation.py::test_detail_failures_all_produce_safe_typed_errors FAILED
+tests/places/test_amap_offline_preparation.py::test_no_business_or_network_imports_and_unchanged_v1_contracts PASSED
+tests/places/test_place_sources.py::test_all_fifteen_fabricated_records_normalize FAILED
+tests/places/test_place_sources.py::test_unique_identity_and_detail_are_date_scoped FAILED
+tests/places/test_place_sources.py::test_same_name_district_ambiguity_does_not_select_first FAILED
+tests/places/test_place_sources.py::test_same_name_entrances_need_explicit_choice_and_share_site FAILED
+tests/places/test_place_sources.py::test_truncated_ambiguity_is_not_unique FAILED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change0] FAILED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change1] FAILED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change2] FAILED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change3] FAILED
+tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change4] FAILED
+tests/places/test_place_sources.py::test_city_and_full_resource_binding FAILED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u6b8b\u7f3a\u5730\u5740\u9986-address] FAILED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates] FAILED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-coordinates.crs] FAILED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance] FAILED
+tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u533a\u53bf\u9986-district] FAILED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u5f02\u5750\u6807\u9986-crs_mismatch] FAILED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-crs_unknown] FAILED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates_missing] FAILED
+tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance_unknown] FAILED
+tests/places/test_place_sources.py::test_same_crs_precondition_is_not_a_route_result FAILED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates0] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates1] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates2] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates3] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates4] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates5] PASSED
+tests/places/test_place_sources.py::test_illegal_coordinates_rejected[coordinates6] PASSED
+tests/places/test_place_sources.py::test_provider_id_conflict_rejected_not_used_as_internal_id FAILED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[timeout] FAILED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unavailable] FAILED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unsupported] FAILED
+tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[schema_changed] FAILED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change0] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change1] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change2] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change3] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change4] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change5] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change6] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change7] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change8] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change9] PASSED
+tests/places/test_place_sources.py::test_query_bounds_and_authority_fields_rejected[change10] PASSED
+tests/places/test_place_sources.py::test_catalogue_rejects_extra_authority_and_bad_types PASSED
+tests/places/test_place_sources.py::test_normalized_schema_cannot_hide_gaps_or_add_authority FAILED
+tests/places/test_place_sources.py::test_server_observation_ids_and_non_live_boundary FAILED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[live] FAILED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[sandbox] FAILED
+tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[replay] FAILED
+tests/places/test_place_sources.py::test_boundary_revalidates_bypass_provider_future_scope_and_count FAILED
+tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure0-timeout] FAILED
+tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure1-unavailable] FAILED
+tests/places/test_place_sources.py::test_supplier_instructions_are_inert_text_and_never_authority FAILED
+tests/places/test_place_sources.py::test_observation_time_is_aware_and_not_applicability PASSED
+tests/places/test_place_sources.py::test_typed_result_rejects_incoherent_or_authority_payload FAILED
+tests/places/test_place_sources.py::test_result_rejects_conflicting_provider_or_internal_bindings FAILED
+tests/places/test_place_sources.py::test_detail_never_silently_selects_shared_poi_entrance FAILED
+tests/places/test_place_sources.py::test_library_has_no_business_or_transport_dependencies PASSED
+
+================================== FAILURES ===================================
+________________ test_search_detail_and_unverified_observation ________________
+tests\places\test_amap_offline_preparation.py:63: in test_search_detail_and_unverified_observation
+    session = run(lookup.search(request()))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_even_complete_single_result_needs_explicit_detail ____________
+tests\places\test_amap_offline_preparation.py:105: in test_even_complete_single_result_needs_explicit_detail
+    original = run(adapter.search(request()))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___ test_multiple_same_names_are_not_merged_and_truncation_remains_visible ____
+tests\places\test_amap_offline_preparation.py:119: in test_multiple_same_names_are_not_merged_and_truncation_remains_visible
+    session = run(lookup.search(request()))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____ test_alias_and_child_relationships_do_not_rename_or_create_entrances _____
+tests\places\test_amap_offline_preparation.py:132: in test_alias_and_child_relationships_do_not_rename_or_create_entrances
+    s = run(lookup.search(PlaceSearchRequest(query=PlaceQuery(keyword='合成别名', city='合成甲城', scope=SCOPE))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_unseen_or_unselected_identity_cannot_trigger_detail ___________
+tests\places\test_amap_offline_preparation.py:146: in test_unseen_or_unselected_identity_cannot_trigger_detail
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_search_administrative_and_category_binding[change0] ___________
+tests\places\test_amap_offline_preparation.py:155: in test_search_administrative_and_category_binding
+    page = run(adapter.search(request(district='合成东区', category='合成景点')))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_search_administrative_and_category_binding[change1] ___________
+tests\places\test_amap_offline_preparation.py:155: in test_search_administrative_and_category_binding
+    page = run(adapter.search(request(district='合成东区', category='合成景点')))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_search_administrative_and_category_binding[change2] ___________
+tests\places\test_amap_offline_preparation.py:155: in test_search_administrative_and_category_binding
+    page = run(adapter.search(request(district='合成东区', category='合成景点')))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change0] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change1] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change2] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change3] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change4] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change5] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_identity_conflicts_do_not_register[change6] ___________
+tests\places\test_amap_offline_preparation.py:164: in test_detail_identity_conflicts_do_not_register
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_registry_stable_in_process_rejects_reused_id_and_does_not_promise_restart_identity _
+tests\places\test_amap_offline_preparation.py:175: in test_registry_stable_in_process_rejects_reused_id_and_does_not_promise_restart_identity
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_________ test_conflicting_or_duplicate_supplier_ids_fail_whole_page __________
+tests\places\test_amap_offline_preparation.py:190: in test_conflicting_or_duplicate_supplier_ids_fail_whole_page
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________________ test_bad_coordinates_rejected[181,2] _____________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________________ test_bad_coordinates_rejected[1,-91] _____________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________________ test_bad_coordinates_rejected[NaN,2] _____________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________________ test_bad_coordinates_rejected[Infinity,2] __________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________________ test_bad_coordinates_rejected[2] _______________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________________ test_bad_coordinates_rejected[1,2,3] _____________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____________________ test_bad_coordinates_rejected[True] _____________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________________ test_bad_coordinates_rejected[location7] ___________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________________ test_bad_coordinates_rejected[1e100,2] ____________________
+tests\places\test_amap_offline_preparation.py:197: in test_bad_coordinates_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_________________ test_missing_coordinates_stay_missing[None] _________________
+tests\places\test_amap_offline_preparation.py:203: in test_missing_coordinates_stay_missing
+    hit = run(adapter.search(request())).hits[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________________ test_missing_coordinates_stay_missing[] ___________________
+tests\places\test_amap_offline_preparation.py:203: in test_missing_coordinates_stay_missing
+    hit = run(adapter.search(request())).hits[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________ test_missing_coordinates_stay_missing[location2] _______________
+tests\places\test_amap_offline_preparation.py:203: in test_missing_coordinates_stay_missing
+    hit = run(adapter.search(request())).hits[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______ test_empty_optional_fields_and_missing_crs_do_not_grant_geometry _______
+tests\places\test_amap_offline_preparation.py:209: in test_empty_optional_fields_and_missing_crs_do_not_grant_geometry
+    hit = run(adapter.search(request())).hits[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________________ test_malformed_json_and_root_type[{] _____________________
+tests\places\test_amap_offline_preparation.py:221: in test_malformed_json_and_root_type
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________________ test_malformed_json_and_root_type[[]] ____________________
+tests\places\test_amap_offline_preparation.py:221: in test_malformed_json_and_root_type
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________________ test_malformed_json_and_root_type[null] ___________________
+tests\places\test_amap_offline_preparation.py:221: in test_malformed_json_and_root_type
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______ test_malformed_json_and_root_type[{"status":"1","status":"0"}] ________
+tests\places\test_amap_offline_preparation.py:221: in test_malformed_json_and_root_type
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________________ test_malformed_json_and_root_type[{"x":NaN}] _________________
+tests\places\test_amap_offline_preparation.py:221: in test_malformed_json_and_root_type
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________________ test_malformed_json_and_root_type["text"] __________________
+tests\places\test_amap_offline_preparation.py:221: in test_malformed_json_and_root_type
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_response_schema_changes_rejected[change0] ________________
+tests\places\test_amap_offline_preparation.py:228: in test_response_schema_changes_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_response_schema_changes_rejected[change1] ________________
+tests\places\test_amap_offline_preparation.py:228: in test_response_schema_changes_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_response_schema_changes_rejected[change2] ________________
+tests\places\test_amap_offline_preparation.py:228: in test_response_schema_changes_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_response_schema_changes_rejected[change3] ________________
+tests\places\test_amap_offline_preparation.py:228: in test_response_schema_changes_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_response_schema_changes_rejected[change4] ________________
+tests\places\test_amap_offline_preparation.py:228: in test_response_schema_changes_rejected
+    assert run(adapter.search(request())).error.code == 'schema_changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________ test_http_failures_safely_classified[401-auth_denied] ____________
+tests\places\test_amap_offline_preparation.py:234: in test_http_failures_safely_classified
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____________ test_http_failures_safely_classified[403-forbidden] _____________
+tests\places\test_amap_offline_preparation.py:234: in test_http_failures_safely_classified
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_http_failures_safely_classified[429-quota_exceeded] ___________
+tests\places\test_amap_offline_preparation.py:234: in test_http_failures_safely_classified
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________ test_http_failures_safely_classified[500-unavailable] ____________
+tests\places\test_amap_offline_preparation.py:234: in test_http_failures_safely_classified
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________ test_http_failures_safely_classified[503-unavailable] ____________
+tests\places\test_amap_offline_preparation.py:234: in test_http_failures_safely_classified
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________ test_http_failures_safely_classified[302-unsupported] ____________
+tests\places\test_amap_offline_preparation.py:234: in test_http_failures_safely_classified
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________ test_supplier_business_errors[10001-auth_denied] _______________
+tests\places\test_amap_offline_preparation.py:243: in test_supplier_business_errors
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________ test_supplier_business_errors[10005-auth_denied] _______________
+tests\places\test_amap_offline_preparation.py:243: in test_supplier_business_errors
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_supplier_business_errors[10012-forbidden] ________________
+tests\places\test_amap_offline_preparation.py:243: in test_supplier_business_errors
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____________ test_supplier_business_errors[10003-quota_exceeded] _____________
+tests\places\test_amap_offline_preparation.py:243: in test_supplier_business_errors
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____________ test_supplier_business_errors[10014-quota_exceeded] _____________
+tests\places\test_amap_offline_preparation.py:243: in test_supplier_business_errors
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________ test_supplier_business_errors[99999-unavailable] _______________
+tests\places\test_amap_offline_preparation.py:243: in test_supplier_business_errors
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_transport_exceptions_do_not_leak[exception0-timeout] __________
+tests\places\test_amap_offline_preparation.py:250: in test_transport_exceptions_do_not_leak
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________ test_transport_exceptions_do_not_leak[exception1-unavailable] ________
+tests\places\test_amap_offline_preparation.py:250: in test_transport_exceptions_do_not_leak
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___ test_external_authority_fields_rejected_at_root_and_poi[verified-True] ____
+tests\places\test_amap_offline_preparation.py:260: in test_external_authority_fields_rejected_at_root_and_poi
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_external_authority_fields_rejected_at_root_and_poi[verification_state-VERIFIED] _
+tests\places\test_amap_offline_preparation.py:260: in test_external_authority_fields_rejected_at_root_and_poi
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_external_authority_fields_rejected_at_root_and_poi[evidence_id-forged] _
+tests\places\test_amap_offline_preparation.py:260: in test_external_authority_fields_rejected_at_root_and_poi
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__ test_external_authority_fields_rejected_at_root_and_poi[environment-live] __
+tests\places\test_amap_offline_preparation.py:260: in test_external_authority_fields_rejected_at_root_and_poi
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_external_authority_fields_rejected_at_root_and_poi[provider-attacker] __
+tests\places\test_amap_offline_preparation.py:260: in test_external_authority_fields_rejected_at_root_and_poi
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____ test_external_authority_fields_rejected_at_root_and_poi[crs-WGS84] ______
+tests\places\test_amap_offline_preparation.py:260: in test_external_authority_fields_rejected_at_root_and_poi
+    page = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________________ test_instructions_in_names_are_data_only ___________________
+tests\places\test_amap_offline_preparation.py:267: in test_instructions_in_names_are_data_only
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_default_closed_and_concrete_fake_transport_required ___________
+tests\places\test_amap_offline_preparation.py:276: in test_default_closed_and_concrete_fake_transport_required
+    assert run(adapter.search(request())).error.code == code
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_________________ test_input_limits_reject_without_transport __________________
+tests\places\test_amap_offline_preparation.py:291: in test_input_limits_reject_without_transport
+    assert run(adapter.search(PlaceSearchRequest(query=PlaceQuery(keyword='x'*81,city='合成甲城',scope=SCOPE)))).error.code == 'unsupported'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_no_result_or_bad_detail_cannot_create_observation ____________
+tests\places\test_amap_offline_preparation.py:302: in test_no_result_or_bad_detail_cannot_create_observation
+    empty = run(lookup.search(request()))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_observation_cannot_grant_authority_or_snapshot_use ___________
+tests\places\test_amap_offline_preparation.py:314: in test_observation_cannot_grant_authority_or_snapshot_use
+    s = run(lookup.search(request()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___ test_source_result_revalidation_blocks_environment_time_and_query_spoof ___
+tests\places\test_amap_offline_preparation.py:323: in test_source_result_revalidation_blocks_environment_time_and_query_spoof
+    good = run(adapter.search(request()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____________ test_detail_failures_all_produce_safe_typed_errors ______________
+tests\places\test_amap_offline_preparation.py:340: in test_detail_failures_all_produce_safe_typed_errors
+    s=run(lookup.search(request()))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_amap_offline_preparation.py:28: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________________ test_all_fifteen_fabricated_records_normalize ________________
+tests\places\test_place_sources.py:57: in test_all_fifteen_fabricated_records_normalize
+    result = search(source, record.name, district=record.district)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_unique_identity_and_detail_are_date_scoped _______________
+tests\places\test_place_sources.py:74: in test_unique_identity_and_detail_are_date_scoped
+    found = search(source)
+            ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_same_name_district_ambiguity_does_not_select_first ___________
+tests\places\test_place_sources.py:87: in test_same_name_district_ambiguity_does_not_select_first
+    result = search(source, "合成同名花园")
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________ test_same_name_entrances_need_explicit_choice_and_share_site _________
+tests\places\test_place_sources.py:96: in test_same_name_entrances_need_explicit_choice_and_share_site
+    result = search(source, "合成双门展馆")
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________________ test_truncated_ambiguity_is_not_unique ____________________
+tests\places\test_place_sources.py:106: in test_truncated_ambiguity_is_not_unique
+    result = search(source, "合成同名花园", limit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_external_result_cannot_cross_query_binding[change0] ___________
+tests\places\test_place_sources.py:115: in test_external_result_cannot_cross_query_binding
+    assert assess_identity(wrong, search(source)).status == "REJECTED"
+                                  ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_external_result_cannot_cross_query_binding[change1] ___________
+tests\places\test_place_sources.py:115: in test_external_result_cannot_cross_query_binding
+    assert assess_identity(wrong, search(source)).status == "REJECTED"
+                                  ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_external_result_cannot_cross_query_binding[change2] ___________
+tests\places\test_place_sources.py:115: in test_external_result_cannot_cross_query_binding
+    assert assess_identity(wrong, search(source)).status == "REJECTED"
+                                  ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_external_result_cannot_cross_query_binding[change3] ___________
+tests\places\test_place_sources.py:115: in test_external_result_cannot_cross_query_binding
+    assert assess_identity(wrong, search(source)).status == "REJECTED"
+                                  ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_external_result_cannot_cross_query_binding[change4] ___________
+tests\places\test_place_sources.py:115: in test_external_result_cannot_cross_query_binding
+    assert assess_identity(wrong, search(source)).status == "REJECTED"
+                                  ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_____________________ test_city_and_full_resource_binding _____________________
+tests\places\test_place_sources.py:119: in test_city_and_full_resource_binding
+    first = search(source).items[0]
+            ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_partial_is_explicit_and_does_not_select[\u5408\u6210\u6b8b\u7f3a\u5730\u5740\u9986-address] _
+tests\places\test_place_sources.py:137: in test_partial_is_explicit_and_does_not_select
+    result = search(source, name)
+             ^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates] _
+tests\places\test_place_sources.py:137: in test_partial_is_explicit_and_does_not_select
+    result = search(source, name)
+             ^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-coordinates.crs] _
+tests\places\test_place_sources.py:137: in test_partial_is_explicit_and_does_not_select
+    result = search(source, name)
+             ^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance] _
+tests\places\test_place_sources.py:137: in test_partial_is_explicit_and_does_not_select
+    result = search(source, name)
+             ^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u533a\u53bf\u9986-district] _
+tests\places\test_place_sources.py:137: in test_partial_is_explicit_and_does_not_select
+    result = search(source, name)
+             ^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u5f02\u5750\u6807\u9986-crs_mismatch] _
+tests\places\test_place_sources.py:148: in test_coordinate_and_entrance_guards_do_not_convert
+    first, second = search(source).items[0], search(source, name).items[0]
+                    ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-crs_unknown] _
+tests\places\test_place_sources.py:148: in test_coordinate_and_entrance_guards_do_not_convert
+    first, second = search(source).items[0], search(source, name).items[0]
+                    ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates_missing] _
+tests\places\test_place_sources.py:148: in test_coordinate_and_entrance_guards_do_not_convert
+    first, second = search(source).items[0], search(source, name).items[0]
+                    ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance_unknown] _
+tests\places\test_place_sources.py:148: in test_coordinate_and_entrance_guards_do_not_convert
+    first, second = search(source).items[0], search(source, name).items[0]
+                    ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________ test_same_crs_precondition_is_not_a_route_result _______________
+tests\places\test_place_sources.py:156: in test_same_crs_precondition_is_not_a_route_result
+    first = search(source).items[0]
+            ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_________ test_provider_id_conflict_rejected_not_used_as_internal_id __________
+tests\places\test_place_sources.py:179: in test_provider_id_conflict_rejected_not_used_as_internal_id
+    result = search(source, "合成冲突")
+             ^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+____________ test_failures_and_not_found_remain_distinct[timeout] _____________
+tests\places\test_place_sources.py:186: in test_failures_and_not_found_remain_distinct
+    empty = search(source, "合成不存在馆")
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_failures_and_not_found_remain_distinct[unavailable] ___________
+tests\places\test_place_sources.py:186: in test_failures_and_not_found_remain_distinct
+    empty = search(source, "合成不存在馆")
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_failures_and_not_found_remain_distinct[unsupported] ___________
+tests\places\test_place_sources.py:186: in test_failures_and_not_found_remain_distinct
+    empty = search(source, "合成不存在馆")
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_________ test_failures_and_not_found_remain_distinct[schema_changed] _________
+tests\places\test_place_sources.py:186: in test_failures_and_not_found_remain_distinct
+    empty = search(source, "合成不存在馆")
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_normalized_schema_cannot_hide_gaps_or_add_authority ___________
+tests\places\test_place_sources.py:225: in test_normalized_schema_cannot_hide_gaps_or_add_authority
+    item = search(source, "合成无坐标馆").items[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______________ test_server_observation_ids_and_non_live_boundary ______________
+tests\places\test_place_sources.py:235: in test_server_observation_ids_and_non_live_boundary
+    first, second = run(lookup.search(query())), run(lookup.search(query()))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_________________ test_adapter_cannot_spoof_environment[live] _________________
+tests\places\test_place_sources.py:262: in test_adapter_cannot_spoof_environment
+    result = search(source)
+             ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_______________ test_adapter_cannot_spoof_environment[sandbox] ________________
+tests\places\test_place_sources.py:262: in test_adapter_cannot_spoof_environment
+    result = search(source)
+             ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________________ test_adapter_cannot_spoof_environment[replay] ________________
+tests\places\test_place_sources.py:262: in test_adapter_cannot_spoof_environment
+    result = search(source)
+             ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+______ test_boundary_revalidates_bypass_provider_future_scope_and_count _______
+tests\places\test_place_sources.py:269: in test_boundary_revalidates_bypass_provider_future_scope_and_count
+    result = search(source)
+             ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___ test_raised_source_failure_does_not_fabricate_or_leak[failure0-timeout] ___
+tests\places\test_place_sources.py:288: in test_raised_source_failure_does_not_fabricate_or_leak
+    run(PlaceLookup(FakeSource(failure), clock=lambda: NOW).search(query()))
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+_ test_raised_source_failure_does_not_fabricate_or_leak[failure1-unavailable] _
+tests\places\test_place_sources.py:288: in test_raised_source_failure_does_not_fabricate_or_leak
+    run(PlaceLookup(FakeSource(failure), clock=lambda: NOW).search(query()))
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________ test_supplier_instructions_are_inert_text_and_never_authority ________
+tests\places\test_place_sources.py:293: in test_supplier_instructions_are_inert_text_and_never_authority
+    result = run(PlaceLookup(source, clock=lambda: NOW).search(query("合成文本展馆")))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+__________ test_typed_result_rejects_incoherent_or_authority_payload __________
+tests\places\test_place_sources.py:311: in test_typed_result_rejects_incoherent_or_authority_payload
+    result = search(source)
+             ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+________ test_result_rejects_conflicting_provider_or_internal_bindings ________
+tests\places\test_place_sources.py:319: in test_result_rejects_conflicting_provider_or_internal_bindings
+    first = search(source).items[0]
+            ^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+___________ test_detail_never_silently_selects_shared_poi_entrance ____________
+tests\places\test_place_sources.py:335: in test_detail_never_silently_selects_shared_poi_entrance
+    result = search(same_poi, "合成双门展馆", entrance_id="west")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:49: in search
+    return run(source.search(query(keyword, **kwargs)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\places\test_place_sources.py:33: in run
+    with asyncio.Runner(loop_factory=asyncio.SelectorEventLoop) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\runners.py:144: in _lazy_init
+    self._loop = self._loop_factory()
+                 ^^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:66: in __init__
+    self._make_self_pipe()
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py:120: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\socket.py:623: in _fallback_socketpair
+    csock.connect((addr, port))
+scripts\verify_m201c_offline.py:35: in connect
+    raise AssertionError('offline guard blocked TCP')
+E   AssertionError: offline guard blocked TCP
+============================== warnings summary ===============================
+tests/places/test_amap_offline_preparation.py: 29 warnings
+tests/places/test_place_sources.py: 17 warnings
+  D:\Project\EasyTravel\.venv\Lib\site-packages\_pytest\unraisableexception.py:63: PytestUnraisableExceptionWarning: Exception ignored in: <function BaseEventLoop.__del__ at 0x000001B288F8C4A0>
+  
+  Traceback (most recent call last):
+    File "D:\Project\EasyTravel\.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\base_events.py", line 732, in __del__
+      self.close()
+    File "D:\Project\EasyTravel\.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py", line 104, in close
+      self._close_self_pipe()
+    File "D:\Project\EasyTravel\.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py", line 111, in _close_self_pipe
+      self._remove_reader(self._ssock.fileno())
+                          ^^^^^^^^^^^
+  AttributeError: '_WindowsSelectorEventLoop' object has no attribute '_ssock'
+  
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+    warnings.warn(pytest.PytestUnraisableExceptionWarning(msg))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/places/test_amap_offline_preparation.py::test_search_detail_and_unverified_observation
+FAILED tests/places/test_amap_offline_preparation.py::test_even_complete_single_result_needs_explicit_detail
+FAILED tests/places/test_amap_offline_preparation.py::test_multiple_same_names_are_not_merged_and_truncation_remains_visible
+FAILED tests/places/test_amap_offline_preparation.py::test_alias_and_child_relationships_do_not_rename_or_create_entrances
+FAILED tests/places/test_amap_offline_preparation.py::test_unseen_or_unselected_identity_cannot_trigger_detail
+FAILED tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change0]
+FAILED tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change1]
+FAILED tests/places/test_amap_offline_preparation.py::test_search_administrative_and_category_binding[change2]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change0]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change1]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change2]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change3]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change4]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change5]
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_identity_conflicts_do_not_register[change6]
+FAILED tests/places/test_amap_offline_preparation.py::test_registry_stable_in_process_rejects_reused_id_and_does_not_promise_restart_identity
+FAILED tests/places/test_amap_offline_preparation.py::test_conflicting_or_duplicate_supplier_ids_fail_whole_page
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[181,2]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1,-91]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[NaN,2]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[Infinity,2]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[2]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1,2,3]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[True]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[location7]
+FAILED tests/places/test_amap_offline_preparation.py::test_bad_coordinates_rejected[1e100,2]
+FAILED tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[None]
+FAILED tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[]
+FAILED tests/places/test_amap_offline_preparation.py::test_missing_coordinates_stay_missing[location2]
+FAILED tests/places/test_amap_offline_preparation.py::test_empty_optional_fields_and_missing_crs_do_not_grant_geometry
+FAILED tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{]
+FAILED tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[[]]
+FAILED tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[null]
+FAILED tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{"status":"1","status":"0"}]
+FAILED tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type[{"x":NaN}]
+FAILED tests/places/test_amap_offline_preparation.py::test_malformed_json_and_root_type["text"]
+FAILED tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change0]
+FAILED tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change1]
+FAILED tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change2]
+FAILED tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change3]
+FAILED tests/places/test_amap_offline_preparation.py::test_response_schema_changes_rejected[change4]
+FAILED tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[401-auth_denied]
+FAILED tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[403-forbidden]
+FAILED tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[429-quota_exceeded]
+FAILED tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[500-unavailable]
+FAILED tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[503-unavailable]
+FAILED tests/places/test_amap_offline_preparation.py::test_http_failures_safely_classified[302-unsupported]
+FAILED tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10001-auth_denied]
+FAILED tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10005-auth_denied]
+FAILED tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10012-forbidden]
+FAILED tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10003-quota_exceeded]
+FAILED tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[10014-quota_exceeded]
+FAILED tests/places/test_amap_offline_preparation.py::test_supplier_business_errors[99999-unavailable]
+FAILED tests/places/test_amap_offline_preparation.py::test_transport_exceptions_do_not_leak[exception0-timeout]
+FAILED tests/places/test_amap_offline_preparation.py::test_transport_exceptions_do_not_leak[exception1-unavailable]
+FAILED tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[verified-True]
+FAILED tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[verification_state-VERIFIED]
+FAILED tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[evidence_id-forged]
+FAILED tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[environment-live]
+FAILED tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[provider-attacker]
+FAILED tests/places/test_amap_offline_preparation.py::test_external_authority_fields_rejected_at_root_and_poi[crs-WGS84]
+FAILED tests/places/test_amap_offline_preparation.py::test_instructions_in_names_are_data_only
+FAILED tests/places/test_amap_offline_preparation.py::test_default_closed_and_concrete_fake_transport_required
+FAILED tests/places/test_amap_offline_preparation.py::test_input_limits_reject_without_transport
+FAILED tests/places/test_amap_offline_preparation.py::test_no_result_or_bad_detail_cannot_create_observation
+FAILED tests/places/test_amap_offline_preparation.py::test_observation_cannot_grant_authority_or_snapshot_use
+FAILED tests/places/test_amap_offline_preparation.py::test_source_result_revalidation_blocks_environment_time_and_query_spoof
+FAILED tests/places/test_amap_offline_preparation.py::test_detail_failures_all_produce_safe_typed_errors
+FAILED tests/places/test_place_sources.py::test_all_fifteen_fabricated_records_normalize
+FAILED tests/places/test_place_sources.py::test_unique_identity_and_detail_are_date_scoped
+FAILED tests/places/test_place_sources.py::test_same_name_district_ambiguity_does_not_select_first
+FAILED tests/places/test_place_sources.py::test_same_name_entrances_need_explicit_choice_and_share_site
+FAILED tests/places/test_place_sources.py::test_truncated_ambiguity_is_not_unique
+FAILED tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change0]
+FAILED tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change1]
+FAILED tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change2]
+FAILED tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change3]
+FAILED tests/places/test_place_sources.py::test_external_result_cannot_cross_query_binding[change4]
+FAILED tests/places/test_place_sources.py::test_city_and_full_resource_binding
+FAILED tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u6b8b\u7f3a\u5730\u5740\u9986-address]
+FAILED tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates]
+FAILED tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-coordinates.crs]
+FAILED tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance]
+FAILED tests/places/test_place_sources.py::test_partial_is_explicit_and_does_not_select[\u5408\u6210\u65e0\u533a\u53bf\u9986-district]
+FAILED tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u5f02\u5750\u6807\u9986-crs_mismatch]
+FAILED tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u7cfb\u9986-crs_unknown]
+FAILED tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5750\u6807\u9986-coordinates_missing]
+FAILED tests/places/test_place_sources.py::test_coordinate_and_entrance_guards_do_not_convert[\u5408\u6210\u65e0\u5165\u53e3\u9986-entrance_unknown]
+FAILED tests/places/test_place_sources.py::test_same_crs_precondition_is_not_a_route_result
+FAILED tests/places/test_place_sources.py::test_provider_id_conflict_rejected_not_used_as_internal_id
+FAILED tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[timeout]
+FAILED tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unavailable]
+FAILED tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[unsupported]
+FAILED tests/places/test_place_sources.py::test_failures_and_not_found_remain_distinct[schema_changed]
+FAILED tests/places/test_place_sources.py::test_normalized_schema_cannot_hide_gaps_or_add_authority
+FAILED tests/places/test_place_sources.py::test_server_observation_ids_and_non_live_boundary
+FAILED tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[live]
+FAILED tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[sandbox]
+FAILED tests/places/test_place_sources.py::test_adapter_cannot_spoof_environment[replay]
+FAILED tests/places/test_place_sources.py::test_boundary_revalidates_bypass_provider_future_scope_and_count
+FAILED tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure0-timeout]
+FAILED tests/places/test_place_sources.py::test_raised_source_failure_does_not_fabricate_or_leak[failure1-unavailable]
+FAILED tests/places/test_place_sources.py::test_supplier_instructions_are_inert_text_and_never_authority
+FAILED tests/places/test_place_sources.py::test_typed_result_rejects_incoherent_or_authority_payload
+FAILED tests/places/test_place_sources.py::test_result_rejects_conflicting_provider_or_internal_bindings
+FAILED tests/places/test_place_sources.py::test_detail_never_silently_selects_shared_poi_entrance
+================= 106 failed, 23 passed, 46 warnings in 2.77s =================
+D:\Project\EasyTravel\.venv\Lib\site-packages\_pytest\unraisableexception.py:29: RuntimeWarning: coroutine 'SyntheticPlaceSource.search' was never awaited
+  gc.collect()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+D:\Project\EasyTravel\.venv\Lib\site-packages\_pytest\unraisableexception.py:29: RuntimeWarning: coroutine 'PlaceLookup.search' was never awaited
+  gc.collect()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+D:\Project\EasyTravel\.venv\Lib\site-packages\_pytest\unraisableexception.py:63: PytestUnraisableExceptionWarning: Exception ignored in: <function BaseEventLoop.__del__ at 0x000001B288F8C4A0>
+
+Traceback (most recent call last):
+  File "D:\Project\EasyTravel\.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\base_events.py", line 732, in __del__
+    self.close()
+  File "D:\Project\EasyTravel\.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py", line 104, in close
+    self._close_self_pipe()
+  File "D:\Project\EasyTravel\.tools\python\cpython-3.12.16-windows-x86_64-none\Lib\asyncio\selector_events.py", line 111, in _close_self_pipe
+    self._remove_reader(self._ssock.fileno())
+                        ^^^^^^^^^^^
+AttributeError: '_WindowsSelectorEventLoop' object has no attribute '_ssock'
+
+Enable tracemalloc to get traceback where the object was allocated.
+See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+  warnings.warn(pytest.PytestUnraisableExceptionWarning(msg))

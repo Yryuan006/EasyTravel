@@ -1,0 +1,2 @@
+Pinned Node 24.22.2, local CLI, DNS/TCP/HTTP denied: node_modules/vue-tsc/bin/vue-tsc.js --noEmit
+Pinned Node 24.22.2, local CLI, DNS/TCP/HTTP denied: node_modules/typescript/bin/tsc -p tsconfig.node.json

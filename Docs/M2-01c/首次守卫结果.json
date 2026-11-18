@@ -1,0 +1,19 @@
+{
+  "guardInstalledBeforePytest": true,
+  "guardSelfTestBlockedDNS": true,
+  "guardSelfTestBlockedTCP": true,
+  "selfTestAttempts": {
+    "dns": 1,
+    "tcp": 1
+  },
+  "suiteAttempts": {
+    "dns": 0,
+    "tcp": 106,
+    "udp": 0
+  },
+  "asyncioLocalWakeupConnections": 0,
+  "exception": "Only stdlib socketpair loopback setup; never supplier or test application traffic",
+  "realProviderRequests": 0,
+  "transport": "FakeTransport only",
+  "pytestExit": 1
+}

@@ -1,0 +1,1965 @@
+{
+  "PlaceSearchRequest": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "PlaceQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "keyword": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Keyword",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "District"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Category"
+          },
+          "entrance_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entrance Id"
+          },
+          "scope": {
+            "$ref": "#/$defs/ApplicableScope"
+          },
+          "limit": {
+            "default": 10,
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "keyword",
+          "city",
+          "scope"
+        ],
+        "title": "PlaceQuery",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "place-search-v2",
+        "default": "place-search-v2",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "query": {
+        "$ref": "#/$defs/PlaceQuery"
+      },
+      "page": {
+        "default": 1,
+        "maximum": 10,
+        "minimum": 1,
+        "title": "Page",
+        "type": "integer"
+      },
+      "page_size": {
+        "default": 10,
+        "maximum": 20,
+        "minimum": 1,
+        "title": "Page Size",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "title": "PlaceSearchRequest",
+    "type": "object"
+  },
+  "SearchCoverage": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "PlaceQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "keyword": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Keyword",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "District"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Category"
+          },
+          "entrance_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entrance Id"
+          },
+          "scope": {
+            "$ref": "#/$defs/ApplicableScope"
+          },
+          "limit": {
+            "default": 10,
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "keyword",
+          "city",
+          "scope"
+        ],
+        "title": "PlaceQuery",
+        "type": "object"
+      },
+      "PlaceSearchRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "place-search-v2",
+            "default": "place-search-v2",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "query": {
+            "$ref": "#/$defs/PlaceQuery"
+          },
+          "page": {
+            "default": 1,
+            "maximum": 10,
+            "minimum": 1,
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "default": 10,
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "PlaceSearchRequest",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "search-coverage-v1",
+        "default": "search-coverage-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "request": {
+        "$ref": "#/$defs/PlaceSearchRequest"
+      },
+      "received_count": {
+        "maximum": 1000,
+        "minimum": 0,
+        "title": "Received Count",
+        "type": "integer"
+      },
+      "returned_count": {
+        "maximum": 1000,
+        "minimum": 0,
+        "title": "Returned Count",
+        "type": "integer"
+      },
+      "has_unsearched_results": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Has Unsearched Results"
+      },
+      "truncated_count": {
+        "maximum": 1000,
+        "minimum": 0,
+        "title": "Truncated Count",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "request",
+      "received_count",
+      "returned_count",
+      "has_unsearched_results",
+      "truncated_count"
+    ],
+    "title": "SearchCoverage",
+    "type": "object"
+  },
+  "PlaceHit": {
+    "$defs": {
+      "ChildPlaceHint": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "relation": {
+            "const": "child_poi_hint",
+            "default": "child_poi_hint",
+            "title": "Relation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name"
+        ],
+        "title": "ChildPlaceHint",
+        "type": "object"
+      },
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "provider_resource_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Provider Resource Id",
+        "type": "string"
+      },
+      "name": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Name",
+        "type": "string"
+      },
+      "aliases": {
+        "default": [],
+        "items": {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 5,
+        "title": "Aliases",
+        "type": "array"
+      },
+      "city": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "City",
+        "type": "string"
+      },
+      "district": {
+        "anyOf": [
+          {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "District"
+      },
+      "administrative_code": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Administrative Code"
+      },
+      "address": {
+        "anyOf": [
+          {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Address"
+      },
+      "address_complete": {
+        "const": false,
+        "default": false,
+        "title": "Address Complete",
+        "type": "boolean"
+      },
+      "category": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Category",
+        "type": "string"
+      },
+      "coordinates": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/Coordinates"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "coordinate_role": {
+        "const": "poi_position",
+        "default": "poi_position",
+        "title": "Coordinate Role",
+        "type": "string"
+      },
+      "entrance": {
+        "default": null,
+        "title": "Entrance",
+        "type": "null"
+      },
+      "parent_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Parent Id"
+      },
+      "children": {
+        "default": [],
+        "items": {
+          "$ref": "#/$defs/ChildPlaceHint"
+        },
+        "maxItems": 20,
+        "title": "Children",
+        "type": "array"
+      }
+    },
+    "required": [
+      "provider_resource_id",
+      "name",
+      "city",
+      "district",
+      "administrative_code",
+      "address",
+      "category",
+      "coordinates",
+      "parent_id"
+    ],
+    "title": "PlaceHit",
+    "type": "object"
+  },
+  "PlaceSearchPage": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "ChildPlaceHint": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "relation": {
+            "const": "child_poi_hint",
+            "default": "child_poi_hint",
+            "title": "Relation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name"
+        ],
+        "title": "ChildPlaceHint",
+        "type": "object"
+      },
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "OfflineSourceStamp": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "amap_poi_v5",
+            "default": "amap_poi_v5",
+            "title": "Provider",
+            "type": "string"
+          },
+          "api_version": {
+            "const": "v5",
+            "default": "v5",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "target_environment": {
+            "const": "live",
+            "default": "live",
+            "title": "Target Environment",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "data_origin": {
+            "const": "fabricated_fake_transport",
+            "default": "fabricated_fake_transport",
+            "title": "Data Origin",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "provider_updated_at": {
+            "default": null,
+            "title": "Provider Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "observed_at"
+        ],
+        "title": "OfflineSourceStamp",
+        "type": "object"
+      },
+      "PlaceHit": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "aliases": {
+            "default": [],
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 5,
+            "title": "Aliases",
+            "type": "array"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "administrative_code": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Administrative Code"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address"
+          },
+          "address_complete": {
+            "const": false,
+            "default": false,
+            "title": "Address Complete",
+            "type": "boolean"
+          },
+          "category": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coordinate_role": {
+            "const": "poi_position",
+            "default": "poi_position",
+            "title": "Coordinate Role",
+            "type": "string"
+          },
+          "entrance": {
+            "default": null,
+            "title": "Entrance",
+            "type": "null"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "children": {
+            "default": [],
+            "items": {
+              "$ref": "#/$defs/ChildPlaceHint"
+            },
+            "maxItems": 20,
+            "title": "Children",
+            "type": "array"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name",
+          "city",
+          "district",
+          "administrative_code",
+          "address",
+          "category",
+          "coordinates",
+          "parent_id"
+        ],
+        "title": "PlaceHit",
+        "type": "object"
+      },
+      "PlaceQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "keyword": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Keyword",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "District"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Category"
+          },
+          "entrance_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entrance Id"
+          },
+          "scope": {
+            "$ref": "#/$defs/ApplicableScope"
+          },
+          "limit": {
+            "default": 10,
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "keyword",
+          "city",
+          "scope"
+        ],
+        "title": "PlaceQuery",
+        "type": "object"
+      },
+      "PlaceSearchRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "place-search-v2",
+            "default": "place-search-v2",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "query": {
+            "$ref": "#/$defs/PlaceQuery"
+          },
+          "page": {
+            "default": 1,
+            "maximum": 10,
+            "minimum": 1,
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "default": 10,
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "PlaceSearchRequest",
+        "type": "object"
+      },
+      "PlaceSourceFailure": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "enum": [
+              "not_configured",
+              "live_disabled",
+              "transport_not_permitted",
+              "unsupported",
+              "schema_changed",
+              "auth_denied",
+              "forbidden",
+              "quota_exceeded",
+              "timeout",
+              "unavailable",
+              "identity_conflict",
+              "query_binding_mismatch",
+              "not_found"
+            ],
+            "title": "Code",
+            "type": "string"
+          },
+          "retryable": {
+            "default": false,
+            "title": "Retryable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "title": "PlaceSourceFailure",
+        "type": "object"
+      },
+      "SearchCoverage": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "search-coverage-v1",
+            "default": "search-coverage-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request": {
+            "$ref": "#/$defs/PlaceSearchRequest"
+          },
+          "received_count": {
+            "maximum": 1000,
+            "minimum": 0,
+            "title": "Received Count",
+            "type": "integer"
+          },
+          "returned_count": {
+            "maximum": 1000,
+            "minimum": 0,
+            "title": "Returned Count",
+            "type": "integer"
+          },
+          "has_unsearched_results": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Unsearched Results"
+          },
+          "truncated_count": {
+            "maximum": 1000,
+            "minimum": 0,
+            "title": "Truncated Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "request",
+          "received_count",
+          "returned_count",
+          "has_unsearched_results",
+          "truncated_count"
+        ],
+        "title": "SearchCoverage",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "place-search-page-v2",
+        "default": "place-search-page-v2",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "source": {
+        "$ref": "#/$defs/OfflineSourceStamp"
+      },
+      "coverage": {
+        "$ref": "#/$defs/SearchCoverage"
+      },
+      "hits": {
+        "items": {
+          "$ref": "#/$defs/PlaceHit"
+        },
+        "maxItems": 20,
+        "title": "Hits",
+        "type": "array"
+      },
+      "error": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/PlaceSourceFailure"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "requires_explicit_selection": {
+        "const": true,
+        "default": true,
+        "title": "Requires Explicit Selection",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "source",
+      "coverage",
+      "hits",
+      "error"
+    ],
+    "title": "PlaceSearchPage",
+    "type": "object"
+  },
+  "PlaceDetailResult": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "ChildPlaceHint": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "relation": {
+            "const": "child_poi_hint",
+            "default": "child_poi_hint",
+            "title": "Relation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name"
+        ],
+        "title": "ChildPlaceHint",
+        "type": "object"
+      },
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "OfflineSourceStamp": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "amap_poi_v5",
+            "default": "amap_poi_v5",
+            "title": "Provider",
+            "type": "string"
+          },
+          "api_version": {
+            "const": "v5",
+            "default": "v5",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "target_environment": {
+            "const": "live",
+            "default": "live",
+            "title": "Target Environment",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "data_origin": {
+            "const": "fabricated_fake_transport",
+            "default": "fabricated_fake_transport",
+            "title": "Data Origin",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "provider_updated_at": {
+            "default": null,
+            "title": "Provider Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "observed_at"
+        ],
+        "title": "OfflineSourceStamp",
+        "type": "object"
+      },
+      "PlaceHit": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "aliases": {
+            "default": [],
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 5,
+            "title": "Aliases",
+            "type": "array"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "administrative_code": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Administrative Code"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address"
+          },
+          "address_complete": {
+            "const": false,
+            "default": false,
+            "title": "Address Complete",
+            "type": "boolean"
+          },
+          "category": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coordinate_role": {
+            "const": "poi_position",
+            "default": "poi_position",
+            "title": "Coordinate Role",
+            "type": "string"
+          },
+          "entrance": {
+            "default": null,
+            "title": "Entrance",
+            "type": "null"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "children": {
+            "default": [],
+            "items": {
+              "$ref": "#/$defs/ChildPlaceHint"
+            },
+            "maxItems": 20,
+            "title": "Children",
+            "type": "array"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name",
+          "city",
+          "district",
+          "administrative_code",
+          "address",
+          "category",
+          "coordinates",
+          "parent_id"
+        ],
+        "title": "PlaceHit",
+        "type": "object"
+      },
+      "PlaceSourceFailure": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "enum": [
+              "not_configured",
+              "live_disabled",
+              "transport_not_permitted",
+              "unsupported",
+              "schema_changed",
+              "auth_denied",
+              "forbidden",
+              "quota_exceeded",
+              "timeout",
+              "unavailable",
+              "identity_conflict",
+              "query_binding_mismatch",
+              "not_found"
+            ],
+            "title": "Code",
+            "type": "string"
+          },
+          "retryable": {
+            "default": false,
+            "title": "Retryable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "title": "PlaceSourceFailure",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "place-detail-v2",
+        "default": "place-detail-v2",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "source": {
+        "$ref": "#/$defs/OfflineSourceStamp"
+      },
+      "scope": {
+        "$ref": "#/$defs/ApplicableScope"
+      },
+      "requested_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Requested Id",
+        "type": "string"
+      },
+      "hit": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/PlaceHit"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "error": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/PlaceSourceFailure"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "source",
+      "scope",
+      "requested_id",
+      "hit",
+      "error"
+    ],
+    "title": "PlaceDetailResult",
+    "type": "object"
+  },
+  "LiveUnverifiedObservation": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "ChildPlaceHint": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "relation": {
+            "const": "child_poi_hint",
+            "default": "child_poi_hint",
+            "title": "Relation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name"
+        ],
+        "title": "ChildPlaceHint",
+        "type": "object"
+      },
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "OfflineSourceStamp": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "amap_poi_v5",
+            "default": "amap_poi_v5",
+            "title": "Provider",
+            "type": "string"
+          },
+          "api_version": {
+            "const": "v5",
+            "default": "v5",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "target_environment": {
+            "const": "live",
+            "default": "live",
+            "title": "Target Environment",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "data_origin": {
+            "const": "fabricated_fake_transport",
+            "default": "fabricated_fake_transport",
+            "title": "Data Origin",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "provider_updated_at": {
+            "default": null,
+            "title": "Provider Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "observed_at"
+        ],
+        "title": "OfflineSourceStamp",
+        "type": "object"
+      },
+      "PlaceHit": {
+        "additionalProperties": false,
+        "properties": {
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "aliases": {
+            "default": [],
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 5,
+            "title": "Aliases",
+            "type": "array"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "administrative_code": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Administrative Code"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address"
+          },
+          "address_complete": {
+            "const": false,
+            "default": false,
+            "title": "Address Complete",
+            "type": "boolean"
+          },
+          "category": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coordinate_role": {
+            "const": "poi_position",
+            "default": "poi_position",
+            "title": "Coordinate Role",
+            "type": "string"
+          },
+          "entrance": {
+            "default": null,
+            "title": "Entrance",
+            "type": "null"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "children": {
+            "default": [],
+            "items": {
+              "$ref": "#/$defs/ChildPlaceHint"
+            },
+            "maxItems": 20,
+            "title": "Children",
+            "type": "array"
+          }
+        },
+        "required": [
+          "provider_resource_id",
+          "name",
+          "city",
+          "district",
+          "administrative_code",
+          "address",
+          "category",
+          "coordinates",
+          "parent_id"
+        ],
+        "title": "PlaceHit",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "description": "Live-shaped boundary exercised ONLY with fabricated transport in this phase.",
+    "properties": {
+      "schema_version": {
+        "const": "live-place-observation-v1",
+        "default": "live-place-observation-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "evidence_id": {
+        "format": "uuid4",
+        "title": "Evidence Id",
+        "type": "string"
+      },
+      "source": {
+        "$ref": "#/$defs/OfflineSourceStamp"
+      },
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "query_scope": {
+        "$ref": "#/$defs/ApplicableScope"
+      },
+      "fact": {
+        "$ref": "#/$defs/PlaceHit"
+      },
+      "source_reference": {
+        "pattern": "^offline-observation:[0-9a-f-]{36}$",
+        "title": "Source Reference",
+        "type": "string"
+      },
+      "verification_state": {
+        "const": "SOURCE_UNVERIFIED",
+        "default": "SOURCE_UNVERIFIED",
+        "title": "Verification State",
+        "type": "string"
+      },
+      "applicable_date_verified": {
+        "const": false,
+        "default": false,
+        "title": "Applicable Date Verified",
+        "type": "boolean"
+      },
+      "opening_state": {
+        "const": "UNKNOWN",
+        "default": "UNKNOWN",
+        "title": "Opening State",
+        "type": "string"
+      },
+      "price_state": {
+        "const": "UNKNOWN",
+        "default": "UNKNOWN",
+        "title": "Price State",
+        "type": "string"
+      },
+      "route_state": {
+        "const": "UNKNOWN",
+        "default": "UNKNOWN",
+        "title": "Route State",
+        "type": "string"
+      },
+      "usable_for_real_trip": {
+        "const": false,
+        "default": false,
+        "title": "Usable For Real Trip",
+        "type": "boolean"
+      },
+      "usable_in_confirmed_snapshot": {
+        "const": false,
+        "default": false,
+        "title": "Usable In Confirmed Snapshot",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "evidence_id",
+      "source",
+      "resource",
+      "query_scope",
+      "fact",
+      "source_reference"
+    ],
+    "title": "LiveUnverifiedObservation",
+    "type": "object"
+  },
+  "DetailSelection": {
+    "additionalProperties": false,
+    "properties": {
+      "search_id": {
+        "format": "uuid4",
+        "title": "Search Id",
+        "type": "string"
+      },
+      "provider_resource_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Provider Resource Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "search_id",
+      "provider_resource_id"
+    ],
+    "title": "DetailSelection",
+    "type": "object"
+  },
+  "LivePlaceSourceConfig": {
+    "additionalProperties": false,
+    "properties": {
+      "provider": {
+        "const": "amap_poi_v5",
+        "default": "amap_poi_v5",
+        "title": "Provider",
+        "type": "string"
+      },
+      "api_version": {
+        "const": "v5",
+        "default": "v5",
+        "title": "Api Version",
+        "type": "string"
+      },
+      "environment": {
+        "const": "live",
+        "default": "live",
+        "title": "Environment",
+        "type": "string"
+      },
+      "host": {
+        "const": "restapi.amap.com",
+        "default": "restapi.amap.com",
+        "title": "Host",
+        "type": "string"
+      },
+      "search_path": {
+        "const": "/v5/place/text",
+        "default": "/v5/place/text",
+        "title": "Search Path",
+        "type": "string"
+      },
+      "detail_path": {
+        "const": "/v5/place/detail",
+        "default": "/v5/place/detail",
+        "title": "Detail Path",
+        "type": "string"
+      },
+      "response_crs": {
+        "anyOf": [
+          {
+            "const": "GCJ-02",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": "GCJ-02",
+        "title": "Response Crs"
+      },
+      "offline_parsing_enabled": {
+        "default": false,
+        "title": "Offline Parsing Enabled",
+        "type": "boolean"
+      },
+      "live_enabled": {
+        "const": false,
+        "default": false,
+        "title": "Live Enabled",
+        "type": "boolean"
+      },
+      "execution_mode": {
+        "const": "offline_fake_only",
+        "default": "offline_fake_only",
+        "title": "Execution Mode",
+        "type": "string"
+      }
+    },
+    "title": "LivePlaceSourceConfig",
+    "type": "object"
+  }
+}

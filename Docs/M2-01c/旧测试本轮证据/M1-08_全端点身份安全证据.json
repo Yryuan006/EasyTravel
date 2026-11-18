@@ -1,0 +1,798 @@
+{
+  "records": [
+    {
+      "method": "POST",
+      "path": "/api/v1/trips",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/requirements",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/requirements",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/requirements",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/requirements",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/requirements",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/next",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/next",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/next",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/next",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/missing/answers",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/missing/answers",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/missing/answers",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/missing/answers",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/clarifications/missing/answers",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations/53f14e4b-cdeb-47a9-93b0-08bcfe165461",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations/53f14e4b-cdeb-47a9-93b0-08bcfe165461",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations/53f14e4b-cdeb-47a9-93b0-08bcfe165461",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generations/53f14e4b-cdeb-47a9-93b0-08bcfe165461",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generation-state",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generation-state",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generation-state",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/generation-state",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmation-preview",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmation-preview",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmation-preview",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmation-preview",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmations",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmations",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmations",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmations",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/confirmations",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/change-intents",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/change-intents",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/change-intents",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/change-intents",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/change-intents",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e/decisions",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e/decisions",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e/decisions",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e/decisions",
+      "case": "forged_owner_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/proposals/383db569-f410-4687-8381-facb80e73c1e/decisions",
+      "case": "model_payload_body",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots/e3cc1dc7-e734-4f2c-934d-76077e1b15ae",
+      "case": "missing_token",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "A valid local development credential is required."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots/e3cc1dc7-e734-4f2c-934d-76077e1b15ae",
+      "case": "forged_actor_header",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots/e3cc1dc7-e734-4f2c-934d-76077e1b15ae",
+      "case": "other_owner",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "resource_not_found",
+          "message": "Resource not found."
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trips/39355e3c-3cfb-4b52-ab73-b6e9087cf42c/snapshots/e3cc1dc7-e734-4f2c-934d-76077e1b15ae",
+      "case": "forged_owner_query",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request validation failed."
+        }
+      }
+    }
+  ],
+  "checks": 66,
+  "readOnly": true
+}

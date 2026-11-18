@@ -1,0 +1,14 @@
+{
+  "initialDockerEngineRunning": false,
+  "dockerStartedInBackground": true,
+  "initialENV00Running": false,
+  "ENV00StartedForReadOnlyFingerprint": true,
+  "finalENV00Running": false,
+  "ENV00InitialStateRestored": true,
+  "otherProjectContainersNotOperated": true,
+  "newRegressionClusterStopped": true,
+  "newRegressionVolumeRetained": true,
+  "acceptedRunnerReused": "verify_m201a_isolated",
+  "resourceNamingPrefix": "m201a-isolated",
+  "note": "New unique regression container/volume/databases despite inherited naming prefix; no existing database used as write fallback."
+}
