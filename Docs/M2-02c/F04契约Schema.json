@@ -1,0 +1,3056 @@
+{
+  "TransitStopRef": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "access_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Access Id",
+        "type": "string"
+      },
+      "role": {
+        "enum": [
+          "entrance",
+          "exit"
+        ],
+        "title": "Role",
+        "type": "string"
+      }
+    },
+    "required": [
+      "resource",
+      "access_id",
+      "role"
+    ],
+    "title": "TransitStopRef",
+    "type": "object"
+  },
+  "TransitSegment": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "segment_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Segment Id",
+        "type": "string"
+      },
+      "internal_line_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Internal Line Id",
+        "type": "string"
+      },
+      "provider": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Provider",
+        "type": "string"
+      },
+      "provider_line_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Provider Line Id",
+        "type": "string"
+      },
+      "direction_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Direction Id",
+        "type": "string"
+      },
+      "boarding_stop": {
+        "$ref": "#/$defs/TransitStopRef"
+      },
+      "alighting_stop": {
+        "$ref": "#/$defs/TransitStopRef"
+      }
+    },
+    "required": [
+      "segment_id",
+      "internal_line_id",
+      "provider",
+      "provider_line_id",
+      "direction_id",
+      "boarding_stop",
+      "alighting_stop"
+    ],
+    "title": "TransitSegment",
+    "type": "object"
+  },
+  "TransitSource": {
+    "additionalProperties": false,
+    "properties": {
+      "provider": {
+        "const": "synthetic_transit_fixture",
+        "default": "synthetic_transit_fixture",
+        "title": "Provider",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "source_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "observed_at": {
+        "format": "date-time",
+        "title": "Observed At",
+        "type": "string"
+      },
+      "expires_at": {
+        "format": "date-time",
+        "title": "Expires At",
+        "type": "string"
+      },
+      "source_reference": {
+        "maxLength": 100,
+        "pattern": "^synthetic-transit:[A-Za-z0-9_-]+$",
+        "title": "Source Reference",
+        "type": "string"
+      },
+      "verification_state": {
+        "const": "SYNTHETIC_UNVERIFIED",
+        "default": "SYNTHETIC_UNVERIFIED",
+        "title": "Verification State",
+        "type": "string"
+      },
+      "supplier_updated_at": {
+        "default": null,
+        "title": "Supplier Updated At",
+        "type": "null"
+      }
+    },
+    "required": [
+      "source_id",
+      "observed_at",
+      "expires_at",
+      "source_reference"
+    ],
+    "title": "TransitSource",
+    "type": "object"
+  },
+  "TransitFactScope": {
+    "additionalProperties": false,
+    "properties": {
+      "service_date": {
+        "format": "date",
+        "title": "Service Date",
+        "type": "string"
+      },
+      "starts_at": {
+        "format": "date-time",
+        "title": "Starts At",
+        "type": "string"
+      },
+      "ends_at": {
+        "format": "date-time",
+        "title": "Ends At",
+        "type": "string"
+      }
+    },
+    "required": [
+      "service_date",
+      "starts_at",
+      "ends_at"
+    ],
+    "title": "TransitFactScope",
+    "type": "object"
+  },
+  "ServiceOccurrence": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TransitFactScope": {
+        "additionalProperties": false,
+        "properties": {
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "starts_at": {
+            "format": "date-time",
+            "title": "Starts At",
+            "type": "string"
+          },
+          "ends_at": {
+            "format": "date-time",
+            "title": "Ends At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_date",
+          "starts_at",
+          "ends_at"
+        ],
+        "title": "TransitFactScope",
+        "type": "object"
+      },
+      "TransitSegment": {
+        "additionalProperties": false,
+        "properties": {
+          "segment_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Segment Id",
+            "type": "string"
+          },
+          "internal_line_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Line Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_line_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Line Id",
+            "type": "string"
+          },
+          "direction_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Direction Id",
+            "type": "string"
+          },
+          "boarding_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          },
+          "alighting_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          }
+        },
+        "required": [
+          "segment_id",
+          "internal_line_id",
+          "provider",
+          "provider_line_id",
+          "direction_id",
+          "boarding_stop",
+          "alighting_stop"
+        ],
+        "title": "TransitSegment",
+        "type": "object"
+      },
+      "TransitSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_transit_fixture",
+            "default": "synthetic_transit_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-transit:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "TransitSource",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "fact_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Fact Id",
+        "type": "string"
+      },
+      "occurrence_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Occurrence Id",
+        "type": "string"
+      },
+      "segment": {
+        "$ref": "#/$defs/TransitSegment"
+      },
+      "scope": {
+        "$ref": "#/$defs/TransitFactScope"
+      },
+      "source": {
+        "$ref": "#/$defs/TransitSource"
+      },
+      "state": {
+        "enum": [
+          "OPERATING",
+          "NO_SERVICE",
+          "UNKNOWN"
+        ],
+        "title": "State",
+        "type": "string"
+      },
+      "date_information_complete": {
+        "title": "Date Information Complete",
+        "type": "boolean"
+      },
+      "suspension": {
+        "enum": [
+          "CLEAR",
+          "SUSPENDED",
+          "UNKNOWN"
+        ],
+        "title": "Suspension",
+        "type": "string"
+      },
+      "origin_departure": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Origin Departure"
+      },
+      "board_arrival": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Board Arrival"
+      },
+      "board_departure": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Board Departure"
+      },
+      "alight_arrival": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Alight Arrival"
+      },
+      "first_board_departure": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "First Board Departure"
+      },
+      "last_board_departure": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Last Board Departure"
+      },
+      "note": {
+        "anyOf": [
+          {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Note"
+      }
+    },
+    "required": [
+      "fact_id",
+      "occurrence_id",
+      "segment",
+      "scope",
+      "source",
+      "state",
+      "date_information_complete",
+      "suspension",
+      "board_arrival",
+      "board_departure",
+      "alight_arrival",
+      "first_board_departure",
+      "last_board_departure"
+    ],
+    "title": "ServiceOccurrence",
+    "type": "object"
+  },
+  "TimeAllowance": {
+    "additionalProperties": false,
+    "properties": {
+      "walking_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Walking Seconds"
+      },
+      "buffer_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Buffer Seconds"
+      },
+      "required_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Required Seconds"
+      },
+      "buffer_included_in_required": {
+        "const": true,
+        "default": true,
+        "title": "Buffer Included In Required",
+        "type": "boolean"
+      },
+      "policy_version": {
+        "const": "F04-explicit-walk-plus-buffer-seconds-v1",
+        "default": "F04-explicit-walk-plus-buffer-seconds-v1",
+        "title": "Policy Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "walking_seconds",
+      "buffer_seconds",
+      "required_seconds"
+    ],
+    "title": "TimeAllowance",
+    "type": "object"
+  },
+  "FirstBoardingAccess": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TimeAllowance": {
+        "additionalProperties": false,
+        "properties": {
+          "walking_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walking Seconds"
+          },
+          "buffer_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Buffer Seconds"
+          },
+          "required_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Required Seconds"
+          },
+          "buffer_included_in_required": {
+            "const": true,
+            "default": true,
+            "title": "Buffer Included In Required",
+            "type": "boolean"
+          },
+          "policy_version": {
+            "const": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "default": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "title": "Policy Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "walking_seconds",
+          "buffer_seconds",
+          "required_seconds"
+        ],
+        "title": "TimeAllowance",
+        "type": "object"
+      },
+      "TransitFactScope": {
+        "additionalProperties": false,
+        "properties": {
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "starts_at": {
+            "format": "date-time",
+            "title": "Starts At",
+            "type": "string"
+          },
+          "ends_at": {
+            "format": "date-time",
+            "title": "Ends At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_date",
+          "starts_at",
+          "ends_at"
+        ],
+        "title": "TransitFactScope",
+        "type": "object"
+      },
+      "TransitSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_transit_fixture",
+            "default": "synthetic_transit_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-transit:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "TransitSource",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "fact_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Fact Id",
+        "type": "string"
+      },
+      "rule_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Rule Id",
+        "type": "string"
+      },
+      "activity_resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "activity_exit_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Activity Exit Id",
+        "type": "string"
+      },
+      "to_stop": {
+        "$ref": "#/$defs/TransitStopRef"
+      },
+      "scope": {
+        "$ref": "#/$defs/TransitFactScope"
+      },
+      "source": {
+        "$ref": "#/$defs/TransitSource"
+      },
+      "allowance": {
+        "$ref": "#/$defs/TimeAllowance"
+      }
+    },
+    "required": [
+      "fact_id",
+      "rule_id",
+      "activity_resource",
+      "activity_exit_id",
+      "to_stop",
+      "scope",
+      "source",
+      "allowance"
+    ],
+    "title": "FirstBoardingAccess",
+    "type": "object"
+  },
+  "TransferRule": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TimeAllowance": {
+        "additionalProperties": false,
+        "properties": {
+          "walking_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walking Seconds"
+          },
+          "buffer_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Buffer Seconds"
+          },
+          "required_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Required Seconds"
+          },
+          "buffer_included_in_required": {
+            "const": true,
+            "default": true,
+            "title": "Buffer Included In Required",
+            "type": "boolean"
+          },
+          "policy_version": {
+            "const": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "default": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "title": "Policy Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "walking_seconds",
+          "buffer_seconds",
+          "required_seconds"
+        ],
+        "title": "TimeAllowance",
+        "type": "object"
+      },
+      "TransitFactScope": {
+        "additionalProperties": false,
+        "properties": {
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "starts_at": {
+            "format": "date-time",
+            "title": "Starts At",
+            "type": "string"
+          },
+          "ends_at": {
+            "format": "date-time",
+            "title": "Ends At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_date",
+          "starts_at",
+          "ends_at"
+        ],
+        "title": "TransitFactScope",
+        "type": "object"
+      },
+      "TransitSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_transit_fixture",
+            "default": "synthetic_transit_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-transit:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "TransitSource",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "fact_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Fact Id",
+        "type": "string"
+      },
+      "rule_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Rule Id",
+        "type": "string"
+      },
+      "from_stop": {
+        "$ref": "#/$defs/TransitStopRef"
+      },
+      "to_stop": {
+        "$ref": "#/$defs/TransitStopRef"
+      },
+      "scope": {
+        "$ref": "#/$defs/TransitFactScope"
+      },
+      "source": {
+        "$ref": "#/$defs/TransitSource"
+      },
+      "allowance": {
+        "$ref": "#/$defs/TimeAllowance"
+      }
+    },
+    "required": [
+      "fact_id",
+      "rule_id",
+      "from_stop",
+      "to_stop",
+      "scope",
+      "source",
+      "allowance"
+    ],
+    "title": "TransferRule",
+    "type": "object"
+  },
+  "TransitConnection": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TransitSegment": {
+        "additionalProperties": false,
+        "properties": {
+          "segment_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Segment Id",
+            "type": "string"
+          },
+          "internal_line_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Line Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_line_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Line Id",
+            "type": "string"
+          },
+          "direction_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Direction Id",
+            "type": "string"
+          },
+          "boarding_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          },
+          "alighting_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          }
+        },
+        "required": [
+          "segment_id",
+          "internal_line_id",
+          "provider",
+          "provider_line_id",
+          "direction_id",
+          "boarding_stop",
+          "alighting_stop"
+        ],
+        "title": "TransitSegment",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "connection_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Connection Id",
+        "type": "string"
+      },
+      "activity_resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "activity_exit_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Activity Exit Id",
+        "type": "string"
+      },
+      "previous_end": {
+        "format": "date-time",
+        "title": "Previous End",
+        "type": "string"
+      },
+      "segments": {
+        "items": {
+          "$ref": "#/$defs/TransitSegment"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "title": "Segments",
+        "type": "array"
+      },
+      "occurrence_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "title": "Occurrence Ids",
+        "type": "array"
+      },
+      "first_access_rule_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "First Access Rule Id",
+        "type": "string"
+      },
+      "transfer_rule_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Transfer Rule Id"
+      },
+      "risk_flags": {
+        "default": [],
+        "items": {
+          "enum": [
+            "near_last_service",
+            "remote_only",
+            "mandatory",
+            "hard_constraint",
+            "intercity",
+            "airport"
+          ],
+          "type": "string"
+        },
+        "maxItems": 6,
+        "title": "Risk Flags",
+        "type": "array"
+      },
+      "requested_scope": {
+        "default": "same_city_same_day",
+        "enum": [
+          "same_city_same_day",
+          "cross_midnight",
+          "rail",
+          "airport",
+          "real_time"
+        ],
+        "title": "Requested Scope",
+        "type": "string"
+      }
+    },
+    "required": [
+      "connection_id",
+      "activity_resource",
+      "activity_exit_id",
+      "previous_end",
+      "segments",
+      "occurrence_ids",
+      "first_access_rule_id",
+      "transfer_rule_id"
+    ],
+    "title": "TransitConnection",
+    "type": "object"
+  },
+  "F04ValidationInput": {
+    "$defs": {
+      "FirstBoardingAccess": {
+        "additionalProperties": false,
+        "properties": {
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "rule_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "activity_resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "activity_exit_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Activity Exit Id",
+            "type": "string"
+          },
+          "to_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          },
+          "scope": {
+            "$ref": "#/$defs/TransitFactScope"
+          },
+          "source": {
+            "$ref": "#/$defs/TransitSource"
+          },
+          "allowance": {
+            "$ref": "#/$defs/TimeAllowance"
+          }
+        },
+        "required": [
+          "fact_id",
+          "rule_id",
+          "activity_resource",
+          "activity_exit_id",
+          "to_stop",
+          "scope",
+          "source",
+          "allowance"
+        ],
+        "title": "FirstBoardingAccess",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "ServiceOccurrence": {
+        "additionalProperties": false,
+        "properties": {
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "occurrence_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Occurrence Id",
+            "type": "string"
+          },
+          "segment": {
+            "$ref": "#/$defs/TransitSegment"
+          },
+          "scope": {
+            "$ref": "#/$defs/TransitFactScope"
+          },
+          "source": {
+            "$ref": "#/$defs/TransitSource"
+          },
+          "state": {
+            "enum": [
+              "OPERATING",
+              "NO_SERVICE",
+              "UNKNOWN"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "date_information_complete": {
+            "title": "Date Information Complete",
+            "type": "boolean"
+          },
+          "suspension": {
+            "enum": [
+              "CLEAR",
+              "SUSPENDED",
+              "UNKNOWN"
+            ],
+            "title": "Suspension",
+            "type": "string"
+          },
+          "origin_departure": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Origin Departure"
+          },
+          "board_arrival": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Board Arrival"
+          },
+          "board_departure": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Board Departure"
+          },
+          "alight_arrival": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alight Arrival"
+          },
+          "first_board_departure": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Board Departure"
+          },
+          "last_board_departure": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Board Departure"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Note"
+          }
+        },
+        "required": [
+          "fact_id",
+          "occurrence_id",
+          "segment",
+          "scope",
+          "source",
+          "state",
+          "date_information_complete",
+          "suspension",
+          "board_arrival",
+          "board_departure",
+          "alight_arrival",
+          "first_board_departure",
+          "last_board_departure"
+        ],
+        "title": "ServiceOccurrence",
+        "type": "object"
+      },
+      "TimeAllowance": {
+        "additionalProperties": false,
+        "properties": {
+          "walking_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walking Seconds"
+          },
+          "buffer_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Buffer Seconds"
+          },
+          "required_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Required Seconds"
+          },
+          "buffer_included_in_required": {
+            "const": true,
+            "default": true,
+            "title": "Buffer Included In Required",
+            "type": "boolean"
+          },
+          "policy_version": {
+            "const": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "default": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "title": "Policy Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "walking_seconds",
+          "buffer_seconds",
+          "required_seconds"
+        ],
+        "title": "TimeAllowance",
+        "type": "object"
+      },
+      "TransferRule": {
+        "additionalProperties": false,
+        "properties": {
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "rule_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "from_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          },
+          "to_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          },
+          "scope": {
+            "$ref": "#/$defs/TransitFactScope"
+          },
+          "source": {
+            "$ref": "#/$defs/TransitSource"
+          },
+          "allowance": {
+            "$ref": "#/$defs/TimeAllowance"
+          }
+        },
+        "required": [
+          "fact_id",
+          "rule_id",
+          "from_stop",
+          "to_stop",
+          "scope",
+          "source",
+          "allowance"
+        ],
+        "title": "TransferRule",
+        "type": "object"
+      },
+      "TransitConnection": {
+        "additionalProperties": false,
+        "properties": {
+          "connection_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Connection Id",
+            "type": "string"
+          },
+          "activity_resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "activity_exit_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Activity Exit Id",
+            "type": "string"
+          },
+          "previous_end": {
+            "format": "date-time",
+            "title": "Previous End",
+            "type": "string"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/$defs/TransitSegment"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Segments",
+            "type": "array"
+          },
+          "occurrence_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Occurrence Ids",
+            "type": "array"
+          },
+          "first_access_rule_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "First Access Rule Id",
+            "type": "string"
+          },
+          "transfer_rule_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transfer Rule Id"
+          },
+          "risk_flags": {
+            "default": [],
+            "items": {
+              "enum": [
+                "near_last_service",
+                "remote_only",
+                "mandatory",
+                "hard_constraint",
+                "intercity",
+                "airport"
+              ],
+              "type": "string"
+            },
+            "maxItems": 6,
+            "title": "Risk Flags",
+            "type": "array"
+          },
+          "requested_scope": {
+            "default": "same_city_same_day",
+            "enum": [
+              "same_city_same_day",
+              "cross_midnight",
+              "rail",
+              "airport",
+              "real_time"
+            ],
+            "title": "Requested Scope",
+            "type": "string"
+          }
+        },
+        "required": [
+          "connection_id",
+          "activity_resource",
+          "activity_exit_id",
+          "previous_end",
+          "segments",
+          "occurrence_ids",
+          "first_access_rule_id",
+          "transfer_rule_id"
+        ],
+        "title": "TransitConnection",
+        "type": "object"
+      },
+      "TransitFactScope": {
+        "additionalProperties": false,
+        "properties": {
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "starts_at": {
+            "format": "date-time",
+            "title": "Starts At",
+            "type": "string"
+          },
+          "ends_at": {
+            "format": "date-time",
+            "title": "Ends At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_date",
+          "starts_at",
+          "ends_at"
+        ],
+        "title": "TransitFactScope",
+        "type": "object"
+      },
+      "TransitSegment": {
+        "additionalProperties": false,
+        "properties": {
+          "segment_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Segment Id",
+            "type": "string"
+          },
+          "internal_line_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Line Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_line_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Line Id",
+            "type": "string"
+          },
+          "direction_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Direction Id",
+            "type": "string"
+          },
+          "boarding_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          },
+          "alighting_stop": {
+            "$ref": "#/$defs/TransitStopRef"
+          }
+        },
+        "required": [
+          "segment_id",
+          "internal_line_id",
+          "provider",
+          "provider_line_id",
+          "direction_id",
+          "boarding_stop",
+          "alighting_stop"
+        ],
+        "title": "TransitSegment",
+        "type": "object"
+      },
+      "TransitSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_transit_fixture",
+            "default": "synthetic_transit_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-transit:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "TransitSource",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "resolved_stops": {
+        "items": {
+          "$ref": "#/$defs/TransitStopRef"
+        },
+        "maxItems": 200,
+        "title": "Resolved Stops",
+        "type": "array"
+      },
+      "connections": {
+        "items": {
+          "$ref": "#/$defs/TransitConnection"
+        },
+        "maxItems": 100,
+        "title": "Connections",
+        "type": "array"
+      },
+      "services": {
+        "items": {
+          "$ref": "#/$defs/ServiceOccurrence"
+        },
+        "maxItems": 400,
+        "title": "Services",
+        "type": "array"
+      },
+      "first_access_rules": {
+        "items": {
+          "$ref": "#/$defs/FirstBoardingAccess"
+        },
+        "maxItems": 200,
+        "title": "First Access Rules",
+        "type": "array"
+      },
+      "transfer_rules": {
+        "items": {
+          "$ref": "#/$defs/TransferRule"
+        },
+        "maxItems": 200,
+        "title": "Transfer Rules",
+        "type": "array"
+      }
+    },
+    "required": [
+      "resolved_stops",
+      "connections",
+      "services",
+      "first_access_rules",
+      "transfer_rules"
+    ],
+    "title": "F04ValidationInput",
+    "type": "object"
+  },
+  "F04FeasibilityCheck": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "check_id": {
+        "enum": [
+          "F04.service",
+          "F04.first_boarding",
+          "F04.transfer",
+          "F04.scope"
+        ],
+        "title": "Check Id",
+        "type": "string"
+      },
+      "connection_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Connection Id",
+        "type": "string"
+      },
+      "segment_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Segment Ids",
+        "type": "array"
+      },
+      "occurrence_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Occurrence Ids",
+        "type": "array"
+      },
+      "stops": {
+        "items": {
+          "$ref": "#/$defs/TransitStopRef"
+        },
+        "title": "Stops",
+        "type": "array"
+      },
+      "target_date": {
+        "format": "date",
+        "title": "Target Date",
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "reason_code": {
+        "enum": [
+          "unsupported_scope",
+          "invalid_request_time",
+          "stop_binding_mismatch",
+          "missing_service",
+          "date_not_applicable",
+          "cross_day_unsupported",
+          "source_expired",
+          "observation_in_future",
+          "source_conflict",
+          "date_information_incomplete",
+          "service_unknown",
+          "suspension_unknown",
+          "no_service",
+          "suspended",
+          "missing_stop_events",
+          "invalid_service_events",
+          "first_service_unknown",
+          "last_service_unknown",
+          "operating_window_conflict",
+          "service_events_known",
+          "missing_access_rule",
+          "missing_transfer_rule",
+          "allowance_unknown",
+          "fact_window_not_applicable",
+          "first_boarding_catchable",
+          "first_boarding_missed",
+          "transfer_sufficient",
+          "transfer_missed"
+        ],
+        "title": "Reason Code",
+        "type": "string"
+      },
+      "fact_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Fact Ids",
+        "type": "array"
+      },
+      "risk_scope": {
+        "enum": [
+          "ordinary",
+          "critical"
+        ],
+        "title": "Risk Scope",
+        "type": "string"
+      },
+      "severity": {
+        "enum": [
+          "info",
+          "warning",
+          "blocker"
+        ],
+        "title": "Severity",
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "none",
+          "revise_connection",
+          "obtain_facts"
+        ],
+        "title": "Action",
+        "type": "string"
+      },
+      "ready_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Ready At"
+      },
+      "vehicle_arrival_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Vehicle Arrival At"
+      },
+      "boarding_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Boarding At"
+      },
+      "departure_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Departure At"
+      },
+      "alight_arrival_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Alight Arrival At"
+      },
+      "required_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Required Seconds"
+      },
+      "rule_version": {
+        "const": "F04-synthetic-v1",
+        "default": "F04-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      },
+      "policy_version": {
+        "const": "F04-explicit-walk-plus-buffer-seconds-v1",
+        "default": "F04-explicit-walk-plus-buffer-seconds-v1",
+        "title": "Policy Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "check_id",
+      "connection_id",
+      "segment_ids",
+      "occurrence_ids",
+      "stops",
+      "target_date",
+      "status",
+      "reason_code",
+      "fact_ids",
+      "risk_scope",
+      "severity",
+      "action"
+    ],
+    "title": "F04FeasibilityCheck",
+    "type": "object"
+  },
+  "F04ValidationReport": {
+    "$defs": {
+      "F04FeasibilityCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "enum": [
+              "F04.service",
+              "F04.first_boarding",
+              "F04.transfer",
+              "F04.scope"
+            ],
+            "title": "Check Id",
+            "type": "string"
+          },
+          "connection_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Connection Id",
+            "type": "string"
+          },
+          "segment_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Segment Ids",
+            "type": "array"
+          },
+          "occurrence_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Occurrence Ids",
+            "type": "array"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/$defs/TransitStopRef"
+            },
+            "title": "Stops",
+            "type": "array"
+          },
+          "target_date": {
+            "format": "date",
+            "title": "Target Date",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason_code": {
+            "enum": [
+              "unsupported_scope",
+              "invalid_request_time",
+              "stop_binding_mismatch",
+              "missing_service",
+              "date_not_applicable",
+              "cross_day_unsupported",
+              "source_expired",
+              "observation_in_future",
+              "source_conflict",
+              "date_information_incomplete",
+              "service_unknown",
+              "suspension_unknown",
+              "no_service",
+              "suspended",
+              "missing_stop_events",
+              "invalid_service_events",
+              "first_service_unknown",
+              "last_service_unknown",
+              "operating_window_conflict",
+              "service_events_known",
+              "missing_access_rule",
+              "missing_transfer_rule",
+              "allowance_unknown",
+              "fact_window_not_applicable",
+              "first_boarding_catchable",
+              "first_boarding_missed",
+              "transfer_sufficient",
+              "transfer_missed"
+            ],
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Fact Ids",
+            "type": "array"
+          },
+          "risk_scope": {
+            "enum": [
+              "ordinary",
+              "critical"
+            ],
+            "title": "Risk Scope",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "blocker"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "none",
+              "revise_connection",
+              "obtain_facts"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "ready_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ready At"
+          },
+          "vehicle_arrival_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vehicle Arrival At"
+          },
+          "boarding_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Boarding At"
+          },
+          "departure_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Departure At"
+          },
+          "alight_arrival_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Alight Arrival At"
+          },
+          "required_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Required Seconds"
+          },
+          "rule_version": {
+            "const": "F04-synthetic-v1",
+            "default": "F04-synthetic-v1",
+            "title": "Rule Version",
+            "type": "string"
+          },
+          "policy_version": {
+            "const": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "default": "F04-explicit-walk-plus-buffer-seconds-v1",
+            "title": "Policy Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "connection_id",
+          "segment_ids",
+          "occurrence_ids",
+          "stops",
+          "target_date",
+          "status",
+          "reason_code",
+          "fact_ids",
+          "risk_scope",
+          "severity",
+          "action"
+        ],
+        "title": "F04FeasibilityCheck",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TransitStopRef": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "entrance",
+              "exit"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "TransitStopRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "f04-validation-report-v1",
+        "default": "f04-validation-report-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "rule_version": {
+        "const": "F04-synthetic-v1",
+        "default": "F04-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      },
+      "evaluated_at": {
+        "format": "date-time",
+        "title": "Evaluated At",
+        "type": "string"
+      },
+      "input_sha256": {
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Input Sha256",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "evaluated_checks": {
+        "default": [
+          "F04"
+        ],
+        "maxItems": 1,
+        "minItems": 1,
+        "prefixItems": [
+          {
+            "const": "F04",
+            "type": "string"
+          }
+        ],
+        "title": "Evaluated Checks",
+        "type": "array"
+      },
+      "f03_status": {
+        "const": "NOT_EVALUATED",
+        "default": "NOT_EVALUATED",
+        "title": "F03 Status",
+        "type": "string"
+      },
+      "checks": {
+        "items": {
+          "$ref": "#/$defs/F04FeasibilityCheck"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "valid_until": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Valid Until"
+      },
+      "overall_trip_ready": {
+        "const": false,
+        "default": false,
+        "title": "Overall Trip Ready",
+        "type": "boolean"
+      },
+      "usable_for_real_trip": {
+        "const": false,
+        "default": false,
+        "title": "Usable For Real Trip",
+        "type": "boolean"
+      },
+      "usable_in_confirmed_snapshot": {
+        "const": false,
+        "default": false,
+        "title": "Usable In Confirmed Snapshot",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "evaluated_at",
+      "input_sha256",
+      "checks",
+      "status",
+      "valid_until"
+    ],
+    "title": "F04ValidationReport",
+    "type": "object"
+  }
+}

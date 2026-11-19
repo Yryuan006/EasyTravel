@@ -1,0 +1,5 @@
+PASS all accepted baseline files unchanged under Git attributes; no production F04 imports/wiring
+PASS F04 runtime contains no I/O imports, routing, F03 calculator or production dependencies
+PASS 12 strict schemas and 13 deterministic examples; exported schema/model/report constants and round-trips agree
+PASS seven migration files byte-identical; M1, PostgreSQL, auth, budget, snapshots and historical checkpoints untouched
+454 database regressions NOT rerun: reuse accepted evidence; no database access or real traffic API

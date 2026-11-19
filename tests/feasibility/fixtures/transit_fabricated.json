@@ -1,0 +1,325 @@
+{
+  "fixture_kind": "Entirely fictional stops, lines, directions, dates and occurrences",
+  "clock": "2026-11-19T10:00:00+08:00",
+  "request": {
+    "resolved_stops": [
+      {
+        "resource": {
+          "internal_resource_id": "fictional_cloud",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_cloud",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "access_id": "cloud_entrance_gate",
+        "role": "entrance"
+      },
+      {
+        "resource": {
+          "internal_resource_id": "fictional_star",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_star",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "access_id": "star_exit_gate",
+        "role": "exit"
+      },
+      {
+        "resource": {
+          "internal_resource_id": "fictional_star",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_star",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "access_id": "star_entrance_gate",
+        "role": "entrance"
+      },
+      {
+        "resource": {
+          "internal_resource_id": "fictional_moon",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_moon",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "access_id": "moon_exit_gate",
+        "role": "exit"
+      }
+    ],
+    "connections": [
+      {
+        "connection_id": "connection_one",
+        "activity_resource": {
+          "internal_resource_id": "fictional_imaginary_garden",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_imaginary_garden",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "activity_exit_id": "garden_exit",
+        "previous_end": "2026-12-07T12:00:00+08:00",
+        "segments": [
+          {
+            "segment_id": "ride_one",
+            "internal_line_id": "line_ride_one",
+            "provider": "synthetic_transit",
+            "provider_line_id": "provider_line_ride_one",
+            "direction_id": "outbound",
+            "boarding_stop": {
+              "resource": {
+                "internal_resource_id": "fictional_cloud",
+                "provider": "synthetic_places",
+                "provider_resource_id": "provider_cloud",
+                "city": "Fictional Cloud City",
+                "district": "Fictional Moon District"
+              },
+              "access_id": "cloud_entrance_gate",
+              "role": "entrance"
+            },
+            "alighting_stop": {
+              "resource": {
+                "internal_resource_id": "fictional_star",
+                "provider": "synthetic_places",
+                "provider_resource_id": "provider_star",
+                "city": "Fictional Cloud City",
+                "district": "Fictional Moon District"
+              },
+              "access_id": "star_exit_gate",
+              "role": "exit"
+            }
+          },
+          {
+            "segment_id": "ride_two",
+            "internal_line_id": "line_ride_two",
+            "provider": "synthetic_transit",
+            "provider_line_id": "provider_line_ride_two",
+            "direction_id": "outbound",
+            "boarding_stop": {
+              "resource": {
+                "internal_resource_id": "fictional_star",
+                "provider": "synthetic_places",
+                "provider_resource_id": "provider_star",
+                "city": "Fictional Cloud City",
+                "district": "Fictional Moon District"
+              },
+              "access_id": "star_entrance_gate",
+              "role": "entrance"
+            },
+            "alighting_stop": {
+              "resource": {
+                "internal_resource_id": "fictional_moon",
+                "provider": "synthetic_places",
+                "provider_resource_id": "provider_moon",
+                "city": "Fictional Cloud City",
+                "district": "Fictional Moon District"
+              },
+              "access_id": "moon_exit_gate",
+              "role": "exit"
+            }
+          }
+        ],
+        "occurrence_ids": [
+          "trip_one",
+          "trip_two"
+        ],
+        "first_access_rule_id": "access_one",
+        "transfer_rule_id": "transfer_one"
+      }
+    ],
+    "services": [
+      {
+        "fact_id": "fact_trip_one",
+        "occurrence_id": "trip_one",
+        "segment": {
+          "segment_id": "ride_one",
+          "internal_line_id": "line_ride_one",
+          "provider": "synthetic_transit",
+          "provider_line_id": "provider_line_ride_one",
+          "direction_id": "outbound",
+          "boarding_stop": {
+            "resource": {
+              "internal_resource_id": "fictional_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "access_id": "cloud_entrance_gate",
+            "role": "entrance"
+          },
+          "alighting_stop": {
+            "resource": {
+              "internal_resource_id": "fictional_star",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_star",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "access_id": "star_exit_gate",
+            "role": "exit"
+          }
+        },
+        "scope": {
+          "service_date": "2026-12-07",
+          "starts_at": "2026-12-07T00:00:00+08:00",
+          "ends_at": "2026-12-07T23:59:59.999999+08:00"
+        },
+        "source": {
+          "source_id": "source_trip_one",
+          "observed_at": "2026-11-18T10:00:00+08:00",
+          "expires_at": "2026-11-30T10:00:00+08:00",
+          "source_reference": "synthetic-transit:source_trip_one"
+        },
+        "state": "OPERATING",
+        "date_information_complete": true,
+        "suspension": "CLEAR",
+        "origin_departure": "2026-12-07T11:40:00+08:00",
+        "board_arrival": "2026-12-07T12:04:00+08:00",
+        "board_departure": "2026-12-07T12:05:00+08:00",
+        "alight_arrival": "2026-12-07T12:30:00+08:00",
+        "first_board_departure": "2026-12-07T06:00:00+08:00",
+        "last_board_departure": "2026-12-07T22:00:00+08:00"
+      },
+      {
+        "fact_id": "fact_trip_two",
+        "occurrence_id": "trip_two",
+        "segment": {
+          "segment_id": "ride_two",
+          "internal_line_id": "line_ride_two",
+          "provider": "synthetic_transit",
+          "provider_line_id": "provider_line_ride_two",
+          "direction_id": "outbound",
+          "boarding_stop": {
+            "resource": {
+              "internal_resource_id": "fictional_star",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_star",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "access_id": "star_entrance_gate",
+            "role": "entrance"
+          },
+          "alighting_stop": {
+            "resource": {
+              "internal_resource_id": "fictional_moon",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_moon",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "access_id": "moon_exit_gate",
+            "role": "exit"
+          }
+        },
+        "scope": {
+          "service_date": "2026-12-07",
+          "starts_at": "2026-12-07T00:00:00+08:00",
+          "ends_at": "2026-12-07T23:59:59.999999+08:00"
+        },
+        "source": {
+          "source_id": "source_trip_two",
+          "observed_at": "2026-11-18T10:00:00+08:00",
+          "expires_at": "2026-11-30T10:00:00+08:00",
+          "source_reference": "synthetic-transit:source_trip_two"
+        },
+        "state": "OPERATING",
+        "date_information_complete": true,
+        "suspension": "CLEAR",
+        "origin_departure": "2026-12-07T12:15:00+08:00",
+        "board_arrival": "2026-12-07T12:34:00+08:00",
+        "board_departure": "2026-12-07T12:35:00+08:00",
+        "alight_arrival": "2026-12-07T13:00:00+08:00",
+        "first_board_departure": "2026-12-07T06:00:00+08:00",
+        "last_board_departure": "2026-12-07T22:00:00+08:00"
+      }
+    ],
+    "first_access_rules": [
+      {
+        "fact_id": "access_fact",
+        "rule_id": "access_one",
+        "activity_resource": {
+          "internal_resource_id": "fictional_imaginary_garden",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_imaginary_garden",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "activity_exit_id": "garden_exit",
+        "to_stop": {
+          "resource": {
+            "internal_resource_id": "fictional_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          },
+          "access_id": "cloud_entrance_gate",
+          "role": "entrance"
+        },
+        "scope": {
+          "service_date": "2026-12-07",
+          "starts_at": "2026-12-07T00:00:00+08:00",
+          "ends_at": "2026-12-07T23:59:59.999999+08:00"
+        },
+        "source": {
+          "source_id": "access_source",
+          "observed_at": "2026-11-18T10:00:00+08:00",
+          "expires_at": "2026-11-30T10:00:00+08:00",
+          "source_reference": "synthetic-transit:access_source"
+        },
+        "allowance": {
+          "walking_seconds": 240,
+          "buffer_seconds": 60,
+          "required_seconds": 300
+        }
+      }
+    ],
+    "transfer_rules": [
+      {
+        "fact_id": "transfer_fact",
+        "rule_id": "transfer_one",
+        "from_stop": {
+          "resource": {
+            "internal_resource_id": "fictional_star",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_star",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          },
+          "access_id": "star_exit_gate",
+          "role": "exit"
+        },
+        "to_stop": {
+          "resource": {
+            "internal_resource_id": "fictional_star",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_star",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          },
+          "access_id": "star_entrance_gate",
+          "role": "entrance"
+        },
+        "scope": {
+          "service_date": "2026-12-07",
+          "starts_at": "2026-12-07T00:00:00+08:00",
+          "ends_at": "2026-12-07T23:59:59.999999+08:00"
+        },
+        "source": {
+          "source_id": "transfer_source",
+          "observed_at": "2026-11-18T10:00:00+08:00",
+          "expires_at": "2026-11-30T10:00:00+08:00",
+          "source_reference": "synthetic-transit:transfer_source"
+        },
+        "allowance": {
+          "walking_seconds": 240,
+          "buffer_seconds": 60,
+          "required_seconds": 300
+        }
+      }
+    ]
+  }
+}
