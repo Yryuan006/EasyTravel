@@ -1,0 +1,4 @@
+PASS every baseline file unchanged under Git attributes, including formal M1, M2-01a/c, F02 FIX-01, snapshots, budget, auth and Spike
+PASS no production import/wiring; new runtime imports only pure model/arithmetic libraries
+PASS 10 strict schemas, 6 deterministic input/report examples; F03 never grants VERIFIED, READY or F04 PASS
+454 database regression NOT rerun; reused accepted evidence; no database access this run

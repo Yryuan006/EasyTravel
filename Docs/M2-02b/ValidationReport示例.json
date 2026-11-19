@@ -1,0 +1,1356 @@
+{
+  "clock": "2026-11-19T10:00:00+08:00",
+  "fixture_kind": "Entirely fictional places, entrances and travel times; no real route",
+  "cases": [
+    {
+      "case_id": "sufficient",
+      "input": {
+        "resolved_endpoints": [
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_cloud_garden",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "cloud_001",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "cloud_north_exit",
+            "role": "exit",
+            "coordinates": null
+          },
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_moon_hall",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "moon_002",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "moon_south_entrance",
+            "role": "entrance",
+            "coordinates": null
+          }
+        ],
+        "pairs": [
+          {
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T13:00:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "travel-leg-facts-v1",
+            "fact_id": "fact_a",
+            "leg_id": "leg_cloud_moon",
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "duration": {
+              "origin_walk_seconds": 300,
+              "destination_walk_seconds": 300,
+              "waiting_seconds": 240,
+              "transfer_seconds": 60,
+              "riding_seconds": 1200,
+              "complete": true,
+              "extra_buffer_included": false
+            },
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31",
+              "window_start": "08:00:00",
+              "window_end": "20:00:00",
+              "timezone": "Asia/Shanghai"
+            },
+            "source": {
+              "provider": "synthetic_travel_fixture",
+              "environment": "synthetic",
+              "source_id": "source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-travel:invented_a",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f03-validation-report-v1",
+        "rule_version": "F03-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "c817568fe2561c549e68215114f9c125a62764c44bf1014eeacdfd2a0316c8aa",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F03"
+        ],
+        "f04_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F03",
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T13:00:00+08:00",
+            "status": "PASS",
+            "reason_code": "time_sufficient",
+            "fact_ids": [
+              "fact_a"
+            ],
+            "duration_seconds": 2100,
+            "extra_buffer_seconds": 600,
+            "required_next_start": "2026-12-07T12:45:00+08:00",
+            "severity": "info",
+            "action": "none",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          }
+        ],
+        "status": "PASS",
+        "valid_until": "2026-11-30T10:00:00+08:00",
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "exact_equality",
+      "input": {
+        "resolved_endpoints": [
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_cloud_garden",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "cloud_001",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "cloud_north_exit",
+            "role": "exit",
+            "coordinates": null
+          },
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_moon_hall",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "moon_002",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "moon_south_entrance",
+            "role": "entrance",
+            "coordinates": null
+          }
+        ],
+        "pairs": [
+          {
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T12:45:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "travel-leg-facts-v1",
+            "fact_id": "fact_a",
+            "leg_id": "leg_cloud_moon",
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "duration": {
+              "origin_walk_seconds": 300,
+              "destination_walk_seconds": 300,
+              "waiting_seconds": 240,
+              "transfer_seconds": 60,
+              "riding_seconds": 1200,
+              "complete": true,
+              "extra_buffer_included": false
+            },
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31",
+              "window_start": "08:00:00",
+              "window_end": "20:00:00",
+              "timezone": "Asia/Shanghai"
+            },
+            "source": {
+              "provider": "synthetic_travel_fixture",
+              "environment": "synthetic",
+              "source_id": "source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-travel:invented_a",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f03-validation-report-v1",
+        "rule_version": "F03-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "a63eb35f8c7b85e60e049bc76eed65282ad9672efdd0d1d46b5a23cb9d451618",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F03"
+        ],
+        "f04_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F03",
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T12:45:00+08:00",
+            "status": "PASS",
+            "reason_code": "time_sufficient",
+            "fact_ids": [
+              "fact_a"
+            ],
+            "duration_seconds": 2100,
+            "extra_buffer_seconds": 600,
+            "required_next_start": "2026-12-07T12:45:00+08:00",
+            "severity": "info",
+            "action": "none",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          }
+        ],
+        "status": "PASS",
+        "valid_until": "2026-11-30T10:00:00+08:00",
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "insufficient",
+      "input": {
+        "resolved_endpoints": [
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_cloud_garden",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "cloud_001",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "cloud_north_exit",
+            "role": "exit",
+            "coordinates": null
+          },
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_moon_hall",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "moon_002",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "moon_south_entrance",
+            "role": "entrance",
+            "coordinates": null
+          }
+        ],
+        "pairs": [
+          {
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T12:30:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "travel-leg-facts-v1",
+            "fact_id": "fact_a",
+            "leg_id": "leg_cloud_moon",
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "duration": {
+              "origin_walk_seconds": 300,
+              "destination_walk_seconds": 300,
+              "waiting_seconds": 240,
+              "transfer_seconds": 60,
+              "riding_seconds": 1200,
+              "complete": true,
+              "extra_buffer_included": false
+            },
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31",
+              "window_start": "08:00:00",
+              "window_end": "20:00:00",
+              "timezone": "Asia/Shanghai"
+            },
+            "source": {
+              "provider": "synthetic_travel_fixture",
+              "environment": "synthetic",
+              "source_id": "source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-travel:invented_a",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f03-validation-report-v1",
+        "rule_version": "F03-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "f04fa877fcb577ac90f91f2506009d0a548227ab4bc09868b96480546ee96153",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F03"
+        ],
+        "f04_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F03",
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T12:30:00+08:00",
+            "status": "FAIL",
+            "reason_code": "time_insufficient",
+            "fact_ids": [
+              "fact_a"
+            ],
+            "duration_seconds": 2100,
+            "extra_buffer_seconds": 600,
+            "required_next_start": "2026-12-07T12:45:00+08:00",
+            "severity": "blocker",
+            "action": "revise_activities",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "missing",
+      "input": {
+        "resolved_endpoints": [
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_cloud_garden",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "cloud_001",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "cloud_north_exit",
+            "role": "exit",
+            "coordinates": null
+          },
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_moon_hall",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "moon_002",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "moon_south_entrance",
+            "role": "entrance",
+            "coordinates": null
+          }
+        ],
+        "pairs": [
+          {
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T13:00:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          }
+        ],
+        "facts": []
+      },
+      "report": {
+        "schema_version": "f03-validation-report-v1",
+        "rule_version": "F03-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "e24a3fc6d590852a8c29ececd4911e427d355cdd907221ccb8b66fe429a6a6b3",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F03"
+        ],
+        "f04_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F03",
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T13:00:00+08:00",
+            "status": "UNKNOWN",
+            "reason_code": "missing_matching_leg",
+            "fact_ids": [],
+            "duration_seconds": null,
+            "extra_buffer_seconds": null,
+            "required_next_start": null,
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "conflict",
+      "input": {
+        "resolved_endpoints": [
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_cloud_garden",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "cloud_001",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "cloud_north_exit",
+            "role": "exit",
+            "coordinates": null
+          },
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_moon_hall",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "moon_002",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "moon_south_entrance",
+            "role": "entrance",
+            "coordinates": null
+          }
+        ],
+        "pairs": [
+          {
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T13:00:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "travel-leg-facts-v1",
+            "fact_id": "fact_a",
+            "leg_id": "leg_cloud_moon",
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "duration": {
+              "origin_walk_seconds": 300,
+              "destination_walk_seconds": 300,
+              "waiting_seconds": 240,
+              "transfer_seconds": 60,
+              "riding_seconds": 1200,
+              "complete": true,
+              "extra_buffer_included": false
+            },
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31",
+              "window_start": "08:00:00",
+              "window_end": "20:00:00",
+              "timezone": "Asia/Shanghai"
+            },
+            "source": {
+              "provider": "synthetic_travel_fixture",
+              "environment": "synthetic",
+              "source_id": "source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-travel:invented_a",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "note": null
+          },
+          {
+            "schema_version": "travel-leg-facts-v1",
+            "fact_id": "fact_b",
+            "leg_id": "leg_cloud_moon",
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "duration": {
+              "origin_walk_seconds": 300,
+              "destination_walk_seconds": 300,
+              "waiting_seconds": 240,
+              "transfer_seconds": 60,
+              "riding_seconds": 1260,
+              "complete": true,
+              "extra_buffer_included": false
+            },
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31",
+              "window_start": "08:00:00",
+              "window_end": "20:00:00",
+              "timezone": "Asia/Shanghai"
+            },
+            "source": {
+              "provider": "synthetic_travel_fixture",
+              "environment": "synthetic",
+              "source_id": "source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-travel:invented_a",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f03-validation-report-v1",
+        "rule_version": "F03-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "b08b9e242bd6444d612d8dd841c35c98c35cdfe92febda4317f5449aa67224b6",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F03"
+        ],
+        "f04_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F03",
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T13:00:00+08:00",
+            "status": "UNKNOWN",
+            "reason_code": "source_conflict",
+            "fact_ids": [
+              "fact_a",
+              "fact_b"
+            ],
+            "duration_seconds": null,
+            "extra_buffer_seconds": null,
+            "required_next_start": null,
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "independent_fail_and_unknown",
+      "input": {
+        "resolved_endpoints": [
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_cloud_garden",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "cloud_001",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "cloud_north_exit",
+            "role": "exit",
+            "coordinates": null
+          },
+          {
+            "resource": {
+              "internal_resource_id": "imaginary_moon_hall",
+              "provider": "synthetic_fixture",
+              "provider_resource_id": "moon_002",
+              "city": "虚构云城",
+              "district": "虚构星区"
+            },
+            "access_id": "moon_south_entrance",
+            "role": "entrance",
+            "coordinates": null
+          }
+        ],
+        "pairs": [
+          {
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T12:30:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          },
+          {
+            "pair_id": "unknown_pair",
+            "leg_id": "unknown_leg",
+            "previous": {
+              "item_id": "visit_cloud",
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T10:00:00+08:00",
+              "end": "2026-12-07T12:00:00+08:00"
+            },
+            "next": {
+              "item_id": "visit_moon",
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "start": "2026-12-07T12:30:00+08:00",
+              "end": "2026-12-07T14:00:00+08:00"
+            },
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "policy_scope": "same_city"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "travel-leg-facts-v1",
+            "fact_id": "fact_a",
+            "leg_id": "leg_cloud_moon",
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "duration": {
+              "origin_walk_seconds": 300,
+              "destination_walk_seconds": 300,
+              "waiting_seconds": 240,
+              "transfer_seconds": 60,
+              "riding_seconds": 1200,
+              "complete": true,
+              "extra_buffer_included": false
+            },
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31",
+              "window_start": "08:00:00",
+              "window_end": "20:00:00",
+              "timezone": "Asia/Shanghai"
+            },
+            "source": {
+              "provider": "synthetic_travel_fixture",
+              "environment": "synthetic",
+              "source_id": "source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-travel:invented_a",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f03-validation-report-v1",
+        "rule_version": "F03-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "3dc17c2721acbfb758032e0be0ee26ecdb7f269fe09326a5274bff3086da29e6",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F03"
+        ],
+        "f04_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F03",
+            "pair_id": "pair_a",
+            "leg_id": "leg_cloud_moon",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T12:30:00+08:00",
+            "status": "FAIL",
+            "reason_code": "time_insufficient",
+            "fact_ids": [
+              "fact_a"
+            ],
+            "duration_seconds": 2100,
+            "extra_buffer_seconds": 600,
+            "required_next_start": "2026-12-07T12:45:00+08:00",
+            "severity": "blocker",
+            "action": "revise_activities",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          },
+          {
+            "check_id": "F03",
+            "pair_id": "unknown_pair",
+            "leg_id": "unknown_leg",
+            "item_ids": [
+              "visit_cloud",
+              "visit_moon"
+            ],
+            "from_exit": {
+              "resource": {
+                "internal_resource_id": "imaginary_cloud_garden",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "cloud_001",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "cloud_north_exit",
+              "role": "exit",
+              "coordinates": null
+            },
+            "to_entrance": {
+              "resource": {
+                "internal_resource_id": "imaginary_moon_hall",
+                "provider": "synthetic_fixture",
+                "provider_resource_id": "moon_002",
+                "city": "虚构云城",
+                "district": "虚构星区"
+              },
+              "access_id": "moon_south_entrance",
+              "role": "entrance",
+              "coordinates": null
+            },
+            "target_departure": "2026-12-07T12:00:00+08:00",
+            "target_next_start": "2026-12-07T12:30:00+08:00",
+            "status": "UNKNOWN",
+            "reason_code": "missing_matching_leg",
+            "fact_ids": [],
+            "duration_seconds": null,
+            "extra_buffer_seconds": null,
+            "required_next_start": null,
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "rule_version": "F03-synthetic-v1",
+            "buffer_rule_version": "M2-00-city-max600-ceil20pct-minute-v1"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    }
+  ]
+}

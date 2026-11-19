@@ -1,0 +1,2307 @@
+{
+  "LegEndpoint": {
+    "$defs": {
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "access_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Access Id",
+        "type": "string"
+      },
+      "role": {
+        "enum": [
+          "exit",
+          "entrance"
+        ],
+        "title": "Role",
+        "type": "string"
+      },
+      "coordinates": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/Coordinates"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "resource",
+      "access_id",
+      "role"
+    ],
+    "title": "LegEndpoint",
+    "type": "object"
+  },
+  "LegDuration": {
+    "additionalProperties": false,
+    "properties": {
+      "origin_walk_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Origin Walk Seconds"
+      },
+      "destination_walk_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Destination Walk Seconds"
+      },
+      "waiting_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Waiting Seconds"
+      },
+      "transfer_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Transfer Seconds"
+      },
+      "riding_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Riding Seconds"
+      },
+      "complete": {
+        "title": "Complete",
+        "type": "boolean"
+      },
+      "extra_buffer_included": {
+        "const": false,
+        "default": false,
+        "title": "Extra Buffer Included",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "origin_walk_seconds",
+      "destination_walk_seconds",
+      "waiting_seconds",
+      "transfer_seconds",
+      "riding_seconds",
+      "complete"
+    ],
+    "title": "LegDuration",
+    "type": "object"
+  },
+  "LegApplicableScope": {
+    "additionalProperties": false,
+    "properties": {
+      "start_date": {
+        "format": "date",
+        "title": "Start Date",
+        "type": "string"
+      },
+      "end_date": {
+        "format": "date",
+        "title": "End Date",
+        "type": "string"
+      },
+      "window_start": {
+        "format": "time",
+        "title": "Window Start",
+        "type": "string"
+      },
+      "window_end": {
+        "format": "time",
+        "title": "Window End",
+        "type": "string"
+      },
+      "timezone": {
+        "const": "Asia/Shanghai",
+        "default": "Asia/Shanghai",
+        "title": "Timezone",
+        "type": "string"
+      }
+    },
+    "required": [
+      "start_date",
+      "end_date",
+      "window_start",
+      "window_end"
+    ],
+    "title": "LegApplicableScope",
+    "type": "object"
+  },
+  "TravelLegSource": {
+    "additionalProperties": false,
+    "properties": {
+      "provider": {
+        "const": "synthetic_travel_fixture",
+        "default": "synthetic_travel_fixture",
+        "title": "Provider",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "source_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "observed_at": {
+        "format": "date-time",
+        "title": "Observed At",
+        "type": "string"
+      },
+      "expires_at": {
+        "format": "date-time",
+        "title": "Expires At",
+        "type": "string"
+      },
+      "source_reference": {
+        "maxLength": 100,
+        "pattern": "^synthetic-travel:[A-Za-z0-9_-]+$",
+        "title": "Source Reference",
+        "type": "string"
+      },
+      "verification_state": {
+        "const": "SYNTHETIC_UNVERIFIED",
+        "default": "SYNTHETIC_UNVERIFIED",
+        "title": "Verification State",
+        "type": "string"
+      },
+      "supplier_updated_at": {
+        "default": null,
+        "title": "Supplier Updated At",
+        "type": "null"
+      }
+    },
+    "required": [
+      "source_id",
+      "observed_at",
+      "expires_at",
+      "source_reference"
+    ],
+    "title": "TravelLegSource",
+    "type": "object"
+  },
+  "TravelActivity": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "item_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Item Id",
+        "type": "string"
+      },
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "start": {
+        "format": "date-time",
+        "title": "Start",
+        "type": "string"
+      },
+      "end": {
+        "format": "date-time",
+        "title": "End",
+        "type": "string"
+      }
+    },
+    "required": [
+      "item_id",
+      "resource",
+      "start",
+      "end"
+    ],
+    "title": "TravelActivity",
+    "type": "object"
+  },
+  "TravelLegFacts": {
+    "$defs": {
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "LegApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          },
+          "window_start": {
+            "format": "time",
+            "title": "Window Start",
+            "type": "string"
+          },
+          "window_end": {
+            "format": "time",
+            "title": "Window End",
+            "type": "string"
+          },
+          "timezone": {
+            "const": "Asia/Shanghai",
+            "default": "Asia/Shanghai",
+            "title": "Timezone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date",
+          "window_start",
+          "window_end"
+        ],
+        "title": "LegApplicableScope",
+        "type": "object"
+      },
+      "LegDuration": {
+        "additionalProperties": false,
+        "properties": {
+          "origin_walk_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Walk Seconds"
+          },
+          "destination_walk_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Walk Seconds"
+          },
+          "waiting_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Waiting Seconds"
+          },
+          "transfer_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transfer Seconds"
+          },
+          "riding_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Riding Seconds"
+          },
+          "complete": {
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "extra_buffer_included": {
+            "const": false,
+            "default": false,
+            "title": "Extra Buffer Included",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "origin_walk_seconds",
+          "destination_walk_seconds",
+          "waiting_seconds",
+          "transfer_seconds",
+          "riding_seconds",
+          "complete"
+        ],
+        "title": "LegDuration",
+        "type": "object"
+      },
+      "LegEndpoint": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "exit",
+              "entrance"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "LegEndpoint",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TravelLegSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_travel_fixture",
+            "default": "synthetic_travel_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-travel:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "TravelLegSource",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "travel-leg-facts-v1",
+        "default": "travel-leg-facts-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "fact_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Fact Id",
+        "type": "string"
+      },
+      "leg_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Leg Id",
+        "type": "string"
+      },
+      "from_exit": {
+        "$ref": "#/$defs/LegEndpoint"
+      },
+      "to_entrance": {
+        "$ref": "#/$defs/LegEndpoint"
+      },
+      "duration": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/LegDuration"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "applicable_scope": {
+        "$ref": "#/$defs/LegApplicableScope"
+      },
+      "source": {
+        "$ref": "#/$defs/TravelLegSource"
+      },
+      "note": {
+        "anyOf": [
+          {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Note"
+      }
+    },
+    "required": [
+      "fact_id",
+      "leg_id",
+      "from_exit",
+      "to_entrance",
+      "duration",
+      "applicable_scope",
+      "source"
+    ],
+    "title": "TravelLegFacts",
+    "type": "object"
+  },
+  "ConsecutiveActivityPair": {
+    "$defs": {
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "LegEndpoint": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "exit",
+              "entrance"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "LegEndpoint",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TravelActivity": {
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Item Id",
+            "type": "string"
+          },
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "resource",
+          "start",
+          "end"
+        ],
+        "title": "TravelActivity",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "pair_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Pair Id",
+        "type": "string"
+      },
+      "leg_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Leg Id",
+        "type": "string"
+      },
+      "previous": {
+        "$ref": "#/$defs/TravelActivity"
+      },
+      "next": {
+        "$ref": "#/$defs/TravelActivity"
+      },
+      "from_exit": {
+        "$ref": "#/$defs/LegEndpoint"
+      },
+      "to_entrance": {
+        "$ref": "#/$defs/LegEndpoint"
+      },
+      "policy_scope": {
+        "default": "same_city",
+        "enum": [
+          "same_city",
+          "rail_air_policy_required"
+        ],
+        "title": "Policy Scope",
+        "type": "string"
+      }
+    },
+    "required": [
+      "pair_id",
+      "leg_id",
+      "previous",
+      "next",
+      "from_exit",
+      "to_entrance"
+    ],
+    "title": "ConsecutiveActivityPair",
+    "type": "object"
+  },
+  "F03FeasibilityCheck": {
+    "$defs": {
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "LegEndpoint": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "exit",
+              "entrance"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "LegEndpoint",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "check_id": {
+        "const": "F03",
+        "default": "F03",
+        "title": "Check Id",
+        "type": "string"
+      },
+      "pair_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Pair Id",
+        "type": "string"
+      },
+      "leg_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Leg Id",
+        "type": "string"
+      },
+      "item_ids": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          }
+        ],
+        "title": "Item Ids",
+        "type": "array"
+      },
+      "from_exit": {
+        "$ref": "#/$defs/LegEndpoint"
+      },
+      "to_entrance": {
+        "$ref": "#/$defs/LegEndpoint"
+      },
+      "target_departure": {
+        "format": "date-time",
+        "title": "Target Departure",
+        "type": "string"
+      },
+      "target_next_start": {
+        "format": "date-time",
+        "title": "Target Next Start",
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "reason_code": {
+        "enum": [
+          "invalid_time",
+          "activity_overlap",
+          "cross_day_unsupported",
+          "endpoint_binding_mismatch",
+          "missing_matching_leg",
+          "date_not_applicable",
+          "time_window_not_applicable",
+          "source_expired",
+          "observation_in_future",
+          "duration_incomplete",
+          "source_conflict",
+          "policy_scope_unsupported",
+          "time_sufficient",
+          "time_insufficient"
+        ],
+        "title": "Reason Code",
+        "type": "string"
+      },
+      "fact_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Fact Ids",
+        "type": "array"
+      },
+      "duration_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Duration Seconds"
+      },
+      "extra_buffer_seconds": {
+        "anyOf": [
+          {
+            "maximum": 86400,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Extra Buffer Seconds"
+      },
+      "required_next_start": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Required Next Start"
+      },
+      "severity": {
+        "enum": [
+          "info",
+          "blocker"
+        ],
+        "title": "Severity",
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "none",
+          "revise_activities",
+          "obtain_facts"
+        ],
+        "title": "Action",
+        "type": "string"
+      },
+      "rule_version": {
+        "const": "F03-synthetic-v1",
+        "default": "F03-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      },
+      "buffer_rule_version": {
+        "const": "M2-00-city-max600-ceil20pct-minute-v1",
+        "default": "M2-00-city-max600-ceil20pct-minute-v1",
+        "title": "Buffer Rule Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "pair_id",
+      "leg_id",
+      "item_ids",
+      "from_exit",
+      "to_entrance",
+      "target_departure",
+      "target_next_start",
+      "status",
+      "reason_code",
+      "fact_ids",
+      "severity",
+      "action"
+    ],
+    "title": "F03FeasibilityCheck",
+    "type": "object"
+  },
+  "F03ValidationInput": {
+    "$defs": {
+      "ConsecutiveActivityPair": {
+        "additionalProperties": false,
+        "properties": {
+          "pair_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Pair Id",
+            "type": "string"
+          },
+          "leg_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Leg Id",
+            "type": "string"
+          },
+          "previous": {
+            "$ref": "#/$defs/TravelActivity"
+          },
+          "next": {
+            "$ref": "#/$defs/TravelActivity"
+          },
+          "from_exit": {
+            "$ref": "#/$defs/LegEndpoint"
+          },
+          "to_entrance": {
+            "$ref": "#/$defs/LegEndpoint"
+          },
+          "policy_scope": {
+            "default": "same_city",
+            "enum": [
+              "same_city",
+              "rail_air_policy_required"
+            ],
+            "title": "Policy Scope",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pair_id",
+          "leg_id",
+          "previous",
+          "next",
+          "from_exit",
+          "to_entrance"
+        ],
+        "title": "ConsecutiveActivityPair",
+        "type": "object"
+      },
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "LegApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          },
+          "window_start": {
+            "format": "time",
+            "title": "Window Start",
+            "type": "string"
+          },
+          "window_end": {
+            "format": "time",
+            "title": "Window End",
+            "type": "string"
+          },
+          "timezone": {
+            "const": "Asia/Shanghai",
+            "default": "Asia/Shanghai",
+            "title": "Timezone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date",
+          "window_start",
+          "window_end"
+        ],
+        "title": "LegApplicableScope",
+        "type": "object"
+      },
+      "LegDuration": {
+        "additionalProperties": false,
+        "properties": {
+          "origin_walk_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Walk Seconds"
+          },
+          "destination_walk_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Walk Seconds"
+          },
+          "waiting_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Waiting Seconds"
+          },
+          "transfer_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transfer Seconds"
+          },
+          "riding_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Riding Seconds"
+          },
+          "complete": {
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "extra_buffer_included": {
+            "const": false,
+            "default": false,
+            "title": "Extra Buffer Included",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "origin_walk_seconds",
+          "destination_walk_seconds",
+          "waiting_seconds",
+          "transfer_seconds",
+          "riding_seconds",
+          "complete"
+        ],
+        "title": "LegDuration",
+        "type": "object"
+      },
+      "LegEndpoint": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "exit",
+              "entrance"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "LegEndpoint",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "TravelActivity": {
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Item Id",
+            "type": "string"
+          },
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "resource",
+          "start",
+          "end"
+        ],
+        "title": "TravelActivity",
+        "type": "object"
+      },
+      "TravelLegFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "travel-leg-facts-v1",
+            "default": "travel-leg-facts-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "leg_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Leg Id",
+            "type": "string"
+          },
+          "from_exit": {
+            "$ref": "#/$defs/LegEndpoint"
+          },
+          "to_entrance": {
+            "$ref": "#/$defs/LegEndpoint"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/LegDuration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "applicable_scope": {
+            "$ref": "#/$defs/LegApplicableScope"
+          },
+          "source": {
+            "$ref": "#/$defs/TravelLegSource"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Note"
+          }
+        },
+        "required": [
+          "fact_id",
+          "leg_id",
+          "from_exit",
+          "to_entrance",
+          "duration",
+          "applicable_scope",
+          "source"
+        ],
+        "title": "TravelLegFacts",
+        "type": "object"
+      },
+      "TravelLegSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_travel_fixture",
+            "default": "synthetic_travel_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-travel:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "TravelLegSource",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "resolved_endpoints": {
+        "items": {
+          "$ref": "#/$defs/LegEndpoint"
+        },
+        "maxItems": 200,
+        "title": "Resolved Endpoints",
+        "type": "array"
+      },
+      "pairs": {
+        "items": {
+          "$ref": "#/$defs/ConsecutiveActivityPair"
+        },
+        "maxItems": 100,
+        "title": "Pairs",
+        "type": "array"
+      },
+      "facts": {
+        "items": {
+          "$ref": "#/$defs/TravelLegFacts"
+        },
+        "maxItems": 200,
+        "title": "Facts",
+        "type": "array"
+      }
+    },
+    "required": [
+      "resolved_endpoints",
+      "pairs",
+      "facts"
+    ],
+    "title": "F03ValidationInput",
+    "type": "object"
+  },
+  "F03ValidationReport": {
+    "$defs": {
+      "Coordinates": {
+        "additionalProperties": false,
+        "properties": {
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "enum": [
+                  "GCJ-02",
+                  "BD-09",
+                  "WGS84"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs"
+          }
+        },
+        "required": [
+          "longitude",
+          "latitude",
+          "crs"
+        ],
+        "title": "Coordinates",
+        "type": "object"
+      },
+      "F03FeasibilityCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "const": "F03",
+            "default": "F03",
+            "title": "Check Id",
+            "type": "string"
+          },
+          "pair_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Pair Id",
+            "type": "string"
+          },
+          "leg_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Leg Id",
+            "type": "string"
+          },
+          "item_ids": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              }
+            ],
+            "title": "Item Ids",
+            "type": "array"
+          },
+          "from_exit": {
+            "$ref": "#/$defs/LegEndpoint"
+          },
+          "to_entrance": {
+            "$ref": "#/$defs/LegEndpoint"
+          },
+          "target_departure": {
+            "format": "date-time",
+            "title": "Target Departure",
+            "type": "string"
+          },
+          "target_next_start": {
+            "format": "date-time",
+            "title": "Target Next Start",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason_code": {
+            "enum": [
+              "invalid_time",
+              "activity_overlap",
+              "cross_day_unsupported",
+              "endpoint_binding_mismatch",
+              "missing_matching_leg",
+              "date_not_applicable",
+              "time_window_not_applicable",
+              "source_expired",
+              "observation_in_future",
+              "duration_incomplete",
+              "source_conflict",
+              "policy_scope_unsupported",
+              "time_sufficient",
+              "time_insufficient"
+            ],
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Fact Ids",
+            "type": "array"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Duration Seconds"
+          },
+          "extra_buffer_seconds": {
+            "anyOf": [
+              {
+                "maximum": 86400,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Extra Buffer Seconds"
+          },
+          "required_next_start": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Required Next Start"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "blocker"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "none",
+              "revise_activities",
+              "obtain_facts"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "rule_version": {
+            "const": "F03-synthetic-v1",
+            "default": "F03-synthetic-v1",
+            "title": "Rule Version",
+            "type": "string"
+          },
+          "buffer_rule_version": {
+            "const": "M2-00-city-max600-ceil20pct-minute-v1",
+            "default": "M2-00-city-max600-ceil20pct-minute-v1",
+            "title": "Buffer Rule Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pair_id",
+          "leg_id",
+          "item_ids",
+          "from_exit",
+          "to_entrance",
+          "target_departure",
+          "target_next_start",
+          "status",
+          "reason_code",
+          "fact_ids",
+          "severity",
+          "action"
+        ],
+        "title": "F03FeasibilityCheck",
+        "type": "object"
+      },
+      "LegEndpoint": {
+        "additionalProperties": false,
+        "properties": {
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "access_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Access Id",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "exit",
+              "entrance"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "coordinates": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Coordinates"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "resource",
+          "access_id",
+          "role"
+        ],
+        "title": "LegEndpoint",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "f03-validation-report-v1",
+        "default": "f03-validation-report-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "rule_version": {
+        "const": "F03-synthetic-v1",
+        "default": "F03-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      },
+      "evaluated_at": {
+        "format": "date-time",
+        "title": "Evaluated At",
+        "type": "string"
+      },
+      "input_sha256": {
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Input Sha256",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "evaluated_checks": {
+        "default": [
+          "F03"
+        ],
+        "maxItems": 1,
+        "minItems": 1,
+        "prefixItems": [
+          {
+            "const": "F03",
+            "type": "string"
+          }
+        ],
+        "title": "Evaluated Checks",
+        "type": "array"
+      },
+      "f04_status": {
+        "const": "NOT_EVALUATED",
+        "default": "NOT_EVALUATED",
+        "title": "F04 Status",
+        "type": "string"
+      },
+      "checks": {
+        "items": {
+          "$ref": "#/$defs/F03FeasibilityCheck"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "valid_until": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Valid Until"
+      },
+      "overall_trip_ready": {
+        "const": false,
+        "default": false,
+        "title": "Overall Trip Ready",
+        "type": "boolean"
+      },
+      "usable_for_real_trip": {
+        "const": false,
+        "default": false,
+        "title": "Usable For Real Trip",
+        "type": "boolean"
+      },
+      "usable_in_confirmed_snapshot": {
+        "const": false,
+        "default": false,
+        "title": "Usable In Confirmed Snapshot",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "evaluated_at",
+      "input_sha256",
+      "checks",
+      "status",
+      "valid_until"
+    ],
+    "title": "F03ValidationReport",
+    "type": "object"
+  }
+}
