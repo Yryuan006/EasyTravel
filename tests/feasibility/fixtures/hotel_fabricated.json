@@ -1,0 +1,81 @@
+{
+  "fixture_kind": "Entirely fictional hotel, room type, dates and policies; no inventory or real permissions",
+  "clock": "2026-11-19T10:00:00+08:00",
+  "request": {
+    "trip_start_date": "2026-12-07",
+    "trip_end_date": "2026-12-09",
+    "party_size": 2,
+    "resolved_hotels": [
+      {
+        "internal_resource_id": "imaginary_hotel_cloud",
+        "provider": "synthetic_places",
+        "provider_resource_id": "provider_hotel_cloud",
+        "city": "Fictional Cloud City",
+        "district": "Fictional Moon District"
+      }
+    ],
+    "stays": [
+      {
+        "stay_id": "stay_cloud",
+        "resource": {
+          "internal_resource_id": "imaginary_hotel_cloud",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_hotel_cloud",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "room_type_id": "imaginary_twin",
+        "room_count": 1,
+        "check_in_date": "2026-12-07",
+        "check_out_date": "2026-12-09",
+        "arrival_at": "2026-12-07T15:00:00+08:00",
+        "check_in_at": "2026-12-07T15:00:00+08:00",
+        "check_out_at": "2026-12-09T10:00:00+08:00",
+        "pre_check_in_plan": "none"
+      }
+    ],
+    "facts": [
+      {
+        "fact_id": "hotel_policy_a",
+        "resource": {
+          "internal_resource_id": "imaginary_hotel_cloud",
+          "provider": "synthetic_places",
+          "provider_resource_id": "provider_hotel_cloud",
+          "city": "Fictional Cloud City",
+          "district": "Fictional Moon District"
+        },
+        "room_type_id": "imaginary_twin",
+        "applicable_scope": {
+          "start_date": "2026-12-01",
+          "end_date": "2026-12-31"
+        },
+        "source": {
+          "source_id": "hotel_source_a",
+          "observed_at": "2026-11-18T10:00:00+08:00",
+          "expires_at": "2026-11-30T10:00:00+08:00",
+          "source_reference": "synthetic-hotel:imaginary_cloud"
+        },
+        "date_policies_complete": true,
+        "check_in": {
+          "earliest": "15:00",
+          "latest": "23:00",
+          "latest_day_offset": 0,
+          "early_from": null,
+          "luggage": {
+            "state": "UNKNOWN",
+            "start": null,
+            "end": null
+          }
+        },
+        "check_out": {
+          "deadline": "10:00",
+          "late_until": null
+        },
+        "capacity": {
+          "room_type_id": "imaginary_twin",
+          "max_guests_per_room": 2
+        }
+      }
+    ]
+  }
+}

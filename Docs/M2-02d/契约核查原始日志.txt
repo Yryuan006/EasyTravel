@@ -1,0 +1,5 @@
+PASS all baseline files unchanged under Git attributes; no production F05 imports/wiring
+PASS F05 runtime has no I/O imports, inventory/price/provider/production or F03/F04 calculator dependencies
+PASS 11 strict schemas and 17 deterministic exported input/report examples, round-trips and constants
+PASS seven migrations byte-identical; all M1/PostgreSQL/auth/budget/snapshots and F02/F03/F04 files untouched
+454 database regressions NOT rerun: accepted evidence reused; no database or real supplier API access

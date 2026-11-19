@@ -1,0 +1,4164 @@
+{
+  "fixture_kind": "Entirely fictional hotel, room type, dates and policies; no inventory or real permissions",
+  "clock": "2026-11-19T10:00:00+08:00",
+  "cases": [
+    {
+      "case_id": "two_nights_two_guests_exact_boundaries",
+      "expected_status": "PASS",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "1c12dd8312fc31d990d6e1f4dc75c29170ef084eae2a9a24b4e520efd87f62bb",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "PASS",
+        "valid_until": "2026-11-30T10:00:00+08:00",
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "early_check_in_without_permission",
+      "expected_status": "FAIL",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T14:59:59+08:00",
+            "check_in_at": "2026-12-07T14:59:59+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "93f49da3a6c5e03428aefc73baf08c6ff0befdbd78c9f2924afe4ac18f269eb8",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "FAIL",
+            "reason_code": "before_check_in",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": "2026-12-07T14:59:59+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "explicit_synthetic_early_permission",
+      "expected_status": "PASS",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T14:59:59+08:00",
+            "check_in_at": "2026-12-07T14:59:59+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": "13:00:00",
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "e727791d7c8b67bb8fbb3f0c6ea29b3e7317267f8e48efd22063e51a05c9bac1",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T14:59:59+08:00",
+            "allowed_from": "2026-12-07T13:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "PASS",
+        "valid_until": "2026-11-30T10:00:00+08:00",
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "late_check_out",
+      "expected_status": "FAIL",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:01+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "a70cc77e44a00caec33af5c64dcc917d15b257c09184c22f887c86a001aac1a9",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "FAIL",
+            "reason_code": "after_check_out",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": "2026-12-09T10:00:01+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "early_arrival_storage_unknown",
+      "expected_status": "UNKNOWN",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T11:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "luggage_storage"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "2ea258911d28c02138ca0d04aa64612ae5047787236ad0bd106117376b3c2ab2",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "luggage_unknown",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "arrival_distinct_from_check_in_with_storage",
+      "expected_status": "PASS",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T11:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "luggage_storage"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "ALLOWED",
+                "start": "09:00:00",
+                "end": "18:00:00"
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "06465d0a894124c4a9bd3d455687fcffd2372e0f81193f80df8c58090c9bd2bf",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "luggage_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T11:00:00+08:00",
+            "allowed_from": "2026-12-07T09:00:00+08:00",
+            "allowed_until": "2026-12-07T18:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "PASS",
+        "valid_until": "2026-11-30T10:00:00+08:00",
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "midnight_check_in_not_implicitly_permitted",
+      "expected_status": "FAIL",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-08T00:30:00+08:00",
+            "check_in_at": "2026-12-08T00:30:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "ca4a8d9a9d0be9c49d7e71f1ed9766181b5cdd4e218ec0986661befa3a740908",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "FAIL",
+            "reason_code": "after_check_in_window",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": "2026-12-08T00:30:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "explicit_midnight_window",
+      "expected_status": "PASS",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-08T00:30:00+08:00",
+            "check_in_at": "2026-12-08T00:30:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "01:00:00",
+              "latest_day_offset": 1,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "154a4676819a282e4d1e31446ebf7d3ca5668f55584f79a9033322bee9c71b14",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-08T00:30:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-08T01:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "PASS",
+        "valid_until": "2026-11-30T10:00:00+08:00",
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "capacity_unknown",
+      "expected_status": "UNKNOWN",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": null
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "2153220076c15b37de8806b47e05bb19dd241eec1ed53cd4596c0dddbde2b874",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "capacity_unknown",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "policy_missing",
+      "expected_status": "UNKNOWN",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": []
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "bd8c2df87e1bceb4299bd363df1eadcbc1d195562ee88dc1cd6e2476a404d2aa",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "missing_policy",
+            "fact_ids": [],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "policy_expired",
+      "expected_status": "UNKNOWN",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-19T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "ab0562b2d272cfc2c7c92097498b49f4dc7669f0ef9da14c23db9b32b1cf6ad6",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "source_expired",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "duplicate_nights_not_double_counted",
+      "expected_status": "FAIL",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          },
+          {
+            "stay_id": "duplicate_stay",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "d932505c3be5920823aecaba14f57cb855be5968147f29c1144b721d91a304a7",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "duplicate_stay"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "duplicate_stay"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "duplicate_stay"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "duplicate_stay"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "duplicate_stay",
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "FAIL",
+            "reason_code": "night_duplicate",
+            "fact_ids": [],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "duplicate_stay",
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "FAIL",
+            "reason_code": "night_duplicate",
+            "fact_ids": [],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "duplicate_stay",
+              "stay_cloud"
+            ],
+            "status": "FAIL"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "duplicate_stay",
+              "stay_cloud"
+            ],
+            "status": "FAIL"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "required_nights_missing",
+      "expected_status": "FAIL",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "f81b17aec913975e8ffc99295809a8c905e69968c3f31befc404db7d57dcf4db",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "FAIL",
+            "reason_code": "night_missing",
+            "fact_ids": [],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "FAIL",
+            "reason_code": "night_missing",
+            "fact_ids": [],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [],
+            "status": "FAIL"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [],
+            "status": "FAIL"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "one_day_zero_stays",
+      "expected_status": "NOT_APPLICABLE",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-07",
+        "party_size": 2,
+        "resolved_hotels": [],
+        "stays": [],
+        "facts": []
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "43ccebdbba64e78ea6a191931ae4487029cf95356cbb343cc217a14d288ab662",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-07",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "zero_night_trip",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [],
+        "status": "NOT_APPLICABLE",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "unresolved_check_in_sources",
+      "expected_status": "UNKNOWN",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:00+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          },
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "conflicting_policy",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "16:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "313e87e6ab1e5ef354e6bfacc45c336d5185400c7240638c4e8cdd3268bab607",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "source_conflict",
+            "fact_ids": [
+              "conflicting_policy",
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_out_allowed",
+            "fact_ids": [
+              "conflicting_policy",
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-09T10:00:00+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "capacity_sufficient",
+            "fact_ids": [
+              "conflicting_policy",
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": 2,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "independent_failure_and_unknown",
+      "expected_status": "FAIL",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:01+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": true,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": null,
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "995679143e9186e8f3e6cc1219060ad3ecdf942b9704887efa54c3d26229e923",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "check_in_allowed",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "info",
+            "action": "none",
+            "event_at": "2026-12-07T15:00:00+08:00",
+            "allowed_from": "2026-12-07T15:00:00+08:00",
+            "allowed_until": "2026-12-07T23:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.arrival",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "NOT_APPLICABLE",
+            "reason_code": "no_pre_check_in_service",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.check_out",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "FAIL",
+            "reason_code": "after_check_out",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "revise_stay",
+            "event_at": "2026-12-09T10:00:01+08:00",
+            "allowed_from": null,
+            "allowed_until": "2026-12-09T10:00:00+08:00",
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.capacity",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "capacity_unknown",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "FAIL",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    },
+    {
+      "case_id": "incomplete_policies_cannot_prove_late_failure",
+      "expected_status": "UNKNOWN",
+      "input": {
+        "trip_start_date": "2026-12-07",
+        "trip_end_date": "2026-12-09",
+        "party_size": 2,
+        "resolved_hotels": [
+          {
+            "internal_resource_id": "imaginary_hotel_cloud",
+            "provider": "synthetic_places",
+            "provider_resource_id": "provider_hotel_cloud",
+            "city": "Fictional Cloud City",
+            "district": "Fictional Moon District"
+          }
+        ],
+        "stays": [
+          {
+            "stay_id": "stay_cloud",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "room_count": 1,
+            "check_in_date": "2026-12-07",
+            "check_out_date": "2026-12-09",
+            "arrival_at": "2026-12-07T15:00:00+08:00",
+            "check_in_at": "2026-12-07T15:00:00+08:00",
+            "check_out_at": "2026-12-09T10:00:01+08:00",
+            "pre_check_in_plan": "none"
+          }
+        ],
+        "facts": [
+          {
+            "schema_version": "hotel-policy-facts-v1",
+            "fact_id": "hotel_policy_a",
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "applicable_scope": {
+              "start_date": "2026-12-01",
+              "end_date": "2026-12-31"
+            },
+            "source": {
+              "provider": "synthetic_hotel_fixture",
+              "environment": "synthetic",
+              "source_id": "hotel_source_a",
+              "observed_at": "2026-11-18T10:00:00+08:00",
+              "expires_at": "2026-11-30T10:00:00+08:00",
+              "source_reference": "synthetic-hotel:imaginary_cloud",
+              "verification_state": "SYNTHETIC_UNVERIFIED",
+              "supplier_updated_at": null
+            },
+            "date_policies_complete": false,
+            "check_in": {
+              "earliest": "15:00:00",
+              "latest": "23:00:00",
+              "latest_day_offset": 0,
+              "early_from": null,
+              "luggage": {
+                "state": "UNKNOWN",
+                "start": null,
+                "end": null
+              }
+            },
+            "check_out": {
+              "deadline": "10:00:00",
+              "late_until": null
+            },
+            "capacity": {
+              "room_type_id": "imaginary_twin",
+              "max_guests_per_room": 2
+            },
+            "note": null
+          }
+        ]
+      },
+      "report": {
+        "schema_version": "f05-validation-report-v1",
+        "rule_version": "F05-synthetic-v1",
+        "evaluated_at": "2026-11-19T10:00:00+08:00",
+        "input_sha256": "ed33ce7a4daf7639a4516a054a590003beae70a3851faa6eee694a1ea5e26721",
+        "environment": "synthetic",
+        "evaluated_checks": [
+          "F05"
+        ],
+        "other_checks_status": "NOT_EVALUATED",
+        "inventory_status": "NOT_EVALUATED",
+        "checks": [
+          {
+            "check_id": "F05.check_in",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": {
+              "internal_resource_id": "imaginary_hotel_cloud",
+              "provider": "synthetic_places",
+              "provider_resource_id": "provider_hotel_cloud",
+              "city": "Fictional Cloud City",
+              "district": "Fictional Moon District"
+            },
+            "room_type_id": "imaginary_twin",
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-09",
+            "status": "UNKNOWN",
+            "reason_code": "date_policies_incomplete",
+            "fact_ids": [
+              "hotel_policy_a"
+            ],
+            "severity": "blocker",
+            "action": "obtain_facts",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-07",
+            "target_end_date": "2026-12-08",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          },
+          {
+            "check_id": "F05.nights",
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "resource": null,
+            "room_type_id": null,
+            "target_start_date": "2026-12-08",
+            "target_end_date": "2026-12-09",
+            "status": "PASS",
+            "reason_code": "night_covered",
+            "fact_ids": [],
+            "severity": "info",
+            "action": "none",
+            "event_at": null,
+            "allowed_from": null,
+            "allowed_until": null,
+            "total_capacity": null,
+            "rule_version": "F05-synthetic-v1"
+          }
+        ],
+        "night_coverage": [
+          {
+            "night_date": "2026-12-07",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          },
+          {
+            "night_date": "2026-12-08",
+            "required": true,
+            "stay_ids": [
+              "stay_cloud"
+            ],
+            "status": "PASS"
+          }
+        ],
+        "status": "UNKNOWN",
+        "valid_until": null,
+        "overall_trip_ready": false,
+        "usable_for_real_trip": false,
+        "usable_in_confirmed_snapshot": false
+      }
+    }
+  ]
+}

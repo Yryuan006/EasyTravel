@@ -1,0 +1,2116 @@
+{
+  "HotelSource": {
+    "additionalProperties": false,
+    "properties": {
+      "provider": {
+        "const": "synthetic_hotel_fixture",
+        "default": "synthetic_hotel_fixture",
+        "title": "Provider",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "source_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "observed_at": {
+        "format": "date-time",
+        "title": "Observed At",
+        "type": "string"
+      },
+      "expires_at": {
+        "format": "date-time",
+        "title": "Expires At",
+        "type": "string"
+      },
+      "source_reference": {
+        "maxLength": 100,
+        "pattern": "^synthetic-hotel:[A-Za-z0-9_-]+$",
+        "title": "Source Reference",
+        "type": "string"
+      },
+      "verification_state": {
+        "const": "SYNTHETIC_UNVERIFIED",
+        "default": "SYNTHETIC_UNVERIFIED",
+        "title": "Verification State",
+        "type": "string"
+      },
+      "supplier_updated_at": {
+        "default": null,
+        "title": "Supplier Updated At",
+        "type": "null"
+      }
+    },
+    "required": [
+      "source_id",
+      "observed_at",
+      "expires_at",
+      "source_reference"
+    ],
+    "title": "HotelSource",
+    "type": "object"
+  },
+  "LuggageStoragePolicy": {
+    "additionalProperties": false,
+    "properties": {
+      "state": {
+        "enum": [
+          "ALLOWED",
+          "NOT_ALLOWED",
+          "UNKNOWN"
+        ],
+        "title": "State",
+        "type": "string"
+      },
+      "start": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Start"
+      },
+      "end": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "End"
+      }
+    },
+    "required": [
+      "state",
+      "start",
+      "end"
+    ],
+    "title": "LuggageStoragePolicy",
+    "type": "object"
+  },
+  "CheckInPolicy": {
+    "$defs": {
+      "LuggageStoragePolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "ALLOWED",
+              "NOT_ALLOWED",
+              "UNKNOWN"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          }
+        },
+        "required": [
+          "state",
+          "start",
+          "end"
+        ],
+        "title": "LuggageStoragePolicy",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "earliest": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Earliest"
+      },
+      "latest": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Latest"
+      },
+      "latest_day_offset": {
+        "enum": [
+          0,
+          1
+        ],
+        "title": "Latest Day Offset",
+        "type": "integer"
+      },
+      "early_from": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Early From"
+      },
+      "luggage": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/LuggageStoragePolicy"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "earliest",
+      "latest",
+      "latest_day_offset",
+      "early_from",
+      "luggage"
+    ],
+    "title": "CheckInPolicy",
+    "type": "object"
+  },
+  "CheckOutPolicy": {
+    "additionalProperties": false,
+    "properties": {
+      "deadline": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Deadline"
+      },
+      "late_until": {
+        "anyOf": [
+          {
+            "format": "time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Late Until"
+      }
+    },
+    "required": [
+      "deadline",
+      "late_until"
+    ],
+    "title": "CheckOutPolicy",
+    "type": "object"
+  },
+  "RoomCapacity": {
+    "additionalProperties": false,
+    "properties": {
+      "room_type_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Room Type Id",
+        "type": "string"
+      },
+      "max_guests_per_room": {
+        "anyOf": [
+          {
+            "maximum": 20,
+            "minimum": 1,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Max Guests Per Room"
+      }
+    },
+    "required": [
+      "room_type_id",
+      "max_guests_per_room"
+    ],
+    "title": "RoomCapacity",
+    "type": "object"
+  },
+  "HotelPolicyFacts": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "CheckInPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "earliest": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Earliest"
+          },
+          "latest": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest"
+          },
+          "latest_day_offset": {
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Latest Day Offset",
+            "type": "integer"
+          },
+          "early_from": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Early From"
+          },
+          "luggage": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/LuggageStoragePolicy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "earliest",
+          "latest",
+          "latest_day_offset",
+          "early_from",
+          "luggage"
+        ],
+        "title": "CheckInPolicy",
+        "type": "object"
+      },
+      "CheckOutPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "late_until": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Late Until"
+          }
+        },
+        "required": [
+          "deadline",
+          "late_until"
+        ],
+        "title": "CheckOutPolicy",
+        "type": "object"
+      },
+      "HotelSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_hotel_fixture",
+            "default": "synthetic_hotel_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-hotel:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "HotelSource",
+        "type": "object"
+      },
+      "LuggageStoragePolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "ALLOWED",
+              "NOT_ALLOWED",
+              "UNKNOWN"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          }
+        },
+        "required": [
+          "state",
+          "start",
+          "end"
+        ],
+        "title": "LuggageStoragePolicy",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "RoomCapacity": {
+        "additionalProperties": false,
+        "properties": {
+          "room_type_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Room Type Id",
+            "type": "string"
+          },
+          "max_guests_per_room": {
+            "anyOf": [
+              {
+                "maximum": 20,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Guests Per Room"
+          }
+        },
+        "required": [
+          "room_type_id",
+          "max_guests_per_room"
+        ],
+        "title": "RoomCapacity",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "hotel-policy-facts-v1",
+        "default": "hotel-policy-facts-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "fact_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Fact Id",
+        "type": "string"
+      },
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "room_type_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Room Type Id",
+        "type": "string"
+      },
+      "applicable_scope": {
+        "$ref": "#/$defs/ApplicableScope"
+      },
+      "source": {
+        "$ref": "#/$defs/HotelSource"
+      },
+      "date_policies_complete": {
+        "title": "Date Policies Complete",
+        "type": "boolean"
+      },
+      "check_in": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/CheckInPolicy"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "check_out": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/CheckOutPolicy"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "capacity": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/RoomCapacity"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "note": {
+        "anyOf": [
+          {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Note"
+      }
+    },
+    "required": [
+      "fact_id",
+      "resource",
+      "room_type_id",
+      "applicable_scope",
+      "source",
+      "date_policies_complete",
+      "check_in",
+      "check_out",
+      "capacity"
+    ],
+    "title": "HotelPolicyFacts",
+    "type": "object"
+  },
+  "HotelStay": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "stay_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Stay Id",
+        "type": "string"
+      },
+      "resource": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "room_type_id": {
+        "maxLength": 80,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_-]+$",
+        "title": "Room Type Id",
+        "type": "string"
+      },
+      "room_count": {
+        "maximum": 20,
+        "minimum": 1,
+        "title": "Room Count",
+        "type": "integer"
+      },
+      "check_in_date": {
+        "format": "date",
+        "title": "Check In Date",
+        "type": "string"
+      },
+      "check_out_date": {
+        "format": "date",
+        "title": "Check Out Date",
+        "type": "string"
+      },
+      "arrival_at": {
+        "format": "date-time",
+        "title": "Arrival At",
+        "type": "string"
+      },
+      "check_in_at": {
+        "format": "date-time",
+        "title": "Check In At",
+        "type": "string"
+      },
+      "check_out_at": {
+        "format": "date-time",
+        "title": "Check Out At",
+        "type": "string"
+      },
+      "pre_check_in_plan": {
+        "enum": [
+          "none",
+          "luggage_storage",
+          "offsite_wait"
+        ],
+        "title": "Pre Check In Plan",
+        "type": "string"
+      }
+    },
+    "required": [
+      "stay_id",
+      "resource",
+      "room_type_id",
+      "room_count",
+      "check_in_date",
+      "check_out_date",
+      "arrival_at",
+      "check_in_at",
+      "check_out_at",
+      "pre_check_in_plan"
+    ],
+    "title": "HotelStay",
+    "type": "object"
+  },
+  "F05ValidationInput": {
+    "$defs": {
+      "ApplicableScope": {
+        "additionalProperties": false,
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "title": "ApplicableScope",
+        "type": "object"
+      },
+      "CheckInPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "earliest": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Earliest"
+          },
+          "latest": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest"
+          },
+          "latest_day_offset": {
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Latest Day Offset",
+            "type": "integer"
+          },
+          "early_from": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Early From"
+          },
+          "luggage": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/LuggageStoragePolicy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "earliest",
+          "latest",
+          "latest_day_offset",
+          "early_from",
+          "luggage"
+        ],
+        "title": "CheckInPolicy",
+        "type": "object"
+      },
+      "CheckOutPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "late_until": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Late Until"
+          }
+        },
+        "required": [
+          "deadline",
+          "late_until"
+        ],
+        "title": "CheckOutPolicy",
+        "type": "object"
+      },
+      "HotelPolicyFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "hotel-policy-facts-v1",
+            "default": "hotel-policy-facts-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "room_type_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Room Type Id",
+            "type": "string"
+          },
+          "applicable_scope": {
+            "$ref": "#/$defs/ApplicableScope"
+          },
+          "source": {
+            "$ref": "#/$defs/HotelSource"
+          },
+          "date_policies_complete": {
+            "title": "Date Policies Complete",
+            "type": "boolean"
+          },
+          "check_in": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/CheckInPolicy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "check_out": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/CheckOutPolicy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "capacity": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/RoomCapacity"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Note"
+          }
+        },
+        "required": [
+          "fact_id",
+          "resource",
+          "room_type_id",
+          "applicable_scope",
+          "source",
+          "date_policies_complete",
+          "check_in",
+          "check_out",
+          "capacity"
+        ],
+        "title": "HotelPolicyFacts",
+        "type": "object"
+      },
+      "HotelSource": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "const": "synthetic_hotel_fixture",
+            "default": "synthetic_hotel_fixture",
+            "title": "Provider",
+            "type": "string"
+          },
+          "environment": {
+            "const": "synthetic",
+            "default": "synthetic",
+            "title": "Environment",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "source_reference": {
+            "maxLength": 100,
+            "pattern": "^synthetic-hotel:[A-Za-z0-9_-]+$",
+            "title": "Source Reference",
+            "type": "string"
+          },
+          "verification_state": {
+            "const": "SYNTHETIC_UNVERIFIED",
+            "default": "SYNTHETIC_UNVERIFIED",
+            "title": "Verification State",
+            "type": "string"
+          },
+          "supplier_updated_at": {
+            "default": null,
+            "title": "Supplier Updated At",
+            "type": "null"
+          }
+        },
+        "required": [
+          "source_id",
+          "observed_at",
+          "expires_at",
+          "source_reference"
+        ],
+        "title": "HotelSource",
+        "type": "object"
+      },
+      "HotelStay": {
+        "additionalProperties": false,
+        "properties": {
+          "stay_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Stay Id",
+            "type": "string"
+          },
+          "resource": {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          "room_type_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Room Type Id",
+            "type": "string"
+          },
+          "room_count": {
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Room Count",
+            "type": "integer"
+          },
+          "check_in_date": {
+            "format": "date",
+            "title": "Check In Date",
+            "type": "string"
+          },
+          "check_out_date": {
+            "format": "date",
+            "title": "Check Out Date",
+            "type": "string"
+          },
+          "arrival_at": {
+            "format": "date-time",
+            "title": "Arrival At",
+            "type": "string"
+          },
+          "check_in_at": {
+            "format": "date-time",
+            "title": "Check In At",
+            "type": "string"
+          },
+          "check_out_at": {
+            "format": "date-time",
+            "title": "Check Out At",
+            "type": "string"
+          },
+          "pre_check_in_plan": {
+            "enum": [
+              "none",
+              "luggage_storage",
+              "offsite_wait"
+            ],
+            "title": "Pre Check In Plan",
+            "type": "string"
+          }
+        },
+        "required": [
+          "stay_id",
+          "resource",
+          "room_type_id",
+          "room_count",
+          "check_in_date",
+          "check_out_date",
+          "arrival_at",
+          "check_in_at",
+          "check_out_at",
+          "pre_check_in_plan"
+        ],
+        "title": "HotelStay",
+        "type": "object"
+      },
+      "LuggageStoragePolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "ALLOWED",
+              "NOT_ALLOWED",
+              "UNKNOWN"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "format": "time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          }
+        },
+        "required": [
+          "state",
+          "start",
+          "end"
+        ],
+        "title": "LuggageStoragePolicy",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "RoomCapacity": {
+        "additionalProperties": false,
+        "properties": {
+          "room_type_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Room Type Id",
+            "type": "string"
+          },
+          "max_guests_per_room": {
+            "anyOf": [
+              {
+                "maximum": 20,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Guests Per Room"
+          }
+        },
+        "required": [
+          "room_type_id",
+          "max_guests_per_room"
+        ],
+        "title": "RoomCapacity",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "trip_start_date": {
+        "format": "date",
+        "title": "Trip Start Date",
+        "type": "string"
+      },
+      "trip_end_date": {
+        "format": "date",
+        "title": "Trip End Date",
+        "type": "string"
+      },
+      "party_size": {
+        "maximum": 100,
+        "minimum": 1,
+        "title": "Party Size",
+        "type": "integer"
+      },
+      "resolved_hotels": {
+        "items": {
+          "$ref": "#/$defs/ResourceRef"
+        },
+        "maxItems": 30,
+        "title": "Resolved Hotels",
+        "type": "array"
+      },
+      "stays": {
+        "items": {
+          "$ref": "#/$defs/HotelStay"
+        },
+        "maxItems": 30,
+        "title": "Stays",
+        "type": "array"
+      },
+      "facts": {
+        "items": {
+          "$ref": "#/$defs/HotelPolicyFacts"
+        },
+        "maxItems": 100,
+        "title": "Facts",
+        "type": "array"
+      }
+    },
+    "required": [
+      "trip_start_date",
+      "trip_end_date",
+      "party_size",
+      "resolved_hotels",
+      "stays",
+      "facts"
+    ],
+    "title": "F05ValidationInput",
+    "type": "object"
+  },
+  "StayNightCoverage": {
+    "additionalProperties": false,
+    "properties": {
+      "night_date": {
+        "format": "date",
+        "title": "Night Date",
+        "type": "string"
+      },
+      "required": {
+        "title": "Required",
+        "type": "boolean"
+      },
+      "stay_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Stay Ids",
+        "type": "array"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL"
+        ],
+        "title": "Status",
+        "type": "string"
+      }
+    },
+    "required": [
+      "night_date",
+      "required",
+      "stay_ids",
+      "status"
+    ],
+    "title": "StayNightCoverage",
+    "type": "object"
+  },
+  "F05FeasibilityCheck": {
+    "$defs": {
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "check_id": {
+        "enum": [
+          "F05.structure",
+          "F05.check_in",
+          "F05.check_out",
+          "F05.arrival",
+          "F05.capacity",
+          "F05.nights"
+        ],
+        "title": "Check Id",
+        "type": "string"
+      },
+      "stay_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Stay Ids",
+        "type": "array"
+      },
+      "resource": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ResourceRef"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "room_type_id": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Room Type Id"
+      },
+      "target_start_date": {
+        "format": "date",
+        "title": "Target Start Date",
+        "type": "string"
+      },
+      "target_end_date": {
+        "format": "date",
+        "title": "Target End Date",
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "reason_code": {
+        "enum": [
+          "zero_night_trip",
+          "night_covered",
+          "night_missing",
+          "night_duplicate",
+          "night_outside_trip",
+          "invalid_timezone",
+          "invalid_event_order",
+          "stay_dates_invalid",
+          "stay_outside_trip",
+          "event_date_mismatch",
+          "resource_binding_mismatch",
+          "missing_policy",
+          "source_expired",
+          "observation_in_future",
+          "date_not_applicable",
+          "date_policies_incomplete",
+          "source_conflict",
+          "check_in_unknown",
+          "check_in_earliest_unknown",
+          "check_in_latest_unknown",
+          "before_check_in",
+          "after_check_in_window",
+          "check_in_allowed",
+          "check_out_unknown",
+          "after_check_out",
+          "check_out_allowed",
+          "capacity_unknown",
+          "capacity_exceeded",
+          "capacity_sufficient",
+          "luggage_unknown",
+          "luggage_denied",
+          "luggage_outside_window",
+          "luggage_allowed",
+          "luggage_cross_day_unsupported",
+          "early_arrival_plan_unknown",
+          "offsite_wait_explicit",
+          "no_pre_check_in_service"
+        ],
+        "title": "Reason Code",
+        "type": "string"
+      },
+      "fact_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        },
+        "title": "Fact Ids",
+        "type": "array"
+      },
+      "severity": {
+        "enum": [
+          "info",
+          "blocker"
+        ],
+        "title": "Severity",
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "none",
+          "revise_stay",
+          "obtain_facts"
+        ],
+        "title": "Action",
+        "type": "string"
+      },
+      "event_at": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Event At"
+      },
+      "allowed_from": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Allowed From"
+      },
+      "allowed_until": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Allowed Until"
+      },
+      "total_capacity": {
+        "anyOf": [
+          {
+            "maximum": 400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Total Capacity"
+      },
+      "rule_version": {
+        "const": "F05-synthetic-v1",
+        "default": "F05-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "check_id",
+      "stay_ids",
+      "resource",
+      "room_type_id",
+      "target_start_date",
+      "target_end_date",
+      "status",
+      "reason_code",
+      "fact_ids",
+      "severity",
+      "action"
+    ],
+    "title": "F05FeasibilityCheck",
+    "type": "object"
+  },
+  "F05ValidationReport": {
+    "$defs": {
+      "F05FeasibilityCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "check_id": {
+            "enum": [
+              "F05.structure",
+              "F05.check_in",
+              "F05.check_out",
+              "F05.arrival",
+              "F05.capacity",
+              "F05.nights"
+            ],
+            "title": "Check Id",
+            "type": "string"
+          },
+          "stay_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Stay Ids",
+            "type": "array"
+          },
+          "resource": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "room_type_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Room Type Id"
+          },
+          "target_start_date": {
+            "format": "date",
+            "title": "Target Start Date",
+            "type": "string"
+          },
+          "target_end_date": {
+            "format": "date",
+            "title": "Target End Date",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason_code": {
+            "enum": [
+              "zero_night_trip",
+              "night_covered",
+              "night_missing",
+              "night_duplicate",
+              "night_outside_trip",
+              "invalid_timezone",
+              "invalid_event_order",
+              "stay_dates_invalid",
+              "stay_outside_trip",
+              "event_date_mismatch",
+              "resource_binding_mismatch",
+              "missing_policy",
+              "source_expired",
+              "observation_in_future",
+              "date_not_applicable",
+              "date_policies_incomplete",
+              "source_conflict",
+              "check_in_unknown",
+              "check_in_earliest_unknown",
+              "check_in_latest_unknown",
+              "before_check_in",
+              "after_check_in_window",
+              "check_in_allowed",
+              "check_out_unknown",
+              "after_check_out",
+              "check_out_allowed",
+              "capacity_unknown",
+              "capacity_exceeded",
+              "capacity_sufficient",
+              "luggage_unknown",
+              "luggage_denied",
+              "luggage_outside_window",
+              "luggage_allowed",
+              "luggage_cross_day_unsupported",
+              "early_arrival_plan_unknown",
+              "offsite_wait_explicit",
+              "no_pre_check_in_service"
+            ],
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Fact Ids",
+            "type": "array"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "blocker"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "none",
+              "revise_stay",
+              "obtain_facts"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "event_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Event At"
+          },
+          "allowed_from": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Allowed From"
+          },
+          "allowed_until": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Allowed Until"
+          },
+          "total_capacity": {
+            "anyOf": [
+              {
+                "maximum": 400,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Total Capacity"
+          },
+          "rule_version": {
+            "const": "F05-synthetic-v1",
+            "default": "F05-synthetic-v1",
+            "title": "Rule Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "stay_ids",
+          "resource",
+          "room_type_id",
+          "target_start_date",
+          "target_end_date",
+          "status",
+          "reason_code",
+          "fact_ids",
+          "severity",
+          "action"
+        ],
+        "title": "F05FeasibilityCheck",
+        "type": "object"
+      },
+      "ResourceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "internal_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Internal Resource Id",
+            "type": "string"
+          },
+          "provider": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_resource_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Provider Resource Id",
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "City",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          }
+        },
+        "required": [
+          "internal_resource_id",
+          "provider",
+          "provider_resource_id",
+          "city",
+          "district"
+        ],
+        "title": "ResourceRef",
+        "type": "object"
+      },
+      "StayNightCoverage": {
+        "additionalProperties": false,
+        "properties": {
+          "night_date": {
+            "format": "date",
+            "title": "Night Date",
+            "type": "string"
+          },
+          "required": {
+            "title": "Required",
+            "type": "boolean"
+          },
+          "stay_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$",
+              "type": "string"
+            },
+            "title": "Stay Ids",
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "night_date",
+          "required",
+          "stay_ids",
+          "status"
+        ],
+        "title": "StayNightCoverage",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "f05-validation-report-v1",
+        "default": "f05-validation-report-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "rule_version": {
+        "const": "F05-synthetic-v1",
+        "default": "F05-synthetic-v1",
+        "title": "Rule Version",
+        "type": "string"
+      },
+      "evaluated_at": {
+        "format": "date-time",
+        "title": "Evaluated At",
+        "type": "string"
+      },
+      "input_sha256": {
+        "pattern": "^[0-9a-f]{64}$",
+        "title": "Input Sha256",
+        "type": "string"
+      },
+      "environment": {
+        "const": "synthetic",
+        "default": "synthetic",
+        "title": "Environment",
+        "type": "string"
+      },
+      "evaluated_checks": {
+        "default": [
+          "F05"
+        ],
+        "maxItems": 1,
+        "minItems": 1,
+        "prefixItems": [
+          {
+            "const": "F05",
+            "type": "string"
+          }
+        ],
+        "title": "Evaluated Checks",
+        "type": "array"
+      },
+      "other_checks_status": {
+        "const": "NOT_EVALUATED",
+        "default": "NOT_EVALUATED",
+        "title": "Other Checks Status",
+        "type": "string"
+      },
+      "inventory_status": {
+        "const": "NOT_EVALUATED",
+        "default": "NOT_EVALUATED",
+        "title": "Inventory Status",
+        "type": "string"
+      },
+      "checks": {
+        "items": {
+          "$ref": "#/$defs/F05FeasibilityCheck"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "night_coverage": {
+        "items": {
+          "$ref": "#/$defs/StayNightCoverage"
+        },
+        "title": "Night Coverage",
+        "type": "array"
+      },
+      "status": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "UNKNOWN",
+          "NOT_APPLICABLE"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "valid_until": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Valid Until"
+      },
+      "overall_trip_ready": {
+        "const": false,
+        "default": false,
+        "title": "Overall Trip Ready",
+        "type": "boolean"
+      },
+      "usable_for_real_trip": {
+        "const": false,
+        "default": false,
+        "title": "Usable For Real Trip",
+        "type": "boolean"
+      },
+      "usable_in_confirmed_snapshot": {
+        "const": false,
+        "default": false,
+        "title": "Usable In Confirmed Snapshot",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "evaluated_at",
+      "input_sha256",
+      "checks",
+      "night_coverage",
+      "status",
+      "valid_until"
+    ],
+    "title": "F05ValidationReport",
+    "type": "object"
+  }
+}
